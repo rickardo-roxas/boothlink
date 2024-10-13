@@ -1,0 +1,17 @@
+body {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+}
+
+body > h1{
+    color: aquamarine;
+}
+
+body > img{
+    width: 20rem;
+    height: 20rem;
+    object-fit: cover;
+}
