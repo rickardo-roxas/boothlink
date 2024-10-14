@@ -1,0 +1,1 @@
+// JS Script for client side scripting
