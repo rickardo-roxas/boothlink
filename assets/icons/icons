@@ -1,0 +1,7 @@
+Naming convention:
+<icon-name>-<color>-<type>
+
+e.g.
+- phone-black-fill
+- phone-black-outline
+- cart-white-outline
