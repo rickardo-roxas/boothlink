@@ -22,5 +22,6 @@ spl_autoload_register(function ($class_name) {
 
 // Create the controller and show the message
 $controller = new HelloController();
-$controller->showMessage(); 
-?>
+$controller->showMessage();
+
+//$controller = new SalesController();
