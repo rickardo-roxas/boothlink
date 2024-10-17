@@ -28,3 +28,27 @@ function addProduct($org_id,$sched_id,$category,$description,$prod_serv_name,$pr
 // Test the function
 // addProduct(3,2,'entertainment','Electric Chair','Alawakbar', 15000.55);
 ?>
+
+<?php
+
+function updateProduct($prod_serv_id, $org_id, $sched_id, $category, $description, $prod_serv_name, $price) {
+    global $conn;
+
+    $stmt = $conn->prepare("UPDATE prod_serv SET org_id = ?, sched_id = ?, category = ?, description = ?, prod_serv_name = ?, price = ? WHERE prod_serv_id = ?");
+    
+    $stmt->bind_param('iisssdi', $org_id, $sched_id, $category, $description, $prod_serv_name, $price, $prod_serv_id);
+
+    if ($stmt->execute()) {
+        echo "Product updated successfully!";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+
+// Example call to the function
+updateProduct(1, 3, 2, 'Clothing', 'Updated description', 'INC Clothing Tee', 400.50);
+
+?>
