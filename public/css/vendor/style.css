@@ -29,6 +29,7 @@
     /* Colors */
     --stroke-primary: #F6F5F6; /* stroke/primary color */
     --text: #1A181B; /* text color */
+    --text-subtext: #756D78;
     --surface-secondary: #FFFFFF;
     --light-gray: #D9D9D9;
     --sky-blue: #1EBDEF;
@@ -64,7 +65,6 @@ html {
 .grid-container {
     display: grid;
     gap: 1.5rem;
-    padding: var(--spacing-xl);
 }
 
 .column-container {
@@ -74,7 +74,7 @@ html {
 
 .card {
     display: flex;
-    padding: var(--spacing-xl, 1rem) var(--spacing-xl, 0.75rem);
+    padding: var(--spacing-xl, 1.5rem) var(--spacing-xl, 1rem);
     flex-direction: column;
     align-items: flex-start;
     gap: var(--spacing-xl, 1rem);
@@ -172,10 +172,50 @@ nav ul li a.active {
     text-decoration: underline;
 }
 
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+button:hover, a:hover {
+    cursor: pointer;
+}
+
+/* Styling Classes */
+.refresh-btn {
+    border: none;
+    background-color: var(--stroke-primary);
+    color: var(--text);
+    text-align: center;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
+    vertical-align: middle;
+    justify-content: center;
+}
+
+/* DO NOT REUSE STARTING HERE */
 /* Main */
+#dashboard {
+    padding: var(--spacing-xl, 1.5rem);
+}
+
+#dashboard .container {
+    gap: 1.5rem;
+}
+
 #dashboard .grid-container {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1.5fr);
     grid-template-rows: auto;
+    column-gap: var(--spacing-xl, 1.5rem);
+    gap: 1.5rem;
+}
+
+#dashboard h2 {
+    color: var(--text);
+    font-size: 1.4rem;
+    font-weight: bold;
 }
 
 #dashboard .column-container {
@@ -187,8 +227,43 @@ nav ul li a.active {
     grid-row: 1;
 }
 
+#dash-profile img {
+    width: 6.75rem;
+    height: 6.75rem;
+    border-radius: 50%;
+}
+
+#dash-profile div:first-of-type {
+    height: 7rem;
+    align-items: center;
+}
+
+#dash-profile div:first-of-type h3 {
+    margin-left: 1rem;
+}
+
+#dash-profile a {
+    text-decoration: none;
+    color: var(--text);
+}
+
+#dash-profile .soc-med {
+    height: 2rem;
+    align-items: center;
+}
+
+#dash-profile .soc-med p {
+    margin-left: 0.5rem;
+}
+
+#dash-profile .soc-med img {
+    width: 2.625rem;
+    height: 2.625rem;
+    border-radius: 50%;
+}
+
 #dash-reservations {
-    grid-column: 2 / 3;
+    grid-column: 2;
     grid-row: 2;
 }
 
@@ -197,43 +272,103 @@ nav ul li a.active {
     grid-row: 2;
 }
 
-#dash-sched table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid var(--light-gray);
-    border-radius: 0.5rem;
-}
-
-#dash-sched table th {
-    background-color: var(--light-gray);
-    text-align: center;
-
-}
-
 #dash-sales {
-    grid-column: 3 / 4;
+    grid-column: 1;
     grid-row: 1;
 }
 
+#dash-sales p, #dash-total-reserv p {
+    color: #606060;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
 #dash-total-reserv {
-    rid-column: 3 / 4;
+    grid-column: 1;
     grid-row: 2;
 }
 
 #dash-summary {
-    grid-column: 3 / 4;
+    grid-column: 1;
     grid-row: 3;
 }
 
-/* Other Elements */
-.refresh {
-    color: var(--text);
-    text-align: center;
-    font-size: 0.75rem;
+#dash-summary h3 {
+    color: var(--text-subtext);
+    font-size: 1rem;
     font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-decoration-line: underline;
+    font-weight: 600;
+    line-height: 1.25rem; /* 125% */
+}
+
+#dash-summary .progress-bar {
+    height: 0.5rem;
+    width: 100%;
+    background-color: var(--light-gray);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+#dash-summary .progress {
+    height: 100%;
+    border-radius: 0.5rem;
+    transition: width 0.3s ease;
+}
+
+#dash-summary .stats {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    justify-content: space-between;
+}
+
+.stats h4 {
+    color: var(--text);
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 2rem; /* 133.333% */
+}
+
+#pending {
+    background-color: #FDB022;
+    width: 70%;
+}
+
+#completed {
+    background-color: #47CD89;
+    width: 30%;
+}
+
+#dashboard table {
+    width: 100%;
+    border-collapse: separate;
+    font-family: 'Poppins', sans-serif;
+}
+
+#dashboard table th {
+    background-color: var(--light-gray);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    border: 1px solid var(--light-gray);
+    padding: 1rem;
+
+}
+
+#dashboard table tr  {
+    height: 2.5rem;
+}
+
+#dashboard table td {
+    border: 1px solid var(--light-gray);
+    vertical-align: center;
+    padding: 0.5rem;
 }
 
 .sky-blue {
