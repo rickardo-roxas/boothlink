@@ -1,8 +1,4 @@
 <?php
-// index.php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 // Start the session only if it hasn't started yet
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -19,9 +15,18 @@ spl_autoload_register(function ($class_name) {
     }
 });
 
+// Check if the user is logged in
+if (isset($_SESSION['user'])) {
+    // User is logged in, show the hello message
+    $controller = new HelloController();
+    $controller->showMessage();
+} else {
 
-// Create the controller and show the message
-$controller = new HelloController();
-$controller->showMessage();
+    require_once 'controller/LoginController.php';  
+    require_once 'model/Connection.php';          
 
-//$controller = new SalesController();
+    $connection = new Connection();
+    $db = $connection->getConnection();
+    $controller = new LoginController($db);
+    $controller->handleLogin();
+}
