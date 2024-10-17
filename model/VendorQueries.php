@@ -14,7 +14,7 @@ function addProduct($org_id,$sched_id,$category,$description,$prod_serv_name,$pr
     $stmt = $conn->prepare("INSERT INTO prod_serv (org_id, sched_id, category, description, prod_serv_name, price) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->bind_param('iisssd', $org_id,$sched_id,$category,$description,$prod_serv_name,$price);//iisssd means i = int , s= string, d = double
 
-    // Execute the prepared statement
+    // Executes the prepared statement
     if ($stmt->execute()) {
         echo "New product added successfully!";
     } else {
@@ -49,6 +49,6 @@ function updateProduct($prod_serv_id, $org_id, $sched_id, $category, $descriptio
 }
 
 // Example call to the function
-updateProduct(1, 3, 2, 'Clothing', 'Updated description', 'INC Clothing Tee', 400.50);
+//updateProduct(1, 3, 2, 'Clothing', 'Updated description', 'INC Clothing Tee', 400.50);
 
 ?>
