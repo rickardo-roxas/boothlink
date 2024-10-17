@@ -35,19 +35,57 @@
     </div>
 </header>
 <main>
-    <div class="grid-container">
-        <div class="container">
-            <section id="dash-profile">
-
-            </section>
-            <section id="dash-reservations">
-
-            </section>
+    <div id="dashboard" class="grid-container">
+        <div class="column-container">
+            <div class="container">
+                <article id="dash-profile" class="card">
+                    <h2>Profile</h2>
+                </article>
+                <article id="dash-reservations" class="card">
+                    <h2>Recent Reservations</h2>
+                </article>
+            </div>
+            <article id="dash-sched" class="card">
+                <h2>Schedule Today</h2>
+                <table>
+                    <tr>
+                        <th>Location and Stall Number</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                    </tr>
+                    <tr>
+                        <td>SLU Maryheights, Lobby, Stall #6</td>
+                        <td>9:30 AM</td>
+                        <td>1:00 PM</td>
+                    </tr>
+                    <tr>
+                        <td>SLU Marheights, Lobby, Stall #6</td>
+                        <td>2:00 PM</td>
+                        <td>4:00 PM</td>
+                    </tr>
+                </table>
+            </article>
         </div>
-        <div class="container">
-
+        <div class="column-container">
+            <article id="dash-sales" class="card">
+                <h2>Total Sales</h2>
+                <div class="container">
+                    <p>Php 289.00</p>
+                    <button class="refresh">Refresh</button>
+                </div>
+            </article>
+            <article id="dash-total-reserv" class="card">
+                <h2>Total Reservations</h2>
+                <div class="container">
+                    <p>124 Products</p>
+                    <p>5 Services</p>
+                    <button class="refresh">Refresh</button>
+                </div>
+            </article>
+            <article id= "dash-summary" class="card">
+                <h2>Reservations Summary</h2>
+            </article>
         </div>
-
     </div>
 </main>
 <footer>
