@@ -1,13 +1,17 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "boothlink"; 
+class Connection {
+    private $servername = "localhost";
+    private $username = "root";
+    private $password = "";
+    private $dbname = "boothlink"; 
+    private $conn;
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+    public function getConnection() {
+        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
 
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+        if ($this->conn->connect_error) {
+            die("Connection failed: " . $this->conn->connect_error);
+        }
+        return $this->conn;
+    }
 }
-echo "Connected successfully";
-?>
