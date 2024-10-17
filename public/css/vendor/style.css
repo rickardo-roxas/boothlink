@@ -1,17 +1,143 @@
-body {
-    align-items: center;
-    justify-content: center;
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url(/assets/fonts/Plus_Jakarta_Sans/PlusJakartaSans-VariableFont_wght.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url(/assets/fonts/Roboto/Roboto-Regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url(/assets/fonts/Roboto/Roboto-Bold.ttf) format("truetype");
+    font-weight: bold;
+}
+
+:root {
+    /* Colors */
+    --stroke-primary: #F6F5F6; /* stroke/primary color */
+    --text: #1A181B; /* text color */
+    --surface-secondary: #FFFFFF;
+    --light-gray: #D9D9D9;
+    --sky-blue: #1EBDEF;
+
+    /* Box Shadows */
+    --bs-dark1: 0 2px 4px 0 rgba(16, 24, 40, 0.5);
+    /* Padding */
+    --spacing-2x1: 1.25rem;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--stroke-primary);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Containers */
+.container {
     display: flex;
-    height: 100vh;
+    align-items: center;
+}
+
+.column-container {
+    display: flex;
+    align-items: center;
     flex-direction: column;
 }
 
-body > h1{
-    color: aquamarine;
+.grid-container {
+    display: grid;
 }
 
-body > img{
-    width: 20rem;
-    height: 20rem;
-    object-fit: cover;
+.card {
+    padding: var(--spacing-2x1);
+    border-radius: 0.75rem;
+    border: 1px solid var(--stroke-primary, #F6F5F6);
+    background: var(--surface-secondary, #FFF);
+    box-shadow: var(--bs-dark1);
 }
+
+/* Header */
+header {
+    padding: var(--spacing-2x1);
+    align-items: center;
+    overflow: hidden;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    margin: 0 4rem;
+}
+
+header li {
+    font-weight: 600;
+    list-style: none;
+    display: inline-block;
+    margin: 0.8rem;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav li {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+nav li a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+nav li a .active {
+    color: var(--sky-blue);
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.logo img {
+    width: 1.875rem;
+    height: 1.63769rem;
+    align-self: center;
+}
+
+.logo h1 {
+    font-size: 2rem;
+    line-height: 1.5rem;
+}
+
+/* Main */
+.grid-container .dashboard {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+
+/* Buttons */
+.refresh {
+    border: none;
+    background: none;
+    color: var(--text);
+    text-decoration: underline;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Colors */
+.sky-blue {
+    color: var(--sky-blue);
+}
+
+
+
