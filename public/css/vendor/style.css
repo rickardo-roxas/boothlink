@@ -14,6 +14,17 @@
     font-weight: bold;
 }
 
+@font-face {
+    font-family: 'Poppins';
+    src: url(/assets/fonts/Poppins/Poppins-Regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url(/assets/fonts/Poppins/Poppins-Bold.ttf) format("truetype");
+    font-weight: bold;
+}
+
 :root {
     /* Colors */
     --stroke-primary: #F6F5F6; /* stroke/primary color */
@@ -23,12 +34,12 @@
     --sky-blue: #1EBDEF;
 
     /* Shadows */
-    --dark1: 0 2px 4px 0 rgba(16, 24, 40, 0.5);
+    --dark1: 0 2px 4px 0 rgba(16, 24, 40, 0.4);
     --light1: 0 2px 4px 0 rgba(16, 24, 40, 0.2);
 
     /* Padding */
-    --spacing-x1: 2rem 4rem;
-    --spacing-2x1: 1.25rem;
+    --spacing-xl: 2rem 4rem;
+    --spacing-2xl: 1.25rem;
 }
 
 * {
@@ -52,11 +63,26 @@ html {
 
 .grid-container {
     display: grid;
+    gap: 1.5rem;
+    padding: var(--spacing-xl);
 }
 
 .column-container {
     display: flex;
     flex-direction: column;
+}
+
+.card {
+    display: flex;
+    padding: var(--spacing-xl, 1rem) var(--spacing-xl, 0.75rem);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xl, 1rem);
+    flex-shrink: 0;
+    border-radius: 0.75rem;
+    border: 1px solid var(--stroke-primary, #F6F5F6);
+    background: var(--surface-secondary, #FFF);
+    box-shadow: var(--light1);
 }
 
 /* Header */
@@ -70,7 +96,7 @@ header {
     width: 100%;
     height: 5.6875rem;
     z-index: 10;
-    padding: var(--spacing-x1);
+    padding: var(--spacing-xl);
 }
 
 header a {
@@ -147,6 +173,69 @@ nav ul li a.active {
 }
 
 /* Main */
+#dashboard .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+}
+
+#dashboard .column-container {
+    display: contents;
+}
+
+#dash-profile {
+    grid-column: 1 / 2;
+    grid-row: 1;
+}
+
+#dash-reservations {
+    grid-column: 2 / 3;
+    grid-row: 2;
+}
+
+#dash-sched {
+    grid-column: 1 / 3;
+    grid-row: 2;
+}
+
+#dash-sched table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--light-gray);
+    border-radius: 0.5rem;
+}
+
+#dash-sched table th {
+    background-color: var(--light-gray);
+    text-align: center;
+
+}
+
+#dash-sales {
+    grid-column: 3 / 4;
+    grid-row: 1;
+}
+
+#dash-total-reserv {
+    rid-column: 3 / 4;
+    grid-row: 2;
+}
+
+#dash-summary {
+    grid-column: 3 / 4;
+    grid-row: 3;
+}
+
+/* Other Elements */
+.refresh {
+    color: var(--text);
+    text-align: center;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
+}
+
 .sky-blue {
     color: var(--sky-blue);
 }
