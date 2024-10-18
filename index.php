@@ -25,8 +25,14 @@ if (isset($_SESSION['user'])) {
     require_once 'controller/LoginController.php';  
     require_once 'model/Connection.php';          
 
-    $connection = new Connection();
-    $db = $connection->getConnection();
-    $controller = new LoginController($db);
-    $controller->handleLogin();
+//    $db = $connection->getConnection();
+    //$controller = new LoginController();
+   // $controller->handleLogin();
+
+    /*
+    $username = "ramon";
+    require_once 'model/Dashboard.php';
+    require_once 'controller/DashboardController.php';
+    new DashboardController(new Dashboard($username));
+    */
 }

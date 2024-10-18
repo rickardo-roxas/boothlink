@@ -1,7 +1,8 @@
 <?php
 require_once 'model/Connection.php'; 
 require_once 'model/Login.php';       
-require_once 'view/LoginView.php';    
+require_once 'view/LoginView.php';
+
 class LoginController {
     private $db;
 
@@ -22,11 +23,18 @@ class LoginController {
         
             // Login model
             $login = new Login($db);
-        
+
             if ($login->authenticate($username, $password)) {
-            //    header("location: controller/HelloController.php");
-            header("location: view/ProductsPageView.html");
-                exit(); 
+                //header("location: controller/HelloController.php");
+                header("location: view/ProductsPageView.html");
+
+                /*
+                 *  TODO assign username to variable below
+                require_once 'model/Dashboard.php';
+                require_once 'controller/DashboardController.php';
+                new DashboardController(new Dashboard("ramon"));
+                */
+                exit();
             } else {
                 echo "Login failed! Invalid username or password.";
             }
