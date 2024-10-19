@@ -11,9 +11,14 @@
 </head>
 <body>
 <?php
-$orgPhoto = $_GET['orgPhoto'];
-$orgName = $_GET['orgName'];
-include '../../view/vendor/page-fragments/Header.php';
+
+#$orgPhoto = $_GET['orgPhoto'];
+#$orgName = $_GET['orgName'];
+
+$orgPhoto = '../../assets/images/placeholder.jpeg';
+$orgName = "SCHEMA";
+require '../../view/vendor/pageFragments/Header.php';
+
 ?>
 
 <main>
