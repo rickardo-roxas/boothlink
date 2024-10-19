@@ -12,12 +12,9 @@
 <body>
 <?php
 
-#$orgPhoto = $_GET['orgPhoto'];
-#$orgName = $_GET['orgName'];
-
 $orgPhoto = '../../assets/images/placeholder.jpeg';
 $orgName = "SCHEMA";
-require '../../view/vendor/pageFragments/Header.php';
+require (__DIR__.'/page-fragments/Header.php');
 
 ?>
 

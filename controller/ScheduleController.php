@@ -1,12 +1,11 @@
 <?php
 
-class SalesController {
-
+class ScheduleController {
     private $model;
 
     public function __construct() {
-        include(__DIR__.'/../model/SalesModel.php');
-        $this->model = new SalesModel();
+        include(__DIR__.'/../model/Schedule.php');
+        $this->model = new Schedule();
     }
 
     public function getModel()
@@ -15,8 +14,7 @@ class SalesController {
     }
 
     public function index() {
-
-        header('Location: SalesView.php');
+        header('Location: ScheduleView.php');
         exit();
     }
 }

@@ -11,8 +11,6 @@ class DashboardController {
 
 
     public function index($firstTime) {
-        $orgPhoto = '../../assets/images/placeholder.jpeg';
-        $orgName = "SCHEMA";
 
         if ($firstTime) {
             header('Location: view/vendor/DashboardView.php');
