@@ -22,11 +22,12 @@ if (isset($_SESSION['user'])) {
     $controller->showMessage();
 } else {
 
-    require_once 'controller/LoginController.php';  
-    require_once 'model/Connection.php';          
+    /*
+    $username = "ramon";
+    require_once 'model/Dashboard.php';
+    require_once 'controller/DashboardController.php';
+    new DashboardController(new Dashboard($username));
+    */
 
-    $connection = new Connection();
-    $db = $connection->getConnection();
-    $controller = new LoginController($db);
-    $controller->handleLogin();
+    $controller = new SalesController();
 }

@@ -16,7 +16,7 @@ class SalesController {
         $productList = $model -> getProductList();
 
 
-        include 'view/SalesView.php';
+        include 'view/vendor/SalesView.php';
 
     }
     

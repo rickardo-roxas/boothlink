@@ -7,33 +7,15 @@
     <meta name="description" content="BoothLink lets you discover and reserve unique products and services from student
     booths at Saint Louis University. Support SLU's vibrant student community today!">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="/public/css/vendor/style.css">
+    <link rel="stylesheet" href="../../public/css/vendor/style.css">
 </head>
 <body>
-<header>
-    <div class="logo">
-        <a href="dashboard.html" target="_self" class="container">
-            <img src="/assets/icons/logo-black-outline.png" alt="BoothLink logo">
-            <h1>booth<span class="sky-blue">link</span></h1>
-        </a>
-    </div>
-    <nav>
-        <ul>
-            <li><a href="dashboard.html" target="_self" class="active">Home</a></li>
-            <li><a href="" target="_self">Reservations</a></li>
-            <li><a href="" target="_self">Products</a></li>
-            <li><a href="" target="_self">Schedule</a></li>
-            <li><a href="" target="_self">Sales</a></li>
-        </ul>
-    </nav>
-    <div class="container">
-        <button>Add New Listing</button>
-        <ul class="profile">
-            <li><img src="/assets/images/placeholder.jpeg" alt="Organization picture"></li>
-            <li><p>Organization Name</p></li>
-        </ul>
-    </div>
-</header>
+<?php
+$orgPhoto = $_GET['orgPhoto'];
+$orgName = $_GET['orgName'];
+include '../../view/vendor/pageFragments/Header.php';
+?>
+
 <main>
     <div id="dashboard" class="container">
         <div class="grid-container">
@@ -42,20 +24,20 @@
                     <article id="dash-profile" class="card">
                         <h2>Profile</h2>
                         <div class="container">
-                            <img src="/assets/images/placeholder.jpeg" alt="Organization picture">
+                            <img src="../../assets/images/placeholder.jpeg" alt="Organization picture">
                             <h3>SCHEMA</h3>
                         </div>
                         <div class="column-container">
                             <a href="" target="_blank" class="container soc-med">
-                                <img src="/assets/icons/soc-med/facebook.png" alt="Facebook logo">
+                                <img src="../../assets/icons/soc-med/facebook.png" alt="Facebook logo">
                                 <p>www.facebook.com/schemaslu</p>
                             </a>
                             <a href="" target="_blank" class="container soc-med">
-                                <img src="/assets/icons/soc-med/instagram.png" alt="Instagram logo">
+                                <img src="../../assets/icons/soc-med/instagram.png" alt="Instagram logo">
                                 <p>www.instagram.com/@schemaslu</p>
                             </a>
                             <a href="" target="_blank" class="container soc-med">
-                                <img src="/assets/icons/soc-med/twitter.png" alt="X logo">
+                                <img src="../../assets/icons/soc-med/twitter.png" alt="X logo">
                                 <p>www.x.com/@schemaslu</p>
                             </a>
                         </div>
