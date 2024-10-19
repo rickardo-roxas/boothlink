@@ -3,10 +3,16 @@
 include (__DIR__.'/../../../controller/PageHandler.php');
 
 session_start();
+
+$orgName = $_SESSION['orgName'];
+$orgPhoto = $_SESSION['orgPhoto'];
+
 if (isset($_GET['page'])) {
     $handler = unserialize($_SESSION['handler']);
     $handler->getFromURL();
 }
+
+
 ?>
 
 <header>
@@ -20,7 +26,7 @@ if (isset($_GET['page'])) {
         <ul>
             <li><a href="?page=home" target="_self" class="active">Home</a></li>
             <li><a href="?page=reservations" target="_self">Reservations</a></li>
-            <li><a href="?page=product" target="_self">Products</a></li>
+            <li><a href="?page=products" target="_self">Products</a></li>
             <li><a href="?page=schedule" target="_self">Schedule</a></li>
             <li><a href="?page=sales" target="_self">Sales</a></li>
         </ul>

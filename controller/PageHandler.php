@@ -4,9 +4,17 @@ class PageHandler {
 
     public function __construct() {
 
+        /** -------->  TODO Hardcoded values while organization selector has not been.  */
+        session_start();
+
+        $_SESSION['orgPhoto'] = '../../assets/images/placeholder.jpeg';
+        $_SESSION['orgName'] = 'SCHEMA';
+
+
         $_SESSION['handler'] = serialize($this);
 
         $this->loadPage("first");
+
     }
 
     public function loadPage($page) {
@@ -39,23 +47,28 @@ class PageHandler {
     }
 
     public function loadReservations() {
-        $controller = new ReservationsController($this->getUsername());
+        // TODO: Will not work yet since the files have yet to be created
+        include 'ReservationsController.php';
+        $controller = new ReservationsController();
         $controller->index();
     }
 
     public function loadProducts() {
-        $controller = new ProductsController(this->getUsername());
+        // TODO: Will not work yet since the files have yet to be created
+        include 'ProductsController.php';
+        $controller = new ProductsController();
         $controller->index();
     }
 
     public function loadSchedule() {
-        $controller = new ScheduleController(this->getUsername());
+        include 'ScheduleController.php';
+        $controller = new ScheduleController();
         $controller->index();
     }
 
     public function loadSales() {
         include 'SalesController.php';
-        $controller = new SalesController($this, $this->getUsername());
+        $controller = new SalesController();
         $controller->index();
     }
 
