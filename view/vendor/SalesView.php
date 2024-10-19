@@ -17,7 +17,7 @@
     $productList = [$prod1, $prod2];
 
 
-    include 'view/vendor/pageFragments/Header.php';
+    include 'view/vendor/page-fragments/Header.php';
     ?>
 
     <main class = "sales">

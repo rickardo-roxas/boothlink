@@ -13,7 +13,7 @@
 <?php
 $orgPhoto = $_GET['orgPhoto'];
 $orgName = $_GET['orgName'];
-include '../../view/vendor/pageFragments/Header.php';
+include '../../view/vendor/page-fragments/Header.php';
 ?>
 
 <main>

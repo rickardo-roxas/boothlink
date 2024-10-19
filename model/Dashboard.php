@@ -11,7 +11,7 @@ class Dashboard {
 
         $orgPhoto = "../../assets/images/placeholder.jpeg";
         $orgName = "SCHEMA";
-        include 'view/vendor/pageFragments/Header.php';
+        include 'view/vendor/page-fragments/Header.php';
     }
 
 }

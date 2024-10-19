@@ -1,6 +1,6 @@
 <?php
 
-include 'view/vendor/pageFragments/Header.php';
+include 'view/vendor/page-fragments/Header.php';
 
 class DashboardController {
 
