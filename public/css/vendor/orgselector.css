@@ -1,0 +1,93 @@
+@import "/public/css/vendor/style.css";
+
+
+* {
+    font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
+}
+.grid-container {
+    grid-template-columns: 1rem 1rem 1rem;
+    grid-template-rows: auto auto auto;
+    display: grid;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+
+.Item1 {
+    width: 133rem;
+    height: 25rem;
+    grid-column: 1 / 2;
+
+}
+
+.tagline {
+    width: 133rem;
+    height: 5rem;
+    grid-column: 2/1;
+}
+
+.org-selector {
+   /* background: #53c1ea;*/
+    width: 132rem;
+    height: 20rem;
+    grid-column: 3/1;
+}
+
+.website-logo {
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 800;
+    text-align: center;
+    margin-top: 18rem;
+}
+
+.tagline-paragraph {
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-align: center;
+}
+
+.org-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5rem;
+    margin-top: 3rem;
+}
+
+.button, .add-button {
+    width: 300px;
+    height: 300px;
+    cursor: pointer;
+    border-radius: 300px;
+    transition: transform 0.2s ease;
+}
+
+.button img {
+    width: 300px;
+    height: 300px;
+    border-radius: 300px;
+}
+
+.add-button {
+    background-color: #53c1ea;
+}
+
+.add-button img {
+    width: 300px;
+    height: 300px;
+    border-radius: 300px;
+}
+
+.button:hover {
+    transform: scale(1.1); /*ayee*/
+}
+
+.add-button:hover {
+    background-color: #005f7a;
+    transform: scale(1.1);
+}
+
+
