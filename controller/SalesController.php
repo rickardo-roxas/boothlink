@@ -2,10 +2,14 @@
 
 class SalesController {
 
+    private $handler;
+    private $username;
     private $model;
 
-    public function __construct() {
+    public function __construct($handler, $username) {
 
+        $this-> handler = $handler;
+        $this-> username = $username;
         $this->model = new SalesModel();
     }
 
@@ -28,8 +32,11 @@ class SalesController {
 
 
         include 'view/vendor/SalesView.php';
+    }
 
-}
+    public function getFromURL() {
+        $this->handler->loadPages($_GET['page']);
+    }
     
 
 }

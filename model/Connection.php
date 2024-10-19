@@ -1,7 +1,8 @@
 <?php
 $host = "localhost"; 
 $username = "root"; 
-$password = ""; 
+$password = "";
+$dbname = "boothlink";
 //uncomment line 6 if using windows
 $conn = new mysqli($host, $username, $password, $dbname);
 

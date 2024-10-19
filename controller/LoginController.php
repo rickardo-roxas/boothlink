@@ -1,6 +1,7 @@
 <?php
-include "Connection.php";
+include "model/Connection.php";
 include 'view/LoginView.php';
+include 'controller/PageHandler.php';
 
 class LoginController {
         private $conn;
@@ -16,7 +17,7 @@ class LoginController {
         
             $login = new Login($this->conn);
             if ($login->authenticate($username, $password)) {
-                new DashboardController($username);
+                $handler = new PageHandler($username);
                 exit();        
     
             } else {

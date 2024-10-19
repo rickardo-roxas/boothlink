@@ -5,6 +5,8 @@ class PageHandler {
     private $username;
     public function __construct($username) {
         $this->username = $username;
+
+        $this->loadPage("");
     }
 
     public function loadPage($page) {
@@ -28,7 +30,7 @@ class PageHandler {
     }
 
     public function loadDashboard() {
-        $controller = new DashboardController($this->getUsername());
+        $controller = new DashboardController($this, $this->getUsername());
         $controller->index();
     }
 
@@ -48,7 +50,7 @@ class PageHandler {
     }
 
     public function loadSales() {
-        $controller = new SalesController($this->getUsername());
+        $controller = new SalesController($this, $this->getUsername());
         $controller->index();
     }
 

@@ -6,7 +6,7 @@ class DashboardController {
 
     protected $model;
 
-    public function __construct($dashboard) {
+    public function __construct($handler, $dashboard) {
         $this -> model = $dashboard;
     }
 
@@ -15,7 +15,6 @@ class DashboardController {
         $orgPhoto = '../../assets/images/placeholder.jpeg';
         $orgName = "SCHEMA";
         header("Location: view/vendor/DashboardView.php?orgPhoto=$orgPhoto&orgName=$orgName");
-
         exit();
     }
 }

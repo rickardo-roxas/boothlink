@@ -7,11 +7,11 @@
     </div>
     <nav>
         <ul>
-            <li><a href="dashboard.html" target="_self" class="active">Home</a></li>
-            <li><a href="" target="_self">Reservations</a></li>
-            <li><a href="" target="_self">Products</a></li>
-            <li><a href="" target="_self">Schedule</a></li>
-            <li><a href="" target="_self">Sales</a></li>
+            <li><a href="?page=home" target="_self" class="active">Home</a></li>
+            <li><a href="?page=reservations" target="_self">Reservations</a></li>
+            <li><a href="?page=product" target="_self">Products</a></li>
+            <li><a href="?page=schedule" target="_self">Schedule</a></li>
+            <li><a href="?page=sales" target="_self">Sales</a></li>
         </ul>
     </nav>
     <div class="container">
