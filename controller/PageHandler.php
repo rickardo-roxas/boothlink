@@ -2,9 +2,9 @@
 
 class PageHandler {
 
-    private $username;
-    public function __construct($username) {
-        $this->username = $username;
+    public function __construct() {
+
+        $_SESSION['handler'] = serialize($this);
 
         $this->loadPage("");
     }
@@ -30,7 +30,7 @@ class PageHandler {
     }
 
     public function loadDashboard() {
-        $controller = new DashboardController($this, $this->getUsername());
+        $controller = new DashboardController(new Dashboard());
         $controller->index();
     }
 
@@ -55,7 +55,16 @@ class PageHandler {
     }
 
     public function getUsername() {
-        return $this->username;
+        return $this->$_SESSION['user'];
     }
+
+
+    public function getFromURL() {
+        $this->loadPage($_GET['page']);
+    }
+
+
+
+
 
 }

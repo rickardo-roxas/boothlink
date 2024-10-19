@@ -33,10 +33,4 @@ class SalesController {
 
         include 'view/vendor/SalesView.php';
     }
-
-    public function getFromURL() {
-        $this->handler->loadPages($_GET['page']);
-    }
-    
-
 }

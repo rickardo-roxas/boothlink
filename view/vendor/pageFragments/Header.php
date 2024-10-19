@@ -1,3 +1,15 @@
+<?php
+
+include '../../../controller/PageHandler.php';
+
+session_start();
+if (isset($_GET['page'])) {
+    $handler = unserialize($_SESSION['handler']);
+    echo ("skljdgfhkjfd");
+    $handler->getFromURL();
+}
+?>
+
 <header>
 <div class="logo">
         <a href="dashboard.html" target="_self" class="container">

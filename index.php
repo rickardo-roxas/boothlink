@@ -25,7 +25,6 @@ if (isset($_SESSION['user'])) {
     $controller->showMessage();
 } else {
 
-
     require_once 'controller/LoginController.php';  
     $controller = new LoginController($conn);
     $controller->handleLogin();

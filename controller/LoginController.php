@@ -17,7 +17,10 @@ class LoginController {
         
             $login = new Login($this->conn);
             if ($login->authenticate($username, $password)) {
-                $handler = new PageHandler($username);
+                $_SESSION['user'] = "ramon";
+
+
+                $handler = new PageHandler();
                 exit();        
     
             } else {
