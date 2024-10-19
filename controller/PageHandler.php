@@ -6,11 +6,14 @@ class PageHandler {
 
         $_SESSION['handler'] = serialize($this);
 
-        $this->loadPage("");
+        $this->loadPage("first");
     }
 
     public function loadPage($page) {
         switch ($page) {
+            case "first":
+                $this->loadDashboard(true);
+                break;
             case "reservations":
                 $this->loadReservations();
                 break;
@@ -24,14 +27,15 @@ class PageHandler {
                 $this->loadSales();
                 break;
             default:
-                $this->loadDashboard();
+                $this->loadDashboard(false);
                 break;
         }
     }
 
-    public function loadDashboard() {
-        $controller = new DashboardController(new Dashboard());
-        $controller->index();
+    public function loadDashboard($firstTime) {
+        include 'DashboardController.php';
+        $controller = new DashboardController();
+        $controller->index($firstTime);
     }
 
     public function loadReservations() {

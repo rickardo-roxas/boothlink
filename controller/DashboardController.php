@@ -4,16 +4,21 @@ class DashboardController {
 
     protected $model;
 
-    public function __construct($dashboard) {
-        $this -> model = $dashboard;
+    public function __construct() {
+        include(__DIR__.'/../model/Dashboard.php');
+        $this->model = new Dashboard();
     }
 
 
-    public function index() {
+    public function index($firstTime) {
         $orgPhoto = '../../assets/images/placeholder.jpeg';
         $orgName = "SCHEMA";
 
-        header('Location: view/vendor/DashboardView.php');
+        if ($firstTime) {
+            header('Location: view/vendor/DashboardView.php');
+        } else {
+            header('Location: DashboardView.php');
+        }
         exit();
     }
 }
