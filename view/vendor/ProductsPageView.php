@@ -59,8 +59,13 @@
         <div class="main-table">
             <div class="table-header">
                 <p>PRODUCT LISTING</p>
-                <button>Edit</button>
-                <button>Add</button>
+                
+                <a href="EditProduct.html">
+                    <button>Edit</button>
+                </a>
+                <a href="AddNewProduct.html">
+                    <button>Add</button>
+                </a>
                 <Select>Category</Select>
             </div>
             <div class="table-products">
