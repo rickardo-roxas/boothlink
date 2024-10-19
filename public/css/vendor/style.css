@@ -195,6 +195,98 @@ button:hover, a:hover {
     justify-content: center;
 }
 
+.scheduleSelector{
+    height: 43vh;
+    width: 32vh;
+    gap:0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+}
+.scheduleSelector table {
+    margin: 0;
+    padding: 0;
+}
+
+.scheduleSelector td {
+    font-size: .7rem;
+    text-align: center;
+    padding-top: 2.5vh;
+}
+
+.scheduleSelector .card {
+    gap:0;
+}
+
+.scheduleSelector .card {
+    gap:0;
+}
+
+.scheduleSelector p, .scheduleSelector h3 {
+    font-size: .8rem;
+    font-style: normal;
+    line-height: normal;
+    padding: 1.2vh;
+    margin: 0;
+    font-weight: 700;
+}
+
+.scheduleSelector h3 {
+    color: white;
+    font-weight: 700;
+}
+
+.scheduleSelector table {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.scheduleSelector thead {
+    font-size: .6rem;
+}
+
+.scheduleSelector .time-div {
+    width: 96%;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.scheduleSelector .right-side {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: row;
+}
+
+
+
+.right-side > .card {
+    width: 9vh;
+    height: 4vh;
+    padding: 0;
+    margin:0;
+}
+
+.right-side p {
+    width: 100%;
+    text-align: center;
+}
+.scheduleHeader {
+    height: 4vh;
+    width: 32vh;
+    background-color: #47CD89;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin-bottom: 1vh;
+}
+
 /* DO NOT REUSE STARTING HERE */
 /* Main */
 #dashboard {
@@ -363,6 +455,7 @@ button:hover, a:hover {
 
 #dashboard table tr  {
     height: 2.5rem;
+
 }
 
 #dashboard table td {
