@@ -8,8 +8,6 @@ class DashboardController {
 
     public function __construct($dashboard) {
         $this -> model = $dashboard;
-
-        $this->index();
     }
 
 

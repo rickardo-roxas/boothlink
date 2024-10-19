@@ -2,23 +2,34 @@
 
 class SalesController {
 
+    private $model;
+
     public function __construct() {
-        $model = new SalesModel();
 
-        $xValues = $model -> getXValues();
-        $yValues = $model -> getYValues();
+        $this->model = new SalesModel();
+    }
 
-        $performanceToday = $model -> getPerfToday();
-        $performanceWeek = $model -> getPerfWeek();
+    public function getModel()
+    {
+        return $this->model;
+    }
 
-        $categoryList = $model -> getCategoryList();
+    public function index() {
 
-        $productList = $model -> getProductList();
+        $xValues = $this ->getModel() -> getXValues();
+        $yValues = $this -> getModel() -> getYValues();
+
+        $performanceToday = $this -> getModel() -> getPerfToday();
+        $performanceWeek = $this -> getModel() -> getPerfWeek();
+
+        $categoryList = $this -> getModel() -> getCategoryList();
+
+        $productList = $this -> getModel() -> getProductList();
 
 
         include 'view/vendor/SalesView.php';
 
-    }
+}
     
 
 }
