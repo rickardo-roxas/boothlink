@@ -6,10 +6,8 @@ class SalesController {
     private $username;
     private $model;
 
-    public function __construct($handler, $username) {
-
-        $this-> handler = $handler;
-        $this-> username = $username;
+    public function __construct() {
+        include(__DIR__.'/../model/SalesModel.php');
         $this->model = new SalesModel();
     }
 
@@ -20,17 +18,18 @@ class SalesController {
 
     public function index() {
 
-        $xValues = $this ->getModel() -> getXValues();
-        $yValues = $this -> getModel() -> getYValues();
+     //   $xValues = $this ->getModel() -> getXValues();
+     //   $yValues = $this -> getModel() -> getYValues();
 
-        $performanceToday = $this -> getModel() -> getPerfToday();
-        $performanceWeek = $this -> getModel() -> getPerfWeek();
+     //   $performanceToday = $this -> getModel() -> getPerfToday();
+     //   $performanceWeek = $this -> getModel() -> getPerfWeek();
 
-        $categoryList = $this -> getModel() -> getCategoryList();
+     //   $categoryList = $this -> getModel() -> getCategoryList();
 
-        $productList = $this -> getModel() -> getProductList();
+     //   $productList = $this -> getModel() -> getProductList();
 
 
-        include 'view/vendor/SalesView.php';
+        header('Location: SalesView.php');
+        exit();
     }
 }

@@ -21,8 +21,9 @@ include 'model/Connection.php';
 if (isset($_SESSION['user'])) {
 
 
-    $controller = new HelloController();
-    $controller->showMessage();
+    $handler = new PageHandler();
+    exit();
+
 } else {
 
     require_once 'controller/LoginController.php';  

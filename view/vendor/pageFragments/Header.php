@@ -1,11 +1,10 @@
 <?php
 
-include '../../../controller/PageHandler.php';
+include (__DIR__.'/../../../controller/PageHandler.php');
 
 session_start();
 if (isset($_GET['page'])) {
     $handler = unserialize($_SESSION['handler']);
-    echo ("skljdgfhkjfd");
     $handler->getFromURL();
 }
 ?>

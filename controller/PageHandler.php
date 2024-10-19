@@ -50,21 +50,17 @@ class PageHandler {
     }
 
     public function loadSales() {
+        include 'SalesController.php';
         $controller = new SalesController($this, $this->getUsername());
         $controller->index();
     }
 
     public function getUsername() {
-        return $this->$_SESSION['user'];
+        return $this -> {$_SESSION['user']};
     }
 
 
     public function getFromURL() {
         $this->loadPage($_GET['page']);
     }
-
-
-
-
-
 }

@@ -3,21 +3,22 @@
 
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="public/css/vendor/sales.css">
+        <link rel="stylesheet" href="../../public/css/vendor/sales.css">
         <title>Sales</title>
     </head>
 
     <body>
 
     <?php
-    $orgPhoto = 'assets/images/placeholder.jpeg';
+    include(__DIR__."/../../model/Product.php");
+    $orgPhoto = '../../assets/images/placeholder.jpeg';
     $orgName = "SCHEMA";
-    $prod1 = new Product("assets/icons/logo-black-outline.png", "iPhone 14 Pro Max 512GB (Gold)", 1399, "Item", "1243 pcs", "In Stock");
-    $prod2 = new Product("assets/icons/logo-black-outline.png", "iPhone 14 Pro Max 512GB (Gold)", 1399, "Item", "1243 pcs", "In Stock");
+    $prod1 = new Product("../../assets/icons/logo-black-outline.png", "iPhone 14 Pro Max 512GB (Gold)", 1399, "Item", "1243 pcs", "In Stock");
+    $prod2 = new Product("../../assets/icons/logo-black-outline.png", "iPhone 14 Pro Max 512GB (Gold)", 1399, "Item", "1243 pcs", "In Stock");
     $productList = [$prod1, $prod2];
 
+    include (__DIR__.'/pageFragments/Header.php');
 
-    include 'view/vendor/pageFragments/Header.php';
     ?>
 
     <main class = "sales">
