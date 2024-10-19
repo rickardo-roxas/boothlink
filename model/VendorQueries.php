@@ -22,7 +22,7 @@ class VendorQueries{
         include 'Connection.php';
         $stmt = $conn->prepare("UPDATE prod_serv SET org_id = ?, sched_id = ?, category = ?, description = ?, prod_serv_name = ?, price = ? WHERE prod_serv_id = ?");
         $stmt->bind_param('iisssdi', $org_id, $sched_id, $category, $description, $prod_serv_name, $price, $prod_serv_id);
-        $stmt->$execute();
+        $stmt->execute();
         //close
         $stmt->close();
         $conn->close();
