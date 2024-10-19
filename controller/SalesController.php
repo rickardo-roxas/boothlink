@@ -29,7 +29,7 @@ class SalesController {
      //   $productList = $this -> getModel() -> getProductList();
 
 
-        header('Location: view/vendor/DashboardView.php');
+        header('Location: SalesView.php');
         exit();
     }
 }
