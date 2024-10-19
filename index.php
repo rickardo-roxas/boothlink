@@ -15,19 +15,22 @@ spl_autoload_register(function ($class_name) {
     }
 });
 
+include 'model/Connection.php'; 
+
 // Check if the user is logged in
 if (isset($_SESSION['user'])) {
-    // User is logged in, show the hello message
+
+
     $controller = new HelloController();
     $controller->showMessage();
 } else {
 
-    /*
-    $username = "ramon";
-    require_once 'model/Dashboard.php';
-    require_once 'controller/DashboardController.php';
-    new DashboardController(new Dashboard($username));
-    */
 
-    $controller = new SalesController();
+    require_once 'controller/LoginController.php';  
+    $controller = new LoginController($conn);
+    $controller->handleLogin();
 }
+
+
+
+

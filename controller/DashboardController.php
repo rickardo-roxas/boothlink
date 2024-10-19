@@ -17,6 +17,7 @@ class DashboardController {
         $orgPhoto = '../../assets/images/placeholder.jpeg';
         $orgName = "SCHEMA";
         header("Location: view/vendor/DashboardView.php?orgPhoto=$orgPhoto&orgName=$orgName");
+
         exit();
     }
 }
