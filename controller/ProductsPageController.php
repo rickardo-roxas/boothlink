@@ -8,9 +8,9 @@ class ProductsPageController{
         $this->model = new ProductsPageModel();
     }
 
-    public function products($org_id){
-        $products = $this->model->getProducts($org_id);
-
-        include 'view/ProductsPageView.php';
+    public function products(){
+        $products = $this->model->getProducts(1);
+        
+        include '/view/vendor/ProductsPageView.php';
     }
 }
