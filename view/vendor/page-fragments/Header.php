@@ -12,7 +12,6 @@ if (isset($_GET['page'])) {
     $handler->getFromURL();
 }
 
-
 ?>
 
 <header>

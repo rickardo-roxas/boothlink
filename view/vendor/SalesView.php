@@ -10,14 +10,7 @@
     <body>
 
     <?php
-    include(__DIR__."/../../model/Product.php");
-
-    $prod1 = new Product("../../assets/icons/logo-black-outline.png", "iPhone 14 Pro Max 512GB (Gold)", 1399, "Item", "1243 pcs", "In Stock");
-    $prod2 = new Product("../../assets/icons/logo-black-outline.png", "iPhone 14 Pro Max 512GB (Gold)", 1399, "Item", "1243 pcs", "In Stock");
-    $productList = [$prod1, $prod2];
-
     include (__DIR__.'/page-fragments/Header.php');
-
     ?>
 
     <main class = "sales">
@@ -63,7 +56,10 @@
                     </thead>
 
                     <tbody>
-                    <?php foreach ($productList as $product): ?>
+                    <?php
+                    include(__DIR__."/../../model/Product.php");
+                    $productList = unserialize($_GET['productList']);
+                    foreach ($productList as $product): ?>
                         <tr>
 
                             <td id="product-td">

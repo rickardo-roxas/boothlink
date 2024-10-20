@@ -10,7 +10,6 @@ class PageHandler {
         $_SESSION['orgPhoto'] = '../../assets/images/placeholder.jpeg';
         $_SESSION['orgName'] = 'SCHEMA';
 
-
         $_SESSION['handler'] = serialize($this);
 
         $this->loadPage("first");
