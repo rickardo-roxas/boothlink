@@ -18,7 +18,7 @@ class SalesController {
 
     public function index() {
         // TODO: FIX
-     //   $products = $this->getModel()->getProducts(1);
+        //$products = $this->getModel()->getProducts(1);
         $products = [];
 // Adding products to the array
         $products[] = new Product('path/to/image1.jpg', 'Product One', 29.99, 'Category A', 200, 'Available');
