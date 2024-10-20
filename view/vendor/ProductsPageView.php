@@ -6,7 +6,7 @@
     <title>Products Page</title>
     <!-- TEMPORARY STYLE -->
     <style>
-        main{
+        main {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -15,38 +15,38 @@
             min-height: 100vh;
         }
 
-        header{
+        header {
             display: flex;
             flex-direction: row;
             border: 1px solid violet;
             width: 100%;
         }
 
-        .main-table{
+        .main-table {
             margin-top: 5rem;
             width: 50rem;
         } 
 
-        .table-header{
+        .table-header {
             display: flex;
             flex-direction: row;
         }
 
-        .table-header > p{
+        .table-header > p {
             margin: 0;
         }
 
-        .table-header button:first-of-type{
+        .table-header button:first-of-type {
             margin-left: auto;
         }
 
-        .table-products > table{
+        .table-products > table {
             width: 100%;
             border-collapse: collapse;
             border-style: solid;
         }
 
-        .table-products > table th, td{
+        .table-products > table th, td {
             border: 1px solid black;
         }
     </style>
@@ -66,7 +66,7 @@
                 <a href="AddNewProduct.html">
                     <button>Add</button>
                 </a>
-                <Select>Category</Select>
+                <select>Category</select>
             </div>
             <div class="table-products">
                 <table>
@@ -77,22 +77,21 @@
                         <th>Availability</th>
                         <th>Category</th>
                     </tr>
-                    <tr>
-                        <td>Samosa</td>
-                        <td>150</td>
-                        <td>SARAP</td>
-                        <td>In Stock</td>
-                        <td>Food</td>
-                    </tr>
-                    <tr>
-                        <td>Condomizer</td>
-                        <td>510</td>
-                        <td>Nuot sa sarap</td>
-                        <td>In Stock</td>
-                        <td>Food</td>
-                    </tr>
-                    <!-- ADD ROWS HERE USING PHP (From the database) -->
-                     <!-- GOOD LUCK!!! -->
+                    <?php if (!empty($products)): ?>
+                        <?php foreach ($products as $product): ?>
+                            <tr>
+                                <td><?php echo $product['prod_serv_name']; ?></td>
+                                <td><?php echo $product['price']; ?></td>
+                                <td><?php echo $product['description']; ?></td>
+                                <td><?php echo $product['availability'];?></td>
+                                <td><?php echo $product['category']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="4">No products available</td>
+                        </tr>
+                    <?php endif; ?> 
                 </table>
             </div>
         </div>

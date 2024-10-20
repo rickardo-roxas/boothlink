@@ -36,9 +36,9 @@ class VendorQueries{
         include 'Connection.php';
 
         $query = "
-        SELECT * FROM prod_serv
-        JOIN schedule ON prod_serv.sched_id = schedule.sched_id
-        WHERE schedule.org_id = ?
+        SELECT prod_serv.* FROM prod_serv
+        JOIN prod_org_sched ON prod_serv.prod_serv_id = prod_org_sched.prod_id
+        WHERE prod_org_sched.org_id = ?
         ";
 
         $stmt = $conn->prepare($query);
@@ -51,6 +51,7 @@ class VendorQueries{
         $conn->close();
 
         return $result;
+        
     }
 
     
