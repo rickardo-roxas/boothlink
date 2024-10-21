@@ -5,21 +5,21 @@ class SalesModel{
 
     private $vendorQueries;
 
+    private $orgID;
+
     public function __construct() {
         $this->vendorQueries = new VendorQueries();
+        $this->orgID = 1;
     }
 
-    public function getProducts($org_id){
-        $result = $this->vendorQueries->getProducts($org_id);
-
-        $products = [];
-
-        if($result){
-            $products = $result->fetch_all(MYSQLI_ASSOC);
-        }
-
+    public function getProducts(){
+        $products = $this->vendorQueries->getProductSales($this->orgID);
         return $products;
     }
+
+    public function getPerfToday() {
+        return $this->vendorQueries->getSalesToday($this->orgID);
+}
 
     /*
     const xValues = [50,60,70,80,90,100,110,120,130,140,150];
