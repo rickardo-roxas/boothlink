@@ -8,7 +8,9 @@
 </head>
 <body>
 
-<?php include ('/page-fragments/Header.php'); ?>
+    <?php
+    include (__DIR__.'/page-fragments/Header.php');
+    ?>
 
     <main>
         <div class="main-table">
@@ -16,11 +18,17 @@
                 <p>Product Listing</p>
                 
                 <div class="action-buttons">
-                    <a href="EditProduct.html">
-                        <button class="edit-button">Edit</button>
+                <a href="EditProduct.html">
+                        <button class="edit-button">
+                            <img src="../../assets/icons/edit-blue-fill.png" alt="Edit Icon" class="edit-icon">
+                            Edit
+                        </button>
                     </a>
                     <a href="AddNewProduct.html">
-                        <button class="add-button">Add</button>
+                        <button class="add-button">
+                            <img src="../../assets/icons/add-blue-outline.png" alt="Add Icon" class="add-icon">
+                            Add
+                        </button>
                     </a>
                     <select class="category-filter">
                         <option value="">Category</option>
