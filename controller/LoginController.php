@@ -1,6 +1,6 @@
 <?php
 include "model/Connection.php";
-include 'view/LoginView.php';
+include 'view/vendor/LoginView.php';
 include 'controller/PageHandler.php';
 
 class LoginController {
@@ -24,7 +24,7 @@ class LoginController {
                 exit();        
     
             } else {
-                echo "Login failed! Invalid username or password.";
+                // echo "Login failed! Invalid username or password.";
             }
         }
     }
