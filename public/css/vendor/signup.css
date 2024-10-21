@@ -1,0 +1,63 @@
+@import "/public/css/vendor/style.css";
+
+.grid-container {
+    grid-template-columns: 56% 44%;
+    grid-template-rows: 100vh;
+    display: grid;
+    gap: 0;
+}
+#grid-left {
+    background-color: #FFF;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#grid-left h1 {
+    font-size: 8rem;
+}
+#grid-right {
+    background-color: #F6F5F6;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#signup-form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 4vh;
+}
+#login-link {
+    text-decoration: underline;
+}
+.signup-input {
+    width: 100%;
+    font-size: 1rem;
+    border: #F6F5F6;
+    border-bottom: 1px solid #E8ECEF;
+    background-color: #F6F5F6;
+    transition: all 0.3s ease;
+    color: #6C7275;
+}
+.signup-input:focus {
+    border: #F6F5F6;
+    border-bottom: 1px solid #6C7275;
+    color: #6C7275;
+    outline: none;
+}
+.signup-input::placeholder {
+    color: #6C7275;
+}
+.signup-button {
+    display: flex;
+    width: 50vh;
+    height: 6vh;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border-color: #1EBDEF;
+    background: #1EBDEF;
+    color: #FFF
+}
