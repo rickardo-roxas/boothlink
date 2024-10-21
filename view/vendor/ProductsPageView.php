@@ -1,55 +1,17 @@
+<?php 
+include '../../model/VenldorQueries.php';
+
+$vendorQueries = new VendorQueries();
+
+$products = $vendorQueries->getProducts($orgId)
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products Page</title>
-    <!-- TEMPORARY STYLE -->
-    <style>
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border-style: solid;
-            border-color: red;
-            min-height: 100vh;
-        }
-
-        header {
-            display: flex;
-            flex-direction: row;
-            border: 1px solid violet;
-            width: 100%;
-        }
-
-        .main-table {
-            margin-top: 5rem;
-            width: 50rem;
-        } 
-
-        .table-header {
-            display: flex;
-            flex-direction: row;
-        }
-
-        .table-header > p {
-            margin: 0;
-        }
-
-        .table-header button:first-of-type {
-            margin-left: auto;
-        }
-
-        .table-products > table {
-            width: 100%;
-            border-collapse: collapse;
-            border-style: solid;
-        }
-
-        .table-products > table th, td {
-            border: 1px solid black;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -60,9 +22,6 @@
             <div class="table-header">
                 <p>PRODUCT LISTING</p>
                 
-                <a href="EditProduct.html">
-                    <button>Edit</button>
-                </a>
                 <a href="AddNewProduct.html">
                     <button>Add</button>
                 </a>
@@ -78,20 +37,37 @@
                         <th>Category</th>
                     </tr>
                     <?php if (!empty($products)): ?>
-                        <?php foreach ($products as $product): ?>
-                            <tr>
-                                <td><?php echo $product['prod_serv_name']; ?></td>
-                                <td><?php echo $product['price']; ?></td>
-                                <td><?php echo $product['description']; ?></td>
-                                <td><?php echo $product['availability'];?></td>
-                                <td><?php echo $product['category']; ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="4">No products available</td>
-                        </tr>
-                    <?php endif; ?> 
+    <?php foreach ($products as $product): ?>
+        <tr>
+            <td><?php echo htmlspecialchars($product['prod_serv_name']); ?></td>
+            <td><?php echo htmlspecialchars($product['price']); ?></td>
+            <td><?php echo htmlspecialchars($product['description']); ?></td>
+            <td><?php echo htmlspecialchars($product['status']); ?></td>
+            <td>
+                <span class="<?php echo strtolower(htmlspecialchars($product['category'])); ?>">
+                    <?php echo htmlspecialchars($product['category']); ?>
+                </span>
+            </td>
+            <td style="text-align: right;">
+                <!-- Edit Button -->
+                <a href="edit_product.php?id=<?php echo $product['id']; ?>" class="edit">
+edit
+                </a>
+
+                <a href="delete_product.php?id=<?php echo $product['id']; ?>" 
+                   onclick="return confirm('Are you sure you want to delete this product?');" class="delete">
+                   delete
+                </a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+<?php else: ?>
+    <tr>
+        <td colspan="6">No products available</td>
+    </tr>
+<?php endif; ?>
+
+
                 </table>
             </div>
         </div>
