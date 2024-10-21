@@ -1,0 +1,69 @@
+@import "/public/css/vendor/style.css";
+
+* {
+    font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
+}
+main {
+    background-color: #F6F5F6;
+}
+#sched-container {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    padding: 16px 83px 35px 83px;
+}
+#schedule {
+    grid-template-columns: 50% 50%;
+    display: grid;
+    gap: 1rem;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-radius: 15px 15px 0px 0px;
+    border: 1px solid #D9D9D9;
+}
+#header-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+#header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+#add-schedule {
+    display: flex;
+    width: 138px;
+    height: 33px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid;
+    background: #597492;
+    color: #FFF
+}
+#sched-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+#sched-table thead {
+    height: 58px;
+}
+#sched-table th, #sched-table td {
+    border: 1px solid #D9D9D9; /* Apply the #D9D9D9 border to both header and data cells */
+    padding: 8px; /* Add some padding to make the cells more readable */
+    text-align: center; /* Center-align the text in the cells */
+}
+#sched-table th {
+    background-color: #F1F3F5;
+    text-align: center;
+}
+#sched-table td {
+    background-color: #F6F5F6;
+}
+#sched-body tr td:first-child {
+    text-align: right;
+    padding-right: 1rem; /* Optional: add some padding to separate the text from the right border */
+    font-weight: bold;
+    width: 8%;
+}
