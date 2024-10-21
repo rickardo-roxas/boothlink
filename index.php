@@ -19,8 +19,6 @@ include 'model/Connection.php';
 
 // Check if the user is logged in
 if (isset($_SESSION['user'])) {
-
-
     $handler = new PageHandler();
     exit();
 
