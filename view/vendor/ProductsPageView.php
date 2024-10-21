@@ -4,79 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products Page</title>
-    <!-- TEMPORARY STYLE -->
-    <style>
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border-style: solid;
-            border-color: red;
-            min-height: 100vh;
-        }
-
-        header {
-            display: flex;
-            flex-direction: row;
-            border: 1px solid violet;
-            width: 100%;
-        }
-
-        .main-table {
-            margin-top: 5rem;
-            width: 50rem;
-        } 
-
-        .table-header {
-            display: flex;
-            flex-direction: row;
-        }
-
-        .table-header > p {
-            margin: 0;
-        }
-
-        .table-header button:first-of-type {
-            margin-left: auto;
-        }
-
-        .table-products > table {
-            width: 100%;
-            border-collapse: collapse;
-            border-style: solid;
-        }
-
-        .table-products > table th, td {
-            border: 1px solid black;
-        }
-    </style>
+    <link rel="stylesheet" href="../../public/css/vendor/products.css"> 
 </head>
 <body>
-    <header>
-        <h1>HEADER SAMPLE BOOTHLINK</h1>
-    </header>
+
+<?php include ('/page-fragments/Header.php'); ?>
+
     <main>
         <div class="main-table">
             <div class="table-header">
-                <p>PRODUCT LISTING</p>
+                <p>Product Listing</p>
                 
-                <a href="EditProduct.html">
-                    <button>Edit</button>
-                </a>
-                <a href="AddNewProduct.html">
-                    <button>Add</button>
-                </a>
-                <select>Category</select>
+                <div class="action-buttons">
+                    <a href="EditProduct.html">
+                        <button class="edit-button">Edit</button>
+                    </a>
+                    <a href="AddNewProduct.html">
+                        <button class="add-button">Add</button>
+                    </a>
+                    <select class="category-filter">
+                        <option value="">Category</option>
+                        <option value="Item">Item</option>
+                        <option value="Service">Service</option>
+                        <option value="Food">Food</option>
+                    </select>
+                </div>
             </div>
             <div class="table-products">
                 <table>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                        <th>Category</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Category</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     <?php if (!empty($products)): ?>
                         <?php foreach ($products as $product): ?>
                             <tr>
@@ -92,6 +58,7 @@
                             <td colspan="4">No products available</td>
                         </tr>
                     <?php endif; ?> 
+                    </tbody>
                 </table>
             </div>
         </div>
