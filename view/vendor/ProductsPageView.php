@@ -74,7 +74,7 @@
                         <th>Product</th>
                         <th>Price</th>
                         <th>Description</th>
-                        <th>Availability</th>
+                        <th>Status</th>
                         <th>Category</th>
                     </tr>
                     <?php if (!empty($products)): ?>
@@ -83,7 +83,7 @@
                                 <td><?php echo $product['prod_serv_name']; ?></td>
                                 <td><?php echo $product['price']; ?></td>
                                 <td><?php echo $product['description']; ?></td>
-                                <td><?php echo $product['availability'];?></td>
+                                <td><?php echo $product['status'];?></td>
                                 <td><?php echo $product['category']; ?></td>
                             </tr>
                         <?php endforeach; ?>
