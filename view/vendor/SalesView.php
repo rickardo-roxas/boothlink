@@ -57,7 +57,6 @@
 
                     <tbody>
                     <?php
-                    include(__DIR__."/../../model/Product.php");
                     $productList = unserialize($_GET['productList']);
                     foreach ($productList as $product): ?>
                         <tr>

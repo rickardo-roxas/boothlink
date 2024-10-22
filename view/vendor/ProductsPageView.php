@@ -16,6 +16,7 @@
     include (__DIR__.'/page-fragments/Header.php');
     ?>
 
+   
     <main>
         <div class="main-table">
             <div class="table-header">
@@ -55,7 +56,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php if (!empty($products)): ?>
+                    <?php 
+                    $products = unserialize($_GET['products']);
+                    if (!empty($products)): ?>
                         <?php foreach ($products as $product): ?>
                             <tr>
                                 <td><?php echo $product['prod_serv_name']; ?></td>
