@@ -1,9 +1,7 @@
 <?php 
-include '../../model/VenldorQueries.php';
-
-$vendorQueries = new VendorQueries();
-
-$products = $vendorQueries->getProducts($orgId)
+include '../../model/VendorQueries.php';
+$product1 = new VendorQueries();
+$products = $product1->getProducts($org_id)
 
 ?>
 <!DOCTYPE html>
@@ -50,11 +48,11 @@ $products = $vendorQueries->getProducts($orgId)
             </td>
             <td style="text-align: right;">
                 <!-- Edit Button -->
-                <a href="edit_product.php?id=<?php echo $product['id']; ?>" class="edit">
+                <a href="edit_product.php?id=<?php echo $product['prod_serv_id']; ?>" class="edit">
 edit
                 </a>
 
-                <a href="delete_product.php?id=<?php echo $product['id']; ?>" 
+                <a href="delete_product.php?id=<?php echo $product['prod_serv_id']; ?>" 
                    onclick="return confirm('Are you sure you want to delete this product?');" class="delete">
                    delete
                 </a>
