@@ -111,5 +111,24 @@ class VendorQueries{
 
     }
 
+    public function getReservations($org_id){
+        include 'Connection.php';
+
+        $query = "
+        SELECT reservation.* FROM reservation
+        WHERE org_id = ?
+        ";
+
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $org_id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        $stmt->close();
+
+        return $result;
+    }
+
     
 }

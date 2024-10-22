@@ -298,7 +298,7 @@ button:hover, a:hover {
 }
 
 #dashboard .grid-container {
-    grid-template-columns: repeat(1, 1.5fr);
+    grid-template-columns: repeat(2, 1.5fr);
     grid-template-rows: auto;
     column-gap: var(--spacing-xl, 1.5rem);
     gap: 1.5rem;
