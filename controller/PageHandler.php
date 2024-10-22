@@ -9,6 +9,7 @@ class PageHandler {
 
         $_SESSION['orgPhoto'] = '../../assets/images/placeholder.jpeg';
         $_SESSION['orgName'] = 'SCHEMA';
+        $_SESSION['orgID'] = 1;
 
         $_SESSION['handler'] = serialize($this);
 
@@ -54,8 +55,8 @@ class PageHandler {
 
     public function loadProducts() {
         // TODO: Will not work yet since the files have yet to be created
-        include 'ProductsController.php';
-        $controller = new ProductsController();
+        include 'ProductsPageController.php';
+        $controller = new ProductsPageController();
         $controller->index();
     }
 

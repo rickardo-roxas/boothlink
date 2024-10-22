@@ -2,18 +2,22 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once 'model/ProductsPageModel.php';
+require_once(__DIR__.'/../model/ProductsPageModel.php');
 
 class ProductsPageController{
     private $model;
+    private $sessionID;
 
     public function __construct(){
+        $this->sessionID = $_SESSION['orgID'];
+
+
         $this->model = new ProductsPageModel();
     }
 
-    public function showProducts($org_id){
-        $products = $this->model->getProducts($org_id);
+    public function index(){
+        $products = $this->model->getProducts($this->sessionID);
 
-        include 'view/vendor/ProductsPageView.php';
+        header('Location: ProductsPageView.php?products=' . urlencode(serialize($products)));
     }
 }

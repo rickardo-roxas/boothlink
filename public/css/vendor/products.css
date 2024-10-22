@@ -1,4 +1,4 @@
-@import "/public/css/vendor/style.css";
+@import "style.css";
 
 main {
     display: flex;
