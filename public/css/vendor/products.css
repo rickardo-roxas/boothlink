@@ -1,0 +1,135 @@
+@import "/public/css/vendor/style.css";
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
+}
+
+.main-table {
+    width: 95%; 
+    margin-top: 0.5rem;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    height: 800px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;  
+}
+
+.table-header p {
+    font-size: 1.6rem;
+    font-weight: 800; 
+    color: #000; 
+    margin: 0; 
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.action-buttons a {
+    text-decoration: none; 
+    margin-right: 10px; 
+}
+
+
+.table-header button {
+    padding: 0.75rem 1.5rem; 
+    font-size: 1rem;
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #ced4da;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 500; 
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+}
+
+.table-header button .add-icon {
+    width: 20px; 
+    height: 20px; 
+    margin-right: 5px; 
+}
+
+.table-header button:hover {
+    border: 2px solid #17a2b8;
+}
+
+.category-filter {
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    border: 2px solid #ced4da;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    margin-left: 10px; 
+}
+
+/* Table */
+
+.table-products table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem; 
+    font-family: 'Roboto', sans-serif;
+}
+
+.table-products table th,
+.table-products table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table-products table th {
+    background-color: #1EBDEF;
+    color: #ffffff;
+}
+
+/* Description column */
+.table-products table th:nth-child(3), 
+.table-products table td:nth-child(3) {
+    width: 35%; 
+}
+
+/* Status column */
+.table-products table th:nth-child(4), 
+.table-products table td:nth-child(4) {
+    width: 15%; 
+}
+
+/* Category column */
+.table-products table th:nth-child(5), 
+.table-products table td:nth-child(5) {
+    width: 10%; 
+}
+
+/* Actions column */
+.table-products table th:nth-child(6), 
+.table-products table td:nth-child(6) {
+    width: 10%; 
+}
+
+.table-products table td img.action-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px; 
+    cursor: pointer;
+}
