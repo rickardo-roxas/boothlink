@@ -41,4 +41,8 @@ class Product {
     public function getStatus() {
         return $this -> status;
     }
+
+    public function __toString() {
+        return $this -> name;
+    }
 }

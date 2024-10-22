@@ -58,17 +58,20 @@
                     <tbody>
                     <?php
                     $productList = unserialize($_GET['productList']);
-                    foreach ($productList as $product): ?>
+                    $salesToday = unserialize($_GET['salesToday']);
+                    foreach ($productList as $product):
+
+                        ?>
                         <tr>
 
                             <td id="product-td">
-                                <img src="<?php echo $product -> getImage() ?>">
-                                <?php echo $product -> getName() ?>
+                                <img src="<?php echo $product['img_src'] ?>">
+                                <?php echo $product['prod_serv_name']?>
                             </td>
-                            <td> <?php echo $product -> getPrice() ?> </td>
-                            <td> <?php echo $product -> getCategory() ?> </td>
-                            <td> <?php echo $product -> getSold() ?> </td>
-                            <td> <?php echo $product -> getStatus() ?> </td>
+                            <td> <?php echo $product['price']?> </td>
+                            <td> <?php echo $product['category']?> </td>
+                            <td> <?php echo $product['sold']?> </td>
+                            <td> <?php echo $product['status']?> </td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -80,9 +83,7 @@
 
             <section id = "sales-performance" class = "card">
                 <h1>Sales Performance</h1>
-                <h2>Today:</h2>
-               <!-- <h4><?php echo $performanceToday ?></h4> -->
-                <p>&emsp;&emsp;&emsp;289.00</p>
+                <h2&emsp;<?php echo $salesToday ?></p>
                 <h2>This Week:</h2>
                 <!-- <h4><?php echo $performanceWeek ?></h4> -->
                 <p> &emsp;&emsp;&emsp;1384.00</p>
