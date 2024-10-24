@@ -130,5 +130,24 @@ class VendorQueries{
         return $result;
     }
 
-    
+    public function getProductByID($prod_serv_id){
+        include 'Connection.php';
+
+        $query = "
+        Select prod_serv_name, category, price, status, description   
+        FROM prod_serv 
+        WHERE prod_serv_id = ?
+        ";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $prod_serv_id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $stmt-> close();
+        return $result;
+    }
 }
+
+$test = new VendorQueries();
+print_r($test);
+
