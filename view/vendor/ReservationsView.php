@@ -7,7 +7,7 @@
     <meta name="description" content="BoothLink lets you discover and reserve unique products and services from student
     booths at Saint Louis University. Support SLU's vibrant student community today!">
     <title>BoothLink | Reservations</title>
-    <link rel="stylesheet" href="../../public/css/vendor/reservations.css">
+    <link rel="stylesheet" href="../../public/css/vendor/products.css">
     <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon_io/favicon-16x16.png">
@@ -19,17 +19,24 @@ include (__DIR__.'/page-fragments/Header.php');
 ?>
 <main>
     <div id="reservations">
-        <div>
-            <h2>Reservations</h2>
-            <div>
-                <button>Pending</button>
-                <button>Completed</button>
-                <label>
-                    <select>Category</select>
-                </label>
-                <button>View All</button>
+        <div class="main-table">
+            <div class="container">
+                <h2>Reservations</h2>
+                <div class="action-buttons">
+                    <button>Pending</button>
+                    <button>Completed</button>
+                    <label>
+                        <select class="category-filter">
+                            <option value="Category">Category</option>
+                            <option value="Item">Food</option>
+                            <option value="Service">Item</option>
+                            <option value="Food">Service</option>
+                        </select>
+                    </label>
+                    <button class="refresh-btn">View All</button>
+                </div>
             </div>
-            <div>
+            <div class="table-products">
                 <table>
                     <thead>
                     <tr>
@@ -43,9 +50,12 @@ include (__DIR__.'/page-fragments/Header.php');
                         <th>Action</th>
                     </tr>
                     </thead>
+                    <tbody>
                     <tr>
                         <td></td>
                     </tr>
+                    </tbody>
+
                 </table>
             </div>
         </div>

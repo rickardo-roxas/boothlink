@@ -15,8 +15,8 @@
         ?>
     </head>
     <body>
-        <div class = "scheduleSelector card">
-            <header class = "scheduleHeader card">
+        <div class = "schedule-selector card">
+            <header class = "schedule-header card">
                 <h3>October 2024</h3>
             </header>
 

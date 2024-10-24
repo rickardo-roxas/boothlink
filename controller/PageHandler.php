@@ -47,9 +47,8 @@ class PageHandler {
     }
 
     public function loadReservations() {
-        // TODO: Will not work yet since the files have yet to be created
-        include 'ReservationsController.php';
-        $controller = new ReservationsController();
+        include 'ReservationsPageController.php';
+        $controller = new ReservationsPageController();
         $controller->index();
     }
 
