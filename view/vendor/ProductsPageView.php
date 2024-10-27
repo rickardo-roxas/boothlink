@@ -23,13 +23,13 @@
                 <p>Product Listing</p>
                 
                 <div class="action-buttons">
-                <a href="EditProduct.html">
+                <a href="EditProduct.php">
                         <button class="edit-button">
                             <img src="../../assets/icons/edit-blue-fill.png" alt="Edit Icon" class="edit-icon">
                             Edit
                         </button>
                     </a>
-                    <a href="AddNewProduct.html">
+                    <a href="AddNewProduct.php">
                         <button class="add-button">
                             <img src="../../assets/icons/add-blue-outline.png" alt="Add Icon" class="add-icon">
                             Add

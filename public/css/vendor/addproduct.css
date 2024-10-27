@@ -1,3 +1,5 @@
+@import "/public/css/vendor/style.css";
+
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background-color: #f4f4f9;
@@ -20,6 +22,7 @@ body {
 
 .form-container {
     width: 50%;
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 h1 {
@@ -64,11 +67,13 @@ input, select, textarea {
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
+    font-family: inherit;
 }
 
 textarea {
     height: 170px;
     resize: none;
+    font-family: inherit;
 }
 
 .form-row {
