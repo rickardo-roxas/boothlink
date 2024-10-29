@@ -46,7 +46,6 @@ main {
     margin-right: 10px; 
 }
 
-
 .table-header button {
     padding: 0.75rem 1.5rem; 
     font-size: 1rem;
@@ -103,33 +102,20 @@ main {
     color: #ffffff;
 }
 
-/* Description column */
-.table-products table th:nth-child(3), 
-.table-products table td:nth-child(3) {
-    width: 35%; 
+.actions-column {
+    display: inline-flex;
+    gap: 105px; 
+    align-items: center;
 }
 
-/* Status column */
-.table-products table th:nth-child(4), 
-.table-products table td:nth-child(4) {
-    width: 15%; 
+.actions-column a:hover > .action-icon {
+    transform: scale(1.2); 
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3)); 
+    transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-/* Category column */
-.table-products table th:nth-child(5), 
-.table-products table td:nth-child(5) {
-    width: 10%; 
-}
-
-/* Actions column */
-.table-products table th:nth-child(6), 
-.table-products table td:nth-child(6) {
-    width: 10%; 
-}
-
-.table-products table td img.action-icon {
-    width: 20px;
-    height: 20px;
-    margin-left: 5px; 
+.action-icon {
+    width: 15px;
+    height: 15px;
     cursor: pointer;
 }

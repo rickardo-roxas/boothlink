@@ -12,24 +12,14 @@
 </head>
 <body>
 
-    <?php
-    include (__DIR__.'/page-fragments/Header.php');
-    ?>
+    <?php include (__DIR__.'/page-fragments/Header.php'); ?>
 
-   
     <main>
         <div class="main-table">
             <div class="table-header">
                 <p>Product Listing</p>
-                
                 <div class="action-buttons">
-                <a href="EditProduct.html">
-                        <button class="edit-button">
-                            <img src="../../assets/icons/edit-blue-fill.png" alt="Edit Icon" class="edit-icon">
-                            Edit
-                        </button>
-                    </a>
-                    <a href="AddNewProduct.html">
+                    <a href="AddNewProduct.php">
                         <button class="add-button">
                             <img src="../../assets/icons/add-blue-outline.png" alt="Add Icon" class="add-icon">
                             Add
@@ -66,11 +56,19 @@
                                 <td><?php echo $product['description']; ?></td>
                                 <td><?php echo $product['status'];?></td>
                                 <td><?php echo $product['category']; ?></td>
+                                <td class="actions-column">
+                                    <a href="EditProduct.php?id=<?php echo $product['id']; ?>">
+                                        <img src="../../assets/icons/edit-black-fill.png" alt="Edit" class="action-icon">
+                                    </a>
+                                    <a href="DeleteProduct.php?id=<?php echo $product['id']; ?>">
+                                        <img src="../../assets/icons/delete-red-fill.png" alt="Delete" class="action-icon">
+                                    </a>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="4">No products available</td>
+                            <td colspan="6">No products available</td>
                         </tr>
                     <?php endif; ?> 
                     </tbody>
