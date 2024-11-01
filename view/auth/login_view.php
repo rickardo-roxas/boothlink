@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BoothLink Login</title>
-    <link rel="stylesheet" href="public/css/vendor/login.css">
+    <link rel="stylesheet" href="/../cs-312_boothlink/public/css/auth/login.css">
+    <link rel="stylesheet" href="/../cs-312_boothlink/public/css/vendor/style.css">
 </head>
 <body>
     <div class="container">
@@ -19,14 +20,14 @@
         <div class="right">
             <h2>Log In</h2>
             <p>Don't have an account yet? <a href="#">Sign Up</a></p>
-            <form action="index.php" method="POST">
+            <form action="/index.php" method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" placeholder="Username" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Password"required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
                 </div>
                 <div class="checkbox-group">
                     <label for="show-password">Show Password</label>
