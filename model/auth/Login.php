@@ -1,10 +1,12 @@
 <?php
 
 class Login {
-    private $conn; 
+    private $conn;
+
     public function __construct($conn) {
         $this->conn = $conn;
     }
+
     public function authenticate($username, $password) {
         $query = "SELECT email, username, password FROM vendor WHERE username = ? LIMIT 1";
 
