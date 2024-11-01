@@ -1,31 +1,35 @@
 <?php 
-class VendorQueries{
+class VendorQueries {
+    protected $conn;
+
+    public function __construct() {
+        include 'config/Connection.php';
+        global $conn;
+        $this->conn = $conn;
+    }
 
     /**
      * Adds a new products to the database with its corresponding vendor and schedule
      */
     public function addProduct($org_id, $sched_id, $category, $description, $prod_serv_name, $price) {
-        include 'Connection.php';
-        $stmt = $conn->prepare("INSERT INTO prod_serv (org_id, sched_id, category, description, prod_serv_name, price) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $this->conn->prepare("INSERT INTO prod_serv (org_id, sched_id, category, description, prod_serv_name, price) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param('iisssd', $org_id, $sched_id, $category, $description, $prod_serv_name, $price);
         $stmt->execute();
         //close
         $stmt->close();
-        $conn->close();
-
+        $this->conn->close();
     }
 
     /**
      * Updates the products details in the database
      */
     public function updateProduct($prod_serv_id, $org_id, $sched_id, $category, $description, $prod_serv_name, $price){
-        include 'Connection.php';
-        $stmt = $conn->prepare("UPDATE prod_serv SET org_id = ?, sched_id = ?, category = ?, description = ?, prod_serv_name = ?, price = ? WHERE prod_serv_id = ?");
+        $stmt = $this->conn->prepare("UPDATE prod_serv SET org_id = ?, sched_id = ?, category = ?, description = ?, prod_serv_name = ?, price = ? WHERE prod_serv_id = ?");
         $stmt->bind_param('iisssdi', $org_id, $sched_id, $category, $description, $prod_serv_name, $price, $prod_serv_id);
         $stmt->execute();
         //close
         $stmt->close();
-        $conn->close();
+        $this->conn->close();
     }
 
     /**
@@ -33,7 +37,6 @@ class VendorQueries{
      * Returns all products listed in the database with respect to a vendor
      */
     public function getProducts($org_id){
-        include 'Connection.php';
 
         $query = "
         SELECT prod_serv.* FROM prod_serv
@@ -41,13 +44,14 @@ class VendorQueries{
         WHERE prod_org_sched.org_id = ?
         ";
 
-        $stmt = $conn->prepare($query);
+        $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $org_id);
         $stmt->execute();
 
         $result = $stmt->get_result();
         $stmt->close();
-        $conn->close();
+        $this->conn->close();
+
         return $result;
     }
 
@@ -57,7 +61,6 @@ class VendorQueries{
      * Method to get the products given an organization and the associated number of items sold
      */
     public function getProductSales($org_id) {
-        include 'Connection.php';
 
         $query = "
             SELECT prod_img.img_src, prod_serv.prod_serv_name, prod_serv.price, prod_serv.category, 
@@ -71,12 +74,13 @@ class VendorQueries{
                     WHERE prod_org_sched.org_id = ?
             GROUP BY prod_serv.prod_serv_name;";
 
-        $stmt = $conn->prepare($query);
+        $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $org_id);
         $stmt-> execute();
         $result = $stmt-> get_result();
         $stmt->close();
-        $conn->close();
+        $this->conn->close();
+
 
         $products = [];
 
@@ -88,18 +92,18 @@ class VendorQueries{
     }
 
     public function getSalesToday($org_id) {
-        include 'Connection.php';
         $query = "SELECT SUM(RESERVATION.qty*PROD_SERV.price) as SOLD_TODAY from RESERVATION 
         JOIN PROD_SERV ON RESERVATION.product_id = PROD_SERV.prod_serv_ID
         JOIN PROD_ORG_SCHED ON PROD_SERV.prod_serv_ID = PROD_ORG_SCHED.prod_id
         WHERE org_id=? and RESERVATION.date=CURRENT_DATE();";
 
-        $stmt = $conn->prepare($query);
+        $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $org_id);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
-        $conn->close();
+        $this->conn->close();
+
 
         $sold = 0;
 
@@ -112,38 +116,39 @@ class VendorQueries{
     }
 
     public function getReservations($org_id){
-        include 'Connection.php';
 
         $query = "
         SELECT reservation.* FROM reservation
         WHERE org_id = ?
         ";
 
-        $stmt = $conn->prepare($query);
+        $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $org_id);
         $stmt->execute();
 
         $result = $stmt->get_result();
 
         $stmt->close();
+        $this->conn->close();
 
         return $result;
     }
 
     public function getProductByID($prod_serv_id){
-        include 'Connection.php';
 
         $query = "
         Select prod_serv_name, category, price, status, description   
         FROM prod_serv 
         WHERE prod_serv_id = ?
         ";
-        $stmt = $conn->prepare($query);
+        $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $prod_serv_id);
         $stmt->execute();
 
         $result = $stmt->get_result();
         $stmt-> close();
+        $this->conn->close();
+
         return $result;
     }
 }

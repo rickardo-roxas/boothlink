@@ -1,13 +1,13 @@
 <?php
 
-include(__DIR__."/../model/Product.php");
+include(__DIR__."/../../../model/vendor/products/product.php");
 
 class SalesController {
 
     private $model;
 
     public function __construct() {
-        include(__DIR__.'/../model/SalesModel.php');
+        include(__DIR__.'/../../../model/vendor/sales/SalesModel.php');
         $this->model = new SalesModel();
     }
 
@@ -17,7 +17,7 @@ class SalesController {
     }
 
     public function index() {
-        // TODO: FIX
+
         $products = $this->getModel()->getProducts();
         $salesToday = $this->getModel()->getPerfToday();
 
@@ -28,9 +28,7 @@ class SalesController {
       //  $products[] = new Product('path/to/image3.jpg', 'Product Three', 19.99, 'Category A', 300, 'Available');
        // $products[] = new Product('path/to/image4.jpg', 'Product Four', 49.99, 'Category C', 80, 'Available');
       //  $products[] = new Product('path/to/image5.jpg', 'Product Five', 15.99, 'Category B', 500, 'Available');
-        header('Location: sales_view.php?productList='
-            . urlencode(serialize($products))
-            . '&salesToday=' . urlencode(serialize($salesToday)) );
+        header('Location: /cs-312_boothlink/view/vendor/sales/sales_view.php');
         exit();
     }
 }

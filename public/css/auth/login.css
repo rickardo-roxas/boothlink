@@ -1,10 +1,10 @@
-@import "/public/css/vendor/style.css";
+@import "/../cs-312_boothlink/public/css/vendor/style.css";
 
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Arial', sans-serif;
+        font-family: 'Poppins', sans-serif;
     }
 
 

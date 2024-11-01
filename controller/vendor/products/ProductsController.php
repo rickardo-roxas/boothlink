@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once(__DIR__.'/../model/ProductsPageModel.php');
+require_once(__DIR__.'/../../../model/vendor/products/ProductsPageModel.php');
 
 class ProductsPageController{
     private $model;
@@ -18,6 +18,6 @@ class ProductsPageController{
     public function index(){
         $products = $this->model->getProducts($this->sessionID);
 
-        header('Location: products_view.php?products=' . urlencode(serialize($products)));
+        header('Location: /cs-312_boothlink/view/vendor/products/products_view.php');
     }
 }

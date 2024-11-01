@@ -4,7 +4,7 @@ class ScheduleController {
     private $model;
 
     public function __construct() {
-        include(__DIR__.'/../model/Schedule.php');
+        include(__DIR__.'/../../../model/vendor/schedule/Schedule.php');
         $this->model = new Schedule();
     }
 
@@ -14,7 +14,7 @@ class ScheduleController {
     }
 
     public function index() {
-        header('Location: schedule_view.php');
+        header('Location: /cs-312_boothlink/view/vendor/schedule/schedule_view.php');
         exit();
     }
 }

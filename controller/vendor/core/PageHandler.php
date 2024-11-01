@@ -40,7 +40,7 @@ class PageHandler {
     }
 
     public function loadReservations() {
-        require_once __DIR__ . '/../vendor/reservations/ReservationsController.php';
+        require_once __DIR__ . '/../reservations/ReservationsController.php';
         $controller = new ReservationsPageController();
         $controller->index();
     }

@@ -18,13 +18,12 @@
 
 $orgPhoto = '../../assets/images/placeholder.jpeg';
 $orgName = "SCHEMA";
-require(__DIR__ . '/page-fragments/Header.php');
+require(__DIR__ . '/../../page-fragments/Header.php');
 
 ?>
-
 <main>
     <div id="dashboard" class="container">
-        <div class="grid-container">
+        <div>
             <div class="column-container">
                 <div class="container">
                     <article id="dash-profile" class="card">
@@ -154,8 +153,8 @@ require(__DIR__ . '/page-fragments/Header.php');
         </div>
     </div>
 </main>
-<footer>
-    <!--To be done by Patrick Lacanilao-->
-</footer>
+<?php
+require(__DIR__ . '/../../page-fragments/Footer.php');
+?>
 </body>
 </html>

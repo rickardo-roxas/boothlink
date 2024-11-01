@@ -15,8 +15,13 @@
 </head>
 <body>
 <?php
-include(__DIR__ . '/page-fragments/Header.php');
+
+$orgPhoto = '../../assets/images/placeholder.jpeg';
+$orgName = "SCHEMA";
+require(__DIR__ . '/../../page-fragments/Header.php');
+
 ?>
+
 <main>
     <div id="reservations">
         <div class="main-table">

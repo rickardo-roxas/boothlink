@@ -1,5 +1,5 @@
 <?php
-require_once 'VendorQueries.php';
+require_once 'model/vendor/VendorQueries.php';
 
 class ReservationsPageModel {
     private $vendorQueries;
