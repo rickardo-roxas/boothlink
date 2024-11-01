@@ -3,35 +3,28 @@
 class PageHandler {
 
     public function __construct() {
-
         /** -------->  TODO Hardcoded values while organization selector has not been.  */
-        session_start();
-
         $_SESSION['orgPhoto'] = '../../assets/images/placeholder.jpeg';
         $_SESSION['orgName'] = 'SCHEMA';
         $_SESSION['orgID'] = 1;
-
         $_SESSION['handler'] = serialize($this);
-
-        $this->loadPage("first");
-
     }
 
     public function loadPage($page) {
         switch ($page) {
-            case "first":
+            case 'home':
                 $this->loadDashboard(true);
                 break;
-            case "reservations":
+            case 'reservations':
                 $this->loadReservations();
                 break;
-            case "products":
+            case 'products':
                 $this->loadProducts();
                 break;
-            case "schedule":
+            case 'schedule':
                 $this->loadSchedule();
                 break;
-            case "sales":
+            case 'sales':
                 $this->loadSales();
                 break;
             default:
@@ -41,32 +34,31 @@ class PageHandler {
     }
 
     public function loadDashboard($firstTime) {
-        include 'DashboardController.php';
+        require_once __DIR__ . '/../home/DashboardController.php';
         $controller = new DashboardController();
         $controller->index($firstTime);
     }
 
     public function loadReservations() {
-        include 'ReservationsPageController.php';
+        require_once __DIR__ . '/../vendor/reservations/ReservationsController.php';
         $controller = new ReservationsPageController();
         $controller->index();
     }
 
     public function loadProducts() {
-        // TODO: Will not work yet since the files have yet to be created
-        include 'ProductsPageController.php';
+        require_once __DIR__ . '/../../vendor/products/ProductsController.php';
         $controller = new ProductsPageController();
         $controller->index();
     }
 
     public function loadSchedule() {
-        include 'ScheduleController.php';
+        require_once __DIR__ . '/../../vendor/schedule/ScheduleController.php';
         $controller = new ScheduleController();
         $controller->index();
     }
 
     public function loadSales() {
-        include 'SalesController.php';
+        require_once __DIR__ . '/../../vendor/sales/SalesController.php';
         $controller = new SalesController();
         $controller->index();
     }
