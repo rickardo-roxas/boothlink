@@ -15,7 +15,7 @@ class ReservationsPageController {
 
     public function index(){
         //$reservations = $this->model->getReservations($this->sessionID);
-        header('Location: ReservationsView.php');
+        header('Location: reservations_view.php');
        // header('Location: ReservationsPageView.php?reservations=' . urlencode(serialize($reservations)));
     }
 }

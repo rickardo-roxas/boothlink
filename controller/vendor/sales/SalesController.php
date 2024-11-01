@@ -28,7 +28,7 @@ class SalesController {
       //  $products[] = new Product('path/to/image3.jpg', 'Product Three', 19.99, 'Category A', 300, 'Available');
        // $products[] = new Product('path/to/image4.jpg', 'Product Four', 49.99, 'Category C', 80, 'Available');
       //  $products[] = new Product('path/to/image5.jpg', 'Product Five', 15.99, 'Category B', 500, 'Available');
-        header('Location: SalesView.php?productList='
+        header('Location: sales_view.php?productList='
             . urlencode(serialize($products))
             . '&salesToday=' . urlencode(serialize($salesToday)) );
         exit();

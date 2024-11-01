@@ -18,6 +18,6 @@ class ProductsPageController{
     public function index(){
         $products = $this->model->getProducts($this->sessionID);
 
-        header('Location: ProductsPageView.php?products=' . urlencode(serialize($products)));
+        header('Location: products_view.php?products=' . urlencode(serialize($products)));
     }
 }

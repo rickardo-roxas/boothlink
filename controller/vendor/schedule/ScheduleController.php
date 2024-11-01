@@ -14,7 +14,7 @@ class ScheduleController {
     }
 
     public function index() {
-        header('Location: ScheduleView.php');
+        header('Location: schedule_view.php');
         exit();
     }
 }

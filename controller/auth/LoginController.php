@@ -1,6 +1,6 @@
 <?php
-include "model/Connection.php";
-include 'view/vendor/LoginView.php';
+include "config/Connection.php";
+include 'view/vendor/login_view.php';
 include 'controller/PageHandler.php';
 
 class LoginController {

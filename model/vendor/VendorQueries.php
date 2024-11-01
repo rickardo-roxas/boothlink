@@ -2,7 +2,7 @@
 class VendorQueries{
 
     /**
-     * Adds a new product to the database with its corresponding vendor and schedule
+     * Adds a new products to the database with its corresponding vendor and schedule
      */
     public function addProduct($org_id, $sched_id, $category, $description, $prod_serv_name, $price) {
         include 'Connection.php';
@@ -16,7 +16,7 @@ class VendorQueries{
     }
 
     /**
-     * Updates the product details in the database
+     * Updates the products details in the database
      */
     public function updateProduct($prod_serv_id, $org_id, $sched_id, $category, $description, $prod_serv_name, $price){
         include 'Connection.php';

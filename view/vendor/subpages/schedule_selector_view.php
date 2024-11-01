@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <link rel="stylesheet" href="../../public/css/vendor/style.css">
+        <link rel="stylesheet" href="../../../public/css/vendor/style.css">
 
         <?php
             $month = $_GET['month'];

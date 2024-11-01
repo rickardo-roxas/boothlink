@@ -13,9 +13,9 @@ class DashboardController {
     public function index($firstTime) {
 
         if ($firstTime) {
-            header('Location: view/vendor/DashboardView.php');
+            header('Location: view/vendor/home_view.php');
         } else {
-            header('Location: DashboardView.php');
+            header('Location: home_view.php');
         }
         exit();
     }
