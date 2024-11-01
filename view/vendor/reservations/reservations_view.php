@@ -7,15 +7,15 @@
     <meta name="description" content="BoothLink lets you discover and reserve unique products and services from student
     booths at Saint Louis University. Support SLU's vibrant student community today!">
     <title>BoothLink | Reservations</title>
-    <link rel="stylesheet" href="../../public/css/vendor/products.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon_io/favicon-16x16.png">
-    <link rel="manifest" href="../../assets/favicon_io/site.webmanifest">
+    <link rel="stylesheet" href="../../../public/css/vendor/products.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../../../assets/favicon_io/site.webmanifest">
 </head>
 <body>
 <?php
-include (__DIR__.'/page-fragments/Header.php');
+include(__DIR__ . '/page-fragments/Header.php');
 ?>
 <main>
     <div id="reservations">

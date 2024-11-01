@@ -3,14 +3,14 @@
 
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../../public/css/vendor/sales.css">
+        <link rel="stylesheet" href="../../../public/css/vendor/sales.css">
         <title>Sales</title>
     </head>
 
     <body>
 
     <?php
-    include (__DIR__.'/page-fragments/Header.php');
+    include(__DIR__ . '/page-fragments/Header.php');
     ?>
 
     <main class = "sales">
