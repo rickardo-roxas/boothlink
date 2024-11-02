@@ -1,5 +1,5 @@
 <?php require(__DIR__ . '/../../page-fragments/Header.php'); ?>
-
+<link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/products.css"</link>
 <main>
     <div id="reservations">
         <div class="main-table">

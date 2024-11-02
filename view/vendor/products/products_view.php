@@ -1,5 +1,5 @@
 <?php include ('view/page-fragments/header.php'); ?>
-
+<link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/products.css"</link>
 <script src="<?php echo BASE_URL?>/public/javascript/vendor/products.js" defer></script>
 <main>
     <div class="main-table">

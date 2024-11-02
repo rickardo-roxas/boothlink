@@ -1,5 +1,5 @@
 <?php require('view/page-fragments/Header.php'); ?>
-<link rel="stylesheet" href="../../../public/css/vendor/sales.css">
+<link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/sales.css">
 
 <main class = "sales">
 
