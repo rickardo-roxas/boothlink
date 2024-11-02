@@ -34,10 +34,16 @@ class PageHandler
                 (new ProductsController())->index();
                 break;
 
+            case '/schedule':
+                $title = 'Schedule';
+                require __DIR__ . '/../../controller/vendor/schedule/ScheduleController.php';
+                (new ScheduleController())->index();
+                break;
+
             case '/sales':
                 $title = 'Sales';
-                require __DIR__ . '/../../../controller/vendor/sales/SalesController.php';
-                new SalesController();
+                require __DIR__ . '/../../controller/vendor/sales/SalesController.php';
+                (new SalesController())->index();
                 break;
 
             default:
