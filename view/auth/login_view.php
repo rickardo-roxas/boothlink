@@ -20,7 +20,7 @@
         <div class="right">
             <h2>Log In</h2>
             <p>Don't have an account yet? <a href="#">Sign Up</a></p>
-            <form action="index.php" method="POST">
+            <form action="/cs-312_boothlink/login" method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" placeholder="Username" required>
