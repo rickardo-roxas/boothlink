@@ -48,31 +48,7 @@ include(__DIR__ . '/../../../view/page-fragments/header.php');
                 </tr>
                 </thead>
                 <tbody>
-                <?php
-                $products = unserialize($_GET['products']);
-                if (!empty($products)): ?>
-                    <?php foreach ($products as $product): ?>
-                        <tr>
-                            <td><?php echo $product['prod_serv_name']; ?></td>
-                            <td><?php echo $product['price']; ?></td>
-                            <td><?php echo $product['description']; ?></td>
-                            <td><?php echo $product['status'];?></td>
-                            <td><?php echo $product['category']; ?></td>
-                            <td class="actions-column">
-                                <a href="edit_product.php?id=<?php echo $product['id']; ?>">
-                                    <img src="../../../assets/icons/edit-black-fill.png" alt="Edit" class="action-icon">
-                                </a>
-                                <a href="DeleteProduct.php?id=<?php echo $product['id']; ?>">
-                                    <img src="../../../assets/icons/delete-red-fill.png" alt="Delete" class="action-icon">
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="6">No products available</td>
-                    </tr>
-                <?php endif; ?>
+                
                 </tbody>
             </table>
         </div>
