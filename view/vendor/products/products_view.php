@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="/assets/favicon_io/site.webmanifest">
+    <script src="public/javascript/vendor/products.js" defer></script>
 </head>
 <body>
 
@@ -48,7 +49,7 @@ include(__DIR__ . '/../../../view/page-fragments/header.php');
                 </tr>
                 </thead>
                 <tbody>
-                
+                    <!-- This is where the table will be populated vis products.js -->
                 </tbody>
             </table>
         </div>
