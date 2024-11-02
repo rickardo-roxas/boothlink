@@ -40,17 +40,17 @@ $router->addRoute('GET', '/home', function() use ($pageHandler) {
 
 // Reservations route
 $router->addRoute('GET', '/reservations', function() use ($pageHandler) {
-    $pageHandler->renderVendor('/reservations');
+    $pageHandler->renderVendor('/reservations', false);
 });
 
 // Products route
 $router->addRoute('GET', '/products', function () use ($pageHandler) {
-   $pageHandler->renderVendor('/products');
+   $pageHandler->renderVendor('/products', false);
 });
 
 // Sales route
 $router->addRoute('GET', '/sales', function() use ($pageHandler){
-    $pageHandler->renderVendor('/sales');
+    $pageHandler->renderVendor('/sales', false);
 });
 
 // Definition of Customer routes

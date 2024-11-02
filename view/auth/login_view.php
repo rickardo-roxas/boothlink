@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BoothLink Login</title>
-    <link rel="stylesheet" href="/../cs-312_boothlink/public/css/auth/login.css">
-    <link rel="stylesheet" href="/../cs-312_boothlink/public/css/vendor/style.css">
-</head>
-<body>
+<?php require('view/page-fragments/Header.php'); ?>
+<link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/auth/login.css">
+<main>
     <div class="container">
     <!--Left section logo part-->
         <div class="left">
@@ -47,8 +40,10 @@
             }
         }
     </script>
-</body>
-</html>
+</main>
+
+<?php require(__DIR__ . '/../../view/page-fragments/Footer.php'); ?>
+
 
 
 

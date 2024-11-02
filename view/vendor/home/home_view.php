@@ -132,4 +132,5 @@
         </div>
     </div>
 </main>
-<?php require(__DIR__ . '/../../page-fragments/Footer.php'); ?>
+
+<?php require(__DIR__ . '/../../page-fragments/footer.php'); ?>
