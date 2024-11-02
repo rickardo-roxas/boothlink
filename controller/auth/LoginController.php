@@ -18,9 +18,9 @@ class LoginController {
             $login = new Login($this->conn);
             if ($login->authenticate($username, $password)) {
                 $_SESSION['user'] = $username;
+                $_SESSION['org_id'] = $login->getOrgID($username);
 
                 echo "Login successful. User session set: " . $_SESSION['user'];
-
 
                 if (!isset($_SESSION['first_time'])) {
                     $_SESSION['first_time'] = true; // Set first time

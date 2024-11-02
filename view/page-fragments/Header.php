@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 const BASE_URL = '/cs-312_boothlink';
 $pageHandler = new PageHandler();
@@ -22,7 +25,7 @@ $title = $_SESSION['page_title'] ?? 'Default Title';
 <body>
 <header>
     <div class="logo">
-        <a href="/home" target="_self" class="container">
+        <a href="/cs-312_boothlink/home" target="_self" class="container">
             <img src="<?php echo BASE_URL; ?>/assets/icons/logo-black-outline.png" alt="BoothLink logo">
             <h1>booth<span class="sky-blue">link</span></h1>
         </a>
@@ -44,3 +47,4 @@ $title = $_SESSION['page_title'] ?? 'Default Title';
         </button>
     </div>
 </header>
+

@@ -2,19 +2,29 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+require_once(__DIR__.'/../../../model/vendor/reservations/ReservationsPageModel.php');
+
+
 class ReservationsController
 {
-    protected $model;
+    private $model;
+    private $sessionID;
 
     public function __construct() {
-        include (__DIR__.'/../../../model/vendor/reservations/ReservationsPageModel.php');
-
+        $this->sessionID = $_SESSION['org_id'];
         $this->model = new ReservationsPageModel();
+
+        if (isset($_SESSION['org_id'])) {
+            $this->sessionID = $_SESSION['org_id'];
+        } else {
+            echo "Error: 'orgID' is not set in the session.";
+            exit();
+        }
+
     }
 
     public function index(){
-        //$reservations = $this->model->getReservations($this->sessionID);
-        require_once (__DIR__.'/../../../model/vendor/reservations/ReservationsPageModel.php');
+        require_once 'view/vendor/reservations/reservations_view.php';
         exit();
     }
 }

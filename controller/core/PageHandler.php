@@ -30,13 +30,13 @@ class PageHandler
 
             case '/products':
                 $title = 'Products';
-                require __DIR__ . '/../../../controller/vendor/home/ProductsController.php';
+                require __DIR__ . '/../../controller/vendor/products/ProductsController.php';
                 (new ProductsController())->index();
                 break;
 
             case '/sales':
                 $title = 'Sales';
-                require __DIR__ . '/../../../controller/vendor/home/SalesController.php';
+                require __DIR__ . '/../../../controller/vendor/sales/SalesController.php';
                 new SalesController();
                 break;
 

@@ -10,15 +10,21 @@ class ProductsController
     private $sessionID;
 
     public function __construct(){
-        $this->sessionID = $_SESSION['orgID'];
-
+        $this->sessionID = $_SESSION['org_id'];
 
         $this->model = new ProductsPageModel();
+
+        if (isset($_SESSION['org_id'])) {
+            $this->sessionID = $_SESSION['org_id'];
+        } else {
+            echo "Error: 'orgID' is not set in the session.";
+            exit();
+        }
     }
 
     public function index(){
         $products = $this->model->getProducts($this->sessionID);
 
-        header('Location: /cs-312_boothlink/view/vendor/products/products_view.php');
+        require_once 'view/vendor/products/products_view.php';
     }
 }
