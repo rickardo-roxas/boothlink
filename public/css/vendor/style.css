@@ -85,8 +85,8 @@ html {
     box-shadow: var(--light1);
 }
 
-/* Header */
-header {
+/* Header and Footer */
+header, footer {
     background-color: #FFFFFF;
     display: flex;
     justify-content: space-between;
@@ -99,16 +99,20 @@ header {
     padding: var(--spacing-xl);
 }
 
-header a {
+footer {
+
+}
+
+header a, footer a {
     text-decoration: none;
     color: var(--text);
 }
 
-header a:hover {
+header a:hover, footer a:hover {
     cursor: pointer;
 }
 
-header ul li {
+header ul li, footer ul li {
     list-style: none;
     display: inline-block;
 }
@@ -116,13 +120,14 @@ header ul li {
 header .logo, header .profile {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
-header .logo img {
+header .logo img, footer .logo img {
     width: 1.875rem;
     height: 1.63769rem;
-    flex-shrink: 0;
     margin-right: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 header button {

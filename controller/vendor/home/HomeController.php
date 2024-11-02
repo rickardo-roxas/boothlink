@@ -1,16 +1,19 @@
 <?php
 
-class DashboardController {
+require_once "config/Connection.php";
+require_once "model/vendor/home/Home.php";
+
+
+class HomeController {
     protected $model;
 
     public function __construct() {
-        include(__DIR__.'/../../../model/vendor/home/Dashboard.php');
-        $this->model = new Dashboard();
+        $this->model = new Home();
     }
 
     public function index($firstTime) {
         if ($firstTime) {
-            header('Location: /cs-312_boothlink/view/vendor/home/home_view.php');
+            require_once 'view/vendor/home/home_view.php';
         } else {
             header('Location: home_view.php');
         }

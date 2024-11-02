@@ -2,7 +2,6 @@
 require_once "config/Connection.php";
 require_once "model/auth/Login.php";
 require_once 'view/auth/login_view.php';
-include 'controller/vendor/core/Router.php';
 
 class LoginController {
     protected $conn;
@@ -15,11 +14,20 @@ class LoginController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
-        
+
             $login = new Login($this->conn);
             if ($login->authenticate($username, $password)) {
                 $_SESSION['user'] = $username;
-                header('Location: /cs-312_boothlink/home');
+
+                echo "Login successful. User session set: " . $_SESSION['user'];
+
+
+                if (!isset($_SESSION['first_time'])) {
+                    $_SESSION['first_time'] = true; // Set first time
+                } else {
+                    $_SESSION['first_time'] = false; // Not first time
+                }
+                header("Location: /cs-312_boothlink/home");
                 exit();
             } else {
                 echo "Login failed! Invalid username or password.";

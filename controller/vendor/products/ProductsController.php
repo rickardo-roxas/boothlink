@@ -4,7 +4,8 @@ ini_set('display_errors', 1);
 
 require_once(__DIR__.'/../../../model/vendor/products/ProductsPageModel.php');
 
-class ProductsPageController{
+class ProductsController
+{
     private $model;
     private $sessionID;
 

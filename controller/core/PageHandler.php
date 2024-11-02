@@ -11,25 +11,31 @@ class PageHandler
      * @return void
      */
     public function renderVendor($path, $firstTime) {
+        $title = '';
+
         switch ($path) {
             case '/home':
+                $title = 'Home';
                 require __DIR__ . '/../../controller/vendor/home/HomeController.php';
                 $controller = new HomeController();
                 $controller->index($firstTime);
                 break;
 
             case '/reservations':
+                $title = 'Reservations';
                 require __DIR__ . '/../../controller/vendor/reservations/ReservationsController.php';
                 $controller = new ReservationsController();
                 $controller->index();
                 break;
 
             case '/products':
+                $title = 'Products';
                 require __DIR__ . '/../../../controller/vendor/home/ProductsController.php';
                 (new ProductsController())->index();
                 break;
 
             case '/sales':
+                $title = 'Sales';
                 require __DIR__ . '/../../../controller/vendor/home/SalesController.php';
                 new SalesController();
                 break;
@@ -37,6 +43,7 @@ class PageHandler
             default:
                 echo "404 Not Found";
         }
+        $_SESSION['page_title'] = $title;
     }
 
     /**
@@ -45,8 +52,11 @@ class PageHandler
      * @return void
      */
     public function renderAuth($path, $conn) {
+        $title = '';
+
         switch ($path) {
             case '/login':
+                $title = 'Login';
                 if (!isset($_SESSION['user'])) {
                     require __DIR__ . '/../../controller/auth/LoginController.php';
                     $controller = new LoginController($conn);
@@ -58,15 +68,13 @@ class PageHandler
                 }
                 break;
             case '/signup':
+                $title = 'Signup';
                 // require __DIR__ . '/../../../controller/auth/SignupController.php';
                 break;
             default:
                 echo "404 Not Found.";
         }
-    }
 
-    public function pageTitle($path) {
-
+        $_SESSION['page_title'] = $title;
     }
-    // TODO: renderCustomer, by Finals
 }

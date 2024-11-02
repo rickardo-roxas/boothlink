@@ -34,8 +34,6 @@ class Router
             $path = substr($path, strlen($basePath));
         }
 
-        echo "Method: $method, Path: $path<br>"; // Shows method and path in the browser
-
         // Responds with 404 when method and path is not a set variable in the routes array
         if (isset($this->routes[$method][$path])) {
             $handler = $this->routes[$method][$path];

@@ -1,5 +1,5 @@
 <?php
-class Dashboard {
+class Home {
 
     public function __construct() {
     }

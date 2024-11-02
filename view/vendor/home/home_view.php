@@ -1,26 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BoothLink lets you discover and reserve unique products and services from student
-    booths at Saint Louis University. Support SLU's vibrant student community today!">
-    <title>BoothLink | Home</title>
-    <link rel="stylesheet" href="../../../public/css/vendor/style.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/favicon_io/favicon-16x16.png">
-    <link rel="manifest" href="../../../assets/favicon_io/site.webmanifest">
-</head>
-<body>
-<?php
+<?php require(__DIR__ . '/../../page-fragments/Header.php'); ?>
 
-$orgPhoto = '../../assets/images/placeholder.jpeg';
-$orgName = "SCHEMA";
-require(__DIR__ . '/../../page-fragments/Header.php');
-
-?>
 <main>
     <div id="dashboard" class="container">
         <div>
@@ -29,20 +8,20 @@ require(__DIR__ . '/../../page-fragments/Header.php');
                     <article id="dash-profile" class="card">
                         <h2>Profile</h2>
                         <div class="container">
-                            <img src="../../../assets/images/placeholder.jpeg" alt="Organization picture">
+                            <img src="<?php echo BASE_URL; ?>/assets/images/placeholder.jpeg" alt="Organization picture">
                             <h3>SCHEMA</h3>
                         </div>
                         <div class="column-container">
                             <a href="" target="_blank" class="container soc-med">
-                                <img src="../../../assets/icons/soc-med/facebook.png" alt="Facebook logo">
+                                <img src="<?php echo BASE_URL; ?>/assets/icons/soc-med/facebook.png" alt="Facebook logo">
                                 <p>www.facebook.com/schemaslu</p>
                             </a>
                             <a href="" target="_blank" class="container soc-med">
-                                <img src="../../../assets/icons/soc-med/instagram.png" alt="Instagram logo">
+                                <img src="<?php echo BASE_URL; ?>/assets/icons/soc-med/instagram.png" alt="Instagram logo">
                                 <p>www.instagram.com/@schemaslu</p>
                             </a>
                             <a href="" target="_blank" class="container soc-med">
-                                <img src="../../../assets/icons/soc-med/twitter.png" alt="X logo">
+                                <img src="<?php echo BASE_URL; ?>/assets/icons/soc-med/twitter.png" alt="X logo">
                                 <p>www.x.com/@schemaslu</p>
                             </a>
                         </div>
@@ -153,8 +132,4 @@ require(__DIR__ . '/../../page-fragments/Header.php');
         </div>
     </div>
 </main>
-<?php
-require(__DIR__ . '/../../page-fragments/Footer.php');
-?>
-</body>
-</html>
+<?php require(__DIR__ . '/../../page-fragments/Footer.php'); ?>
