@@ -8,7 +8,7 @@ class Router
     /**
      * @var array Holds HTTP methods and maps the paths to the handler function.
      */
-    private $routes = [];
+    public $routes = [];
 
     /**
      * Adds a new route with a specified method, path, and handler.
@@ -21,9 +21,20 @@ class Router
         $this->routes[$method][$path] = $handler;
     }
 
+    /**
+     * Handles the request based on the current URL
+     * @return void
+     */
     public function handleRequest() {
         $method = $_SERVER['REQUEST_METHOD'];
         $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $basePath = '/cs-312_boothlink';
+
+        if (strpos($path, $basePath) === 0) {
+            $path = substr($path, strlen($basePath));
+        }
+
+        echo "Method: $method, Path: $path<br>"; // Shows method and path in the browser
 
         // Responds with 404 when method and path is not a set variable in the routes array
         if (isset($this->routes[$method][$path])) {
