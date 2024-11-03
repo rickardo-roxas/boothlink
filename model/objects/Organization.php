@@ -7,14 +7,6 @@ class Organization {
     private $xLink;
     private $igLink;
 
-    public function __construct($name, $image, $fbLink, $xLink, $igLink) {
-        $this->name = $name;
-        $this->image = $image;
-        $this->fbLink = $fbLink;
-        $this->xLink = $xLink;
-        $this->igLink = $igLink;
-    }
-
     public function getName() {
         return $this->name;
     }

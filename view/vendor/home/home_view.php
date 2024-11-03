@@ -7,7 +7,7 @@
                 <h2>Organization</h2>
                 <div class="container">
                     <img src="<?php echo BASE_URL; ?>/assets/images/placeholder.jpeg" alt="Organization picture">
-                    <h3>SCHEMA</h3>
+                    <h3><?php echo htmlspecialchars($organization['name']); ?></h3>
                 </div>
                 <div class="column-container">
                     <a href="" target="_blank" class="container soc-med">
@@ -62,20 +62,17 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>Location and Stall Number</th>
+                        <th>Location</th>
+                        <th>Stall Number</th>
                         <th>Start Time</th>
                         <th>End Time</th>
                     </tr>
                     </thead>
                     <tr>
-                        <td>SLU Maryheights, Lobby, Stall #6</td>
+                        <td>SLU Maryheights, Lobby</td>
+                        <td>Stall #6</td>
                         <td>9:30 AM</td>
                         <td>1:00 PM</td>
-                    </tr>
-                    <tr>
-                        <td>SLU Marheights, Lobby, Stall #6</td>
-                        <td>2:00 PM</td>
-                        <td>4:00 PM</td>
                     </tr>
                 </table>
             </article>
@@ -129,5 +126,11 @@
         </div>
     </div>
 </main>
+<script>
+    const organizationData = <?php echo json_encode($organizationData); ?>;
+    const reservationsData = <?php echo json_encode($recentReservations); ?>;
+    const salesToday = <?php echo json_encode($salesToday); ?>;
+</script>
+<script src="<?php echo BASE_URL?>/public/javascript/vendor/home.js"
 
-<?php require(__DIR__ . '/../../page-fragments/footer.php'); ?>
+<?php require('view/page-fragments/footer.php'); ?>
