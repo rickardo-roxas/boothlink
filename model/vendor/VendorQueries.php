@@ -8,6 +8,11 @@ class VendorQueries {
         $this->conn = $conn;
     }
 
+    // Destructor to close the connection when the object is destroyed
+    public function __destruct() {
+        $this->conn->close();
+    }
+
     /**
      * Adds a new product to the database with its corresponding vendor and schedule
      */
@@ -130,11 +135,29 @@ class VendorQueries {
         return $result;
     }
 
-    // Destructor to close the connection when the object is destroyed
-    public function __destruct() {
-        if ($this->conn instanceof mysqli && $this->conn->ping()) {
-            $this->conn->close();
+    public function getOrganizationByID($org_id) {
+        include 'model/objects/Organization.php';
+
+        $query = "SELECT * FROM organization WHERE org_id = ?";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $org_id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        if ($row = $result->fetch_assoc()) {
+            $organization = new Organization();
+            $organization->setName($row['org_name']);
+            $organization->setImage($row['org_img']);
+            $organization->setFbLink($row['fb_link']);
+            $organization->setXLink($row['x_link']);
+            $organization->setIgLink($row['ig_link']);
+            return $organization;
         }
+
+        return $result;
     }
 }
 

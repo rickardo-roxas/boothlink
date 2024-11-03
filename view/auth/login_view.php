@@ -41,9 +41,4 @@
         }
     </script>
 </main>
-
-<?php require(__DIR__ . '/../../view/page-fragments/Footer.php'); ?>
-
-
-
-
+<?php require('view/page-fragments/Footer.php'); ?>

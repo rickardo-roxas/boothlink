@@ -2,15 +2,15 @@
 
 class Product {
 
-    public $image;
-    public $name;
-    public $price;
-    public $category;
-    public $sold;
-    public $status;
+    private $images = array();
+    private $name;
+    private $price;
+    private $category;
+    private $sold;
+    private $status;
 
-    public function __construct($image ="null", $name ="null", $price = 0.0, $category = "item", $sold = 5.5, $status= "pending") {
-        $this -> image = $image;
+    public function __construct($images, $name, $price, $category, $sold, $status) {
+        $this -> images = $images;
         $this -> name = $name;
         $this -> price = $price;
         $this -> category = $category;
@@ -18,8 +18,9 @@ class Product {
         $this -> status = $status;
     }
 
-    public function getImage() {
-        return $this -> image;
+    public function getImages(): array
+    {
+        return $this -> images;
     }
 
     public function getName() {
