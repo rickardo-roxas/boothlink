@@ -1,3 +1,4 @@
+/*style.css header interactive*/
 nav ul li {
     padding: 0;
     margin: 0;
@@ -36,3 +37,4 @@ nav ul li::after {
 }
 
 nav ul li:hover::after { width: 100%; }
+
