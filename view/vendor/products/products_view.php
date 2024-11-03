@@ -1,7 +1,8 @@
 <?php include ('view/page-fragments/header.php'); ?>
-<link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/products.css"</link>
+<link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/products.css"></link>
 <script src="<?php echo BASE_URL?>/public/javascript/vendor/products.js" defer></script>
 <main>
+    <input type="hidden" id="products-data" value='<?php echo htmlspecialchars(json_encode($products), ENT_QUOTES); ?>'>
     <div class="main-table">
         <div class="table-header">
             <p>Product Listing</p>
@@ -23,14 +24,14 @@
         <div class="table-products">
             <table>
                 <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                    <th>Category</th>
-                    <th>Actions</th>
-                </tr>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <!-- This is where the table will be populated vis products.js -->

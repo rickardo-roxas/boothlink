@@ -11,8 +11,13 @@ class HomeController {
         $this->model = new Home();
     }
 
+    /**
+     * @throws Exception
+     */
     public function index($firstTime) {
         if ($firstTime) {
+            $organizationData = $this->model->getOrganization();
+
             require_once 'view/vendor/home/home_view.php';
         } else {
             header('Location: home_view.php');

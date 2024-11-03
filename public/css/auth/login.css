@@ -128,5 +128,6 @@ input[type="checkbox"] {
     margin-bottom: 3px;
 }
 
-    
-
+header, footer {
+    display: none;
+}
