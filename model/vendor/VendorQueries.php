@@ -39,7 +39,7 @@ class VendorQueries {
     public function getProducts($org_id) {
         $query = "
         SELECT prod_serv.* FROM prod_serv
-        JOIN prod_org_sched ON prod_serv.prod_serv_id = prod_org_sched.prod_id
+        JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id
         WHERE prod_org_sched.org_id = ?
         ";
 
