@@ -6,13 +6,15 @@ class Vendor {
     private $lastName;
     private $firstName;
     private $password;
+    private $organizations = array();
 
-    public function __construct($email, $username, $lastName, $firstName, $password) {
+    public function __construct($email, $username, $lastName, $firstName, $password, $organizations) {
         $this->email = $email;
         $this->username = $username;
         $this->lastName = $lastName;
         $this->firstName = $firstName;
         $this->password = $password;
+        $this->organizations = $organizations;
     }
 
     public function getEmail() {
@@ -35,6 +37,10 @@ class Vendor {
         return $this->password;
     }
 
+    public function getOrganizations():array {
+        return $this->organizations;
+    }
+
     public function setEmail($email) {
         $this->email = $email;
     }
@@ -53,5 +59,9 @@ class Vendor {
 
     public function setPassword($password) {
         $this->password = $password;
+    }
+
+    public function setOrganizations($organizations) {
+        $this->organizations = $organizations;
     }
 }
