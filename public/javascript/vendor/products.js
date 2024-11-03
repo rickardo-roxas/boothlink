@@ -20,30 +20,10 @@ function populateTable(products) {
     });
 }
 
-// Dummy product data for testing
-const dummyProducts = [
-    {
-        product_name: 'Sample Product 1',
-        price: '10.00',
-        description: 'Description for Sample Product 1',
-        status: 'Available',
-        category: 'Item'
-    },
-    {
-        product_name: 'Sample Product 2',
-        price: '20.00',
-        description: 'Description for Sample Product 2',
-        status: 'Out of Stock',
-        category: 'Service'
-    },
-    {
-        product_name: 'Sample Product 3',
-        price: '15.50',
-        description: 'Description for Sample Product 3',
-        status: 'Available',
-        category: 'Food'
-    }
-];
+// Get the hidden input element
+let productsDataElement = document.getElementById('products-data');
 
-// Call the function with dummy data
-populateTable(dummyProducts);
+// Parse the JSON data from the hidden input
+let products = JSON.parse(productsDataElement.value);
+
+populateTable(products);

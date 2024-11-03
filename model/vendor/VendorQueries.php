@@ -132,10 +132,12 @@ class VendorQueries {
 
     // Destructor to close the connection when the object is destroyed
     public function __destruct() {
-        $this->conn->close();
+        if ($this->conn instanceof mysqli && $this->conn->ping()) {
+            $this->conn->close();
+        }
     }
 }
 
 // Example usage
-$test = new VendorQueries();
-print_r($test);
+// $test = new VendorQueries();
+// print_r($test);

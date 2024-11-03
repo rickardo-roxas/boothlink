@@ -10,23 +10,27 @@ class ProductsController
     private $sessionID;
 
     public function __construct(){
-        $this->sessionID = $_SESSION['org_id'];
 
         $this->model = new ProductsPageModel();
-
-        if (isset($_SESSION['org_id'])) {
-            $this->sessionID = $_SESSION['org_id'];
-        } else {
-            echo "Error: 'orgID' is not set in the session.";
-            exit();
-        }
+        
     }
 
-    public function index(){
+
+
+    public function index()
+    {
+        // Validate the session ID
+        if (!isset($_SESSION['org_id'])) {
+            echo "Error: Session ID is not valid.";
+            exit;
+        }
+
+        $orgId = $_SESSION['org_id'];
+
         // Fetch products for the current organization
-        $products = $this->model->getProducts($this->sessionID);
+        $products = $this->model->getProducts($orgId);
 
         // Include the view and pass the products data
-        require_once 'view/vendor/products/products_view.php';
+        require 'view/vendor/products/products_view.php';
     }
 }
