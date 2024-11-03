@@ -1,9 +1,9 @@
 <?php
+include '../../config/Connection.php';
+
 class VendorQueries {
     protected $conn;
-
     public function __construct() {
-        include 'config/Connection.php';
         global $conn;
         $this->conn = $conn;
     }
@@ -21,9 +21,9 @@ class VendorQueries {
     /**
      * Updates the product details in the database
      */
-    public function updateProduct($prod_serv_id, $org_id, $sched_id, $category, $description, $prod_serv_name, $price) {
-        $stmt = $this->conn->prepare("UPDATE prod_serv SET org_id = ?, sched_id = ?, category = ?, description = ?, prod_serv_name = ?, price = ? WHERE prod_serv_id = ?");
-        $stmt->bind_param('iisssdi', $org_id, $sched_id, $category, $description, $prod_serv_name, $price, $prod_serv_id);
+    public function updateProduct($prod_id, $org_id, $sched_id, $category, $description, $prod_serv_name, $price) {
+        $stmt = $this->conn->prepare("UPDATE prod_serv SET org_id = ?, sched_id = ?, category = ?, description = ?, prod_serv_name = ?, price = ? WHERE prod_id = ?");
+        $stmt->bind_param('iisssdi', $org_id, $sched_id, $category, $description, $prod_serv_name, $price, $prod_id);
         $stmt->execute();
         $stmt->close();
     }
@@ -33,21 +33,22 @@ class VendorQueries {
      */
     public function getProducts($org_id) {
         $query = "
-        SELECT prod_serv.* FROM prod_serv
-        JOIN prod_org_sched ON prod_serv.prod_serv_id = prod_org_sched.prod_id
+        SELECT * FROM prod_serv
+        JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id
         WHERE prod_org_sched.org_id = ?
         ";
-
+    
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $org_id);
         $stmt->execute();
-
+    
         $result = $stmt->get_result();
         $stmt->close();
-
-        return $result;
+    
+        // Fetch all results as an associative array
+        return $result ? $result->fetch_all(MYSQLI_ASSOC) : []; 
     }
-
+    
     /**
      * Method to get the products given an organization and the associated number of items sold
      */
@@ -58,9 +59,9 @@ class VendorQueries {
                    'In Stock' AS status
             
             FROM prod_serv         
-                JOIN prod_org_sched ON prod_serv.prod_serv_id = prod_org_sched.prod_id    
-                JOIN prod_img ON prod_serv.prod_serv_id = prod_img.prod_serv_id     
-                LEFT JOIN RESERVATION ON prod_serv.prod_serv_id = RESERVATION.product_id         
+                JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id    
+                JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id     
+                LEFT JOIN RESERVATION ON prod_serv.prod_id = RESERVATION.prod_id         
             WHERE prod_org_sched.org_id = ?
             GROUP BY prod_serv.prod_serv_name;";
 
@@ -80,8 +81,8 @@ class VendorQueries {
 
     public function getSalesToday($org_id) {
         $query = "SELECT SUM(RESERVATION.qty * prod_serv.price) as SOLD_TODAY from RESERVATION 
-        JOIN prod_serv ON RESERVATION.product_id = prod_serv.prod_serv_id
-        JOIN prod_org_sched ON prod_serv.prod_serv_id = prod_org_sched.prod_id
+        JOIN prod_serv ON RESERVATION.prod_id = prod_serv.prod_id
+        JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id
         WHERE org_id = ? and RESERVATION.date = CURRENT_DATE();";
 
         $stmt = $this->conn->prepare($query);
@@ -100,42 +101,86 @@ class VendorQueries {
 
     public function getReservations($org_id) {
         $query = "
-        SELECT reservation.* FROM reservation
-        WHERE org_id = ?
+            SELECT 
+                pos.org_id,  
+                r.* 
+            FROM 
+                prod_org_sched pos
+            JOIN 
+                reservation r ON pos.prod_id = r.prod_id
+            WHERE 
+                pos.org_id = ?
         ";
-
+    
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", $org_id);
+        $stmt->bind_param("i", $org_id); // Assuming org_id is an integer
         $stmt->execute();
-
-        $result = $stmt->get_result();
+    
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC); // Fetch results as associative array
         $stmt->close();
-
+    
         return $result;
     }
+    
+    
 
-    public function getProductByID($prod_serv_id) {
+    public function getProductByID($prod_id) {
         $query = "
         SELECT prod_serv_name, category, price, status, description   
         FROM prod_serv 
-        WHERE prod_serv_id = ?
+        WHERE prod_id = ?
         ";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", $prod_serv_id);
-        $stmt->execute();
 
+        
+        $stmt->bind_param("i", $prod_id);
+        $stmt->execute();
+    
+        $result = $stmt->get_result(); 
+        $stmt->close();
+    
+        return $result ? $result->fetch_assoc() : null;
+    }
+    
+
+    public function getOrgByID($org_id) {
+
+        $query = "
+        SELECT * 
+        FROM organization
+        WHERE org_id = ?
+        ";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $org_id);
+        $stmt->execute();
+        
         $result = $stmt->get_result();
         $stmt->close();
-
-        return $result;
+        
+        return $result ? $result->fetch_assoc() : null; // Return null if no result found
     }
 
-    // Destructor to close the connection when the object is destroyed
-    public function __destruct() {
-        $this->conn->close();
+
+    public function getAllOrgs() {
+        $query = "
+        SELECT *
+        FROM organization
+        ";
+    
+        $stmt = $this->conn->prepare($query);
+    
+        $stmt->execute();
+        
+        $result = $stmt->get_result();
+    
+        $stmt->close();
+    
+        return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];   
     }
+    
 }
 
 // Example usage
 $test = new VendorQueries();
-print_r($test);
+print_r($test); 
