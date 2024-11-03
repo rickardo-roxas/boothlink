@@ -1,4 +1,4 @@
-<?php require('view/page-fragments/Header.php') ?>
+<?php /*require('view/page-fragments/Header.php') */?>
 <link rel="stylesheet" href="/public/css/vendor/schedule.css">
 <link rel="stylesheet" href="/public/css/vendor/style.css">
 <main>
