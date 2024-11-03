@@ -1,5 +1,5 @@
 <?php
-include '../../config/Connection.php';
+include 'config/Connection.php';
 
 class VendorQueries {
     protected $conn;
@@ -168,7 +168,7 @@ class VendorQueries {
 
 
     public function getOrganizationByID($org_id) {
-        include '../../model/objects/Organization.php';
+        include 'model/objects/Organization.php';
         $query = "SELECT * FROM organization WHERE org_id = ?";
 
         $stmt = $this->conn->prepare($query);
@@ -194,6 +194,5 @@ class VendorQueries {
 }
 
 // Example usage
-$test = new VendorQueries();
-$test->getOrganizationByID(1);
-print_r($test);
+// $test = new VendorQueries();
+// print_r($test);
