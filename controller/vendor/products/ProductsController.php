@@ -23,8 +23,10 @@ class ProductsController
     }
 
     public function index(){
+        // Fetch products for the current organization
         $products = $this->model->getProducts($this->sessionID);
 
+        // Include the view and pass the products data
         require_once 'view/vendor/products/products_view.php';
     }
 }

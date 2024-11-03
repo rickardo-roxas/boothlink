@@ -6,7 +6,7 @@ function populateTable(products) {
     products.forEach(product => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${product.product_name}</td>
+            <td>${product.prod_serv_name}</td>
             <td>${product.price}</td>
             <td>${product.description}</td>
             <td>${product.status}</td>
