@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../../../public/css/vendor/schedselector.css">
+    <link rel="stylesheet" href="../../../public/css/vendor/schedule_selector.css">
 </head>
 <body>
     <?php
