@@ -1,34 +1,64 @@
 <?php
 
-include(__DIR__."/../../../model/vendor/products/product.php");
+
+if (isset($_GET['category'])) {
+    $filter = $_GET['category'];
+    $controller = new SalesController();
+    if ($filter== 'all') {
+        $controller ->index();
+    } else {
+        $controller->filteredCategory($filter);
+    }
+} else if (isset($_GET['status'])) {
+    $status = $_GET['status'];
+    $controller = new SalesController();
+    $controller->filteredStatus($status);
+}
 
 class SalesController {
 
     private $model;
 
+    private $products;
+
     public function __construct() {
-        include(__DIR__.'/../../../model/vendor/sales/SalesModel.php');
-        $this->model = new SalesModel();
+
+            include(__DIR__ . '/../../../model/vendor/sales/SalesModel.php');
+            $this->model = new SalesModel();
     }
 
-    public function getModel()
+    public function getModel(): SalesModel
     {
         return $this->model;
     }
 
     public function index() {
+        $this->products = $this->getModel()->getProducts();
+        $this->initPage();
 
-        $products = $this->getModel()->getProducts();
-        $salesToday = $this->getModel()->getPerfToday();
+    }
+    public function filteredCategory($filter) {
+        $this->products = $this->model->filterCategoryUsing($filter);
+        $this->initPage();
+    }
+    public function filteredStatus($filter) {
+        $this->products = $this->model->filterStatusUsing($filter);
+        $this->initPage();
+    }
 
-// Adding products to the array
-      //  $products = [];
-        //   $products[] = new Product('path/to/image1.jpg', 'Product One', 29.99, 'Category A', 200, 'Available');
-     //   $products[] = new Product('path/to/image2.jpg', 'Product Two', 39.99, 'Category B', 150, 'Sold Out');
-      //  $products[] = new Product('path/to/image3.jpg', 'Product Three', 19.99, 'Category A', 300, 'Available');
-       // $products[] = new Product('path/to/image4.jpg', 'Product Four', 49.99, 'Category C', 80, 'Available');
-      //  $products[] = new Product('path/to/image5.jpg', 'Product Five', 15.99, 'Category B', 500, 'Available');
-        header('Location: /cs-312_boothlink/view/vendor/sales/sales_view.php');
+
+    public function initPage() {
+        $salesToday = $this->getModel()->getSalesToday();
+        $salesWeek = $this->getModel()->getSalesWeek();
+        $xValues = $this->getModel()->getXValues();
+        $labels = $this->getModel()->getLabels();
+        header('Location: /cs-312_boothlink/view/vendor/sales/sales_view.php?productList='
+            .serialize($this->products)
+            . "&salesToday=" . $salesToday
+            . "&salesWeek=" . $salesWeek
+            . "&xValues=" . serialize($xValues)
+            . "&labels=" . serialize($labels)
+        );
         exit();
     }
 }

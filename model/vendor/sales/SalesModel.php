@@ -1,5 +1,10 @@
 <?php
-require_once 'model/vendor/VendorQueries.php';
+
+if (file_exists('model/vendor/VendorQueries.php'))
+    require 'model/vendor/VendorQueries.php';
+else {
+    require __DIR__ . '/../VendorQueries.php';
+}
 
 class SalesModel{
 
@@ -13,13 +18,32 @@ class SalesModel{
     }
 
     public function getProducts(){
-        $products = $this->vendorQueries->getProductSales($this->orgID);
-        return $products;
+        return $this->vendorQueries->getProductSales($this->orgID);
     }
 
-    public function getPerfToday() {
+    public function filterCategoryUsing($filter) {
+        return $this->vendorQueries->getProductsByCategory($this->orgID, $filter);
+    }
+    public function filterStatusUsing($filter) {
+        return $this->vendorQueries->getProductsByStatus($this->orgID, $filter);
+    }
+
+    public function getSalesToday() {
         return $this->vendorQueries->getSalesToday($this->orgID);
-}
+    }
+
+    public function getSalesWeek() {
+        return $this->vendorQueries->getSalesThisWeek($this->orgID);
+    }
+
+    public function getXValues(): ?array {
+        return [50,60,70,80,90,100,110,120,130,140,150];
+       // return $this->vendorQueries->getSalesDataPointsForWeek($this->orgID);
+    }
+
+    public function getLabels(): ?array {
+        return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    }
 
     /*
     const xValues = [50,60,70,80,90,100,110,120,130,140,150];
