@@ -20,13 +20,46 @@ class VendorQueries {
     }
 
     /**
-     * Adds a new product to the database with its corresponding vendor and schedule
+     * Adds a new product to the database with its corresponding vendor 
      */
-    public function addProduct($org_id, $sched_id, $category, $description, $prod_serv_name, $price) {
-        $stmt = $this->conn->prepare("INSERT INTO prod_serv (org_id, sched_id, category, description, prod_serv_name, price) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param('iisssd', $org_id, $sched_id, $category, $description, $prod_serv_name, $price);
-        $stmt->execute();
-        $stmt->close();
+    public function addProduct($org_id, $status, $category, $prod_serv_name, $price, $description, $image_src) {
+
+        // Adds into prod_serv
+        $query1 = "
+        INSERT INTO prod_serv (status, category, prod_serv_name, price, description)
+        VALUES (?, ?, ?, ?, ?) 
+        ";
+        
+        $stmt1 = $this->conn->prepare($query1);
+        $stmt1->bind_param('sssds', $status, $category, $prod_serv_name, $price, $description);
+        $stmt1->execute();
+
+        // Get the last inserted product ID
+        $prod_id = $stmt1->insert_id;
+        $stmt1->close();
+
+        // Adds into prod_img
+        $query2 = "
+        INSERT INTO prod_img (prod_id, img_src)
+        VALUES (?, ?)
+        ";
+
+        $stmt2 = $this->conn->prepare($query2);
+        $stmt2->bind_param('is', $prod_id, $image_src);
+        $stmt2->execute();
+        $stmt2->close();
+
+        // Adds into prod_org_sched
+        $query3 = "
+        INSERT INTO prod_org_sched (prod_id, org_id, sched_id)
+        VALUES (?, ?, ?)
+        ";
+
+
+        $stmt3 = $this->conn->prepare($query3);
+        $stmt3->bind_param('iii', $prod_id, $org_id, 7); //7 is default for checking
+        $stmt3->execute();
+        $stmt3->close();
     }
 
     /**
