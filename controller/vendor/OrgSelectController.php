@@ -1,6 +1,4 @@
 <?php
-
-require_once 'model/vendor/OrgSelectModel.php'; 
 class OrgSelectController {
     private $orgSelectModel;
 
@@ -9,10 +7,15 @@ class OrgSelectController {
     }
 
     public function displayOrgSelector() {
+        // Retrieve list of organizations
         $organizations = $this->orgSelectModel->getAllOrganizations();
-        include 'view/vendor/OrgSelectView.php'; 
+        include 'view/vendor/OrgSelectView.php';
     }
+
+    public function selectOrganization($org_id) {
+        $_SESSION['org_id'] = $org_id;
+        header('Location: /home');
+        exit();
+    }
+
 }
-
-
-

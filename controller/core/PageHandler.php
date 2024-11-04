@@ -50,29 +50,38 @@ class PageHandler
                 $controller->index();
                 break;
 
-                case '/org_select':
-                    $title = 'Org Select';
-                    
+            case '/org_select':
+                $title = 'Org Select';
+                require __DIR__ . '/../../model/vendor/VendorQueries.php';
+                $vendorQueries = new VendorQueries($conn);
 
-                    require __DIR__ . '/../../model/vendor/VendorQueries.php'; 
-                    $vendorQueries = new VendorQueries($conn); 
+                require __DIR__ . '/../../model/vendor/OrgSelectModel.php';
+                $orgSelectModel = new OrgSelectModel($vendorQueries);
 
-                    require __DIR__ . '/../../model/vendor/OrgSelectModel.php';
-                    
-                    $orgSelectModel = new OrgSelectModel($vendorQueries);
+                require __DIR__ . '/../../controller/vendor/OrgSelectController.php';
+                $controller = new OrgSelectController($orgSelectModel);
+                $controller->displayOrgSelector();
+                break;
 
-                    require __DIR__ . '/../../controller/vendor/OrgSelectController.php'; 
-                    $controller = new OrgSelectController($orgSelectModel); 
-
-                    $controller->displayOrgSelector();
-                    break;
-                
-    
+            case '/select_org':
+                $title = 'Organization Selection';
+                if (isset($_GET['org_id'])) {
+                    $_SESSION['org_id'] = $_GET['org_id'];
+                    // redirect to home page
+                    header('Location: /home'); // ensure this points to the correct path
+                    exit();
+                } else {
+                    // redirect back to org_select if no org_id was provided
+                    header("Location: /org_select");
+                    exit();
+                }
+                break;
 
             default:
                 echo "404 Not Found";
                 break;
         }
+
         $_SESSION['page_title'] = $title;
     }
 
@@ -93,7 +102,7 @@ class PageHandler
                     $controller = new LoginController($conn);
                     $controller->handleLogin();
                 } else {
-                    header("Location: /login");
+                    header("Location: /home");
                     exit();
                 }
                 break;

@@ -7,25 +7,28 @@ class Home {
      * @var - For database queries.
      */
     private $vendorQueries;
+    private $org_id;
 
     /**
+     * Constructor accepting org_id
+     * @param int $org_id
      * @throws Exception
      */
-    public function __construct() {
+    public function __construct($org_id) {
         $this->vendorQueries = new VendorQueries();
+        $this->org_id = $org_id;
     }
 
     /**
      * @throws Exception
      */
     public function getOrganization() {
-        $org_id = $_SESSION['org_id'];
-        $organization = $this->vendorQueries->getOrganizationByID($org_id);
+        $organization = $this->vendorQueries->getOrganizationByID($this->org_id);
 
         if ($organization) {
             return $organization;
         } else {
-            throw new Exception("Organization not found for ID: $org_id");
+            throw new Exception("Organization not found for ID: {$this->org_id}");
         }
     }
 }

@@ -24,10 +24,11 @@
             <div class="org-selector">
                 <div class="org-container" id="button-container">
                     <?php foreach ($organizations as $organization): ?>
-                        <a href="dashboard.php?org_id=<?= htmlspecialchars($organization['id']); ?>" class="button">
-                            <?= htmlspecialchars($organization['name']); ?>
+                        <a href="/cs-312_boothlink/select_org?org_id=<?= htmlspecialchars($organization['id']); ?>" class="button">
+                        <?= htmlspecialchars($organization['name']); ?>
                         </a>
                     <?php endforeach; ?>
+
                     <div class="add-button" id="add-button">
                         <img src="/assets/images/plus-button.png" alt="Add Organization">
                     </div>

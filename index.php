@@ -34,9 +34,15 @@ $router->addRoute('POST', '/signup', function() use ($conn, $pageHandler){
 // Vendor routes
 // Home route
 $router->addRoute('GET', '/home', function() use ($pageHandler) {
+    if (!isset($_SESSION['org_id'])) {
+        header('Location: /org_select');
+        exit();
+    }
+
     $firstTime = $_SESSION['first_time'] ?? false;
     $pageHandler->renderVendor('/home', $firstTime);
 });
+
 
 // Reservations route
 $router->addRoute('GET', '/reservations', function() use ($pageHandler) {
@@ -57,6 +63,18 @@ $router->addRoute('GET', '/sales', function() use ($pageHandler){
 $router->addRoute('GET', '/org_select', function() use ($pageHandler) {
     $pageHandler->renderVendor('/org_select', false);
 });
+
+$router->addRoute('GET', '/select_org', function() use ($pageHandler) {
+    if (isset($_GET['org_id'])) {
+        $_SESSION['org_id'] = $_GET['org_id']; // Save the selected org ID in the session
+        header('Location: /cs-312_boothlink/home'); // Redirect to the home page
+        exit();
+    } else {
+        header('Location: /org_select'); // Redirect back if no org_id is provided
+        exit();
+    }
+});
+
 
 // Definition of Customer routes
 // TODO by Finals
