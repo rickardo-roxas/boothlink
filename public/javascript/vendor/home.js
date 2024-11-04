@@ -29,3 +29,5 @@ document.addEventListener("DOMContentLoaded", () => {
     // Example: update sales data
     document.querySelector("#dash-sales .column-container p").textContent = `Php ${salesToday}`;
 });
+
+function populateOrganization(organization)
