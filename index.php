@@ -53,6 +53,11 @@ $router->addRoute('GET', '/sales', function() use ($pageHandler){
     $pageHandler->renderVendor('/sales', false);
 });
 
+// orgSelector
+$router->addRoute('GET', '/org_select', function() use ($pageHandler) {
+    $pageHandler->renderVendor('/org_select', false);
+});
+
 // Definition of Customer routes
 // TODO by Finals
 

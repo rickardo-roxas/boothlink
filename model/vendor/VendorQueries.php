@@ -169,15 +169,16 @@ class VendorQueries {
 
     public function getOrganizationByID($org_id) {
         include 'model/objects/Organization.php';
+    
         $query = "SELECT * FROM organization WHERE org_id = ?";
-
         $stmt = $this->conn->prepare($query);
+        
         $stmt->bind_param("i", $org_id);
         $stmt->execute();
+    
 
         $result = $stmt->get_result();
-        $stmt->close();
-
+    
         if ($row = $result->fetch_assoc()) {
             $organization = new Organization();
             $organization->setName($row['org_name']);
@@ -185,10 +186,41 @@ class VendorQueries {
             $organization->setFbLink($row['fb_link']);
             $organization->setXLink($row['x_link']);
             $organization->setIgLink($row['ig_link']);
+            
+            $result->free();
+            $stmt->close();
+            
             return $organization;
         }
+    
+        $result->free();
+        $stmt->close();
+        
+        return null;
+    }
+    
 
-        return $result;
+    public function getAllOrgs() {
+        $query = "SELECT org_id, org_name FROM organization";
+        
+        $stmt = $this->conn->prepare($query);
+        
+        $stmt->execute();
+        
+        $result = $stmt->get_result();
+        
+        $organizations = [];
+        
+        while ($row = $result->fetch_assoc()) {
+            $organizations[] = [
+                'id' => $row['org_id'],  
+                'name' => $row['org_name']
+            ]; 
+        }
+    
+        $stmt->close();
+        
+        return $organizations;
     }
     
 }

@@ -8,6 +8,7 @@ class PageHandler
     /**
      * Renders the Vendor view of a given webpage passed from the Router.
      * @param $path - The path passed from the Router.
+     * @param $firstTime - Flag to indicate if it's the user's first time visiting the page.
      * @return void
      */
     public function renderVendor($path, $firstTime) {
@@ -31,23 +32,46 @@ class PageHandler
             case '/products':
                 $title = 'Products';
                 require __DIR__ . '/../../controller/vendor/products/ProductsController.php';
-                (new ProductsController())->index();
+                $controller = new ProductsController();
+                $controller->index();
                 break;
 
             case '/schedule':
                 $title = 'Schedule';
                 require __DIR__ . '/../../controller/vendor/schedule/ScheduleController.php';
-                (new ScheduleController())->index();
+                $controller = new ScheduleController();
+                $controller->index();
                 break;
 
             case '/sales':
                 $title = 'Sales';
                 require __DIR__ . '/../../controller/vendor/sales/SalesController.php';
-                (new SalesController())->index();
+                $controller = new SalesController();
+                $controller->index();
                 break;
+
+                case '/org_select':
+                    $title = 'Org Select';
+                    
+
+                    require __DIR__ . '/../../model/vendor/VendorQueries.php'; 
+                    $vendorQueries = new VendorQueries($conn); 
+
+                    require __DIR__ . '/../../model/vendor/OrgSelectModel.php';
+                    
+                    $orgSelectModel = new OrgSelectModel($vendorQueries);
+
+                    require __DIR__ . '/../../controller/vendor/OrgSelectController.php'; 
+                    $controller = new OrgSelectController($orgSelectModel); 
+
+                    $controller->displayOrgSelector();
+                    break;
+                
+    
 
             default:
                 echo "404 Not Found";
+                break;
         }
         $_SESSION['page_title'] = $title;
     }
@@ -55,6 +79,7 @@ class PageHandler
     /**
      * Renders the Authentication view of a given webpage passed from the router.
      * @param $path - The path passed from the Router.
+     * @param $conn - Database connection.
      * @return void
      */
     public function renderAuth($path, $conn) {
@@ -67,18 +92,20 @@ class PageHandler
                     require __DIR__ . '/../../controller/auth/LoginController.php';
                     $controller = new LoginController($conn);
                     $controller->handleLogin();
-                }
-                else {
-                    header("Location: /home");
+                } else {
+                    header("Location: /login");
                     exit();
                 }
                 break;
+
             case '/signup':
                 $title = 'Signup';
-                // require __DIR__ . '/../../../controller/auth/SignupController.php';
+                // Include signup controller and logic if available
                 break;
+
             default:
-                echo "404 Not Found.";
+                echo "404 Not Found";
+                break;
         }
 
         $_SESSION['page_title'] = $title;
