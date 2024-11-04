@@ -1,3 +1,71 @@
 @import "style.css";
 @import "products.css";
 
+.action-buttons {
+    font-size: 1rem;
+    gap: 1rem;
+    border-radius: 0.5rem;
+}
+
+.pending-button, .completed-button, .refresh-btn, .category-filter {
+    border: 0;
+    border-radius: 0.4rem;
+    border-color: #1EBDEF;
+    background: #1EBDEF;
+    color: #FFF;
+    transition: all 0.5s;
+}
+
+.pending-button:hover {
+    background-color: #6fc5ff;
+    box-shadow: 0 0 20px #6fc5ff50;
+    transform: scale(1.1);
+}
+
+.pending-button:active {
+    background-color: #3d94cf;
+    transition: all 0.25s;
+    box-shadow: none;
+    transform: scale(0.98);
+}
+
+.completed-button:hover {
+    background-color: #6fc5ff;
+    box-shadow: 0 0 20px #6fc5ff50;
+    transform: scale(1.1);
+}
+
+.completed-button:active {
+    background-color: #3d94cf;
+    transition: all 0.25s;
+    box-shadow: none;
+    transform: scale(0.98);
+}
+
+.category-filter:hover {
+    background-color: #6fc5ff;
+    box-shadow: 0 0 20px #6fc5ff50;
+    transform: scale(1.1);
+}
+
+.category-filter:active {
+    background-color: #3d94cf;
+    transition: all 0.25s;
+    box-shadow: none;
+    transform: scale(0.98);
+}
+
+.refresh-btn:hover {
+    background-color: #6fc5ff;
+    box-shadow: 0 0 20px #6fc5ff50;
+    transform: scale(1.1);
+}
+
+.refresh-btn:active {
+    background-color: #3d94cf;
+    transition: all 0.25s;
+    box-shadow: none;
+    transform: scale(0.98);
+}
+
+
