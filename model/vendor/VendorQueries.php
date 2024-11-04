@@ -51,7 +51,7 @@ class VendorQueries {
         $stmt->close();
     
         // Fetch all results as an associative array
-        return $result ? $result->fetch_all(MYSQLI_ASSOC) : []; 
+        return $result; 
     }
     
     /**
