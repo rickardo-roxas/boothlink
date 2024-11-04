@@ -63,6 +63,12 @@ html {
     align-content: center;
 }
 
+.listing-org-container {
+    display: flex;
+    align-content: center;
+    gap: 0.8rem;
+}
+
 .grid-container {
     display: grid;
     gap: 1.5rem;
