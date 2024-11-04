@@ -1,11 +1,17 @@
 <?php
-include 'config/Connection.php';
+
+require __DIR__ . '/../../config/Connection.php';
 
 class VendorQueries {
     protected $conn;
     public function __construct() {
         global $conn;
         $this->conn = $conn;
+        if (!isset($conn)) {
+            require __DIR__ . '/../../config/Connection.php';
+            global $conn;
+            $this->conn = $conn;
+        }
     }
 
     // Destructor to close the connection when the object is destroyed
@@ -51,9 +57,66 @@ class VendorQueries {
         $stmt->close();
     
         // Fetch all results as an associative array
-        return $result ? $result->fetch_all(MYSQLI_ASSOC) : []; 
+        return $result; 
     }
-    
+
+    public function getProductsByCategory($org_id, $filter){
+        $query = "
+            SELECT prod_img.img_src, prod_serv.prod_serv_name, prod_serv.price, prod_serv.category, 
+                   COUNT(RESERVATION.status='COMPLETED') AS sold, 
+                   'In Stock' AS status
+            
+            FROM prod_serv         
+                JOIN prod_org_sched ON PROD_SERV.prod_id = prod_org_sched.prod_id    
+                JOIN prod_img ON PROD_SERV.prod_id = prod_img.prod_id     
+                LEFT JOIN RESERVATION ON PROD_SERV.prod_id = RESERVATION.prod_id         
+                    WHERE prod_org_sched.org_id = ? AND prod_serv.category=?
+            GROUP BY prod_serv.prod_serv_name;";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("is", $org_id, $filter);
+        $stmt-> execute();
+        $result = $stmt-> get_result();
+        $stmt->close();
+
+        $products = [];
+
+        if($result){
+            $products = $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        return $products;
+    }
+
+    public function getProductsByStatus($org_id, $filter){
+        $query = "
+            SELECT prod_img.img_src, prod_serv.prod_serv_name, prod_serv.price, prod_serv.category, 
+                   COUNT(RESERVATION.status='COMPLETED') AS sold, 
+                   'In Stock' AS status
+            
+            FROM prod_serv         
+                JOIN prod_org_sched ON PROD_SERV.prod_id = prod_org_sched.prod_id    
+                JOIN prod_img ON PROD_SERV.prod_id = prod_img.prod_id     
+                LEFT JOIN RESERVATION ON PROD_SERV.prod_id = RESERVATION.prod_id         
+                    WHERE prod_org_sched.org_id = ? AND prod_serv.status=?
+            GROUP BY prod_serv.prod_serv_name;";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("is", $org_id, $filter);
+        $stmt-> execute();
+        $result = $stmt-> get_result();
+        $stmt->close();
+
+        $products = [];
+
+        if($result){
+            $products = $result->fetch_all(MYSQLI_ASSOC);
+        }
+        return $products;
+    }
+
+
+
+
     /**
      * Method to get the products given an organization and the associated number of items sold
      */
@@ -64,10 +127,10 @@ class VendorQueries {
                    'In Stock' AS status
             
             FROM prod_serv         
-                JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id    
-                JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id     
-                LEFT JOIN RESERVATION ON prod_serv.prod_id = RESERVATION.prod_id         
-            WHERE prod_org_sched.org_id = ?
+                JOIN prod_org_sched ON PROD_SERV.prod_id = prod_org_sched.prod_id    
+                JOIN prod_img ON PROD_SERV.prod_id = prod_img.prod_id     
+                LEFT JOIN RESERVATION ON PROD_SERV.prod_id = RESERVATION.prod_id         
+                    WHERE prod_org_sched.org_id = ?
             GROUP BY prod_serv.prod_serv_name;";
 
         $stmt = $this->conn->prepare($query);
@@ -75,6 +138,7 @@ class VendorQueries {
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
+
 
         $products = [];
         if ($result) {
@@ -85,10 +149,12 @@ class VendorQueries {
     }
 
     public function getSalesToday($org_id) {
-        $query = "SELECT SUM(RESERVATION.qty * prod_serv.price) as SOLD_TODAY from RESERVATION 
-        JOIN prod_serv ON RESERVATION.prod_id = prod_serv.prod_id
-        JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id
-        WHERE org_id = ? and RESERVATION.date = CURRENT_DATE();";
+        $query = "SELECT SUM(RESERVATION.qty*PROD_SERV.price) as SOLD_TODAY 
+        FROM RESERVATION INNER JOIN PROD_ORG_SCHED ON RESERVATION.prod_id = PROD_ORG_SCHED.prod_id 
+	    INNER JOIN SCHEDULE ON PROD_ORG_SCHED.sched_id = SCHEDULE.sched_id 
+    	INNER JOIN SALES ON RESERVATION.reservation_id = SALES.reservation_id
+        INNER JOIN PROD_SERV ON RESERVATION.prod_id = PROD_SERV.prod_id
+    	WHERE SCHEDULE.org_id=? and RESERVATION.date=CURRENT_DATE();";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $org_id);
@@ -104,51 +170,58 @@ class VendorQueries {
         return $sold;
     }
 
-    public function getReservations($org_id) {
-        $query = "
-            SELECT 
-                pos.org_id,  
-                r.* 
-            FROM 
-                prod_org_sched pos
-            JOIN 
-                reservation r ON pos.prod_id = r.prod_id
-            WHERE 
-                pos.org_id = ?
-        ";
-    
+    public function getSalesThisWeek($org_id) {
+        $query = "SELECT SUM(RESERVATION.qty * PROD_SERV.price) as SOLD_WEEK
+        FROM RESERVATION 
+        INNER JOIN PROD_ORG_SCHED ON RESERVATION.prod_id = PROD_ORG_SCHED.prod_id 
+        INNER JOIN SCHEDULE ON PROD_ORG_SCHED.sched_id = SCHEDULE.sched_id 
+        INNER JOIN SALES ON RESERVATION.reservation_id = SALES.reservation_id
+        INNER JOIN PROD_SERV ON RESERVATION.prod_id = PROD_SERV.prod_id
+        WHERE SCHEDULE.org_id = ?
+        AND RESERVATION.date BETWEEN 
+            DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) + 1 DAY) AND
+            DATE_ADD(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) + 1 DAY), INTERVAL 6 DAY)";
+
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", $org_id); // Assuming org_id is an integer
+        $stmt->bind_param("i", $org_id);
         $stmt->execute();
-    
-        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC); // Fetch results as associative array
+        $result = $stmt->get_result();
         $stmt->close();
-    
-        return $result;
-    }
-    
-    
+        $sold = 0;
 
-    public function getProductByID($prod_id) {
-        $query = "
-        SELECT prod_serv_name, category, price, status, description   
-        FROM prod_serv 
-        WHERE prod_id = ?
-        ";
+        if ($row = $result->fetch_assoc()) {
+            $sold = $row['SOLD_WEEK'] ?: 0; // Ensure to set to 0 if NULL
+        }
+
+        return $sold;
+    }
+
+    public function getSalesDataPointsForWeek($org_id) {
+        $query = "SELECT RESERVATION.date as date, RESERVATION.qty * PROD_SERV.price as amount
+        FROM RESERVATION 
+        INNER JOIN PROD_ORG_SCHED ON RESERVATION.prod_id = PROD_ORG_SCHED.prod_id 
+        INNER JOIN SCHEDULE ON PROD_ORG_SCHED.sched_id = SCHEDULE.sched_id 
+        INNER JOIN SALES ON RESERVATION.reservation_id = SALES.reservation_id
+        INNER JOIN PROD_SERV ON RESERVATION.prod_id = PROD_SERV.prod_id
+        WHERE SCHEDULE.org_id = ?
+        AND RESERVATION.date BETWEEN 
+            DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) + 1 DAY) AND
+            DATE_ADD(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) + 1 DAY), INTERVAL 6 DAY);";
+
         $stmt = $this->conn->prepare($query);
-
-        
-        $stmt->bind_param("i", $prod_id);
+        $stmt->bind_param("i", $org_id);
         $stmt->execute();
-    
-        $result = $stmt->get_result(); 
+        $result = $stmt->get_result();
         $stmt->close();
-    
-        return $result ? $result->fetch_assoc() : null;
-    }
-    
 
-    public function getOrgByID($org_id) {
+        $data = null;
+        if($result){
+            $data = $result->fetch_all(MYSQLI_ASSOC);
+        }
+        return $data;
+    }
+
+    public function getReservations($org_id){
 
         $query = "
         SELECT * 
