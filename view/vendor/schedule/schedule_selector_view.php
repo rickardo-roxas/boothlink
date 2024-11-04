@@ -110,5 +110,8 @@
             <button class="apply">Apply</button>
         </div>
     </div>
+
+    <script src="../../../public/javascript/vendor/schedule_selector.js" defer></script>
+
 </body>
 </html>
