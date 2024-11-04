@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php require('view/page-fragments/Header.php'); ?>
+<link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/sales.css">
 
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="../../../public/css/vendor/sales.css">
-        <title>Sales</title>
-    </head>
+<main class = "sales">
 
-    <body>
+    <div class="grid-container">
 
     <?php
     include(__DIR__ . '/../../page-fragments/Header.php');
     ?>
 
-    <main class = "sales">
+                <h1>Product Sales</h1>
 
         <div class="grid-container">
 
@@ -41,7 +37,6 @@
                              <button name="category" class="text-button" value="all">View All</button>
                          </form>
                     </div>
-                </div>
 
                 <table id = product-sales-table>
                     <thead>

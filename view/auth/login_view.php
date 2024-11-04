@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BoothLink Login</title>
-    <link rel="stylesheet" href="/../cs-312_boothlink/public/css/auth/login.css">
-    <link rel="stylesheet" href="/../cs-312_boothlink/public/css/vendor/style.css">
-</head>
-<body>
+<!--commented out line 2 and 3 because of view not showing. Will readd later.-->
+<?php /*require('view/page-fragments/Header.php'); */?>
+<link rel="stylesheet" href="<?php /*echo BASE_URL*/?>/public/css/auth/login.css">
+<main>
     <div class="container">
     <!--Left section logo part-->
         <div class="left">
@@ -20,7 +14,7 @@
         <div class="right">
             <h2>Log In</h2>
             <p>Don't have an account yet? <a href="#">Sign Up</a></p>
-            <form action="index.php" method="POST">
+            <form action="/cs-312_boothlink/login" method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" placeholder="Username" required>
@@ -47,8 +41,5 @@
             }
         }
     </script>
-</body>
-</html>
-
-
-
+</main>
+<?php require('view/page-fragments/Footer.php'); ?>

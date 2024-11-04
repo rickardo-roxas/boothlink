@@ -1,5 +1,9 @@
 @import "/public/css/vendor/style.css";
+@import "/public/css/vendor/interactive.css";
 
+* {
+    font-family: 'Poppins', sans-serif;
+}
 .grid-container {
     grid-template-columns: 56% 44%;
     grid-template-rows: 100vh;
@@ -32,6 +36,7 @@
 #login-link {
     text-decoration: underline;
 }
+
 .signup-input {
     width: 100%;
     font-size: 1rem;
@@ -56,8 +61,23 @@
     height: 6vh;
     justify-content: center;
     align-items: center;
+    border: 0;
     border-radius: 8px;
     border-color: #1EBDEF;
     background: #1EBDEF;
-    color: #FFF
+    color: #FFF;
+    transition: all 0.5s;
+}
+
+.signup-button:hover {
+    background-color: #6fc5ff;
+    box-shadow: 0 0 20px #6fc5ff50;
+    transform: scale(1.1);
+}
+
+.signup-button:active {
+    background-color: #3d94cf;
+    transition: all 0.25s;
+    box-shadow: none;
+    transform: scale(0.98);
 }

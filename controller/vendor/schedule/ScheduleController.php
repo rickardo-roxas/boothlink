@@ -14,7 +14,7 @@ class ScheduleController {
     }
 
     public function index() {
-        header('Location: /cs-312_boothlink/view/vendor/schedule/schedule_view.php');
+        require_once 'view/vendor/schedule/schedule_view.php';
         exit();
     }
 }

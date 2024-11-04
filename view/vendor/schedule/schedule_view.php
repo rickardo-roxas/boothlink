@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BoothLink lets you discover and reserve unique products and services from student
-    booths at Saint Louis University. Support SLU's vibrant student community today!">
-    <title>BoothLink | Schedule</title>
-    <link rel="stylesheet" href="/public/css/vendor/schedule.css">
-    <link rel="stylesheet" href="/public/css/vendor/style.css">
-</head>
-<body>
-<?php
-
-include(__DIR__ . '/../../page-fragments/Header.php')
-?>
+<?php /*require('view/page-fragments/Header.php') */?>
+<link rel="stylesheet" href="/public/css/vendor/schedule.css">
+<link rel="stylesheet" href="/public/css/vendor/style.css">
 <main>
     <div id="sched-container">
         <div id="schedule">
@@ -155,5 +141,4 @@ include(__DIR__ . '/../../page-fragments/Header.php')
         </table>
     </div>
 </main>
-</body>
-</html>
+<?php require 'view/page-fragments/Footer.php'?>

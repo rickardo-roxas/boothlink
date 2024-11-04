@@ -7,23 +7,38 @@
     <meta name="description" content="BoothLink lets you discover and reserve unique products and services from student
     booths at Saint Louis University. Support SLU's vibrant student community today!">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="/css/auth/signup.css">
+    <link rel="stylesheet" href="/public/css/auth/signup.css">
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        }
+    </script>
 </head>
 <body>
 <main>
     <div class="grid-container">
         <div id="grid-left">
-            <h1>booth<span class="sky-blue">link</span></h1>
+            <h1>booth<span style="color:#1EBDEF">link</span></h1>
         </div>
         <div id="grid-right">
             <div id="signup-form">
                 <h1>Sign up</h1>
                 <p>Already have an account? <a href="" id="login-link" class="sky-blue">Log in</a></p>
-                <input type="text" class="signup-input" placeholder="Last Name">
-                <input type="text" class="signup-input" placeholder="First Name">
-                <input type="text" class="signup-input" placeholder="Email">
-                <input type="text" class="signup-input" placeholder="Username">
-                <input type="password" class="signup-input" placeholder="Password">
+                <input type="text" id="last-name" class="signup-input" placeholder="Last Name">
+                <input type="text" id="first-name" class="signup-input" placeholder="First Name">
+                <input type="email" id="email" class="signup-input" placeholder="Email">
+                <input type="text" id="username" class="signup-input" placeholder="Username">
+
+                <div class="password-toggle" style="display: flex; align-items: center;">
+                    <input type="password" id="password" class="signup-input" placeholder="Password">
+                    <input type="checkbox" id="toggle-password" onclick="togglePassword()" style="margin-left: 10px;">
+                </div>
+
                 <button class="signup-button">Sign up</button>
             </div>
         </div>

@@ -1,54 +1,67 @@
 <?php
 
-// Start the session only if it hasn't started yet
+// Starts session
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
-global $conn;
 
 // For error checking
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Autoload classes
-spl_autoload_register(function ($class_name) {
-    $paths = [
-        'controller/vendor/core/' . $class_name . '.php',
+include 'config/Connection.php';
+require 'controller/core/Router.php';
+require 'controller/core/PageHandler.php';
 
-        // For vendor classes
-        'controller/vendor/' . $class_name . '.php',
-        'model/vendor/' . $class_name . '.php',
-        'view/vendor/' . $class_name . '.php',
+$router = new Router();
+$pageHandler = new PageHandler();
 
-        // For login and signup
-        'controller/auth/' . $class_name . '.php',
-        'model/auth/' . $class_name . '.php',
-        'view/auth/' . $class_name . '.php',
-    ];
-
-    foreach ($paths as $path) {
-        if (file_exists(__DIR__ . '/' . $path)) {
-            include_once __DIR__ . '/' . $path;
-            return;
-        }
-    }
+// Auth routes
+// Login route
+$router->addRoute('POST', '/login', function() use ($conn, $pageHandler) {
+    $pageHandler->renderAuth('/login', $conn);
 });
 
-include 'config/Connection.php';
+$router->addRoute('GET', '/login', function() use ($conn, $pageHandler) {
+    $pageHandler->renderAuth('/login', $conn);
+});
+
+// Signup route
+$router->addRoute('POST', '/signup', function() use ($conn, $pageHandler){
+    $pageHandler->renderAuth('/signup', $conn);
+});
+
+// Vendor routes
+// Home route
+$router->addRoute('GET', '/home', function() use ($pageHandler) {
+    $firstTime = $_SESSION['first_time'] ?? false;
+    $pageHandler->renderVendor('/home', $firstTime);
+});
+
+// Reservations route
+$router->addRoute('GET', '/reservations', function() use ($pageHandler) {
+    $pageHandler->renderVendor('/reservations', false);
+});
+
+// Products route
+$router->addRoute('GET', '/products', function () use ($pageHandler) {
+   $pageHandler->renderVendor('/products', false);
+});
+
+// Sales route
+$router->addRoute('GET', '/sales', function() use ($pageHandler){
+    $pageHandler->renderVendor('/sales', false);
+});
+
+// Definition of Customer routes
+// TODO by Finals
 
 // Check if the user is logged in
 if (isset($_SESSION['user'])) {
-    require_once 'controller/vendor/core/Router.php';
-    require_once 'controller/vendor/core/PageHandler.php';
-    $router = new Router();
-    $router->route($_SERVER['REQUEST_URI']);
+    $router->handleRequest();
+    echo "User is logged in";
 } else {
-    require_once 'controller/auth/LoginController.php';
-    $controller = new LoginController($conn);
-    $controller->handleLogin();
+    $pageHandler = new PageHandler();
+    $pageHandler->renderAuth('/login', $conn);
+
 }
-
-
-
-
