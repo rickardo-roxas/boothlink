@@ -55,8 +55,9 @@ class VendorQueries {
     
         $result = $stmt->get_result();
         $stmt->close();
-
-        return $result;
+    
+        // Fetch all results as an associative array
+        return $result; 
     }
 
     public function getProductsByCategory($org_id, $filter){

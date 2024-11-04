@@ -40,11 +40,13 @@ $title = $_SESSION['page_title'] ?? 'Default Title';
         </ul>
     </nav>
     <div class="container">
-        <button>Add New Listing</button>
-        <button>
-            <span><img alt= "Organization picture" src=></span>
-            <span></span>
+        <div class="listing-org-container">
+            <button class="listing-button">Add New Listing</button>
+            <button class="org-pic-button">
+                <span><img alt= "Organization picture" src=></span>
+                <span></span>
         </button>
+        </div>
     </div>
 </header>
 
