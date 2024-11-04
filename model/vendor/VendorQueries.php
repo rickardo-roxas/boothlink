@@ -263,7 +263,186 @@ class VendorQueries {
 
         return $result;
     }
-    
+
+    public function getRecentReservations($org_id, $date): array
+    {
+        include 'model/objects/Reservation.php';
+        $query = "SELECT prod_org_sched.*, reservation.*, customer.last_name, prod_serv.prod_serv_name 
+            FROM prod_org_sched
+            JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id
+            JOIN customer ON customer.customer_id = reservation.customer_id
+            JOIN prod_serv ON reservation.prod_id = prod_serv.prod_id
+            WHERE prod_org_sched.org_id = ? 
+            AND reservation.date = ?
+            ORDER BY reservation.date ASC 
+            LIMIT 5;";
+
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("is", $org_id, $date);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        $reservations = [];
+        if ($row = $result->fetch_assoc()) {
+            $reservation = new Reservation();
+            $reservation->setID($row['reservation_id']);
+            $reservation->setCustomer($row['last_name']);
+            $reservation->setProduct($row['prod_serv_name']);
+            $reservation->setQuantity($row['qty']);
+            $reservation->setDate($row['date']);
+            $reservation->setStatus($row['status']);
+
+            $reservations[] = $reservation;
+        }
+
+        $stmt->close();
+        return $reservations;
+    }
+
+    public function getScheduleToday($org_id, $date): array
+    {
+        include 'model/objects/Schedule.php';
+        $query = "SELECT prod_org_sched.org_id, schedule.*, location.loc_room, location.stall_number
+            FROM prod_org_sched
+            JOIN schedule ON schedule.sched_id = prod_org_sched.sched_id
+            JOIN location ON location.loc_id = schedule.loc_id
+            WHERE prod_org_sched.org_id = ?
+            AND schedule.date = ?
+            ORDER BY schedule.sched_id ASC;";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("is", $org_id, $date);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $schedules = [];
+
+        if ($row = $result->fetch_assoc()) {
+            $schedule = new Schedule();
+            $schedule->setDate($row['date']);
+            $schedule->setStartTime($row['start_time']);
+            $schedule->setEndTime($row['end_time']);
+            $schedule->setLocationRoom($row['loc_room']);
+            $schedule->setLocationStallNum($row['stall_number']);
+
+            $schedules[] = $schedule;
+        }
+
+        $stmt->close();
+        return $schedules;
+    }
+
+    public function getPendingReservationsCount($org_id, $date) {
+        $query = "SELECT COUNT(*) 
+            FROM prod_org_sched
+            JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id 
+            WHERE prod_org_sched.org_id = ?
+            AND reservation.date = ? 
+            AND reservation.status = 'Pending';";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("is", $org_id, $date);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        return $result;
+    }
+
+    public function getCompletedReservationsCount($org_id, $date) {
+        $query = "SELECT COUNT(*) 
+            FROM prod_org_sched
+            JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id 
+            WHERE prod_org_sched.org_id = ?
+            AND reservation.date = ? 
+            AND reservation.status = 'Completed';";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("is", $org_id, $date);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        return $result;
+    }
+
+    public function getTotalReservationsCount($org_id, $date) {
+        $query = "SELECT COUNT(*) 
+            FROM prod_org_sched
+            JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id 
+            WHERE prod_org_sched.org_id = ?
+            AND reservation.date = ?";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("is", $org_id, $date);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        return $result;
+    }
+
+    public function getItemReservationsCount($org_id, $date) {
+        $query = "SELECT COUNT(*) 
+            FROM prod_org_sched
+            JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id
+            INNER JOIN prod_serv ON reservation.prod_id = prod_serv.prod_id
+            WHERE prod_org_sched.org_id = ?
+            AND reservation.date = ? 
+            AND prod_serv.category = 'Item';";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("is", $org_id, $date);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        return $result;
+    }
+
+    public function getFoodReservationsCount($org_id, $date) {
+        $query = "SELECT COUNT(*) 
+            FROM prod_org_sched
+            JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id
+            INNER JOIN prod_serv ON reservation.prod_id = prod_serv.prod_id
+            WHERE prod_org_sched.org_id = ?
+            AND reservation.date = ? 
+            AND prod_serv.category = 'Food';";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("is", $org_id, $date);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        return $result;
+    }
+
+    public function getServiceReservationsCount($org_id, $date) {
+        $query = "SELECT COUNT(*) 
+            FROM prod_org_sched
+            JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id
+            INNER JOIN prod_serv ON reservation.prod_id = prod_serv.prod_id
+            WHERE prod_org_sched.org_id = ?
+            AND reservation.date = ? 
+            AND prod_serv.category = 'Service';";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("is", $org_id, $date);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        return $result;
+    }
 }
 
 // Example usage

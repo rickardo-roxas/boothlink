@@ -1,32 +1,43 @@
 <?php require(__DIR__ . '/../../page-fragments/Header.php'); ?>
-
+<script src="<?php echo BASE_URL?>/public/javascript/vendor/home.js" defer></script>
 <main>
+    <input type="hidden" id="org-data" value='<?php echo htmlspecialchars(json_encode($organizationData), ENT_QUOTES); ?>'>
+    <input type="hidden" id="recent-reservations-data" value='<?php echo htmlspecialchars(json_encode($recentReservations), ENT_QUOTES); ?>'>
+    <input type="hidden" id="schedule-data" value='<?php echo htmlspecialchars(json_encode($scheduleToday), ENT_QUOTES); ?>'>
+    <input type="hidden" id="sales-today-data" value='<?php echo htmlspecialchars(json_encode($salesToday), ENT_QUOTES); ?>'>
+    <input type="hidden" id="sales-week-data" value='<?php echo htmlspecialchars(json_encode($salesThisWeek), ENT_QUOTES); ?>'>
+    <input type="hidden" id="pending-data" value='<?php echo htmlspecialchars(json_encode($pendingReservations), ENT_QUOTES); ?>'>
+    <input type="hidden" id="completed-data" value='<?php echo htmlspecialchars(json_encode($completedReservations), ENT_QUOTES); ?>'>
+    <input type="hidden" id="total-reservation-data" value='<?php echo htmlspecialchars(json_encode($completedReservations), ENT_QUOTES); ?>'>
+    <input type="hidden" id="item-data" value='<?php echo htmlspecialchars(json_encode($itemReservations), ENT_QUOTES); ?>'>
+    <input type="hidden" id="food-data" value='<?php echo htmlspecialchars(json_encode($foodReservations), ENT_QUOTES); ?>'>
+    <input type="hidden" id="service-data" value='<?php echo htmlspecialchars(json_encode($serviceReservations), ENT_QUOTES); ?>'>
     <div id="dashboard">
         <div class="grid-container">
             <article id="dash-org" class="card">
                 <h2>Organization</h2>
                 <div class="container">
-                    <img src="<?php echo BASE_URL; ?>/assets/images/placeholder.jpeg" alt="Organization picture">
-                    <h3><?php echo htmlspecialchars($organization['name']); ?></h3>
+                    <img id="dash-org-img" src="<?php echo BASE_URL; ?>/assets/images/org/" alt="Organization picture">
+                    <h3 id="dash-org-name"></h3>
                 </div>
                 <div class="column-container">
-                    <a href="" target="_blank" class="container soc-med">
+                    <a id="fb-link" href="" target="_blank" class="container soc-med">
                         <img src="<?php echo BASE_URL; ?>/assets/icons/soc-med/facebook.png" alt="Facebook logo">
-                        <p>www.facebook.com/schemaslu</p>
+                        <p></p>
                     </a>
-                    <a href="" target="_blank" class="container soc-med">
+                    <a id="ig-link" href="" target="_blank" class="container soc-med">
                         <img src="<?php echo BASE_URL; ?>/assets/icons/soc-med/instagram.png" alt="Instagram logo">
-                        <p>www.instagram.com/@schemaslu</p>
+                        <p></p>
                     </a>
-                    <a href="" target="_blank" class="container soc-med">
+                    <a id="x-link" href="" target="_blank" class="container soc-med">
                         <img src="<?php echo BASE_URL; ?>/assets/icons/soc-med/twitter.png" alt="X logo">
-                        <p>www.x.com/@schemaslu</p>
+                        <p></p>
                     </a>
                 </div>
             </article>
             <article id="dash-reservations" class="card">
                 <h2>Recent Reservations</h2>
-                <table>
+                <table id="dash-recent-reservations">
                     <thead>
                     <tr>
                         <th>Reservation No.</th>
@@ -37,29 +48,16 @@
                         <th>Status</th>
                     </tr>
                     </thead>
-                    <tr>
-                        <td>1</td>
-                        <td>Tank</td>
-                        <td>Veggie Burger</td>
-                        <td>5</td>
-                        <td>Php 500.00</td>
-                        <td>Completed</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Tank</td>
-                        <td>Veggie Burger</td>
-                        <td>5</td>
-                        <td>Php 500.00</td>
-                        <td>Completed</td>
-                    </tr>
+                    <tbody>
+                    <!--To be populated using home.js-->
+                    </tbody>
                 </table>
                 <a class="refresh-btn" href="/cs-312_boothlink/reservations" target="_self">View All</a>
             </article>
             <article id="dash-sched" class="card">
                 <h2>Schedule Today</h2>
-                <p>October 15, 2024</p>
-                <table>
+                <p><?php echo date('F j, Y')?></p>
+                <table id="dash-sched-table">
                     <thead>
                     <tr>
                         <th>Location</th>
@@ -68,43 +66,40 @@
                         <th>End Time</th>
                     </tr>
                     </thead>
-                    <tr>
-                        <td>SLU Maryheights, Lobby</td>
-                        <td>Stall #6</td>
-                        <td>9:30 AM</td>
-                        <td>1:00 PM</td>
-                    </tr>
+                    <tbody>
+                    <!--To be populated using home.js-->
+                    </tbody>
                 </table>
             </article>
             <article id="dash-sales" class="card">
                 <h2>Sales Today</h2>
                 <div class="column-container">
-                    <p>Php 289.00</p>
+                    <p>Php <span id="dash-sales-today"></span></p>
                     <button class="refresh-btn">Refresh</button>
                 </div>
                 <h2>Sales This Week</h2>
                 <div class="column-container">
-                    <p>Php 289.00</p>
+                    <p>Php <span id="dash-sales-week"></span></p>
                     <button class="refresh-btn">Refresh</button>
                 </div>
             </article>
             <article id="dash-total-reserv" class="card">
                 <h2>Total Reservations Today</h2>
                 <div class="column-container">
-                    <p>124 Item Products</p>
-                    <p>5 Food Products</p>
-                    <p>5 Services</p>
+                    <p><span id="item-count"></span> Item Products</p>
+                    <p><span id="food-count"></span> Food Products</p>
+                    <p><span id="service-count"></span> Services</p>
                     <button class="refresh-btn">Refresh</button>
                 </div>
             </article>
             <article id= "dash-summary" class="card">
-                <h2>Reservations Summary</h2>
+                <h2>Reservations Summary Today</h2>
                 <div class="column-container">
                     <div class="column-container">
                         <h3>Pending</h3>
                         <div class="stats">
-                            <h4>70%</h4>
-                            <p>70/100 reservations</p>
+                            <h4><span id="pending-percent"></span> %</h4>
+                            <p><span id="pending-stats"></span> reservations</p>
                         </div>
                         <div class="progress-bar">
                             <div class="progress" id="pending"></div>
@@ -113,8 +108,8 @@
                     <div class="column-container">
                         <h3>Completed</h3>
                         <div class="stats">
-                            <h4>30%</h4>
-                            <p>30/100 reservations</p>
+                            <h4><span id="completed-percent"></span> %</h4>
+                            <p><span id="completed-stats"></span> reservations</p>
                         </div>
                         <div class="progress-bar">
                             <div class="progress" id="completed"></div>
@@ -126,11 +121,4 @@
         </div>
     </div>
 </main>
-<script>
-    const organizationData = <?php echo json_encode($organizationData); ?>;
-    const reservationsData = <?php echo json_encode($recentReservations); ?>;
-    const salesToday = <?php echo json_encode($salesToday); ?>;
-</script>
-<script src="<?php echo BASE_URL?>/public/javascript/vendor/home.js"
-
 <?php require('view/page-fragments/footer.php'); ?>
