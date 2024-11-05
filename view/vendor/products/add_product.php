@@ -1,12 +1,14 @@
-<?php include ('view/page-fragments/header.php'); ?>
-    <main>
-        <div class="container">
+<?php include('view/page-fragments/header.php'); ?>
+<link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/add_edit_products.css"></link>
+<script src="<?php echo BASE_URL?>/public/javascript/vendor/add_product.js" defer></script>
+<main>
+    <div class="container">
         <!-- Form Section -->
         <form class="form-container" method="POST" action="<?php echo BASE_URL; ?>/products/add-product" enctype="multipart/form-data">
-
             <div class="form-input">
                 <h1>Add New Product</h1>
                 <div class="header">Product Information</div>
+                
                 <div class="form-group">
                     <label for="name">Product Name</label>
                     <input type="text" name="name" id="name" required oninput="updatePreview()">
@@ -56,6 +58,7 @@
             <!-- Preview Section -->
             <div class="preview-container">
                 <div class="header">Preview</div>
+                
                 <!-- <div class="file-upload">
                     <input type="file" id="file-input" multiple accept="image/*" onchange="previewImages()" style="display: none;">
                     <label for="file-input" class="btn-file">Upload Image</label>
@@ -84,5 +87,5 @@
             </div>
         </form>
     </div>
-    </main>
-<?php require 'view/page-fragments/Footer.php'?>
+</main>
+<?php require 'view/page-fragments/Footer.php'; ?>
