@@ -1,4 +1,5 @@
 @import "/public/css/vendor/style.css";
+@import "/public/css/vendor/interactive.css";
 
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -10,7 +11,7 @@ body {
 .container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; 
+    align-items: flex-start;
     width: 90%;
     height: 800px;
     margin: 20px auto;
@@ -21,8 +22,13 @@ body {
 }
 
 .form-container {
-    width: 50%;
+    width: 100%;
     font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+}
+
+.form-input {
+    width: 57%;
 }
 
 h1 {
@@ -104,7 +110,7 @@ textarea {
     display: flex;
     align-items: center;
     margin-bottom: 22px;
-    flex-direction: column; 
+    flex-direction: column;
 }
 
 .btn-file {
@@ -116,12 +122,12 @@ textarea {
     border-radius: 5px;
     margin-right: 10px;
     margin-bottom: 8px;
-    transition: background-color 0.3s, border-color 0.3s; 
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .btn-file:hover {
-    background-color: #e1e1e1; 
-    border-color: #ccc; 
+    background-color: #e1e1e1;
+    border-color: #ccc;
 }
 
 .image-preview {
@@ -131,22 +137,22 @@ textarea {
 }
 
 .image-preview div {
-    width: 180px; 
-    height: 210px; 
+    width: 180px;
+    height: 210px;
     border: 1px solid #ddd;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 5px; 
-    overflow: hidden; 
+    margin: 0 5px;
+    overflow: hidden;
     color: #555;
 }
 
 .image-preview img {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .preview-box {
@@ -166,11 +172,11 @@ textarea {
 }
 
 .preview-image div:first-child {
-    margin-right: 0; 
+    margin-right: 0;
 }
 
 .preview-image div:last-child {
-    margin-right: 0; 
+    margin-right: 0;
 }
 
 .buttons {
@@ -196,7 +202,7 @@ textarea {
 }
 
 .btn.add:hover {
-    background-color: #1493a6; 
+    background-color: #1493a6;
 }
 
 .btn.cancel {
@@ -207,5 +213,5 @@ textarea {
 }
 
 .btn.cancel:hover {
-    background-color: #c82333; 
+    background-color: #c82333;
 }

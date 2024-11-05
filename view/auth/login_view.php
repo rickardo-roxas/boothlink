@@ -1,6 +1,6 @@
 <!--commented out line 2 and 3 because of view not showing. Will readd later.-->
-<?php /*require('view/page-fragments/Header.php'); */?>
-<link rel="stylesheet" href="<?php /*echo BASE_URL*/?>/public/css/auth/login.css">
+<?php require('view/page-fragments/Header.php'); ?>
+<link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/auth/login.css">
 <main>
     <div class="container">
     <!--Left section logo part-->

@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sales Page</title>
-    <link rel="stylesheet" href="/public/css/vendor/orgselector.css">
-</head>
-<body>
+<?php require 'view/page-fragments/Header.php'?>
+<link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/orgselector.css">
 <main>
     <div id="salesboard" class="container">
         <div class="grid-container">
@@ -37,5 +31,4 @@
         </div>
     </div>
 </main>
-</body>
-</html>
+<?php require 'view/page-fragments/Footer.php'?>
