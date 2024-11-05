@@ -33,9 +33,14 @@ class Home {
 
     public function getRecentReservations($org_id, $date): array
     {
-        $reservations = $this->vendorQueries->getRecentReservations($org_id, $date);
+        $reservation = $this->vendorQueries->getRecentReservations($org_id, $date);
+        $reservations = [];
 
-
+        if ($reservation) {
+            foreach ($reservation as $reservation) {
+                $reservations[] = $reservation->toArray();
+            }
+        }
         return $reservations;
     }
 
@@ -44,9 +49,15 @@ class Home {
      */
     public function getScheduleToday($org_id, $date): array {
         $schedule = $this->vendorQueries->getScheduleToday($org_id, $date);
+        $schedules = [];
 
+        if ($schedule) {
+            foreach ($schedule as $schedule) {
+                $schedules[] = $schedule->toArray();
+            }
+        }
 
-        return $schedule;
+        return $schedules;
     }
 
     public function getSalesToday($org_id) {

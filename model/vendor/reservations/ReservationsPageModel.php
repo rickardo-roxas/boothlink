@@ -10,13 +10,13 @@ class ReservationsPageModel {
     /**
      * Retrieves the reservations of a specified organization
      */
-    public function getReservations($org_id) {
-        $result = $this->vendorQueries->getReservations($org_id);
-        $reservations = array();
+    public function getReservations($org_id): array {
+        $reservation = $this->vendorQueries->getReservations($org_id);
+        $reservations = [];
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $reservations[] = $row;
+        if ($reservation) {
+            foreach ($reservation as $reservation) {
+                $reservations[] = $reservation->toArray();
             }
         }
 

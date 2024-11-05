@@ -259,24 +259,52 @@ class VendorQueries {
         return $data;
     }
 
-    public function getReservations($org_id){
+    public function getReservations($org_id)
+    {
+        include 'model/objects/Reservation.php';
 
         $query = "
-        SELECT * 
+        SELECT 
+            prod_serv.prod_serv_name AS product_name, 
+            reservation.qty AS quantity,
+            reservation.date AS date,
+            reservation.reservation_id AS id,
+            prod_serv.category AS category,
+            (reservation.qty * prod_serv.price) AS total_price,
+            reservation.status AS status,
+            CONCAT(customer.last_name, ', ', customer.first_name) AS customer_name
         FROM organization
-        WHERE org_id = ?
-        ";
-        
+        JOIN prod_org_sched ON organization.org_id = prod_org_sched.org_id
+        JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id
+        JOIN prod_serv ON reservation.prod_id = prod_serv.prod_id
+        JOIN customer ON reservation.customer_id = customer.customer_id
+        WHERE organization.org_id = ?
+    ";
+
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $org_id);
         $stmt->execute();
-        
-        $result = $stmt->get_result();
-        $stmt->close();
-        
-        return $result ? $result->fetch_assoc() : null; 
-    }
 
+        $result = $stmt->get_result();
+        $reservations = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $reservation = new Reservation();
+            $reservation->setID($row["id"]);
+            $reservation->setDate($row['date']);
+            $reservation->setProduct($row['product_name']);
+            $reservation->setQuantity($row['quantity']);
+            $reservation->setCategory($row['category']);
+            $reservation-> setPrice($row['total_price']);
+            $reservation->setStatus($row['status']);
+            $reservation->setCustomer($row['customer_name']);
+
+            $reservations[] = $reservation;
+        }
+
+        $stmt->close();
+        return $reservations;
+    }
 
     public function getOrganizationByID($org_id) {
         include 'model/objects/Organization.php';
