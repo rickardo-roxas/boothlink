@@ -3,7 +3,6 @@
 <script src="/public/javascript/vendor/sales.js"></script>
 
 <main class = "sales">
-
     <div class="grid-container">
 
             <section id = "product-sales" class = "card">
