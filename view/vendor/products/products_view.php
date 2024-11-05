@@ -13,12 +13,17 @@
                         Add
                     </button>
                 </a>
-                <select class="category-filter">
-                    <option value="">Category</option>
-                    <option value="Item">Item</option>
-                    <option value="Service">Service</option>
-                    <option value="Food">Food</option>
-                </select>
+
+                <form action = "<?php echo BASE_URL ?>/products" method = "GET">
+                     <label>
+                        <select class="category-filter" name="category" onchange="this.form.submit()">
+                            <option value="" disabled selected>Category</option>
+                            <option value="item">Item</option>
+                            <option value="service">Service</option>
+                            <option value="food">Food</option>
+                        </select>
+                     </label>
+                </form>
             </div>
         </div>
         <div class="table-products">

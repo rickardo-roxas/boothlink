@@ -2,7 +2,13 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once(__DIR__.'/../../../model/vendor/products/ProductsPageModel.php');
+
+if (isset($_GET['category'])) {
+    $filter = $_GET['category'];
+    $controller = new ProductsController();
+    $controller->filteredCategory($filter);
+
+}
 
 class ProductsController
 {
@@ -11,19 +17,24 @@ class ProductsController
 
     public function __construct(){
 
+        include (__DIR__.'/../../../model/vendor/products/ProductsPageModel.php');
         $this->model = new ProductsPageModel();
         
     }
 
-
-
-    public function index()
-    {
+    public function validate() {
         // Validate the session ID
         if (!isset($_SESSION['org_id'])) {
             echo "Error: Session ID is not valid.";
             exit;
         }
+    }
+
+
+    public function index()
+    {
+
+        $this->validate();
 
         $orgId = $_SESSION['org_id'];
 
@@ -32,5 +43,18 @@ class ProductsController
 
         // Include the view and pass the products data
         require 'view/vendor/products/products_view.php';
+    }
+
+    public function filteredCategory($filter) {
+        $this->validate();
+
+        $orgId = $_SESSION['org_id'];
+
+        // Fetch products for the current organization
+        $products = $this->model->getFilteredProducts($orgId, $filter);
+
+        // Include the view and pass the products data
+        require 'view/vendor/products/products_view.php';
+
     }
 }

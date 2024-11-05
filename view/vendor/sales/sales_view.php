@@ -13,7 +13,7 @@
 
                     <div class = "product-sales-right-head">
 
-                        <form action=" ../../../controller/vendor/sales/SalesController.php" method="GET">
+                        <form action="<?php echo BASE_URL ?>/sales" method="GET">
 
                                 <button class="toggle-options" name="status" value="In Stock">In stock</button>
                                 <button class="toggle-options" name="status" value="Out of Stock"> Out of Stock</button>
