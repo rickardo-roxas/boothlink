@@ -5,6 +5,7 @@ class Reservation {
     private $customer;
     private $product;
     private $quantity;
+    private $category;
     private $date;
     private $status;
     private $price;
@@ -23,6 +24,10 @@ class Reservation {
 
     public function getQuantity() {
         return $this->quantity;
+    }
+
+    public function getCategory() {
+        return $this->category;
     }
 
     public function getDate() {
@@ -53,6 +58,10 @@ class Reservation {
         $this->quantity = $quantity;
     }
 
+    public function setCategory($category) {
+        $this->category = $category;
+    }
+
     public function setDate($date) {
         $this->date = $date;
     }
@@ -63,5 +72,18 @@ class Reservation {
 
     public function setPrice($price) {
         $this->price = $price;
+    }
+
+    public function toArray(): array {
+        return [
+            'id' => $this->getID(),
+            'customer' => $this->getCustomer(),
+            'product' => $this->getProduct(),
+            'quantity' => $this->getQuantity(),
+            'category' => $this->getCategory(),
+            'date' => $this->getDate(),
+            'status' => $this->getStatus(),
+            'price' => $this->getPrice()
+        ];
     }
 }

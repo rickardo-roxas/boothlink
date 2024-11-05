@@ -90,4 +90,14 @@ class Schedule
     public function setLocationStallNum($locationStallNum) {
         $this->locationStallNum = $locationStallNum;
     }
+
+    public function toArray(): array {
+        return [
+            'date' => $this->getDate(),
+            'startTime' => $this->getStartTime(),
+            'endTime' => $this->getEndTime(),
+            'locationRoom' => $this->getLocationRoom(),
+            'locationStallNum' => $this->getLocationStallNum()
+        ];
+    }
 }

@@ -50,11 +50,11 @@ class Organization {
     public function toArray(): array
     {
         return [
-            'name' => $this->name,
-            'image' => $this->image,
-            'fbLink' => $this->fbLink,
-            'xLink' => $this->xLink,
-            'igLink' => $this->igLink,
+            'name' => $this->getName(),
+            'image' => $this->getImage(),
+            'fbLink' => $this->getFbLink(),
+            'xLink' => $this->getXLink(),
+            'igLink' => $this->getIgLink(),
         ];
     }
 }
