@@ -55,14 +55,15 @@
 .sales #sales-performance {
     grid-area:top-right;
     height: 38vh;
-    width: 75vh;
+    width: 57vh;
+
 
 }
 
 #sales-comparison {
     grid-area:bottom-right;
     height: 38vh;
-    width:75vh;
+    width:57vh;
     margin-top: 1%;
 }
 
