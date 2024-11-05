@@ -21,6 +21,10 @@ class VendorQueries {
 
     /**
      * Adds a new product to the database with its corresponding vendor 
+     * 
+     * TO IMPLEMENT: 
+     * Image and Schedule Picking
+     * Duplication Checking
      */
     public function addProduct($org_id, $status, $category, $prod_serv_name, $price, $description, $image_src) {
 
@@ -57,7 +61,8 @@ class VendorQueries {
 
 
         $stmt3 = $this->conn->prepare($query3);
-        $stmt3->bind_param('iii', $prod_id, $org_id, 7); //7 is default for checking
+        $sched_id = 7; //FOR CHECKING
+        $stmt3->bind_param('iii', $prod_id, $org_id, $sched_id); //7 is default for checking
         $stmt3->execute();
         $stmt3->close();
     }
