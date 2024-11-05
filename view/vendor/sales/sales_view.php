@@ -70,7 +70,12 @@
 
                             let product = document.createElement('td');
                             product.classList.add('product-td');
-                            product.innerHTML = productList[index].img_src;
+                            let img = document.createElement('img');
+                            img.src = productList[index].img_src;
+                            product.appendChild(img);
+                            product.appendChild(document.createTextNode(productList[index].prod_serv_name));
+                         //   product.innerHTML = productList[index].prod_serv_name;
+
 
 
                             let price = document.createElement('td');
