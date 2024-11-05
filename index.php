@@ -63,6 +63,11 @@ $router->addRoute('POST', '/products/add-product', function () use ($pageHandler
     $pageHandler->renderVendor('/products/add-product', false);
 });
 
+// Schedule route
+$router->addRoute('GET', '/schedule', function () use ($pageHandler) {
+    $pageHandler->renderVendor('/schedule', false);
+ });
+
 // Sales route
 $router->addRoute('GET', '/sales', function() use ($pageHandler){
     $pageHandler->renderVendor('/sales', false);

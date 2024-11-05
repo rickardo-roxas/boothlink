@@ -1,76 +1,94 @@
-@import "/public/css/vendor/style.css";
-
-* {
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: #f8f9fa;
     font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
 }
-main {
-    background-color: #F6F5F6;
-}
-#sched-container {
-    display: flex;
-    align-content: center;
-    flex-direction: column;
-    padding: 16px 83px 35px 83px;
-}
-#schedule {
-    grid-template-columns: 50% 50%;
-    display: grid;
-    gap: 1rem;
-    padding: 1.5rem;
+
+.main-table {
+    width: 95%;
+    height: 800px;
+    margin-top: 0.5rem;
     background-color: #ffffff;
-    border-radius: 15px 15px 0px 0px;
-    border: 1px solid #D9D9D9;
-}
-#header-left {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-#header-right {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-#add-schedule {
-    display: flex;
-    width: 138px;
-    height: 33px;
-    justify-content: center;
-    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    border: 1px var(#E6E4E7);
-    background: #FFF;
-    color: #000000
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
 }
 
-.add-icon {
-    width: 1.5rem;
-    height: auto;
-    margin-right: 0.4rem;
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
 }
-#sched-table {
-    border-collapse: collapse;
+
+.table-header p {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #000;
+    margin: 0;
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.action-buttons button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #ced4da;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-buttons button .add-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.action-buttons button:hover {
+    border: 2px solid #17a2b8;
+}
+
+/* Table Styling */
+.table-schedule {
+    max-height: 700px; 
+    overflow-y: auto; 
     width: 100%;
+    border-collapse: collapse;
 }
-#sched-table thead {
-    height: 58px;
+
+.table-schedule table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #dee2e6;
 }
-#sched-table th, #sched-table td {
-    border: 1px solid #D9D9D9; /* Apply the #D9D9D9 border to both header and data cells */
-    padding: 8px; /* Add some padding to make the cells more readable */
-    text-align: center; /* Center-align the text in the cells */
-}
-#sched-table th {
-    background-color: #F1F3F5;
+
+.table-schedule table th,
+.table-schedule table td {
+    width: 16.66%; 
+    padding: 0.75rem;
     text-align: center;
+    border: 1px solid #dee2e6;
+    height: 85px;
 }
-#sched-table td {
-    background-color: #F6F5F6;
-}
-#sched-body tr td:first-child {
-    text-align: right;
-    padding-right: 1rem; /* Optional: add some padding to separate the text from the right border */
-    font-weight: bold;
-    width: 8%;
+
+.table-schedule table th {
+    background-color: #1EBDEF;
+    color: #ffffff;
 }
