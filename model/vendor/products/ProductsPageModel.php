@@ -19,4 +19,8 @@ class ProductsPageModel{
 
         return $products;
     }
+
+    public function getFilteredProducts($org_id, $filter){
+        return $this->vendorQueries->getProductsByCategory($org_id, $filter);
+    }
 }
