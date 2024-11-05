@@ -1,15 +1,11 @@
-<?php require('view/page-fragments/Header.php') ?>
+<?php /*require('view/page-fragments/Header.php') */?>
 <link rel="stylesheet" href="/public/css/vendor/schedule.css">
 <link rel="stylesheet" href="/public/css/vendor/style.css">
 <main>
     <div id="sched-container">
         <div id="schedule">
             <div id="header-left"><h1>Schedule</h1></div>
-            <div id="header-right">
-                <button id="add-schedule">
-                    <img src="/assets/icons/add-blue-outline.png" alt="Add Icon" class="add-icon"/>
-                    Add Schedule
-                </button></div>
+            <div id="header-right"><button id="add-schedule">Add Schedule</button></div>
         </div>
         <table id="sched-table">
             <thead>
