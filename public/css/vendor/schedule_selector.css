@@ -3,7 +3,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     padding: 0;
-    width: 320px;
+    width: 400px;
     height: auto;
     font-family: Arial, sans-serif;
 }
@@ -11,11 +11,12 @@
 .card h3 {
     background-color: #1EBDEF;
     color: #FFFFFF;
-    padding: 12px;
+    padding: 15px;
     text-align: left;
     border-radius: 10px 10px 0 0;
     margin: 0 0 20px 0;
     font-size: 18px;
+    width: 400px;
 }
 
 table {
@@ -53,6 +54,7 @@ table td.selected {
     justify-content: center;
     margin-top: 15px;
     gap: 8px;
+    width: 100%; 
 }
 
 .time-input label {
@@ -98,6 +100,7 @@ table td.selected {
     justify-content: center;
     gap: 10px;
     margin-top: 15px;
+    width: 100%;
 }
 
 .buttons .cancel, .buttons .apply {
