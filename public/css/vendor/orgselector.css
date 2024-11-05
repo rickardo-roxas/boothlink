@@ -1,6 +1,5 @@
 @import "/public/css/vendor/style.css";
 
-
 * {
     font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
 }
@@ -88,6 +87,10 @@
 .add-button:hover {
     background-color: #005f7a;
     transform: scale(1.1);
+}
+
+header, footer {
+    display: none;
 }
 
 

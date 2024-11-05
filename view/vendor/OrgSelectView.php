@@ -22,9 +22,8 @@
                         <?= htmlspecialchars($organization['name']); ?>
                         </a>
                     <?php endforeach; ?>
-
                     <div class="add-button" id="add-button">
-                        <img src="/assets/images/plus-button.png" alt="Add Organization">
+                        <img src="<?php echo BASE_URL?>/assets/images/plus-button.png" alt="Add Organization">
                     </div>
                 </div>
             </div>
