@@ -16,6 +16,7 @@ $title = $_SESSION['page_title'] ?? 'Default Title';
     <meta name="description" content="BoothLink lets you discover and reserve unique products and services from student
     booths at Saint Louis University. Support SLU's vibrant student community today!">
     <title>BoothLink | <?php echo $title?></title>
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/vendor/interactive.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/vendor/style.css">
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo BASE_URL; ?>/assets/favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo BASE_URL; ?>/assets/favicon_io/favicon-32x32.png">
