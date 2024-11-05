@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Product</title>
-    <link rel="stylesheet" href="../../../public/css/vendor/add-edit-product.css">
+    <link rel="stylesheet" href="../../../public/css/vendor/add_edit_products.css">
 </head>
 <body>
 
