@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 const BASE_URL = '/cs-312_boothlink';
-$pageHandler = new PageHandler();
+include_once __DIR__ . '/../../controller/core/PageHandler.php';
 $title = $_SESSION['page_title'] ?? 'Default Title';
 ?>
 <!DOCTYPE html>
