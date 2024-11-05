@@ -7,7 +7,7 @@
         <div class="table-header">
             <p>Product Listing</p>
             <div class="action-buttons">
-                <a href="add_product.php">
+                <a href="<?php echo BASE_URL; ?>/products/add-product">
                     <button class="add-button">
                         <img src="../../../assets/icons/add-blue-outline.png" alt="Add Icon" class="add-icon">
                         Add
