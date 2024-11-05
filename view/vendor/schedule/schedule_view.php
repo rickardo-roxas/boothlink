@@ -30,7 +30,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php for ($i = 0; $i < 7; $i++): ?>
+                    <?php for ($i = 0; $i < 6; $i++): ?>
                         <tr>
                             <td></td>
                             <td></td>

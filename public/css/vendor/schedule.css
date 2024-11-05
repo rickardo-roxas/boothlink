@@ -85,7 +85,7 @@ main {
     padding: 0.75rem;
     text-align: center;
     border: 1px solid #dee2e6;
-    height: 85px;
+    height: 105px;
     font-weight: 800;
     font-size: 1rem;
 }
@@ -93,6 +93,7 @@ main {
 .table-schedule table th {
     background-color: #1EBDEF;
     color: #ffffff;
+    height: 55px;
 }
 
 #schedule-popup {
