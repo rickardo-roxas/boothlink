@@ -1,10 +1,10 @@
 <?php include(__DIR__ . '/../../page-fragments/Header.php'); ?>
 <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/sales.css">
+<script src="/public/javascript/vendor/sales.js"></script>
 
 <main class = "sales">
 
     <div class="grid-container">
-
 
             <section id = "product-sales" class = "card">
                 <div class="product-sales-head">
@@ -12,12 +12,11 @@
                     <h1>Product Sales</h1>
 
                     <div class = "product-sales-right-head">
-
-                        <form action="<?php echo BASE_URL ?>/sales" method="GET">
-
+                        <form action=" ../../../controller/vendor/sales/SalesController.php" method="GET">
+                            <label class="toggle-button">
                                 <button class="toggle-options" name="status" value="In Stock">In stock</button>
-                                <button class="toggle-options" name="status" value="Out of Stock"> Out of Stock</button>
-
+                                <button class="toggle-options" name="status" value="Out of Stock">Out of Stock</button>
+                            </label>
                             <label>
                                 <select class="category-select" name="category" onchange="this.form.submit()">
                                     <option value="" disabled selected>Category</option>
@@ -31,6 +30,20 @@
                          </form>
                     </div>
                 </div>
+
+                <!--Script used for the highlight, switch to external if needed-->
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        const toggleOptions = document.querySelectorAll('.toggle-options');
+                        toggleOptions.forEach(button => {
+                            button.addEventListener('click', function(event) {
+                                event.preventDefault();
+                                toggleOptions.forEach(btn => btn.classList.remove('highlighted'));
+                                this.classList.toggle('highlighted');
+                            });
+                        });
+                    });
+                </script>
 
                 <table id = product-sales-table>
                     <thead>
@@ -70,12 +83,7 @@
 
                             let product = document.createElement('td');
                             product.classList.add('product-td');
-                            let img = document.createElement('img');
-                            img.src = productList[index].img_src;
-                            product.appendChild(img);
-                            product.appendChild(document.createTextNode(productList[index].prod_serv_name));
-                         //   product.innerHTML = productList[index].prod_serv_name;
-
+                            product.innerHTML = productList[index].img_src;
 
 
                             let price = document.createElement('td');
