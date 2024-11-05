@@ -1,4 +1,4 @@
-<?php include ('view/page-fragments/header.php'); ?>
+<?php require ('view/page-fragments/header.php'); ?>
 <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/products.css"></link>
 <script src="<?php echo BASE_URL?>/public/javascript/vendor/products.js" defer></script>
 <main>
@@ -9,7 +9,7 @@
             <div class="action-buttons">
                 <a href="<?php echo BASE_URL; ?>/products/add-product">
                     <button class="add-button">
-                        <img src="../../../assets/icons/add-blue-outline.png" alt="Add Icon" class="add-icon">
+                        <img src="<?php echo BASE_URL; ?>/assets/icons/add-blue-outline.png" alt="Add Icon" class="add-icon">
                         Add
                     </button>
                 </a>
