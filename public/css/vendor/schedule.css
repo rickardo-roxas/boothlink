@@ -31,6 +31,7 @@ main {
     align-items: center;
     justify-content: flex-end;
 }
+
 #add-schedule {
     display: flex;
     width: 138px;
@@ -38,9 +39,15 @@ main {
     justify-content: center;
     align-items: center;
     border-radius: 8px;
-    border: 1px solid;
-    background: #597492;
-    color: #FFF
+    border: 1px var(#E6E4E7);
+    background: #FFF;
+    color: #000000
+}
+
+.add-icon {
+    width: 1.5rem;
+    height: auto;
+    margin-right: 0.4rem;
 }
 #sched-table {
     border-collapse: collapse;
