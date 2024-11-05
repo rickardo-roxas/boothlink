@@ -9,7 +9,7 @@ class HomeController {
     protected $model;
 
     public function __construct() {
-        // You can initialize without org_id here
+        $this->model = new Home();
     }
 
     /**

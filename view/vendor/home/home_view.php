@@ -74,12 +74,12 @@
             <article id="dash-sales" class="card">
                 <h2>Sales Today</h2>
                 <div class="column-container">
-                    <p>Php <span id="dash-sales-today"></span></p>
+                    <p>₱ <span id="dash-sales-today"></span></p>
                     <button class="refresh-btn">Refresh</button>
                 </div>
                 <h2>Sales This Week</h2>
                 <div class="column-container">
-                    <p>Php <span id="dash-sales-week"></span></p>
+                    <p>₱ <span id="dash-sales-week"></span></p>
                     <button class="refresh-btn">Refresh</button>
                 </div>
             </article>
