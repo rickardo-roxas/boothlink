@@ -10,11 +10,11 @@
 
     <div class="container">
         <!-- Form Section -->
-        <div class="form-container">
-            <h1>Add New Product</h1>
-            <div class="header">Product Information</div>
+        <form class="form-container" method="POST" action="AddProductsController.php" enctype="multipart/form-data">
 
-            <form method="POST" action="AddProductsController.php" enctype="multipart/form-data">
+            <div class="form-input">
+                <h1>Add New Product</h1>
+                <div class="header">Product Information</div>
                 <div class="form-group">
                     <label for="name">Product Name</label>
                     <input type="text" name="name" id="name" required oninput="updatePreview()">
@@ -59,40 +59,39 @@
                         <label><input type="checkbox"> Date 5</label>
                     </div>
                 </div>
-            </form>
-        </div>
-
-        <!-- Preview Section -->
-        <div class="preview-container">
-            <div class="header">Preview</div>
-            <div class="file-upload">
-                <input type="file" id="file-input" multiple accept="image/*" onchange="previewImages()" style="display: none;">
-                <label for="file-input" class="btn-file">Upload Image</label>
-                <span>Choose images from computer (max. 3 images)</span>
             </div>
 
-            <div class="image-preview">
-                <div>Preview Photo</div>
-                <div>Preview Photo</div>
-                <div>Preview Photo</div>
-            </div>
+            <!-- Preview Section -->
+            <div class="preview-container">
+                <div class="header">Preview</div>
+                <div class="file-upload">
+                    <input type="file" id="file-input" multiple accept="image/*" onchange="previewImages()" style="display: none;">
+                    <label for="file-input" class="btn-file">Upload Image</label>
+                    <span>Choose images from computer (max. 3 images)</span>
+                </div>
 
-            <div class="preview-box">
-                <h3 id="preview-name">Product Name</h3>
-                <div>Category: <span id="preview-type">Select Category</span></div>
-                <div>Description: <span id="preview-description">Input description.</span></div>
-                <div>Price: <span id="preview-price">Php 0.00</span></div>
-                <div>Status: <span id="preview-status">Select Status</span></div>
-                <div>Schedule: <span id="preview-schedule">Select Schedule</span></div>
-            </div>
+                <div class="image-preview">
+                    <div>Preview Photo</div>
+                    <div>Preview Photo</div>
+                    <div>Preview Photo</div>
+                </div>
 
-            <div class="buttons">
-                <button class="btn cancel">Cancel</button>
-                <button class="btn add">Add Product</button>
+                <div class="preview-box">
+                    <h3 id="preview-name">Product Name</h3>
+                    <div>Category: <span id="preview-type">Select Category</span></div>
+                    <div>Description: <span id="preview-description">Input description.</span></div>
+                    <div>Price: <span id="preview-price">Php 0.00</span></div>
+                    <div>Status: <span id="preview-status">Select Status</span></div>
+                    <div>Schedule: <span id="preview-schedule">Select Schedule</span></div>
+                </div>
+
+                <div class="buttons">
+                    <button class="btn cancel">Cancel</button>
+                    <button class="btn add">Add Product</button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
-
     <!-- JS to preview (to add) -->
     <!-- <script src="../../public/javascript/AddProduct.js"></script> -->
 </body>
