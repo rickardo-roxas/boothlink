@@ -7,6 +7,7 @@ class Reservation {
     private $quantity;
     private $date;
     private $status;
+    private $price;
 
     public function getID() {
         return $this->id;
@@ -32,6 +33,10 @@ class Reservation {
         return $this->status;
     }
 
+    public function getPrice() {
+        return $this->price;
+    }
+
     public function setID($id) {
         $this->id = $id;
     }
@@ -54,5 +59,9 @@ class Reservation {
 
     public function setStatus($status) {
         $this->status = $status;
+    }
+
+    public function setPrice($price) {
+        $this->price = $price;
     }
 }

@@ -337,7 +337,7 @@ class VendorQueries {
     public function getRecentReservations($org_id, $date): array
     {
         include 'model/objects/Reservation.php';
-        $query = "SELECT prod_org_sched.*, reservation.*, customer.last_name, prod_serv.prod_serv_name 
+        $query = "SELECT prod_org_sched.*, reservation.*, customer.last_name, prod_serv.prod_serv_name, prod_serv.price
             FROM prod_org_sched
             JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id
             JOIN customer ON customer.customer_id = reservation.customer_id
@@ -360,6 +360,10 @@ class VendorQueries {
             $reservation->setID($row['reservation_id']);
             $reservation->setCustomer($row['last_name']);
             $reservation->setProduct($row['prod_serv_name']);
+
+            $totalPrice = $row['price'] * $row['qty'];
+            $reservation->setPrice($totalPrice);
+
             $reservation->setQuantity($row['qty']);
             $reservation->setDate($row['date']);
             $reservation->setStatus($row['status']);
