@@ -1,17 +1,10 @@
-<?php require('view/page-fragments/Header.php'); ?>
+<?php include(__DIR__ . '/../../page-fragments/Header.php'); ?>
 <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/sales.css">
 
 <main class = "sales">
 
     <div class="grid-container">
 
-    <?php
-    include(__DIR__ . '/../../page-fragments/Header.php');
-    ?>
-
-                <h1>Product Sales</h1>
-
-        <div class="grid-container">
 
             <section id = "product-sales" class = "card">
                 <div class="product-sales-head">
@@ -37,6 +30,7 @@
                              <button name="category" class="text-button" value="all">View All</button>
                          </form>
                     </div>
+                </div>
 
                 <table id = product-sales-table>
                     <thead>
@@ -159,12 +153,7 @@
                 </script>
 
             </section>
+    </div>
+</main>
 
 
-
-        </div>
-
-    </main>
-    </body>
-
-</html>

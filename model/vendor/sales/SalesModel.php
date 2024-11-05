@@ -12,6 +12,10 @@ class SalesModel{
 
     private $orgID;
 
+    private $xyValues;
+
+    private $labels;
+
     public function __construct() {
         $this->vendorQueries = new VendorQueries();
         $this->orgID = 1;
@@ -36,13 +40,23 @@ class SalesModel{
         return $this->vendorQueries->getSalesThisWeek($this->orgID);
     }
 
+    public function definePoints() {
+        $array = $this->vendorQueries->getSalesDataPointsForWeek($this->orgID);
+        foreach ($array as $point) :
+            $this->xyValues[] = $point['amounts'];
+            $this->labels[] = $point['dates'];
+        endforeach;
+        return $array;
+    }
+
     public function getXValues(): ?array {
-        return [50,60,70,80,90,100,110,120,130,140,150];
-       // return $this->vendorQueries->getSalesDataPointsForWeek($this->orgID);
+        return $this->xyValues;
+       // return [50,60,70,80,90,100,110,120,130,140,150];
     }
 
     public function getLabels(): ?array {
-        return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        return $this->labels;
+       // return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     }
 
     /*

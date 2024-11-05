@@ -50,6 +50,7 @@ class SalesController {
     public function initPage() {
         $salesToday = $this->getModel()->getSalesToday();
         $salesWeek = $this->getModel()->getSalesWeek();
+        $array = $this->getModel() ->definePoints();
         $xValues = $this->getModel()->getXValues();
         $labels = $this->getModel()->getLabels();
         header('Location: /cs-312_boothlink/view/vendor/sales/sales_view.php?productList='
@@ -58,6 +59,7 @@ class SalesController {
             . "&salesWeek=" . $salesWeek
             . "&xValues=" . serialize($xValues)
             . "&labels=" . serialize($labels)
+            . "&array=" . serialize($array)
         );
         exit();
     }

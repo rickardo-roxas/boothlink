@@ -230,7 +230,7 @@ class VendorQueries {
     }
 
     public function getSalesDataPointsForWeek($org_id) {
-        $query = "SELECT RESERVATION.date as date, RESERVATION.qty * PROD_SERV.price as amount
+        $query = "SELECT RESERVATION.date as dates, RESERVATION.qty * PROD_SERV.price as amounts
         FROM RESERVATION 
         INNER JOIN PROD_ORG_SCHED ON RESERVATION.prod_id = PROD_ORG_SCHED.prod_id 
         INNER JOIN SCHEDULE ON PROD_ORG_SCHED.sched_id = SCHEDULE.sched_id 
