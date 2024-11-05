@@ -1,18 +1,15 @@
 <?php
 
 class Reservation {
+    private $id;
     private $customer;
     private $product;
     private $quantity;
     private $date;
     private $status;
 
-    public function __construct($customer, $product, $quantity, $date, $status) {
-        $this->customer = $customer;
-        $this->product = $product;
-        $this->quantity = $quantity;
-        $this->date = $date;
-        $this->status = $status;
+    public function getID() {
+        return $this->id;
     }
 
     public function getCustomer() {
@@ -33,6 +30,10 @@ class Reservation {
 
     public function getStatus() {
         return $this->status;
+    }
+
+    public function setID($id) {
+        $this->id = $id;
     }
 
     public function setCustomer($customer) {

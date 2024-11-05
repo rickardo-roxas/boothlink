@@ -17,22 +17,11 @@ class Schedule
     /**
      * @var - The related location based on the schedule.
      */
-    private $location;
-
+    private $locationRoom;
     /**
-     * Constructs an object of Schedule with a specified date, start time, and end time.
-     * @param $date - The specified date.
-     * @param $startTime - The specified start time.
-     * @param $endTime - The specified end time.
-     * @param $location - The specified location.
+     * @var - The related location stall number.
      */
-    public function __construct($date, $startTime, $endTime, $location)
-    {
-        $this->date = $date;
-        $this->startTime = $startTime;
-        $this->endTime = $endTime;
-        $this->location = $location;
-    }
+    private $locationStallNum;
 
     /**
      * @return mixed
@@ -58,8 +47,12 @@ class Schedule
     /**
      * @return mixed
      */
-    public function getLocation() {
-        return $this->location;
+    public function getLocationRoom() {
+        return $this->locationRoom;
+    }
+
+    public function getLocationStallNum() {
+        return $this->locationStallNum;
     }
 
     /**
@@ -90,7 +83,11 @@ class Schedule
      * @param $location
      * @return void
      */
-    public function setLocation($location) {
-        $this->location = $location;
+    public function setLocationRoom($locationRoom) {
+        $this->locationRoom = $locationRoom;
+    }
+
+    public function setLocationStallNum($locationStallNum) {
+        $this->locationStallNum = $locationStallNum;
     }
 }

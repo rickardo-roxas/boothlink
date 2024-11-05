@@ -46,4 +46,15 @@ class Organization {
     public function setIgLink($igLink) {
         $this->igLink = $igLink;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'name' => $this->name,
+            'image' => $this->image,
+            'fbLink' => $this->fbLink,
+            'xLink' => $this->xLink,
+            'igLink' => $this->igLink,
+        ];
+    }
 }

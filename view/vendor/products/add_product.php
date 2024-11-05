@@ -14,7 +14,7 @@
             <h1>Add New Product</h1>
             <div class="header">Product Information</div>
 
-            <form>
+            <form method="POST" action="AddProductsController.php" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Product Name</label>
                     <input type="text" name="name" id="name" required oninput="updatePreview()">
@@ -94,6 +94,6 @@
     </div>
 
     <!-- JS to preview (to add) -->
-    <script src="../../public/javascript/AddProduct.js"></script>
+    <!-- <script src="../../public/javascript/AddProduct.js"></script> -->
 </body>
 </html>

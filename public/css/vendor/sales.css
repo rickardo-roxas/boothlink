@@ -2,11 +2,11 @@
 
 /* SALES */
 .sales {
-    padding: var(--spacing-xl, 1.5rem);
+    padding: var(--spacing-xl, 1rem);
 }
 
 .sales .container {
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 
@@ -16,6 +16,14 @@
     font-weight: bold;
 }
 
+.sales h4 {
+    padding:-1.5vh;
+    margin-top:-2vh;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #606060;
+}
+
 
 
 .sales h2 {
@@ -23,6 +31,8 @@
     font-size: 1.2rem;
     font-weight: bold;
 }
+
+
 
 
 .sales p {
@@ -44,28 +54,27 @@
 
 
 .sales #product-sales {
-    height: 85vh;
+    height: 100%;
     width: 105vh;
     grid-area:left;
 }
 
 .sales #sales-performance {
     grid-area:top-right;
-    height: 40vh;
+    height: 38vh;
     width: 75vh;
 
 }
 
-.sales #sales-comparison {
+#sales-comparison {
     grid-area:bottom-right;
-    height: 41vh;
+    height: 38vh;
     width:75vh;
-    margin-top: 1vh;
+    margin-top: 1%;
 }
 
 .toggle-options li {
     display: inline;
-
 
     font-family: 'Poppins', sans-serif;
     font-size: .9rem;
@@ -74,14 +83,23 @@
     line-height: normal;
 }
 
-.product-sales-right-head :first-child, .toggle-options :first-child {
-    padding-right:2vh;
+.text-button {
+    background-color: white;
+    border:0;
+}
+
+.toggle-div {
+
+    border-radius: .8vh;
+    padding:1vh;
 }
 
 .toggle-options {
     border-radius: .8vh;
     border: .2vh solid var(--stroke-secondary);
     padding: 1vh 1.5vh;
+    width:15vh;
+    background-color: white;
 
     align-items: center;
 }
@@ -100,12 +118,6 @@
     align-items: center;
 }
 
-.sales .product-sales-head p {
-    font-size: 1rem;
-    font-weight: 400;
-
-}
-
 .sales .category-select {
     border-radius: .8vh;
     border: .2vh solid var(--stroke-secondary);
@@ -116,14 +128,17 @@
     width: 100%;
     border-collapse: separate;
     text-align: left;
+    display:block;
 }
 
 .sales .product {
-    width: 30%;
+    width: 25%;
+    padding-bottom: 2vh;
 }
 
 .description {
-    width: 7%;
+    width: 9%;
+    padding-bottom: 2vh;
 }
 
 
@@ -132,12 +147,17 @@
     max-height: 3.5vh;
     margin: 0 auto;
 }
-.sales td {
-    align-items: baseline;
-    height: 9vh;
-    vertical-align: middle;
+#product-sales-table {
+    max-width: 100%;
+    vertical-align: top;
 }
 
-.sales #product-td :first-child {
-    margin-right: 3vh;
+#product-sales td {
+    font-size: .8rem;
+}
+
+
+canvas {
+    margin-top: -3vh;
+    max-width: 85%;
 }

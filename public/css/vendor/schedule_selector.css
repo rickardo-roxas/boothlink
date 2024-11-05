@@ -1,0 +1,134 @@
+.card {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 0;
+    width: 320px;
+    height: auto;
+    font-family: Arial, sans-serif;
+}
+
+.card h3 {
+    background-color: #1EBDEF;
+    color: #FFFFFF;
+    padding: 12px;
+    text-align: left;
+    border-radius: 10px 10px 0 0;
+    margin: 0 0 20px 0;
+    font-size: 18px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+table th {
+    color: #A0A0A0;
+    font-size: 14px;
+    font-weight: normal;
+    padding-bottom: 10px;
+}
+
+table td {
+    text-align: center;
+    padding: 15px;
+    color: #333333;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+table td.selected {
+    background-color: #1EBDEF;
+    color: #FFFFFF;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.time-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 8px;
+}
+
+.time-input label {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.time-input select {
+    width: 80px;
+    height: 35px;
+    text-align: center;
+    font-size: 12px;
+    padding: 4px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    background-color: #F7F7F7;
+}
+
+.am-pm-toggle {
+    display: flex;
+    gap: 5px;
+}
+
+.am-pm-toggle button {
+    width: 45px;
+    padding: 6px 0;
+    font-size: 12px;
+    color: #333;
+    background-color: #F7F7F7;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.am-pm-toggle .selected {
+    background-color: #1EBDEF;
+    color: #FFFFFF;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.buttons .cancel, .buttons .apply {
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    margin: 0 0 20px 0;
+}
+
+.buttons .cancel {
+    background-color: #CCCCCC;
+    color: #333333;
+}
+
+.buttons .apply {
+    background-color: #1EBDEF;
+    color: #FFFFFF;
+}
+
+.buttons button {
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.buttons .cancel:hover {
+    background-color: #B0B0B0;
+    transform: scale(1.05);
+}
+
+.buttons .apply:hover {
+    background-color: #15A1C5;
+    transform: scale(1.05);
+}

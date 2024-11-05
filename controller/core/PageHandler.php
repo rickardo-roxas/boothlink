@@ -36,6 +36,12 @@ class PageHandler
                 $controller->index();
                 break;
 
+            case '/products/add-product':
+                $title = 'Products';
+                require __DIR__ . '/../../controller/vendor/products/AddProductsController.php';
+                (new AddProductsController())->index(); 
+                break;
+
             case '/schedule':
                 $title = 'Schedule';
                 require __DIR__ . '/../../controller/vendor/schedule/ScheduleController.php';

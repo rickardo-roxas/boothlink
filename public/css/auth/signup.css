@@ -46,15 +46,13 @@
     transition: all 0.3s ease;
     color: #6C7275;
 }
-.signup-input:focus {
+.input-control:focus {
     border: #F6F5F6;
     border-bottom: 1px solid #6C7275;
     color: #6C7275;
     outline: none;
 }
-.signup-input::placeholder {
-    color: #6C7275;
-}
+
 .signup-button {
     display: flex;
     width: 50vh;
@@ -81,3 +79,18 @@
     box-shadow: none;
     transform: scale(0.98);
 }
+
+.input-control.success input {
+    border-bottom: #09c372;
+}
+
+.input-control.error input {
+    border-bottom: #ff3860;
+}
+
+.input-control .error {
+    color: #ff3860;
+    font-size: 0.80rem;
+    height: 0.35rem;
+}
+
