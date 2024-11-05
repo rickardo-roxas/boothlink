@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product</title>
-    <link rel="stylesheet" href="../../../public/css/vendor/add-edit-product.css">
-</head>
-<body>
-
-    <div class="container">
+<?php include ('view/page-fragments/header.php'); ?>
+    <main>
+        <div class="container">
         <!-- Form Section -->
-        <form class="form-container" method="POST" action="AddProductsController.php" enctype="multipart/form-data">
+        <form class="form-container" method="POST" action="<?php echo BASE_URL; ?>/products/add-product" enctype="multipart/form-data">
 
             <div class="form-input">
                 <h1>Add New Product</h1>
@@ -49,7 +41,7 @@
                     <textarea name="description" id="description" required oninput="updatePreview()"></textarea>
                 </div>
 
-                <div class="form-group schedule-group">
+                <!-- <div class="form-group schedule-group">
                     <label>Schedule</label>
                     <div class="checkbox-group">
                         <label><input type="checkbox"> Date 1</label>
@@ -58,13 +50,13 @@
                         <label><input type="checkbox"> Date 4</label>
                         <label><input type="checkbox"> Date 5</label>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <!-- Preview Section -->
             <div class="preview-container">
                 <div class="header">Preview</div>
-                <div class="file-upload">
+                <!-- <div class="file-upload">
                     <input type="file" id="file-input" multiple accept="image/*" onchange="previewImages()" style="display: none;">
                     <label for="file-input" class="btn-file">Upload Image</label>
                     <span>Choose images from computer (max. 3 images)</span>
@@ -74,7 +66,7 @@
                     <div>Preview Photo</div>
                     <div>Preview Photo</div>
                     <div>Preview Photo</div>
-                </div>
+                </div> -->
 
                 <div class="preview-box">
                     <h3 id="preview-name">Product Name</h3>
@@ -86,13 +78,11 @@
                 </div>
 
                 <div class="buttons">
-                    <button class="btn cancel">Cancel</button>
-                    <button class="btn add">Add Product</button>
+                    <button class="btn-cancel">Cancel</button>
+                    <button class="btn-add">Add Product</button>
                 </div>
             </div>
         </form>
     </div>
-    <!-- JS to preview (to add) -->
-    <!-- <script src="../../public/javascript/AddProduct.js"></script> -->
-</body>
-</html>
+    </main>
+<?php require 'view/page-fragments/Footer.php'?>
