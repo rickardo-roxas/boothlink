@@ -9,7 +9,6 @@
     gap: 1rem;
 }
 
-
 .sales h1 {
     color: var(--text);
     font-size: 1.8rem;
@@ -24,16 +23,11 @@
     color: #606060;
 }
 
-
-
 .sales h2 {
     color: var(--text);
     font-size: 1.2rem;
     font-weight: bold;
 }
-
-
-
 
 .sales p {
     color: #606060;
@@ -44,7 +38,6 @@
     font-weight: 700;
     line-height: normal;
 }
-
 
 .sales .grid-container {
     display:grid;
@@ -73,9 +66,7 @@
     margin-top: 1%;
 }
 
-.toggle-options li {
-    display: inline;
-
+.product-sales-right-head li {
     font-family: 'Poppins', sans-serif;
     font-size: .9rem;
     font-style: normal;
@@ -83,29 +74,46 @@
     line-height: normal;
 }
 
-.text-button {
-    background-color: white;
-    border:0;
-}
-
-.toggle-div {
-
+/*Uncomment if it affects backend*/
+/*.toggle-div {
     border-radius: .8vh;
     padding:1vh;
+}*/
+.toggle-button, .category-select, .text-button {
+    margin: 0.5rem;
+
+}
+
+.toggle-button {
+    padding: 0.5rem;
+    border: 1px solid #494949;
+    border-radius: 0.45rem;
+    width: fit-content;
 }
 
 .toggle-options {
-    border-radius: .8vh;
-    border: .2vh solid var(--stroke-secondary);
-    padding: 1vh 1.5vh;
-    width:15vh;
-    background-color: white;
+    border: none;
+    background: none;
+    font-size: 1rem;
+    font-weight: normal;
+    color: #6C7275;
+    margin: 0.15rem;
+}
 
-    align-items: center;
+.highlighted {
+    color: #101010;
+}
+
+.text-button {
+    border: none;
+    padding: 0.5rem;
+    width: fit-content;
+    background-color: white;
+    font-weight: bold;
+    font-size: 1rem;
 }
 
 .product-sales-head {
-
     width: 100%;
     display: flex;
     align-items: center;
@@ -116,12 +124,17 @@
 .product-sales-right-head {
     display: flex;
     align-items: center;
+
 }
 
 .sales .category-select {
-    border-radius: .8vh;
-    border: .2vh solid var(--stroke-secondary);
-    padding: 1vh 1.5vh;
+    padding: 0.5rem;
+    border: 1px solid #494949;
+    border-radius: 0.45rem;
+    width: fit-content;
+    background: none;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .sales table {
