@@ -27,7 +27,7 @@ class LoginController {
                 } else {
                     $_SESSION['first_time'] = false; // Not first time
                 }
-                header("Location: /cs-312_boothlink/home");
+                header("Location: /cs-312_boothlink/org_select");
                 exit();
             } else {
                 echo "Login failed! Invalid username or password.";

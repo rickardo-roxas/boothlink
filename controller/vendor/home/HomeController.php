@@ -9,7 +9,7 @@ class HomeController {
     protected $model;
 
     public function __construct() {
-        $this->model = new Home();
+        // You can initialize without org_id here
     }
 
     /**
@@ -40,8 +40,7 @@ class HomeController {
             require_once 'view/vendor/home/home_view.php';
         } else {
             header('Location: home_view.php');
+            exit();
         }
-        exit();
     }
 }
-
