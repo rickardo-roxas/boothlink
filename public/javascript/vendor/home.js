@@ -53,7 +53,7 @@ function populateRecentReservations() {
                 <td>${recentReservation.customer}</td>
                 <td>${recentReservation.product}</td>
                 <td>${recentReservation.quantity}</td>
-                <td>"₱ " + ${recentReservation.price}</td>
+                <td>₱ ${recentReservation.price}</td>
                 <td>${recentReservation.status}</td>
             `;
             tbody.appendChild(row);

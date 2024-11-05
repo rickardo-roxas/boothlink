@@ -15,7 +15,7 @@ function populateTable(reservations) {
             <td>${reservation.product}</td>
             <td>${reservation.quantity}</td>
             <td>${reservation.category}</td>
-            <td>${reservation.price}</td>
+            <td>₱ ${reservation.price}</td>
             <td>${reservation.status}</td>
             <td>${reservation.customer}</td>
             <td>
