@@ -62,7 +62,7 @@ require ('view/page-fragments/header.php');
                 <div class="header">Preview</div>
                 
                 <div class="file-upload">
-                    <input type="file" id="file-input" multiple accept="image/*" onchange="previewImages()" style="display: none;">
+                    <input name="file[]" type="file" id="file-input" multiple accept="image/*" onchange="previewImages()" style="display: none;">
                     <label for="file-input" class="btn-file">Upload Image</label>
                     <span>Choose images from computer (max. 3 images)</span>
                 </div>
