@@ -40,6 +40,7 @@
 }
 
 .sales .grid-container {
+    width: 215vh;
     display:grid;
     grid-template-areas: 'left top-right' 'left bottom-right';
     gap:2vh;
@@ -48,7 +49,7 @@
 
 .sales #product-sales {
     height: 100%;
-    width: 105vh;
+    width: 100%;
     grid-area:left;
 }
 
