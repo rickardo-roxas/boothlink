@@ -1,4 +1,7 @@
-<?php require(__DIR__ . '/../../page-fragments/Header.php'); ?>
+<?php
+$pageTitle = "Home";
+require(__DIR__ . '/../../page-fragments/Header.php');
+?>
 <script src="<?php echo BASE_URL?>/public/javascript/vendor/home.js" defer></script>
 <main>
     <input type="hidden" id="org-data" value='<?php echo htmlspecialchars(json_encode($organizationData), ENT_QUOTES); ?>'>

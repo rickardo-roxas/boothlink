@@ -1,4 +1,7 @@
-<?php include('view/page-fragments/header.php'); ?>
+<?php
+$pageTitle = "Schedule";
+require('view/page-fragments/header.php');
+?>
 <link rel="stylesheet" href="<?php echo BASE_URL ?>/public/css/vendor/schedule.css">
 <link rel="stylesheet" href="<?php echo BASE_URL ?>/public/css/vendor/schedule_selector.css">
 <script src="<?php echo BASE_URL ?>/public/javascript/vendor/schedule.js" defer></script>

@@ -1,4 +1,7 @@
-<?php require (__DIR__ . '/../../page-fragments/Header.php'); ?>
+<?php
+$pageTitle = "Sales";
+require (__DIR__ . '/../../page-fragments/Header.php');
+?>
 <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/sales.css">
 <script src="/public/javascript/vendor/sales.js"></script>
 
@@ -11,10 +14,10 @@
                 <h1>Product Sales</h1>
 
                 <div class = "product-sales-right-head">
-                    <form action=" ../../../controller/vendor/sales/SalesController.php" method="GET">
+                    <form name = "filter-form" action=" ../../../controller/vendor/sales/SalesController.php" method="GET">
                         <label class="toggle-button">
-                            <button class="toggle-options" name="status" value="In Stock">In stock</button>
-                            <button class="toggle-options" name="status" value="Out of Stock">Out of Stock</button>
+                            <button class="toggle-options" name="status" value="In Stock" >In stock</button>
+                            <button class="toggle-options" name="status" value="Out of Stock" >Out of Stock</button>
                         </label>
                         <label>
                             <select class="category-select" name="category" onchange="this.form.submit()">
@@ -42,6 +45,7 @@
                         });
                     });
                 });
+                document.getElementById('filter-form").submit();
             </script>
 
             <table id = product-sales-table>

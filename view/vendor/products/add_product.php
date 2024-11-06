@@ -1,4 +1,7 @@
-<?php require ('view/page-fragments/header.php'); ?>
+<?php
+$pageTitle = "Products";
+require ('view/page-fragments/header.php');
+?>
 <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/add_edit_products.css"></link>
 <script src="<?php echo BASE_URL?>/public/javascript/vendor/add_product.js" defer></script>
 <main>

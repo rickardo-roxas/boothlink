@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 const BASE_URL = '/cs-312_boothlink';
 include_once __DIR__ . '/../../controller/core/PageHandler.php';
-$title = $_SESSION['page_title'] ?? 'Default Title';
+$title = $pageTitle;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,11 +33,11 @@ $title = $_SESSION['page_title'] ?? 'Default Title';
     </div>
     <nav>
         <ul>
-            <li><a href="/cs-312_boothlink/home" target="_self">Home</a></li>
-            <li><a href="/cs-312_boothlink/reservations" target="_self">Reservations</a></li>
-            <li><a href="/cs-312_boothlink/products" target="_self">Products</a></li>
-            <li><a href="/cs-312_boothlink/schedule" target="_self">Schedule</a></li>
-            <li><a href="/cs-312_boothlink/sales" target="_self">Sales</a></li>
+            <li><a class="<?php if($pageTitle == "Home") {echo "active"; } ?>" href="/cs-312_boothlink/home" target="_self">Home</a></li>
+            <li><a class="<?php if($pageTitle == "Reservations") {echo "active"; } ?>"href="/cs-312_boothlink/reservations" target="_self">Reservations</a></li>
+            <li><a class="<?php if($pageTitle == "Products") {echo "active"; } ?>"href="/cs-312_boothlink/products" target="_self">Products</a></li>
+            <li><a class="<?php if($pageTitle == "Schedule") {echo "active"; } ?>"href="/cs-312_boothlink/schedule" target="_self">Schedule</a></li>
+            <li><a class="<?php if($pageTitle == "Sales") {echo "active"; } ?>"href="/cs-312_boothlink/sales" target="_self">Sales</a></li>
         </ul>
     </nav>
     <div class="container">

@@ -108,7 +108,10 @@ class PageHandler
                     $controller = new LoginController($conn);
                     $controller->handleLogin();
                 } else {
-                    header("Location: /home");
+                    session_destroy();
+                    require __DIR__ . '/../../controller/auth/LoginController.php';
+                    $controller = new LoginController($conn);
+                    $controller->handleLogin();
                     exit();
                 }
                 break;
