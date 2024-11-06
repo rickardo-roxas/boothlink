@@ -37,7 +37,10 @@ class AddProductsController{
 
             $this->model->addProduct($orgId, $status, $category, $prod_serv_name, $price, $description, $image_src);
 
-            echo "Product added succesfully"; //TO BE AN ALERT FOR JAVASCRIPT
+            
+            $_SESSION['product_added'] = true;
+
+            header("Location: " . $_SERVER['REQUEST_URI']);
             exit();
         }
     }
