@@ -22,4 +22,17 @@ class ReservationsPageModel {
 
         return $reservations;
     }
+
+    public function getReservationsByStatus($org_id, $status): array {
+        $reservations = $this->vendorQueries->getReservationsByStatus($org_id, $status);
+        $result = [];
+
+        if ($reservations) {
+            foreach ($reservations as $reservation) {
+                $result[] = $reservation->toArray();
+            }
+        }
+
+        return $result;
+    }
 }

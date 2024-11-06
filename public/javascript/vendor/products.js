@@ -7,15 +7,15 @@ function populateTable(products) {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${product.prod_serv_name}</td>
-            <td>${product.price}</td>
+            <td>₱ ${product.price}.00</td>
             <td>${product.description}</td>
             <td>${product.status}</td>
             <td>${product.category}</td>
              <td>
-               <button onclick="redirectToEdit(${product.prod_id})">Edit</button>
+               <button class="btn-file" onclick="redirectToEdit(${product.prod_id})">Edit</button>
                 <form action="/cs-312_boothlink/products/delete-product" method="POST" style="display:inline;">
                   <input type="hidden" name="prod_id" value="${product.prod_id}">
-                  <button type="submit" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                  <button class="btn-file" type="submit" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
                 </form>
              </td>
 

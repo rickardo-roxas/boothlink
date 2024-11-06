@@ -1,5 +1,5 @@
 <?php
-$pageTitle = "SchedulePageModel";
+$pageTitle = "Schedule";
 require('view/page-fragments/header.php');
 ?>
 <link rel="stylesheet" href="<?php echo BASE_URL ?>/public/css/vendor/schedule.css">

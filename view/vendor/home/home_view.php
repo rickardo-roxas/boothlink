@@ -11,7 +11,7 @@ require(__DIR__ . '/../../page-fragments/Header.php');
     <input type="hidden" id="sales-week-data" value='<?php echo htmlspecialchars(json_encode($salesThisWeek), ENT_QUOTES); ?>'>
     <input type="hidden" id="pending-data" value='<?php echo htmlspecialchars(json_encode($pendingReservations), ENT_QUOTES); ?>'>
     <input type="hidden" id="completed-data" value='<?php echo htmlspecialchars(json_encode($completedReservations), ENT_QUOTES); ?>'>
-    <input type="hidden" id="total-reservation-data" value='<?php echo htmlspecialchars(json_encode($completedReservations), ENT_QUOTES); ?>'>
+    <input type="hidden" id="total-reservation-data" value='<?php echo htmlspecialchars(json_encode($totalReservations), ENT_QUOTES); ?>'>
     <input type="hidden" id="item-data" value='<?php echo htmlspecialchars(json_encode($itemReservations), ENT_QUOTES); ?>'>
     <input type="hidden" id="food-data" value='<?php echo htmlspecialchars(json_encode($foodReservations), ENT_QUOTES); ?>'>
     <input type="hidden" id="service-data" value='<?php echo htmlspecialchars(json_encode($serviceReservations), ENT_QUOTES); ?>'>
@@ -102,7 +102,7 @@ require(__DIR__ . '/../../page-fragments/Header.php');
                         <h3>Pending</h3>
                         <div class="stats">
                             <h4><span id="pending-percent"></span> %</h4>
-                            <p><span id="pending-stats"></span> reservations</p>
+                            <p><span id="pending-stats"></span> reservation/s</p>
                         </div>
                         <div class="progress-bar">
                             <div class="progress" id="pending"></div>
@@ -112,7 +112,7 @@ require(__DIR__ . '/../../page-fragments/Header.php');
                         <h3>Completed</h3>
                         <div class="stats">
                             <h4><span id="completed-percent"></span> %</h4>
-                            <p><span id="completed-stats"></span> reservations</p>
+                            <p><span id="completed-stats"></span> reservation/s</p>
                         </div>
                         <div class="progress-bar">
                             <div class="progress" id="completed"></div>

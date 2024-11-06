@@ -6,21 +6,32 @@ function populateTable(productList) {
         let row = document.createElement('tr');
         row.style.height = "8vh";
 
-
+        // Product image cell
         let product = document.createElement('td');
         product.classList.add('product-td');
-        product.innerHTML = productList[index].img_src;
 
+        // Create an img element
+        let img = document.createElement('img');
+        img.src = "/cs-312_boothlink/assets/prod_img/" + productList[index].img_src;
+        img.alt = productList[index].name || "Product Image";
+        img.classList.add('product-img'); // Optional: add a class for styling if needed
 
+        // Append the image to the td element
+        product.appendChild(img);
+
+        // Price cell
         let price = document.createElement('td');
-        price.innerHTML = productList[index].price + ".00";
+        price.innerHTML = "₱ " + productList[index].price + ".00";
 
+        // Category cell
         let category = document.createElement('td');
         category.innerHTML = productList[index].category;
 
+        // Sold cell
         let sold = document.createElement('td');
         sold.innerHTML = productList[index].sold;
 
+        // Status cell
         let status = document.createElement('td');
         status.innerHTML = productList[index].status;
 
@@ -29,6 +40,7 @@ function populateTable(productList) {
         row.appendChild(category);
         row.appendChild(sold);
         row.appendChild(status);
+
         body.appendChild(row);
     }
 }

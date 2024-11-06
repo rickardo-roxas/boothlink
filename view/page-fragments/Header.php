@@ -36,7 +36,7 @@ $title = $pageTitle;
             <li><a class="<?php if($pageTitle == "Home") {echo "active"; } ?>" href="/cs-312_boothlink/home" target="_self">Home</a></li>
             <li><a class="<?php if($pageTitle == "Reservations") {echo "active"; } ?>"href="/cs-312_boothlink/reservations" target="_self">Reservations</a></li>
             <li><a class="<?php if($pageTitle == "Products") {echo "active"; } ?>"href="/cs-312_boothlink/products" target="_self">Products</a></li>
-            <li><a class="<?php if($pageTitle == "SchedulePageModel") {echo "active"; } ?>"href="/cs-312_boothlink/schedule" target="_self">Schedule</a></li>
+            <li><a class="<?php if($pageTitle == "Schedule") {echo "active"; } ?>"href="/cs-312_boothlink/schedule" target="_self">Schedule</a></li>
             <li><a class="<?php if($pageTitle == "Sales") {echo "active"; } ?>"href="/cs-312_boothlink/sales" target="_self">Sales</a></li>
         </ul>
     </nav>

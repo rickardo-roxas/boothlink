@@ -121,26 +121,30 @@ function populateReservationsSummary() {
     const pendingProgressBar = document.getElementById("pending");
     const completedProgressBar = document.getElementById("completed");
 
-    const totalValue = parseInt(totalDataElement.value, 10);
+    const totalValue = parseInt(totalDataElement.value) || 0;
+    const pendingValue = parseInt(pendingDataElement.value) || 0;
+    const completedValue = parseInt(completedDataElement.value) || 0;
 
     if (totalValue > 0) {
-        const pendingPercent = (pendingDataElement.value / totalValue) * 100;
-        const completedPercent = (completedDataElement.value / totalValue) * 100;
+        const pendingPercent = (pendingValue / totalValue) * 100;
+        const completedPercent = (completedValue / totalValue) * 100;
 
-        pendingElement.textContent = `${pendingDataElement.value}`;
-        pendingPercentElement.textContent = `${pendingPercent}`;
+        pendingElement.textContent = `${pendingValue} reservation${pendingValue !== 1 ? 's' : ''}`;
+        pendingPercentElement.textContent = pendingPercent.toFixed(0);
 
-        completedElement.textContent = `${completedDataElement.value}`;
-        completedPercentElement.textContent = `${completedPercent}`;
+        completedElement.textContent = `${completedValue} reservation${completedValue !== 1 ? 's' : ''}`;
+        completedPercentElement.textContent = completedPercent.toFixed(0);
+
+        pendingProgressBar.style.width = `${pendingPercent}%`;
+        completedProgressBar.style.width = `${completedPercent}%`;
     } else {
-        pendingPercentElement.textContent = "0"
-        pendingElement.textContent = "0/0";
+        pendingElement.textContent = "0 reservations";
+        pendingPercentElement.textContent = "0";
+        pendingProgressBar.style.width = "0";
 
+        completedElement.textContent = "0 reservations";
         completedPercentElement.textContent = "0";
-        completedElement.textContent = "0/0";
-
-        pendingProgressBar.style.width = '0';
-        completedProgressBar.style.width = '0';
+        completedProgressBar.style.width = "0";
     }
 }
 
@@ -149,23 +153,13 @@ function populateTotalReservations() {
     const foodElement = document.getElementById("food-count");
     const serviceElement = document.getElementById("service-count");
 
-    if (itemDataElement.value > 0) {
-        itemElement.textContent = `${itemDataElement.value}`
-    } else {
-        itemElement.textContent = "0"
-    }
+    const itemCount = parseInt(itemDataElement.value) || 0;
+    const foodCount = parseInt(foodDataElement.value) || 0;
+    const serviceCount = parseInt(serviceDataElement.value) || 0;
 
-    if (foodDataElement.value > 0) {
-        foodElement.textContent = `${itemDataElement.value}`
-    } else {
-        foodElement.textContent = "0"
-    }
-
-    if (serviceDataElement.value > 0) {
-        serviceElement.textContent = `${itemDataElement.value}`
-    } else {
-        serviceElement.textContent = "0"
-    }
+    itemElement.textContent = `${itemCount}`;
+    foodElement.textContent = `${foodCount}`;
+    serviceElement.textContent = `${serviceCount}`;
 }
 
 populateOrganization();

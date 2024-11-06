@@ -3,6 +3,7 @@ $pageTitle = "Reservations";
 require ('view/page-fragments/Header.php');
 ?>
     <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/products.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/reservations.css">
     <script src="<?php echo BASE_URL?>/public/javascript/vendor/reservations.js" defer></script>
     <main>
         <input type="hidden" id="reservations-data" value='<?php echo htmlspecialchars(json_encode($reservations), ENT_QUOTES); ?>'>
@@ -12,13 +13,14 @@ require ('view/page-fragments/Header.php');
                 <div class="action-buttons">
                     <form action = "<?php echo BASE_URL ?>/reservations" method = "GET">
                         <label>
-                            <select class="category-filter" name="category" onchange="this.form.submit()">
-                                <option value="" disabled selected>Category</option>
-                                <option value="item">Item</option>
-                                <option value="service">Service</option>
-                                <option value="food">Food</option>
+                            <select class="category-filter" name="status" onchange="this.form.submit()">
+                                <option value="" disabled selected>Status</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Cancelled">Cancelled</option>
                             </select>
                         </label>
+                        <button class="text-button">View All</button>
                     </form>
                 </div>
             </div>
@@ -38,7 +40,7 @@ require ('view/page-fragments/Header.php');
                     </tr>
                     </thead>
                     <tbody>
-                    <!-- This is where the table will be populated vis reservations.js -->
+                    <!-- This will be populated by reservations.js -->
                     </tbody>
                 </table>
             </div>
