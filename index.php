@@ -68,6 +68,10 @@ $router->addRoute('GET', '/schedule', function () use ($pageHandler) {
     $pageHandler->renderVendor('/schedule', false);
  });
 
+$router->addRoute('POST', '/schedule/add-schedule', function () use ($pageHandler){
+    $pageHandler->renderVendor('/schedule/add-schedule', false);
+});
+
 // Sales route
 $router->addRoute('GET', '/sales', function() use ($pageHandler){
     $pageHandler->renderVendor('/sales', false);

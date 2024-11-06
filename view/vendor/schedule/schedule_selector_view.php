@@ -19,7 +19,7 @@
         $endTime = $_GET["endTime"] ?? "7:00";
     ?>
 
-    <form action="#" method="POST">
+    <form action="<?php echo BASE_URL ?>/schedule/add-schedule" method="POST">
         <div class="schedule-selector card">
             <h3><?php echo "$month $year"; ?></h3>
             
