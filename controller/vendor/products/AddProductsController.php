@@ -27,21 +27,37 @@ class AddProductsController{
         }
 
         // Add POST method here from query
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $prod_serv_name = $_POST['name'];
             $category = $_POST['type'];
             $price = $_POST['price'];
             $status = $_POST['status'];
             $description = $_POST['description'];
-            $image_src = "dummysource.png";
 
-            $this->model->addProduct($orgId, $status, $category, $prod_serv_name, $price, $description, $image_src);
+            if (isset($_FILES['file']) && count($_FILES['file']['name']) > 0) {
+                $target_dir = "assets/images/prod_serv";
 
-            
-            $_SESSION['product_added'] = true;
+                // Loop through each file
+                for ($i = 0; $i < count($_FILES['file']['name']); $i++) {
+                    $tmp_name = $_FILES['file']['tmp_name'][$i]; // Temporary file path
+                    $file_name = basename($_FILES['file']['name'][$i]); // Original file name
 
-            header("Location: " . $_SERVER['REQUEST_URI']);
-            exit();
+                    // Define the target file path
+                    $target_file = $target_dir . $file_name;
+
+                    // Move the file to the target directory
+                    move_uploaded_file($tmp_name, $target_file);
+
+                }
+              //  $image_src = "dummysource.png"
+                $this->model->addProduct($orgId, $status, $category, $prod_serv_name, $price, $description, $file_name);
+
+
+                $_SESSION['product_added'] = true;
+
+                header("Location: " . $_SERVER['REQUEST_URI']);
+                exit();
+            }
         }
     }
 }
