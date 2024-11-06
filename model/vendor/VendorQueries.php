@@ -23,7 +23,7 @@ class VendorQueries {
      * Adds a new product to the database with its corresponding vendor 
      * 
      * TO IMPLEMENT: 
-     * Image and Schedule Picking
+     * Image and SchedulePageModel Picking
      * Duplication Checking
      */
     public function addProduct($org_id, $status, $category, $prod_serv_name, $price, $description, $image_src) {
@@ -467,7 +467,7 @@ class VendorQueries {
         $schedules = [];
 
         if ($row = $result->fetch_assoc()) {
-            $schedule = new Schedule();
+            $schedule = new SchedulePageModel();
             $schedule->setDate($row['date']);
             $schedule->setStartTime($row['start_time']);
             $schedule->setEndTime($row['end_time']);
@@ -599,7 +599,8 @@ class VendorQueries {
         $stmt->close();
     }
 
-    public function getSchedule($org_id) {
+    public function getSchedules($org_id) {
+        include 'model/objects/Schedule.php';
         $query = "SELECT prod_org_sched.org_id, schedule.*, location.loc_room, location.stall_number 
             FROM prod_org_sched
             JOIN schedule ON schedule.sched_id = prod_org_sched.sched_id
@@ -613,7 +614,58 @@ class VendorQueries {
 
         $schedules = [];
 
-        if ($row = $result->fetch_assoc()) {
+        while ($row = $result->fetch_assoc()) {
+            $schedule = new SchedulePageModel();
+            $schedule->setDate($row['date']);
+            $schedule->setStartTime($row['start_time']);
+            $schedule->setEndTime($row['end_time']);
+            $schedule->setLocationRoom($row['loc_room']);
+            $schedule->setLocationStallNum($row['stall_number']);
+
+            $schedules[] = $schedule->toArray();
+        }
+
+        $stmt->close();
+        return $schedules;
+    }
+
+    public function getSchedule($org_id, $date, $startTime, $endTime, $loc_id) {
+        include 'model/objects/Schedule.php';
+        $query = "SELECT prod_org_sched.org_id, schedule.*,
+        FROM prod_org_sched
+        JOIN schedule ON schedule.sched_id = prod_org_sched.sched_id
+        WHERE prod_org_sched.org_id = ?
+        AND schedule.date = ?
+        AND schedule.start_time = ?
+        AND schedule.end_time = ?
+        AND loc_id = ?";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("isssi", $org_id, $date, $startTime, $endTime, $loc_id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        return $result;
+    }
+
+    public function getScheduleThisWeek($org_id, $startDate, $endDate) {
+        include 'model/objects/Schedule.php';
+        $query = "SELECT prod_org_sched.org_id, schedule.*, location.loc_room, location.stall_number 
+            FROM prod_org_sched
+            JOIN schedule ON schedule.sched_id = prod_org_sched.sched_id
+            JOIN location ON location.loc_id = schedule.loc_id
+            WHERE prod_org_sched.org_id = ?
+            AND schedule.date BETWEEN ? AND ?";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("iss", $org_id, $startDate, $endDate);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $schedules = [];
+
+        while ($row = $result->fetch_assoc()) {
             $schedule = new Schedule();
             $schedule->setDate($row['date']);
             $schedule->setStartTime($row['start_time']);
@@ -621,7 +673,7 @@ class VendorQueries {
             $schedule->setLocationRoom($row['loc_room']);
             $schedule->setLocationStallNum($row['stall_number']);
 
-            $schedules[] = $schedule;
+            $schedules[] = $schedule->toArray();
         }
 
         $stmt->close();

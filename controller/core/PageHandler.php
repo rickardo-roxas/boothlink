@@ -43,15 +43,16 @@ class PageHandler
                 break;
 
             case '/schedule':
-                $title = 'Schedule';
+                $title = 'SchedulePageModel';
                 require __DIR__ . '/../../controller/vendor/schedule/ScheduleController.php';
                 $controller = new ScheduleController();
                 $controller->index();
                 break;
 
             case '/schedule/add-schedule':
-
-
+                require __DIR__ . '/../../controller/vendor/schedule/AddScheduleController.php';
+                (new AddScheduleController())->addSchedule();
+                break;
             case '/sales':
                 $title = 'Sales';
                 require __DIR__ . '/../../controller/vendor/sales/SalesController.php';

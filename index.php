@@ -64,7 +64,7 @@ $router->addRoute('POST', '/products/add-product', function () use ($pageHandler
     $pageHandler->renderVendor('/products/add-product', false);
 });
 
-// Schedule route
+// SchedulePageModel route
 $router->addRoute('GET', '/schedule', function () use ($pageHandler) {
     $pageHandler->renderVendor('/schedule', false);
  });

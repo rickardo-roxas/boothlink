@@ -92,7 +92,7 @@
             return;
         }
 
-        alert("Selected date and times are valid!"); // for validation only
+        alert("Schedule added!"); // for validation only
     });
 
     // Convert time to 24-hour format in total minutes
