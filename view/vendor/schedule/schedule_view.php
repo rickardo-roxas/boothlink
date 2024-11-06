@@ -13,7 +13,7 @@ require('view/page-fragments/header.php');
             <p>Schedule</p>
             <div class="action-buttons">
                 <button class="add-button" onclick="openSchedulePopup()">
-                    <!--<img src="/assets/icons/add-blue-outline.png" alt="Add Icon" class="add-icon">-->
+                    <img src="/assets/icons/add-blue-outline.png" alt="Add Icon" class="add-icon">
                     Add Schedule
                 </button>
             </div>
