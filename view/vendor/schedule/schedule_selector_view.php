@@ -107,7 +107,7 @@
             </div>
 
             <div class="buttons">
-                <button type="reset" class="cancel">Cancel</button>
+                <button type="reset" class="cancel"onclick="closeSchedulePopup()">Cancel</button>
                 <button type="submit" class="apply">Apply</button>
             </div>
         </div>
