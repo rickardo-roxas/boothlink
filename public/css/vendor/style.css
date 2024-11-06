@@ -65,7 +65,12 @@ html {
 .listing-org-container {
     display: flex;
     align-content: center;
+    align-self: center;
     gap: 0.8rem;
+}
+
+.listing-org-container a {
+    margin-top: 0.5rem;
 }
 
 .grid-container {
@@ -122,6 +127,7 @@ footer {
 header a, footer a {
     text-decoration: none;
     color: var(--text);
+    text-align: center;
 }
 
 header a:hover, footer a:hover {
