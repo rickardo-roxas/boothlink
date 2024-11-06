@@ -164,12 +164,12 @@ class VendorQueries {
         }
     }
 
-
-
-
-
-
-
+    public function deleteProduct($prod_id) {
+        $query = "DELETE FROM prod_serv WHERE prod_id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $prod_id);
+        $stmt->execute();
+    }
     /**
      * Method to get the products given an organization and the associated number of items sold
      */
