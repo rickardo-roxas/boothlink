@@ -12,13 +12,20 @@ function populateTable(products) {
             <td>${product.status}</td>
             <td>${product.category}</td>
             <td>
-                <button>Edit</button>
+                <button onclick="redirectToEdit(${product.prod_id})">Edit</button>
                 <button>Delete</button>
             </td>
         `;
         tbody.appendChild(row);
     });
 }
+
+// Redirect to edit page function
+function redirectToEdit(prod_id) {
+    // Redirect to the edit page with the product ID as a query parameter
+    window.location.href = `/cs-312_boothlink/products/edit-product?prod_id=${prod_id}`;
+}
+
 
 // Get the hidden input element
 let productsDataElement = document.getElementById('products-data');

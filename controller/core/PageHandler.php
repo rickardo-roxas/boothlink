@@ -86,6 +86,14 @@ class PageHandler
                 }
                 break;
 
+            case '/products/edit-product':
+                $title = 'Edit Product';
+                require __DIR__ . '/../../controller/vendor/products/EditProductsController.php';
+                $controller = new EditProductsController();
+                $prod_id = $_GET['prod_id'] ?? null;
+                $controller->index($prod_id);
+                break;
+
             default:
                 echo "404 Not Found";
                 break;
