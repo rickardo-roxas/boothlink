@@ -111,6 +111,16 @@ $router->addRoute('POST', '/products/delete-product', function() use ($conn) {
     (new EditProductsController())->delete();
 });
 
+$router->addRoute('POST', '/reservations/complete', function() use ($conn) {
+    require_once __DIR__ . '/controller/vendor/reservations/ActionReservationsController.php';
+    (new ActionReservationsController())->completeReservation();
+});
+
+$router->addRoute('POST', '/reservations/reject', function() use ($conn) {
+    require_once __DIR__ . '/controller/vendor/reservations/ActionReservationsController.php';
+    (new ActionReservationsController())->rejectReservation();
+});
+
 // Definition of Customer routes
 // TODO by Finals
 

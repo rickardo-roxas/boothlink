@@ -771,6 +771,26 @@ class VendorQueries {
         $stmt->close();
         return $schedules;
     }
+
+    public function cancelReservation($reservation_id) {
+        $query = "UPDATE reservation SET status = 'Cancelled' WHERE reservation_id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $reservation_id);
+        $stmt->execute();
+        $isUpdated = $stmt->affected_rows > 0;
+        $stmt->close();
+        return $isUpdated;
+    }
+
+    public function completeReservation($reservation_id) {
+        $query = "UPDATE reservation SET status = 'Completed' WHERE reservation_id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $reservation_id);
+        $stmt->execute();
+        $isUpdated = $stmt->affected_rows > 0;
+        $stmt->close();
+        return $isUpdated;
+    }
 }
 
 // Example usage

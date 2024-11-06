@@ -10,7 +10,7 @@ function populateTable(products) {
             <td>₱ ${product.price}.00</td>
             <td>${product.description}</td>
             <td>${product.status}</td>
-            <td>${product.category}</td>
+            <td><span class="category-text">${product.category}</span></td>
              <td>
                <button class="btn-file" onclick="redirectToEdit(${product.prod_id})">Edit</button>
                 <form action="/cs-312_boothlink/products/delete-product" method="POST" style="display:inline;">
@@ -20,6 +20,21 @@ function populateTable(products) {
              </td>
 
         `;
+
+        const categorySpan = row.querySelector('.category-text');
+
+        switch (product.category) {
+            case "Food":
+                categorySpan.classList.add("category-food");
+                break;
+            case "Item":
+                categorySpan.classList.add("category-item");
+                break;
+            case "Service":
+                categorySpan.classList.add("category-service");
+                break;
+        }
+
         tbody.appendChild(row);
     });
 }

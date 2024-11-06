@@ -7,66 +7,49 @@ function populateTable(reservations) {
 
     if (reservations.length > 0) {
         reservations.forEach(reservation => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${reservation.id}</td>
-                <td>${reservation.date}</td>
-                <td>${reservation.product}</td>
-                <td>${reservation.quantity}</td>
-                <td>${reservation.category}</td>
-                <td>₱ ${parseFloat(reservation.price).toFixed(2)}</td>
-                <td>${reservation.status}</td>
-                <td>${reservation.customer}</td>
-            `;
+            let actionButtonsHTML = '';
 
-            // Add buttons only if the status is "Pending"
             if (reservation.status === "Pending") {
-                const actionCell = document.createElement('td');
-                const acceptButton = document.createElement('button');
-                const rejectButton = document.createElement('button');
-
-                acceptButton.className = "btn-file"
-                rejectButton.className = "btn-file"
-
-                acceptButton.textContent = "Accept";
-                rejectButton.textContent = "Reject";
-
-                actionCell.appendChild(acceptButton);
-                actionCell.appendChild(rejectButton);
-                row.appendChild(actionCell);
-
-                // addActionListeners(row, reservation.id);
+                actionButtonsHTML = `
+                    <td class="actions-column">
+                        <form action="/cs-312_boothlink/reservations/complete" method="POST"  onsubmit="return confirm('Are you sure you want to accept this reservation?')">
+                            <input type="hidden" name="reservation_id" value="${reservation.id}">
+                            <button class="accept-btn" type="submit">Mark As Completed</button>
+                        </form>
+                        <form action="/cs-312_boothlink/reservations/reject" method="POST" onsubmit="return confirm('Are you sure you want to reject this reservation?')">
+                            <input type="hidden" name="reservation_id" value="${reservation.id}">
+                            <button class="reject-btn" type="submit">Reject</button>
+                        </form>
+                    </td>
+                `;
             } else {
-                const td = document.createElement('td');
-                row.appendChild(td);
+                actionButtonsHTML = `<td></td>`;
             }
 
-            tbody.appendChild(row);
+            const rowHTML = `
+                <tr>
+                    <td>${reservation.id}</td>
+                    <td>${reservation.date}</td>
+                    <td>${reservation.product}</td>
+                    <td>${reservation.quantity}</td>
+                    <td><span class="category-text">${reservation.category}</span></td>
+                    <td>₱ ${parseFloat(reservation.price).toFixed(2)}</td>
+                    <td>${reservation.status}</td>
+                    <td>${reservation.customer}</td>
+                    ${actionButtonsHTML}
+                </tr>
+            `;
+            // Append the row only once
+            tbody.insertAdjacentHTML('beforeend', rowHTML);
         });
     } else {
-        const row = document.createElement('tr');
-        const cell = document.createElement('td');
-        cell.colSpan = 8;
-        cell.textContent = "No reservations";
-        cell.style.textAlign = "center";
-        row.appendChild(cell);
-        tbody.appendChild(row);
+        const noReservationsRow = `
+            <tr>
+                <td colspan="8" style="text-align: center;">No reservations</td>
+            </tr>
+        `;
+        tbody.innerHTML = noReservationsRow;
     }
-}
-
-function addActionListeners(row, reservationId) {
-    const acceptButton = row.querySelector('.accept-btn');
-    const rejectButton = row.querySelector('.reject-btn');
-
-    acceptButton.addEventListener('click', function () {
-        // Handle accept action (e.g., send a request to the server to change status)
-        console.log(`Accept reservation with ID: ${reservationId}`);
-    });
-
-    rejectButton.addEventListener('click', function () {
-        // Handle reject action (e.g., send a request to the server to change status)
-        console.log(`Reject reservation with ID: ${reservationId}`);
-    });
 }
 
 populateTable(reservations);

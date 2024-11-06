@@ -2,7 +2,6 @@
 $pageTitle = "Reservations";
 require ('view/page-fragments/Header.php');
 ?>
-    <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/products.css">
     <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/reservations.css">
     <script src="<?php echo BASE_URL?>/public/javascript/vendor/reservations.js" defer></script>
     <main>
