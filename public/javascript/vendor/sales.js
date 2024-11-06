@@ -41,16 +41,47 @@ function populateSalesComparison(today, tomorrow) {
     salesWeek.innerHTML = "₱" + tomorrow + ".00"
 }
 
-// Get the hidden input element
-let productList = document.getElementById('productList');
-let today = document.getElementById('dataSalesToday')
-let week = document.getElementById('dataSalesWeek')
+function populateChart(xValues, labels) {
+        new Chart("sales-chart", {
+        type: "bar",
+        data: {
+        labels: labels,
+        datasets: [{
+        label: '',
+        backgroundColor: "#1EBDEF",
+        data: xValues,
+    }]
+    },
+        options: {
+        responsive: true,
+        scales: {
+        y: {
+        title: {
+        display: true,
+        text: 'Amount'
+    }
+    },
+        beginAtZero: true
+    },
+        legend: {
+        display: false
+    }
+    }
+    });
+}
 
-// Parse the JSON data from the hidden input
+let productList = document.getElementById('productList');
+let today = document.getElementById('dataSalesToday');
+let week = document.getElementById('dataSalesWeek');
+let xValues = document.getElementById('dataXValues');
+let labels = document.getElementById('dataLabels');
+
 let productsJSON = JSON.parse(productList.value);
 let todayJSON = JSON.parse(today.value);
 let weekJSON = JSON.parse(week.value);
-
+let xValuesJSON = JSON.parse(xValues.value);
+let labelsJSON = JSON.parse(labels.value);
 
 populateTable(productsJSON);
-populateSalesComparison(todayJSON,weekJSON);
+populateSalesComparison(todayJSON, weekJSON);
+populateChart(xValuesJSON, labelsJSON);
