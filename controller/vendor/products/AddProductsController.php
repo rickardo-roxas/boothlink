@@ -35,7 +35,7 @@ class AddProductsController{
             $description = $_POST['description'];
 
             if (isset($_FILES['file']) && count($_FILES['file']['name']) > 0) {
-                $target_dir = "assets/images/prod_serv";
+                $target_dir = "assets/prod_img/";
 
                 // Loop through each file
                 for ($i = 0; $i < count($_FILES['file']['name']); $i++) {
