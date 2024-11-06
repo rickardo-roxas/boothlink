@@ -70,7 +70,23 @@ html {
 }
 
 .listing-org-container a {
-    margin-top: 0.5rem;
+    background-color: var(--sky-blue);
+    color: var(--stroke-primary);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.listing-org-container #add-listing-btn {
+    background-color: #FFFFFF;
+    color: var(--text);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: normal;
 }
 
 .grid-container {
@@ -150,20 +166,6 @@ header .logo img, footer .logo img {
     height: 1.63769rem;
     margin-right: 0.5rem;
     margin-top: 0.5rem;
-}
-
-header button {
-    background-color: var(--sky-blue);
-    color: var(--stroke-primary);
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-header button:hover {
-    box-shadow: var(--light1);
 }
 
 header .profile {

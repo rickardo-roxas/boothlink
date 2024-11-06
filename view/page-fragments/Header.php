@@ -42,14 +42,8 @@ $title = $_SESSION['page_title'] ?? 'Default Title';
     </nav>
     <div class="container">
         <div class="listing-org-container">
-            <a class="listing-button" href="/cs-312_boothlink/products/add-product">Add New Listing</a>
-            <form action="/cs-312_boothlink/login" method="POST">
-                <button class="org-pic-button">
-                    <!--<span><img alt= "Organization picture" src=></span>  -->
-                    <!--<span></span>                                        -->
-                    Logout
-                </button>
-            </form>
+            <a id="add-listing-btn" class="listing-button" href="/cs-312_boothlink/products/add-product">Add New Listing</a>
+            <a class="listing-button" href="/cs-312_boothlink/login">Logout</a>
         </div>
     </div>
 </header>
