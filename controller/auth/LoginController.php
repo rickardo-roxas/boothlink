@@ -18,7 +18,7 @@ class LoginController {
             $login = new Login($this->conn);
             if ($login->authenticate($username, $password)) {
                 $_SESSION['user'] = $username;
-                $_SESSION['org_id'] = $login->getOrgID($username);
+                $_SESSION['vendor_id'] = $login->getUserID($username);
 
                 echo "Login successful. User session set: " . $_SESSION['user'];
 

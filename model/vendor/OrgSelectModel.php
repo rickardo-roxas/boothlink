@@ -17,6 +17,10 @@ class OrgSelectModel {
         return $this->vendorQueries->getOrgByID($org_id);
     }
 
+    public function getOrganizationsByVendorID($vendor_id){
+        return $this->vendorQueries->getOrganizationsByVendorID($vendor_id);
+    }
+
     public function addOrganization($name, $image) {
         return $this->vendorQueries->addOrganization($name, $image);
     }
