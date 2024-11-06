@@ -5,18 +5,14 @@
 }
 .grid-container {
     grid-template-columns: 1rem 1rem 1rem;
-    grid-template-rows: auto auto auto;
-    display: grid;
-    padding: 1rem;
-    gap: 1rem;
+    grid-template-rows: auto;
+    gap: 4rem;
 }
 
 
 .Item1 {
     width: 133rem;
     height: 25rem;
-    grid-column: 1 / 2;
-
 }
 
 .tagline {
@@ -53,26 +49,24 @@
     flex-direction: row;
     justify-content: center;
     gap: 5rem;
-    margin-top: 3rem;
+    margin-bottom: 14rem;
 }
 
 .button, .add-button {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     cursor: pointer;
     border-radius: 300px;
     transition: transform 0.2s ease;
 }
 
-.button img {
+.button {
+    background-color: #1EBDEF;
     width: 300px;
     height: 300px;
     border-radius: 300px;
 }
 
-.add-button {
-    background-color: #53c1ea;
-}
 
 .add-button img {
     width: 300px;
@@ -85,7 +79,6 @@
 }
 
 .add-button:hover {
-    background-color: #005f7a;
     transform: scale(1.1);
 }
 
