@@ -1,16 +1,17 @@
 <?php
-$pageTitle = "Schedule";
+$pageTitle = "SchedulePageModel";
 require('view/page-fragments/header.php');
 ?>
 <link rel="stylesheet" href="<?php echo BASE_URL ?>/public/css/vendor/schedule.css">
 <link rel="stylesheet" href="<?php echo BASE_URL ?>/public/css/vendor/schedule_selector.css">
 <script src="<?php echo BASE_URL ?>/public/javascript/vendor/schedule.js" defer></script>
 <script src="<?php echo BASE_URL ?>/public/javascript/vendor/schedule_selector.js" defer></script>
-
 <main>
+    <input type="hidden" id="schedule-week" value="<?php echo htmlspecialchars(json_encode($scheduleThisWeek), ENT_QUOTES);;?>">
     <div class="main-table">
         <div class="table-header">
             <p>Schedule</p>
+            <p><?php echo $dateRange?></p>
             <div class="action-buttons">
                 <button class="add-button" onclick="openSchedulePopup()">
                     <img src="<?php echo BASE_URL?>/assets/icons/add-blue-outline.png" alt="Add Icon" class="add-icon">
@@ -18,7 +19,6 @@ require('view/page-fragments/header.php');
                 </button>
             </div>
         </div>
-
         <!-- Schedule Table -->
         <div class="table-schedule">
             <table>
@@ -33,16 +33,7 @@ require('view/page-fragments/header.php');
                 </tr>
                 </thead>
                 <tbody>
-                <?php for ($i = 0; $i < 6; $i++): ?>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                <?php endfor; ?>
+                <!--To be populated using schedule.js-->
                 </tbody>
             </table>
         </div>
