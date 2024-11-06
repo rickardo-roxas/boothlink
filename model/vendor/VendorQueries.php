@@ -67,15 +67,6 @@ class VendorQueries {
         $stmt3->close();
     }
 
-    /**
-     * Updates the product details in the database
-     */
-    public function updateProduct($prod_id, $org_id, $sched_id, $category, $description, $prod_serv_name, $price) {
-        $stmt = $this->conn->prepare("UPDATE prod_serv SET org_id = ?, sched_id = ?, category = ?, description = ?, prod_serv_name = ?, price = ? WHERE prod_id = ?");
-        $stmt->bind_param('iisssdi', $org_id, $sched_id, $category, $description, $prod_serv_name, $price, $prod_id);
-        $stmt->execute();
-        $stmt->close();
-    }
 
     /**
      * Returns all products listed in the database with respect to a vendor
@@ -151,6 +142,30 @@ class VendorQueries {
         }
         return $products;
     }
+    public function getProductsByID($prod_id) {
+        $query = "SELECT prod_id, prod_serv_name, category, price, status, description FROM prod_serv WHERE prod_id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $prod_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
+
+    public function updateProduct($prod_id, $name, $type, $price, $status, $description) {
+        $query = "UPDATE prod_serv SET prod_serv_name = ?, category = ?, price = ?, status = ?, description = ? WHERE prod_id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("ssdssi", $name, $type, $price, $status, $description, $prod_id);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            error_log("Error updating product: " . $stmt->error);
+            return false;
+        }
+    }
+
+
+
 
 
 
