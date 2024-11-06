@@ -18,8 +18,8 @@
             <div class="org-selector">
                 <div class="org-container" id="button-container">
                     <?php foreach ($organizations as $organization): ?>
-                        <a href="/cs-312_boothlink/select_org?org_id=<?= htmlspecialchars($organization['id']); ?>" class="button">
-                        <?= htmlspecialchars($organization['name']); ?>
+                        <a href="/cs-312_boothlink/select_org?org_id=<?= htmlspecialchars($organization['org_id']); ?>" class="button">
+                            <?= htmlspecialchars($organization['org_name']); ?>
                         </a>
                     <?php endforeach; ?>
                     <div class="add-button" id="add-button">

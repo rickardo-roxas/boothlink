@@ -95,4 +95,9 @@ class Login {
             'username' => $this->username
         ];
     }
+
+    public function getVendorID($username) {
+
+    }
+
 }
