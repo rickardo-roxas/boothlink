@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2024 at 02:12 PM
+-- Generation Time: Nov 06, 2024 at 03:28 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -563,14 +563,14 @@ ALTER TABLE `vendor`
 -- Constraints for table `prod_img`
 --
 ALTER TABLE `prod_img`
-  ADD CONSTRAINT `fk_prod_img(prodserv)` FOREIGN KEY (`prod_id`) REFERENCES `prod_serv` (`prod_id`);
+  ADD CONSTRAINT `fk_prod_img(prodserv)` FOREIGN KEY (`prod_id`) REFERENCES `prod_serv` (`prod_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `prod_org_sched`
 --
 ALTER TABLE `prod_org_sched`
   ADD CONSTRAINT `fk_org_id` FOREIGN KEY (`org_id`) REFERENCES `organization` (`org_id`),
-  ADD CONSTRAINT `fk_prod_id` FOREIGN KEY (`prod_id`) REFERENCES `prod_serv` (`prod_id`),
+  ADD CONSTRAINT `fk_prod_id` FOREIGN KEY (`prod_id`) REFERENCES `prod_serv` (`prod_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_sched_id` FOREIGN KEY (`sched_id`) REFERENCES `schedule` (`sched_id`);
 
 --
