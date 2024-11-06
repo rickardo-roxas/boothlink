@@ -16,4 +16,8 @@ class EditProductsModel {
     public function updateProducts($prod_id, $name, $type, $price, $status, $description) {
         return $this->vendorQueries->updateProduct($prod_id, $name, $type, $price, $status, $description);
     }
+
+    public function deleteProducts($prod_id){
+        return $this->vendorQueries->deleteProduct($prod_id);
+    }
 }

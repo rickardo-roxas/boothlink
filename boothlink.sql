@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Oct 21, 2024 at 02:17 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.1.17
+-- Host: 127.0.0.1
+-- Generation Time: Nov 06, 2024 at 02:12 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `boothlink`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `admin_id` int(11) NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `username`, `password`) VALUES
+(1, 'admin1', 'admin1'),
+(2, 'admin2', 'admin2'),
+(3, 'admin3', 'admin3');
 
 -- --------------------------------------------------------
 
@@ -115,7 +136,7 @@ INSERT INTO `organization` (`org_id`, `org_name`, `org_img`, `fb_link`, `x_link`
 --
 
 CREATE TABLE `prod_img` (
-  `prod_serv_id` int(11) NOT NULL,
+  `prod_id` int(11) NOT NULL,
   `img_src` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -123,7 +144,7 @@ CREATE TABLE `prod_img` (
 -- Dumping data for table `prod_img`
 --
 
-INSERT INTO `prod_img` (`prod_serv_id`, `img_src`) VALUES
+INSERT INTO `prod_img` (`prod_id`, `img_src`) VALUES
 (1, 'inc_clothing_tee.jpg'),
 (2, 'bmeg_food.jpg'),
 (3, 'swim_suit.jpg'),
@@ -175,7 +196,7 @@ INSERT INTO `prod_org_sched` (`prod_id`, `org_id`, `sched_id`) VALUES
 --
 
 CREATE TABLE `prod_serv` (
-  `prod_serv_id` int(11) NOT NULL,
+  `prod_id` int(11) NOT NULL,
   `status` varchar(45) NOT NULL,
   `category` varchar(45) NOT NULL,
   `prod_serv_name` varchar(45) NOT NULL,
@@ -187,21 +208,21 @@ CREATE TABLE `prod_serv` (
 -- Dumping data for table `prod_serv`
 --
 
-INSERT INTO `prod_serv` (`prod_serv_id`, `status`, `category`, `prod_serv_name`, `price`, `description`) VALUES
-(1, 'In Stock', 'Product', 'INC Clothing Tee', 400, 'Updated description'),
+INSERT INTO `prod_serv` (`prod_id`, `status`, `category`, `prod_serv_name`, `price`, `description`) VALUES
+(1, 'In Stock', 'Item', 'INC Clothing Tee', 400, 'Updated description'),
 (2, 'Out of Stock', 'Food', 'B-Meg', 100, 'Delicious food'),
-(3, 'In Stock', 'Product', 'Clothing', 350, 'Swim Suit for summer'),
-(4, 'In Stock', 'Product', 'Gshock', 6000, 'Watch for handsome guys'),
+(3, 'In Stock', 'Item', 'Clothing', 350, 'Swim Suit for summer'),
+(4, 'In Stock', 'Item', 'Gshock', 6000, 'Watch for handsome guysasdf'),
 (5, 'In Stock', 'Service', 'Serenade', 150, 'Sing a song to someone'),
-(6, 'In Stock', 'Product', 'Sports Jacket', 500, 'Lightweight jacket perfect for workouts.'),
-(7, 'Out of Stock', 'Product', 'Face Paint', 100, 'Design your face with paint'),
+(6, 'In Stock', 'Item', 'Sports Jacket', 500, 'Lightweight jacket perfect for workouts.'),
+(7, 'Out of Stock', 'Service', 'Face Paint', 100, 'Design your face with paint'),
 (8, 'In Stock', 'Service', 'Items for Hire', 300, 'Rent any item'),
 (9, 'In Stock', 'Food', 'Blueberry Cheesecake', 115, 'Creamy cheesecake with fresh blueberries.'),
-(10, 'In Stock', 'Product', 'Movie Ticket', 350, 'Ticket for the latest blockbuster movie.'),
-(11, 'In Stock', 'Product', 'Smoothie', 110, 'Refreshing mixed fruit smoothie.'),
-(12, 'Out of Stock', 'Product', 'Cotton T-Shirt', 350, 'Comfortable cotton t-shirt available in all s'),
-(13, 'In Stock', 'Product', 'Spaghetti Bolognese', 180, 'Classic spaghetti with a rich meat sauce.'),
-(14, 'In Stock', 'Product', 'Leather Wallet', 750, 'Durable leather wallet with multiple compartm'),
+(10, 'In Stock', 'Item', 'Movie Ticket', 350, 'Ticket for the latest blockbuster movie.'),
+(11, 'In Stock', 'Food', 'Smoothie', 110, 'testing'),
+(12, 'Out of Stock', 'Item', 'Cotton T-Shirt', 350, 'Comfortable cotton t-shirt available in all s'),
+(13, 'In Stock', 'Food', 'Spaghetti Bolognese', 180, 'Classic spaghetti with a rich meat sauce.'),
+(14, 'In Stock', 'Item', 'Leather Wallet', 750, 'Durable leather wallet with multiple compartm'),
 (15, 'In Stock', 'Food', 'Ice Cream Sundae', 65, 'Vanilla ice cream topped with chocolate syrup');
 
 -- --------------------------------------------------------
@@ -213,7 +234,7 @@ INSERT INTO `prod_serv` (`prod_serv_id`, `status`, `category`, `prod_serv_name`,
 CREATE TABLE `reservation` (
   `reservation_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
+  `prod_id` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
   `date` date NOT NULL,
   `status` varchar(45) NOT NULL
@@ -223,17 +244,37 @@ CREATE TABLE `reservation` (
 -- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`reservation_id`, `customer_id`, `product_id`, `qty`, `date`, `status`) VALUES
+INSERT INTO `reservation` (`reservation_id`, `customer_id`, `prod_id`, `qty`, `date`, `status`) VALUES
 (1, 1, 3, 2, '2024-10-20', 'Pending'),
 (2, 2, 5, 1, '2024-10-21', 'Cancelled'),
-(3, 3, 7, 3, '2024-10-22', 'Completed'),
+(3, 3, 7, 3, '2024-10-25', 'Completed'),
 (4, 1, 1, 4, '2024-10-23', 'Pending'),
 (5, 4, 2, 2, '2024-10-24', 'Cancelled'),
-(6, 2, 9, 1, '2024-10-25', 'Completed'),
+(6, 2, 9, 1, '2024-10-29', 'Completed'),
 (7, 3, 4, 2, '2024-10-26', 'Pending'),
 (8, 5, 6, 1, '2024-10-27', 'Cancelled'),
 (9, 1, 8, 3, '2024-10-28', 'Completed'),
-(10, 4, 10, 5, '2024-10-29', 'Pending');
+(10, 4, 10, 5, '2024-10-29', 'Pending'),
+(11, 3, 5, 2, '2024-11-07', 'Pending'),
+(12, 4, 12, 1, '2024-11-07', 'Completed'),
+(13, 2, 7, 3, '2024-11-07', 'Pending'),
+(14, 5, 3, 5, '2024-11-06', 'Completed'),
+(15, 6, 8, 1, '2024-11-07', 'Cancelled'),
+(16, 7, 11, 4, '2024-11-06', 'Completed'),
+(17, 8, 2, 2, '2024-11-06', 'Pending'),
+(18, 3, 10, 1, '2024-11-06', 'Completed'),
+(19, 9, 6, 3, '2024-11-06', 'Pending'),
+(20, 10, 4, 2, '2024-11-05', 'Completed'),
+(21, 11, 9, 1, '2024-11-07', 'Pending'),
+(22, 12, 13, 5, '2024-11-07', 'Cancelled'),
+(23, 1, 15, 2, '2024-11-07', 'Pending'),
+(24, 3, 2, 3, '2024-11-06', 'Completed'),
+(25, 4, 14, 1, '2024-11-08', 'Pending'),
+(26, 5, 1, 6, '2024-11-07', 'Completed'),
+(27, 6, 8, 2, '2024-11-08', 'Cancelled'),
+(28, 7, 10, 1, '2024-11-06', 'Completed'),
+(29, 8, 6, 4, '2024-11-09', 'Pending'),
+(30, 9, 5, 1, '2024-11-06', 'Completed');
 
 -- --------------------------------------------------------
 
@@ -255,7 +296,16 @@ CREATE TABLE `sales` (
 INSERT INTO `sales` (`sales_id`, `customer_id`, `reservation_id`, `grand_total`) VALUES
 (1, 2, 6, 100),
 (2, 3, 3, 150),
-(3, 1, 9, 200);
+(3, 1, 9, 200),
+(4, 4, 12, 350),
+(5, 5, 14, 1750),
+(6, 7, 16, 440),
+(7, 3, 18, 350),
+(8, 10, 20, 12000),
+(9, 3, 24, 300),
+(10, 5, 26, 2400),
+(11, 7, 28, 350),
+(12, 9, 30, 150);
 
 -- --------------------------------------------------------
 
@@ -278,15 +328,36 @@ CREATE TABLE `schedule` (
 
 INSERT INTO `schedule` (`sched_id`, `loc_id`, `org_id`, `date`, `start_time`, `end_time`) VALUES
 (1, 4, 1, '2024-10-23', '09:00:00', '11:00:00'),
-(2, 7, 2, '2024-11-02', '13:30:00', '15:30:00'),
+(2, 7, 3, '2024-11-02', '13:30:00', '15:30:00'),
 (3, 2, 1, '2024-10-25', '08:00:00', '10:00:00'),
-(4, 9, 2, '2024-10-27', '14:00:00', '16:00:00'),
-(5, 1, 1, '2024-11-01', '07:00:00', '09:00:00'),
-(6, 5, 2, '2024-10-30', '10:30:00', '12:30:00'),
+(4, 9, 1, '2024-10-27', '14:00:00', '16:00:00'),
+(5, 1, 2, '2024-11-01', '07:00:00', '09:00:00'),
+(6, 5, 3, '2024-10-30', '10:30:00', '12:30:00'),
 (7, 3, 1, '2024-10-28', '11:00:00', '13:00:00'),
-(8, 6, 2, '2024-11-05', '16:00:00', '18:00:00'),
-(9, 10, 1, '2024-10-26', '09:30:00', '11:30:00'),
-(10, 8, 2, '2024-11-03', '12:00:00', '14:00:00');
+(8, 6, 3, '2024-11-05', '16:00:00', '18:00:00'),
+(9, 10, 2, '2024-10-26', '09:30:00', '11:30:00'),
+(10, 8, 1, '2024-11-03', '12:00:00', '14:00:00'),
+(11, 2, 3, '2024-11-06', '09:00:00', '11:00:00'),
+(12, 1, 1, '2024-11-06', '12:00:00', '14:00:00'),
+(13, 2, 2, '2024-11-06', '15:00:00', '17:00:00'),
+(14, 3, 3, '2024-11-06', '13:00:00', '15:00:00'),
+(15, 4, 1, '2024-11-06', '08:00:00', '09:30:00'),
+(16, 5, 2, '2024-11-06', '10:00:00', '12:30:00'),
+(17, 6, 3, '2024-11-06', '14:00:00', '16:00:00'),
+(18, 7, 1, '2024-11-06', '11:00:00', '15:00:00'),
+(19, 8, 2, '2024-11-06', '08:30:00', '11:00:00'),
+(20, 9, 3, '2024-11-06', '13:00:00', '15:30:00'),
+(21, 10, 1, '2024-11-06', '13:00:00', '14:00:00'),
+(22, 1, 2, '2024-11-07', '09:00:00', '11:00:00'),
+(23, 2, 3, '2024-11-07', '12:00:00', '14:00:00'),
+(24, 3, 1, '2024-11-07', '15:00:00', '17:00:00'),
+(25, 4, 2, '2024-11-07', '08:00:00', '09:30:00'),
+(26, 5, 3, '2024-11-07', '10:00:00', '12:30:00'),
+(27, 6, 1, '2024-11-07', '14:00:00', '16:00:00'),
+(28, 7, 2, '2024-11-07', '17:00:00', '19:00:00'),
+(29, 8, 3, '2024-11-07', '19:00:00', '21:00:00'),
+(30, 9, 1, '2024-11-07', '21:00:00', '22:30:00'),
+(31, 10, 2, '2024-11-07', '23:00:00', '24:00:00');
 
 -- --------------------------------------------------------
 
@@ -348,6 +419,13 @@ INSERT INTO `vendor_org` (`org_id`, `vendor_id`) VALUES
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`admin_id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
@@ -369,7 +447,7 @@ ALTER TABLE `organization`
 -- Indexes for table `prod_img`
 --
 ALTER TABLE `prod_img`
-  ADD KEY `fk_prod_img(prodserv)` (`prod_serv_id`);
+  ADD KEY `fk_prod_img(prodserv)` (`prod_id`);
 
 --
 -- Indexes for table `prod_org_sched`
@@ -383,7 +461,7 @@ ALTER TABLE `prod_org_sched`
 -- Indexes for table `prod_serv`
 --
 ALTER TABLE `prod_serv`
-  ADD PRIMARY KEY (`prod_serv_id`);
+  ADD PRIMARY KEY (`prod_id`);
 
 --
 -- Indexes for table `reservation`
@@ -424,6 +502,12 @@ ALTER TABLE `vendor_org`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
@@ -445,25 +529,25 @@ ALTER TABLE `organization`
 -- AUTO_INCREMENT for table `prod_serv`
 --
 ALTER TABLE `prod_serv`
-  MODIFY `prod_serv_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `sched_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `sched_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `vendor`
@@ -479,14 +563,14 @@ ALTER TABLE `vendor`
 -- Constraints for table `prod_img`
 --
 ALTER TABLE `prod_img`
-  ADD CONSTRAINT `fk_prod_img(prodserv)` FOREIGN KEY (`prod_serv_id`) REFERENCES `prod_serv` (`prod_serv_id`);
+  ADD CONSTRAINT `fk_prod_img(prodserv)` FOREIGN KEY (`prod_id`) REFERENCES `prod_serv` (`prod_id`);
 
 --
 -- Constraints for table `prod_org_sched`
 --
 ALTER TABLE `prod_org_sched`
   ADD CONSTRAINT `fk_org_id` FOREIGN KEY (`org_id`) REFERENCES `organization` (`org_id`),
-  ADD CONSTRAINT `fk_prod_id` FOREIGN KEY (`prod_id`) REFERENCES `prod_serv` (`prod_serv_id`),
+  ADD CONSTRAINT `fk_prod_id` FOREIGN KEY (`prod_id`) REFERENCES `prod_serv` (`prod_id`),
   ADD CONSTRAINT `fk_sched_id` FOREIGN KEY (`sched_id`) REFERENCES `schedule` (`sched_id`);
 
 --

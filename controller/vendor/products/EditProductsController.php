@@ -35,6 +35,23 @@ class EditProductsController {
             $this->handlePostRequest($prod_id);
         }
     }
+    public function delete() {
+
+        $prod_id = $_POST['prod_id'] ?? null;
+
+        if ($prod_id) {
+            $result = $this->editProductsModel->deleteProducts($prod_id);
+
+            if ($result) {
+                header("Location: /cs-312_boothlink/products?success=1");
+            } else {
+                header("Location: /cs-312_boothlink/products?error=1");
+            }
+        } else {
+            echo "Product ID missing.";
+        }
+        exit();
+    }
 
     // Handle GET request: Fetch and display the product data
     private function handleGetRequest($prod_id) {

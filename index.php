@@ -106,6 +106,10 @@ $router->addRoute('POST', '/products/edit-product', function() use ($conn) {
     (new EditProductsController())->index();
 });
 
+$router->addRoute('POST', '/products/delete-product', function() use ($conn) {
+    require_once __DIR__ . '/controller/vendor/products/EditProductsController.php';
+    (new EditProductsController())->delete();
+});
 
 // Definition of Customer routes
 // TODO by Finals

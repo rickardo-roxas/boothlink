@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../../../public/css/vendor/add_edit_products.css">
 </head>
 <body>
-
 <div class="container">
     <!-- Form Section -->
     <form class="form-container" method="POST" action="/cs-312_boothlink/products/edit-product">
