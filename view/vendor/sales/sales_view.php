@@ -4,10 +4,12 @@ require (__DIR__ . '/../../page-fragments/Header.php');
 ?>
 <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/sales.css">
 
-<script src="<?php echo BASE_URL?>/public/javascript/vendor/sales.js" defer></script>
 
 <input type="hidden" id="productList" value='<?php echo htmlspecialchars(json_encode($productList), ENT_QUOTES); ?>'>
+<input type="hidden" id="dataSalesToday" value='<?php echo htmlspecialchars(json_encode($salesToday), ENT_QUOTES); ?>'>
+<input type="hidden" id="dataSalesWeek" value='<?php echo htmlspecialchars(json_encode($salesWeek), ENT_QUOTES); ?>'>
 
+<script src="<?php echo BASE_URL?>/public/javascript/vendor/sales.js" defer></script>
 
 <main class = "sales">
     <div class="grid-container">
@@ -71,10 +73,10 @@ require (__DIR__ . '/../../page-fragments/Header.php');
         <section id = "sales-performance" class = "card">
             <h1>Sales Performance</h1>
             <h2>Today:</h2>
-            <h4> &emsp;&emsp;&emsp; &#8369; <?php echo $salesToday ?>.00</h4>
+            <h4 id="todayTag"></h4>
 
             <h2>This Week:</h2>
-            <h4> &emsp;&emsp;&emsp; &#8369; <?php echo $salesWeek ?>.00</h4>
+            <h4 id="weekTag"></h4>
         </section>
 
         <section id = "sales-comparison" class = "card">

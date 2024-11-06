@@ -32,10 +32,25 @@ function populateTable(productList) {
         body.appendChild(row);
     }
 }
+
+function populateSalesComparison(today, tomorrow) {
+    let salesToday = document.getElementById("todayTag");
+    salesToday.innerHTML = "₱" + today + ".00";
+
+    let salesWeek = document.getElementById("weekTag");
+    salesWeek.innerHTML = "₱" + tomorrow + ".00"
+}
+
 // Get the hidden input element
 let productList = document.getElementById('productList');
+let today = document.getElementById('dataSalesToday')
+let week = document.getElementById('dataSalesWeek')
 
 // Parse the JSON data from the hidden input
-let products = JSON.parse(productList.value);
+let productsJSON = JSON.parse(productList.value);
+let todayJSON = JSON.parse(today.value);
+let weekJSON = JSON.parse(week.value);
 
-populateTable(products);
+
+populateTable(productsJSON);
+populateSalesComparison(todayJSON,weekJSON);
