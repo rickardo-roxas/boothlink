@@ -47,12 +47,16 @@ class SalesController {
     }
 
 
-    public function initPage() {
+    public function initPage() : void{
         $salesToday = $this->getModel()->getSalesToday();
         $salesWeek = $this->getModel()->getSalesWeek();
         $array = $this->getModel() ->definePoints();
         $xValues = $this->getModel()->getXValues();
         $labels = $this->getModel()->getLabels();
+        $productList = $this->products;
+
+        require_once 'view/vendor/sales/sales_view.php';
+        /*
         header('Location: /cs-312_boothlink/view/vendor/sales/sales_view.php?productList='
             .serialize($this->products)
             . "&salesToday=" . $salesToday
@@ -61,6 +65,7 @@ class SalesController {
             . "&labels=" . serialize($labels)
             . "&array=" . serialize($array)
         );
+        */
         exit();
     }
 }

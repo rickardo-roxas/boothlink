@@ -20,8 +20,6 @@ class LoginController {
                 $_SESSION['user'] = $username;
                 $_SESSION['vendor_id'] = $login->getUserID($username);
 
-                echo "Login successful. User session set: " . $_SESSION['user'];
-
                 if (!isset($_SESSION['first_time'])) {
                     $_SESSION['first_time'] = true; // Set first time
                 } else {

@@ -49,6 +49,9 @@ class PageHandler
                 $controller->index();
                 break;
 
+            case '/schedule/add-schedule':
+
+
             case '/sales':
                 $title = 'Sales';
                 require __DIR__ . '/../../controller/vendor/sales/SalesController.php';
@@ -81,6 +84,14 @@ class PageHandler
                     header("Location: /org_select");
                     exit();
                 }
+                break;
+
+            case '/products/edit-product':
+                $title = 'Edit Product';
+                require __DIR__ . '/../../controller/vendor/products/EditProductsController.php';
+                $controller = new EditProductsController();
+                $prod_id = $_GET['prod_id'] ?? null;
+                $controller->index($prod_id);
                 break;
 
             default:

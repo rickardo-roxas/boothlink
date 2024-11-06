@@ -13,6 +13,7 @@ include 'config/Connection.php';
 require 'controller/core/Router.php';
 require 'controller/core/PageHandler.php';
 
+
 $router = new Router();
 $pageHandler = new PageHandler();
 
@@ -68,6 +69,10 @@ $router->addRoute('GET', '/schedule', function () use ($pageHandler) {
     $pageHandler->renderVendor('/schedule', false);
  });
 
+$router->addRoute('POST', '/schedule/add-schedule', function () use ($pageHandler){
+    $pageHandler->renderVendor('/schedule/add-schedule', false);
+});
+
 // Sales route
 $router->addRoute('GET', '/sales', function() use ($pageHandler){
     $pageHandler->renderVendor('/sales', false);
@@ -87,6 +92,18 @@ $router->addRoute('GET', '/select_org', function() use ($pageHandler) {
         header('Location: /org_select'); // Redirect back if no org_id is provided
         exit();
     }
+});
+
+
+// Edit Product GET route
+$router->addRoute('GET', '/products/edit-product', function() use ($pageHandler) {
+    $pageHandler->renderVendor('/products/edit-product', false);
+});
+
+// Edit Product POST route should go to EditProductsController
+$router->addRoute('POST', '/products/edit-product', function() use ($conn) {
+    require_once __DIR__ . '/controller/vendor/products/EditProductsController.php';
+    (new EditProductsController())->index();
 });
 
 
