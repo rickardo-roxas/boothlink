@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Product</title>
-    <link rel="stylesheet" href="../../../public/css/vendor/add_edit_products.css">
-</head>
-<body>
+<?php
+$pageTitle = "Products";
+require 'view/page-fragments/Header.php'
+?>
+<link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/add_edit_products.css">
+<main>
 <div class="container">
     <!-- Form Section -->
     <form class="form-container" method="POST" action="/cs-312_boothlink/products/edit-product">
@@ -64,4 +61,5 @@
     </form>
 </div>
 </body>
-</html>
+</main>
+<?php require 'view/page-fragments/Footer.php' ?>

@@ -117,7 +117,6 @@ $router->addRoute('POST', '/products/delete-product', function() use ($conn) {
 // Check if the user is logged in
 if (isset($_SESSION['user'])) {
     $router->handleRequest();
-    echo "User is logged in";
 } else {
     $pageHandler = new PageHandler();
     $pageHandler->renderAuth('/login', $conn);
