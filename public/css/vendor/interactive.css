@@ -63,3 +63,8 @@ nav ul li:hover::after { width: 100%; }
     box-shadow: none;
     transform: scale(0.98);
 }
+
+.active {
+    color: var(--sky-blue);
+    text-decoration: underline;
+}

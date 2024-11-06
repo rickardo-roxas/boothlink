@@ -1,4 +1,7 @@
-<?php require 'view/page-fragments/Header.php'?>
+<?php
+$pageTitle = "Select Organization";
+require 'view/page-fragments/Header.php'
+?>
 <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/orgselector.css">
 <main>
     <div id="salesboard" class="container">

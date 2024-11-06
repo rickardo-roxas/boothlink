@@ -1,6 +1,8 @@
-<?php require ('view/page-fragments/header.php'); ?>
-<link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/add_edit_products.css"></link>
-<script src="<?php echo BASE_URL?>/public/javascript/vendor/add_product.js" defer></script>
+<?php
+$pageTitle = "Products";
+require ('view/page-fragments/header.php');
+?>
+<link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/add_edit_products.css">
 <main>
     <div class="container">
         <!-- Form Section -->
@@ -43,7 +45,7 @@
                     <textarea name="description" id="description" required oninput="updatePreview()"></textarea>
                 </div>
 
-                <!-- <div class="form-group schedule-group">
+                <div class="form-group schedule-group">
                     <label>Schedule</label>
                     <div class="checkbox-group">
                         <label><input type="checkbox"> Date 1</label>
@@ -52,24 +54,24 @@
                         <label><input type="checkbox"> Date 4</label>
                         <label><input type="checkbox"> Date 5</label>
                     </div>
-                </div> -->
+                </div>
             </div>
 
             <!-- Preview Section -->
             <div class="preview-container">
                 <div class="header">Preview</div>
                 
-                <!-- <div class="file-upload">
+                <div class="file-upload">
                     <input type="file" id="file-input" multiple accept="image/*" onchange="previewImages()" style="display: none;">
                     <label for="file-input" class="btn-file">Upload Image</label>
                     <span>Choose images from computer (max. 3 images)</span>
                 </div>
 
-                <div class="image-preview">
+                <div class="image-preview" id="image-preview">
                     <div>Preview Photo</div>
                     <div>Preview Photo</div>
                     <div>Preview Photo</div>
-                </div> -->
+                </div>
 
                 <div class="preview-box">
                     <h3 id="preview-name">Product Name</h3>
@@ -89,3 +91,12 @@
     </div>
 </main>
 <?php require 'view/page-fragments/Footer.php'; ?>
+<script src="<?php echo BASE_URL?>/public/javascript/vendor/add_product.js" defer></script>
+
+<?php if (isset($_SESSION['product_added']) && $_SESSION['product_added']): ?>
+    <script type="text/javascript">
+        // Set the flag for JavaScript alert in sessionStorage
+        sessionStorage.setItem('productAdded', 'true');
+    </script>
+    <?php unset($_SESSION['product_added']); ?> <!-- Clear the session flag after use -->
+<?php endif; ?>
