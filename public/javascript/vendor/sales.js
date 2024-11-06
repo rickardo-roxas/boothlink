@@ -6,18 +6,26 @@ function populateTable(productList) {
         let row = document.createElement('tr');
         row.style.height = "8vh";
 
-        // Product image cell
+        // Product cell
         let product = document.createElement('td');
         product.classList.add('product-td');
 
-        // Create an img element
+        let productInfo = document.createElement('div');
+        productInfo.classList.add('product-info');
+
         let img = document.createElement('img');
         img.src = "/cs-312_boothlink/assets/prod_img/" + productList[index].img_src;
         img.alt = productList[index].name || "Product Image";
-        img.classList.add('product-img'); // Optional: add a class for styling if needed
+        img.classList.add('product-img');
 
-        // Append the image to the td element
-        product.appendChild(img);
+        let name = document.createElement('span');
+        name.classList.add('product-name');
+        name.textContent = productList[index].prod_serv_name;
+
+        productInfo.appendChild(img);
+        productInfo.appendChild(name);
+
+        product.appendChild(productInfo)
 
         // Price cell
         let price = document.createElement('td');
