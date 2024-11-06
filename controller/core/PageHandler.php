@@ -49,6 +49,9 @@ class PageHandler
                 $controller->index();
                 break;
 
+            case '/schedule/add-schedule':
+
+
             case '/sales':
                 $title = 'Sales';
                 require __DIR__ . '/../../controller/vendor/sales/SalesController.php';

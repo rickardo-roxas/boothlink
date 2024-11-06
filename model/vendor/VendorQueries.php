@@ -575,6 +575,43 @@ class VendorQueries {
 
         return $result;
     }
+
+    public function addSchedule($date, $startTime, $endTime, $loc_id): void {
+        $query = "INSERT INTO schedule (date, start_time, end_time, loc_id) VALUES (?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("sssi", $date, $startTime, $endTime, $loc_id);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function getSchedule($org_id) {
+        $query = "SELECT prod_org_sched.org_id, schedule.*, location.loc_room, location.stall_number 
+            FROM prod_org_sched
+            JOIN schedule ON schedule.sched_id = prod_org_sched.sched_id
+            JOIN location ON location.loc_id = schedule.loc_id
+            WHERE org_id = ?";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $org_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $schedules = [];
+
+        if ($row = $result->fetch_assoc()) {
+            $schedule = new Schedule();
+            $schedule->setDate($row['date']);
+            $schedule->setStartTime($row['start_time']);
+            $schedule->setEndTime($row['end_time']);
+            $schedule->setLocationRoom($row['loc_room']);
+            $schedule->setLocationStallNum($row['stall_number']);
+
+            $schedules[] = $schedule;
+        }
+
+        $stmt->close();
+        return $schedules;
+    }
 }
 
 // Example usage
