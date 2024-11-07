@@ -20,11 +20,13 @@ class SalesController {
     private $model;
 
     private $products;
+    private $org_id;
 
     public function __construct() {
 
             include(__DIR__ . '/../../../model/vendor/sales/SalesModel.php');
             $this->model = new SalesModel();
+            $this->org_id = $_SESSION['org_id'];
     }
 
     public function getModel(): SalesModel
@@ -33,24 +35,26 @@ class SalesController {
     }
 
     public function index() {
-        $this->products = $this->getModel()->getProducts();
+        $this->products = $this->getModel()->getProducts($this->org_id);
         $this->initPage();
 
     }
     public function filteredCategory($filter) {
-        $this->products = $this->model->filterCategoryUsing($filter);
+        $this->org_id = $_SESSION['org_id'];
+        $this->products = $this->model->filterCategoryUsing($this->org_id, $filter);
         $this->initPage();
     }
     public function filteredStatus($filter) {
-        $this->products = $this->model->filterStatusUsing($filter);
+        $this->org_id = $_SESSION['org_id'];
+        $this->products = $this->model->filterStatusUsing($this->org_id, $filter);
         $this->initPage();
     }
 
 
     public function initPage() : void{
-        $salesToday = $this->getModel()->getSalesToday();
-        $salesWeek = $this->getModel()->getSalesWeek();
-        $array = $this->getModel() ->definePoints();
+        $salesToday = $this->getModel()->getSalesToday($this->org_id);
+        $salesWeek = $this->getModel()->getSalesWeek($this->org_id);
+        $array = $this->getModel() ->definePoints($this->org_id);
         $xValues = $this->getModel()->getXValues();
         $labels = $this->getModel()->getLabels();
         $productList = $this->products;

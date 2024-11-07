@@ -18,30 +18,30 @@ class SalesModel{
 
     public function __construct() {
         $this->vendorQueries = new VendorQueries();
-        $this->orgID = 1;
+
     }
 
-    public function getProducts(){
-        return $this->vendorQueries->getProductSales($this->orgID);
+    public function getProducts($org_id){
+        return $this->vendorQueries->getProductSales($org_id);
     }
 
-    public function filterCategoryUsing($filter) {
-        return $this->vendorQueries->getProductsByCategory($this->orgID, $filter);
+    public function filterCategoryUsing($org_id, $filter) {
+        return $this->vendorQueries->getProductsByCategory($org_id, $filter);
     }
-    public function filterStatusUsing($filter) {
-        return $this->vendorQueries->getProductsByStatus($this->orgID, $filter);
-    }
-
-    public function getSalesToday() {
-        return $this->vendorQueries->getSalesToday($this->orgID);
+    public function filterStatusUsing($org_id, $filter) {
+        return $this->vendorQueries->getProductsByStatus($org_id, $filter);
     }
 
-    public function getSalesWeek() {
-        return $this->vendorQueries->getSalesThisWeek($this->orgID);
+    public function getSalesToday($org_id) {
+        return $this->vendorQueries->getSalesToday($org_id);
     }
 
-    public function definePoints() {
-        $array = $this->vendorQueries->getSalesDataPointsForWeek($this->orgID);
+    public function getSalesWeek($org_id) {
+        return $this->vendorQueries->getSalesThisWeek($org_id);
+    }
+
+    public function definePoints($org_id) {
+        $array = $this->vendorQueries->getSalesDataPointsForWeek($org_id);
         foreach ($array as $point) :
             $this->xyValues[] = $point['amounts'];
             $this->labels[] = $point['dates'];
