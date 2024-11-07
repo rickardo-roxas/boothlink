@@ -7,7 +7,7 @@ class Login {
         $this->conn = $conn;
     }
 
-    public function authenticate($username, $password) {
+    public function authenticateVendor($username, $password) {
         $query = "SELECT email, username, password FROM vendor WHERE username = ? LIMIT 1";
 
         $stmt = $this->conn->prepare($query);

@@ -16,7 +16,7 @@ class LoginController {
             $password = $_POST['password'];
 
             $login = new Login($this->conn);
-            if ($login->authenticate($username, $password)) {
+            if ($login->authenticateVendor($username, $password)) {
                 $_SESSION['user'] = $username;
                 $_SESSION['vendor_id'] = $login->getUserID($username);
 
@@ -28,6 +28,13 @@ class LoginController {
                 header("Location: /cs-312_boothlink/org_select");
                 exit();
             } else {
+
+                /** TODO: Insert Customer login authentication */
+                $_SESSION['user'] = "rithik"; //TODO: Change
+                $_SESSION['customer_id'] = 'rithik';  //TODO: Change
+
+                header("Location: /cs-312_boothlink/home");
+
                 echo "Login failed! Invalid username or password.";
             }
         }

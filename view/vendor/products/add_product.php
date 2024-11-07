@@ -1,6 +1,6 @@
 <?php
 $pageTitle = "Products";
-require ('view/page-fragments/header.php');
+require('view/vendor/page-fragments/Header.php');
 ?>
 <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/add_edit_products.css">
 <main>
@@ -90,7 +90,7 @@ require ('view/page-fragments/header.php');
         </form>
     </div>
 </main>
-<?php require 'view/page-fragments/Footer.php'; ?>
+<?php require 'view/vendor/page-fragments/Footer.php'; ?>
 <script src="<?php echo BASE_URL?>/public/javascript/vendor/add_product.js" defer></script>
 
 <?php if (isset($_SESSION['product_added']) && $_SESSION['product_added']): ?>

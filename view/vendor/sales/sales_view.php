@@ -1,6 +1,6 @@
 <?php
 $pageTitle = "Sales";
-require (__DIR__ . '/../../page-fragments/Header.php');
+require (__DIR__ . '/../page-fragments/Header.php');
 ?>
 <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/sales.css">
 
@@ -91,4 +91,4 @@ require (__DIR__ . '/../../page-fragments/Header.php');
 
     </div>
 </main>
-<?php require (__DIR__ . '/../../page-fragments/Footer.php'); ?>
+<?php require (__DIR__ . '/../../vendor/page-fragments/Footer.php'); ?>
