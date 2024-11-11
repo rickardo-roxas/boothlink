@@ -1,6 +1,6 @@
 <?php
 $pageTitle = "Products";
-require ('view/page-fragments/header.php');
+require('view/vendor/page-fragments/Header.php');
 ?>
     <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/add_edit_products.css">
     <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/products.css">
@@ -50,4 +50,4 @@ require ('view/page-fragments/header.php');
         </div>
     </main>
 
-<?php require 'view/page-fragments/Footer.php'?>
+<?php require 'view/vendor/page-fragments/Footer.php' ?>

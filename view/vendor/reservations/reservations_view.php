@@ -1,6 +1,6 @@
 <?php
 $pageTitle = "Reservations";
-require ('view/page-fragments/Header.php');
+require('view/vendor/page-fragments/Header.php');
 ?>
     <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/reservations.css">
     <script src="<?php echo BASE_URL?>/public/javascript/vendor/reservations.js" defer></script>
@@ -46,4 +46,4 @@ require ('view/page-fragments/Header.php');
         </div>
     </main>
 
-<?php require 'view/page-fragments/Footer.php'?>
+<?php require 'view/vendor/page-fragments/Footer.php' ?>

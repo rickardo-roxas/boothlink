@@ -1,7 +1,9 @@
 <!--commented out line 2 and 3 because of view not showing. Will readd later.-->
 <?php
 $pageTitle = "Login";
-require('view/page-fragments/Header.php');
+
+const BASE_URL = '/cs-312_boothlink';
+$title = $pageTitle;
 ?>
 <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/auth/login.css">
 <main>
@@ -45,4 +47,3 @@ require('view/page-fragments/Header.php');
         }
     </script>
 </main>
-<?php require('view/page-fragments/Footer.php'); ?>

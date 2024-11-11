@@ -2,9 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
 const BASE_URL = '/cs-312_boothlink';
-include_once __DIR__ . '/../../controller/core/PageHandler.php';
 $title = $pageTitle;
 ?>
 <!DOCTYPE html>
