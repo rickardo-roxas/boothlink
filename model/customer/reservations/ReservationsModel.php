@@ -1,6 +1,6 @@
 <?php
 
-class Orders
+class ReservationsModel
 {
     private $customerQueries;
 

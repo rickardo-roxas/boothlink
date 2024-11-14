@@ -11,10 +11,10 @@ class PageHandler
                 require __DIR__ . '/../../controller/customer/home/ShopController.php';
                 (new ShopController()) -> index();
                 break;
-            case 'orders':
-                $title = 'Orders';
-                require __DIR__ . '/../../controller/customer/home/OrdersController.php';
-                (new OrdersController()) -> index();
+            case 'reservations':
+                $title = 'ReservationsModel';
+                require __DIR__ . '/../../controller/customer/home/ReservationsController.php';
+                (new ReservationsController()) -> index();
                 break;
             case 'product':
                 $title = 'Product';
