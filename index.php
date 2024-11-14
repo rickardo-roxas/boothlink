@@ -140,8 +140,8 @@ if (isset($_SESSION['vendor_id'])) {
         $pageHandler->renderCustomer('/shop');
     });
 
-    $router->addRoute('GET', '/orders', function () use ($pageHandler) {
-        $pageHandler->renderCustomer('/orders');
+    $router->addRoute('GET', '/reservations', function () use ($pageHandler) {
+        $pageHandler->renderCustomer('/reservations');
     });
 
 }
