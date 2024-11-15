@@ -46,29 +46,21 @@ function previewImages() {
     const imagePreviewContainer = document.getElementById('image-preview');
     const placeholders = imagePreviewContainer.querySelectorAll('div');
     
-    const files = Array.from(fileInput.files).slice(0, 3); // Limit to 3 images
+    const files = Array.from(fileInput.files).slice(0, 3); 
     files.forEach((file, index) => {
         const reader = new FileReader();
         reader.onload = function(e) {
-            // Replace the placeholder text with an image
             const img = document.createElement('img');
             img.src = e.target.result;
             img.alt = 'Preview';
             img.className = 'preview-image'; // Class for styling
             
-            // If the placeholder exists, replace it with the image
             if (placeholders[index]) {
-                placeholders[index].innerHTML = ''; // Clear placeholder text
+                placeholders[index].innerHTML = ''; 
                 placeholders[index].appendChild(img);
             }
         };
         reader.readAsDataURL(file);
     });
 
-    // If fewer than 3 images are uploaded, leave the remaining placeholders
-    for (let i = files.length; i < 3; i++) {
-        if (placeholders[i]) {
-            placeholders[i].textContent = 'Preview Photo'; // Reset placeholder text
-        }
-    }
 }
