@@ -22,3 +22,6 @@
 Thumbs.db
 .AppleDouble
 .LSOverride
+
+# folders and directories
+node_modules
