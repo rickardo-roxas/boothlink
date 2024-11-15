@@ -8,4 +8,8 @@ class ReservationsController
         require_once 'model/customer/reservations/ReservationsModel.php';
         $this->model = new ReservationsModel();
     }
+
+    public function index(){
+        require "view/customer/reservations/reservations_view.php";
+    }
 }
