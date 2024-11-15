@@ -95,8 +95,8 @@ require('view/vendor/page-fragments/Header.php');
                 </div>
 
                 <div class="buttons">
-                    <button class="btn-cancel">Cancel</button>
-                    <button class="btn-add">Add Product</button>
+                    <button class="btn cancel" type="button" onclick="confirmCancel()">Cancel</button>
+                    <button class="btn add" type="submit">Add Product</button>
                 </div>
             </div>
         </form>
@@ -106,29 +106,29 @@ require('view/vendor/page-fragments/Header.php');
 <script src="<?php echo BASE_URL?>/public/javascript/vendor/add_product.js" defer></script>
 <script>
     function validateForm() {
-    const nameInput = document.getElementById("name").value.trim();
-    const descriptionInput = document.getElementById("description").value.trim();
-
-    if (!nameInput || !descriptionInput) {
-        alert("Product name and description cannot be empty or just spaces.");
-        event.preventDefault();
-        return false;
+        const nameInput = document.getElementById("name").value.trim();
+        const descriptionInput = document.getElementById("description").value.trim();
+        if (!nameInput || !descriptionInput) {
+            alert("Product name and description cannot be empty or just spaces.");
+            event.preventDefault();
+            return false;
+        }
+        return true; 
     }
-    return true; 
-}
-
-function restrictInvalidCharacters(event) {
-    const key = event.key;
-    
-    const isAllowedKey = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight'].includes(key);
-    const isValidChar = /^[A-Za-z\s\-]$/.test(key);
-
-    if (!isAllowedKey && !isValidChar) {
-        event.preventDefault();
+    function restrictInvalidCharacters(event) {
+        const key = event.key;
+        const isAllowedKey = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight'].includes(key);
+        const isValidChar = /^[A-Za-z\s\-]$/.test(key);
+        if (!isAllowedKey && !isValidChar) {
+            event.preventDefault();
+        }
     }
-}
-
-document.getElementById("name").addEventListener("keydown", restrictInvalidCharacters);
+    function confirmCancel() {
+        if (confirm("Are you sure you want to cancel?")) {
+            window.location.href = '/cs-312_boothlink/products';
+        }
+    }
+    document.getElementById("name").addEventListener("keydown", restrictInvalidCharacters);
 </script>
 
 <?php if (isset($_SESSION['product_added']) && $_SESSION['product_added']): ?>

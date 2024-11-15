@@ -109,7 +109,7 @@ textarea {
 .file-upload {
     display: flex;
     align-items: center;
-    margin-bottom: 22px;
+    margin-bottom: 15px;
     flex-direction: column;
 }
 
@@ -133,7 +133,7 @@ textarea {
 .image-preview {
     display: flex;
     justify-content: center; 
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .image-preview div {
@@ -159,6 +159,7 @@ textarea {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
+    height: 200px;
 }
 
 .preview-box h3 {
@@ -182,7 +183,7 @@ textarea {
 .buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .btn {
