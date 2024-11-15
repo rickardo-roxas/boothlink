@@ -13,7 +13,9 @@ require('view/vendor/page-fragments/Header.php');
                 
                 <div class="form-group">
                     <label for="name">Product Name</label>
-                    <input type="text" name="name" id="name" required oninput="updatePreview()">
+                    <input type="text" name="name" id="name" required oninput="updatePreview()"
+                    minlength="3" maxlength="50"
+                    value="<?php echo htmlspecialchars($productData['prod_serv_name'] ?? ''); ?>">
                 </div>
 
                 <div class="form-group">
@@ -28,7 +30,10 @@ require('view/vendor/page-fragments/Header.php');
                 <div class="form-row">
                     <div class="form-group half-width">
                         <label for="price">Price</label>
-                        <input type="number" name="price" id="price" required oninput="updatePreview()">
+                        <input type="number" name="price" id="price" required oninput="updatePreview()"
+                        min="1" max="5000" step="1.00"
+                        value="<?php echo htmlspecialchars($productData['price'] ?? ''); ?>">
+
                     </div>
 
                     <div class="form-group half-width">
@@ -42,7 +47,9 @@ require('view/vendor/page-fragments/Header.php');
 
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea name="description" id="description" required oninput="updatePreview()"></textarea>
+                    <textarea name="description" id="description" required oninput="updatePreview()"
+                    minlength="50" maxlength="100">
+                    <?php echo htmlspecialchars($productData['description'] ?? ''); ?></textarea>
                 </div>
 
                 <div class="form-group schedule-group">
