@@ -1,0 +1,11 @@
+@import 'public/css/customer/style.css';
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
+}

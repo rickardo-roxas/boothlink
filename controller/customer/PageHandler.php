@@ -6,23 +6,23 @@ class PageHandler
         $title = '';
 
         switch ($path) {
-            case 'shop':
+            case '/shop':
                 $title = 'Shop';
                 require __DIR__ . '/../../controller/customer/home/ShopController.php';
                 (new ShopController()) -> index();
                 break;
-            case 'reservations':
-                $title = 'ReservationsModel';
-                require __DIR__ . '/../../controller/customer/home/ReservationsController.php';
+            case '/reservations':
+                $title = 'Reservations';
+                require __DIR__ . '/../../controller/customer/reservations/ReservationsController.php';
                 (new ReservationsController()) -> index();
                 break;
-            case 'product':
+            case '/product':
                 $title = 'Product';
                 break;
-            case 'reserve':
+            case '/reserve':
                 $title = 'Reserve';
                 break;
-            case 'checkout':
+            case '/checkout':
                 $title = 'Checkout';
                 break;
             default:

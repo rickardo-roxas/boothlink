@@ -31,7 +31,7 @@ $title = $pageTitle;
         <ul>
             <li> <a class="<?php if($pageTitle =="HOME") {echo "active"; } ?>" href="/cs-312_boothlink/home" target="_self">Home</a></li>
             <li> <a class = "<?php if($pageTitle =="SHOP") {echo "active"; } ?>" href="/cs-312_boothlink/shop"> Shop </a></li>
-            <li> <a class = "<?php if($pageTitle =="ORDERS") {echo "active"; } ?>" href="/cs-312_boothlink/orders"> Orders </a></li>
+            <li> <a class = "<?php if($pageTitle =="Reservations") {echo "active"; } ?>" href="/cs-312_boothlink/reservations"> Orders </a></li>
         </ul>
     </nav>
 
