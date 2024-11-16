@@ -26,7 +26,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;  
+    margin-top: 0;  
 }
 
 .table-header p {
@@ -78,16 +78,23 @@ main {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 500;
     font-size: 1rem;
-    margin-left: 10px; 
+    height: 48px;
+    margin-left: 3px; 
+    margin-top: 10px;
 }
 
 /* Table */
 
+.table-products {
+    width: 100%;
+    overflow-y: auto; 
+    max-height: 800px; 
+    margin-top: 1rem;
+}
+
 .table-products table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1rem; 
-    font-family: 'Roboto', sans-serif;
 }
 
 .table-products table th,
@@ -95,6 +102,13 @@ main {
     padding: 0.75rem;
     text-align: left;
     border-bottom: 1px solid #dee2e6;
+}
+
+.table-products thead {
+    position: sticky;
+    top: 0; 
+    background-color: #1EBDEF; 
+    z-index: 1; 
 }
 
 .table-products table th {

@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
     var productAdded = sessionStorage.getItem('productAdded');
 
     // If the product was added, show the alert
@@ -12,31 +12,33 @@ window.onload = function() {
 
 // Function to update the product preview
 function updatePreview() {
-    // Get the input values
-    const name = document.getElementById('name').value;
+    const name = document.getElementById('name').value.trim();
     const type = document.getElementById('type').value.toUpperCase();
-    const price = parseFloat(document.getElementById('price').value).toFixed(2) || '0.00';
+    const priceInput = document.getElementById('price').value;
+    const price = isNaN(priceInput) || priceInput === '' ? '0.00' : parseFloat(priceInput).toFixed(2);
     const status = document.getElementById('status').value;
-    const description = document.getElementById('description').value;
-    
-    // Update the preview elements
+    const descriptionInput = document.getElementById('description').value.trim();
+
     document.getElementById('preview-name').textContent = name || 'Product Name';
     document.getElementById('preview-type').textContent = type;
     document.getElementById('preview-price').textContent = `Php ${price}`;
     document.getElementById('preview-status').textContent = status;
-    document.getElementById('preview-description').textContent = description || 'This is a product description.';
-    
+    document.getElementById('preview-description').textContent = descriptionInput || 'This is a product description.';
+
     const checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
     let selectedDates = [];
-    
-    checkboxes.forEach(checkbox => {
+
+    checkboxes.forEach((checkbox) => {
         if (checkbox.checked) {
-            selectedDates.push(checkbox.nextElementSibling ? checkbox.nextElementSibling.textContent : checkbox.parentElement.textContent);
+            selectedDates.push(
+                checkbox.nextElementSibling ? checkbox.nextElementSibling.textContent : checkbox.parentElement.textContent
+            );
         }
     });
-    
+
     document.getElementById('preview-schedule').textContent = selectedDates.join(', ') || 'Select a schedule';
 }
+
 
 // Function to preview selected images
 function previewImages() {
@@ -44,29 +46,21 @@ function previewImages() {
     const imagePreviewContainer = document.getElementById('image-preview');
     const placeholders = imagePreviewContainer.querySelectorAll('div');
     
-    const files = Array.from(fileInput.files).slice(0, 3); // Limit to 3 images
+    const files = Array.from(fileInput.files).slice(0, 3); 
     files.forEach((file, index) => {
         const reader = new FileReader();
         reader.onload = function(e) {
-            // Replace the placeholder text with an image
             const img = document.createElement('img');
             img.src = e.target.result;
             img.alt = 'Preview';
             img.className = 'preview-image'; // Class for styling
             
-            // If the placeholder exists, replace it with the image
             if (placeholders[index]) {
-                placeholders[index].innerHTML = ''; // Clear placeholder text
+                placeholders[index].innerHTML = ''; 
                 placeholders[index].appendChild(img);
             }
         };
         reader.readAsDataURL(file);
     });
 
-    // If fewer than 3 images are uploaded, leave the remaining placeholders
-    for (let i = files.length; i < 3; i++) {
-        if (placeholders[i]) {
-            placeholders[i].textContent = 'Preview Photo'; // Reset placeholder text
-        }
-    }
 }

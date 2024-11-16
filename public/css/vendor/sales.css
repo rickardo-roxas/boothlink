@@ -6,13 +6,14 @@
 }
 
 .sales .container {
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .sales h1 {
     color: var(--text);
     font-size: 1.8rem;
     font-weight: bold;
+    text-align: center;
 }
 
 .sales h4 {
@@ -40,30 +41,34 @@
 }
 
 .sales .grid-container {
-    width: 215vh;
+    width: 100%;
+    height: 800px;
     display:grid;
     grid-template-areas: 'left top-right' 'left bottom-right';
     gap:2vh;
+    overflow-y: auto;
+    justify-content: flex;
 }
 
 
 .sales #product-sales {
-    height: 100%;
-    width: 100%;
+    height: 81vh;
+    width: 100vh;
     grid-area:left;
+    overflow-y: auto;
 }
 
 .sales #sales-performance {
     grid-area:top-right;
-    height: 38vh;
+    height: 380px;
     width: 57vh;
 }
 
 #sales-comparison {
     grid-area:bottom-right;
-    height: 38vh;
+    height: 390px;
     width:57vh;
-    margin-top: 1%;
+    margin-top: 0.5%;
 }
 
 .product-sales-right-head li {

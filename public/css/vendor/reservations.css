@@ -79,6 +79,13 @@ main {
 
 /* Table Styles */
 
+.table-products {
+    width: 100%;
+    overflow-y: auto; 
+    max-height: 700px; 
+    margin-top: 1rem;
+}
+
 .table-products table {
     width: 100%;
     border-collapse: collapse;
@@ -91,6 +98,13 @@ main {
     padding: 0.75rem;
     text-align: left;
     border-bottom: 1px solid #dee2e6;
+}
+
+.table-products thead {
+    position: sticky;
+    top: 0; 
+    background-color: #1EBDEF; 
+    z-index: 1; 
 }
 
 .table-products table th {
