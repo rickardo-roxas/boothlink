@@ -28,14 +28,15 @@ class LoginController {
                 header("Location: /cs-312_boothlink/org_select");
                 exit();
             } else {
-
                 /** TODO: Insert Customer login authentication */
-                $_SESSION['user'] = "rithik"; //TODO: Change
-                $_SESSION['customer_id'] = 'rithik';  //TODO: Change
-
-                header("Location: /cs-312_boothlink/home");
-
-                echo "Login failed! Invalid username or password.";
+                if (true) {
+                    $id = 1;
+                    $username = 'clifton';
+                    header("Location: http://localhost:3000/" . $id . "/" . urlencode($username));
+                } else {
+                    // TODO: INSERT ERROR
+                }
+                
             }
         }
     }

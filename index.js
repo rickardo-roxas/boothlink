@@ -3,6 +3,9 @@ const express = require('express')
 // express app
 const app = express();
 
+// express session
+const session = require('express-session');
+
 // routers
 const homeRouter = require('./controller/customer/routes/HomeRoutes');
 const reservationsRouter = require('./controller/customer/routes/ReservationRoutes');
@@ -32,7 +35,17 @@ app.use((req, res, next) => {
     next();
 })
 
+// Session handling
+app.use(session({
+    secret: "key",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure : false}
+
+}));
+
 // Routes
+
 app.use('/', homeRouter);
 app.use('/reservations', reservationsRouter);
 app.use('/shop', shopRouter);
@@ -41,15 +54,4 @@ app.use('/cart', cartRouter)
 // Error Page
 app.use((req, res) => {
     res.send("404: Page Not Found.")
-});
-
-
-// SQL Connection
-const sql = require('mysql');
-
-const conn = sql.createConnection({
-    host : "localhost",
-    user : "root", 
-    password : "",
-    database: "boothlink"
 });

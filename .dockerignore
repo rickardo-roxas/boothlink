@@ -1,0 +1,27 @@
+# IDE files
+.idea
+.vscode
+
+# Config files
+/config/Connection.php
+
+# Env files
+.env
+.env.*
+
+# Miscellaneous
+*.bak
+*.swp
+*.tmp
+*.cache
+*.pid
+*.seed
+
+# OS files
+.DS_Store
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# folders and directories
+node_modules
