@@ -25,7 +25,6 @@ const index = (req, res) => {
 
             res.render("home/home_view", {
                 title: "Home",
-                logo: "temp",
                 sample: model.sample,
                 first_name: firstName,
                 last_name: lastName,
