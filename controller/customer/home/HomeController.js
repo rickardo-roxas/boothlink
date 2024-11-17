@@ -1,8 +1,10 @@
 
 const model = require("../../../model/customer/home/Home")
 
-const index = (req, res) => {
+// database
+const db = require('../../../config/Conn');
 
+const index = (req, res) => {
     res.render("home/home_view", { title : "Home", logo : "temp", sample : model.sample})
 }
 
