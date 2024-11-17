@@ -1,11 +1,13 @@
 // SQL Connection
 const sql = require('mysql');
 
-const conn = sql.createConnection({
+const conn = sql.createPool({
     host: "localhost",
     user: "root",
     password: "",
-    database: "boothlink"
+    database: "boothlink",
+    connectionLimit: 15,
+    waitForConnections: true,
 });
 
 conn.connect((err) => {
