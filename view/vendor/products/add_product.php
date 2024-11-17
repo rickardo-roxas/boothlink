@@ -61,14 +61,41 @@ require('view/vendor/page-fragments/Header.php');
 
                 <div class="form-group schedule-group">
                     <label>Schedule</label>
-                    <div class="checkbox-group">
-                        <label><input type="checkbox"> Date 1</label>
-                        <label><input type="checkbox"> Date 2</label>
-                        <label><input type="checkbox"> Date 3</label>
-                        <label><input type="checkbox"> Date 4</label>
-                        <label><input type="checkbox"> Date 5</label>
-                    </div>
+                    <table class="schedule-table">
+                        <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>Date</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $model = new AddNewProductModel();
+                        $schedules = $model->getSchedule();
+                        if (!empty($schedules)) {
+                            foreach ($schedules as $schedule) {
+                                $date = $schedule['date'];
+                                $startTime = $schedule['start_time'];
+                                $endTime = $schedule['end_time'];
+                                echo '<tr>';
+                                echo '<td><input type="checkbox" name="schedule[]" value="' . htmlspecialchars($date) . '"></td>';
+                                echo '<td>' . htmlspecialchars($date) . '</td>';
+                                echo '<td>' . htmlspecialchars($startTime) . '</td>';
+                                echo '<td>' . htmlspecialchars($endTime) . '</td>';
+                                echo '</tr>';
+                            }
+                        } else {
+                            echo '<tr><td colspan="4">No schedules available for this week.</td></tr>';
+                        }
+                        ?>
+                        </tbody>
+                    </table>
                 </div>
+
+
+
             </div>
 
             <!-- Preview Section -->

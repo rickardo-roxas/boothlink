@@ -791,6 +791,20 @@ class VendorQueries {
         $stmt->close();
         return $isUpdated;
     }
+
+    public function getAllScheduleByWeek() {
+        $query = "SELECT date, start_time, end_time 
+              FROM schedule 
+              WHERE WEEK(date, 1) = WEEK(CURDATE(), 1) 
+              AND YEAR(date) = YEAR(CURDATE())";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $schedules = $result->fetch_all(MYSQLI_ASSOC);
+        return $schedules;
+    }
+
 }
 
 // Example usage
