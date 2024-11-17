@@ -11,4 +11,8 @@ class AddNewProductModel{
     public function addProduct($org_id, $status, $category, $prod_serv_name, $price, $description, $image_src){
         $this->vendorQueries->addProduct($org_id, $status, $category, $prod_serv_name, $price, $description, $image_src);
     }
+
+    public function getSchedule(){
+        return $this->vendorQueries->getAllScheduleByWeek();
+    }
 }
