@@ -42,14 +42,3 @@ app.use('/cart', cartRouter)
 app.use((req, res) => {
     res.send("404: Page Not Found.")
 });
-
-
-// SQL Connection
-const sql = require('mysql');
-
-const conn = sql.createConnection({
-    host : "localhost",
-    user : "root", 
-    password : "",
-    database: "boothlink"
-});

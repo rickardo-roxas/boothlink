@@ -7,7 +7,7 @@
                 <h1>booth<span class="sky-blue">link</span></h1>
         </a>
     </div>
-    <nav>
+    <nav id = "links">
         <ul>
             <li> <a class="nav" href="/" target="_self">Home</a></li>
             <li> <a class = "nav" href="/shop"> Shop </a></li>
@@ -15,15 +15,23 @@
         </ul>
     </nav>
 
-    <div class = "search-bar">
-        <label>
-            <input type="text" placeholder="Search for products...">
-        </label>
-    </div>
 
-    <div class = "cart">
-        <a href="/cart" target="_self" class = "container">
-            <img src="/icons/logo-black-outline.png" alt="Cart">
-        </a>
+    <div class = "container">
+        <label>
+            <input class = "search" type="text" placeholder= "Search for products...">
+        </label>
+
+        <div class = "nav-btn  cart">
+            <a href="/cart" target="_self" class = "container">
+                <img src="/icons/logo-black-outline.png" alt="Cart">
+            </a>
+        </div>
+
+        <div class = "nav-btn profile">
+            <!-- To define href -->
+            <a href="/" target="_self" class = "container">
+                <img src="/icons/account-black-outline.png" alt="Profile">
+            </a>
+        </div>
     </div>
 </header>
