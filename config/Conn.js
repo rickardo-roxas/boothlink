@@ -2,9 +2,9 @@
 const sql = require('mysql');
 
 const conn = sql.createConnection({
-    host : "localhost",
-    user : "root", 
-    password : "",
+    host: "localhost",
+    user: "root",
+    password: "",
     database: "boothlink"
 });
 
@@ -16,30 +16,45 @@ conn.connect((err) => {
     }
 });
 
-function getName(username, callback) {
+function getFirstName(username, callback) {
     const query = "SELECT first_name FROM customer where username=?";
 
     conn.query(query, [username], (err, results) => {
         if (err) {
             console.log(err);
-            return callback(err,null);
+            return callback(err, null);
         }
 
         console.log(results);
         callback(null, results);
-     })
+    })
+}
+
+function getLastName(username, callback) {
+    const query = "SELECT last_name FROM customer where username=?";
+
+    conn.query(query, [username], (err, results) => {
+        if (err) {
+            console.log(err);
+            return callback(err, null);
+        }
+
+        console.log(results);
+        callback(null, results);
+    })
 }
 
 function closeConnection() {
     conn.end((err) => {
-    if (err) {
-        console.log(err);
-        return
-    }
-})
+        if (err) {
+            console.log(err);
+            return
+        }
+    })
 }
 
 module.exports = {
-    getName,
+    getFirstName,
+    getLastName,
     closeConnection
 }
