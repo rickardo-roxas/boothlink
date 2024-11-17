@@ -1,18 +1,18 @@
 const model = require("../../../model/customer/home/Home");
 
-// database
-const db = require("../../../config/Conn");
+// queries
+const customerQueries = require("../../../model/customer/CustomerQueries");
 
 const index = (req, res) => {
     firstNameQuery = new Promise((resolve, reject) => {
-        db.getFirstName("clifton", (err, results) => {
+        customerQueries.getFirstName("clifton", (err, results) => {
             if (err) reject(err);
             else resolve(results);
         });
     });
 
     lastNameQuery = new Promise((resolve, reject) => {
-        db.getLastName("clifton", (err, results) => {
+        customerQueries.getLastName("clifton", (err, results) => {
             if (err) reject(err);
             else resolve(results);
         });
