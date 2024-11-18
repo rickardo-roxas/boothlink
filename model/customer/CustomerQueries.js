@@ -33,7 +33,7 @@ function getLastName(username, callback) {
 
 /** Method to get booths, and their associated images */
 function getBooths() {
-    const query = "SELECT organization.org_name and organization.org_img FROM organization"
+    const query = "SELECT org_id, organization.org_name, organization.org_img FROM organization"
 
     conn.query(query, (err, results)=> {
         if (err) {
@@ -61,6 +61,23 @@ function getShopProducts() {
     });
 }
 
+/** Method to get prod_id, category, name, price, description, img associated with an org if item in stock */
+
+function getOrgProducts(orgID) {
+    const query = "SELECT prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name, prod_serv.price, " +
+        "prod_serv.description, prod_img.img_src " + 
+        "FROM prod_org_sched JOIN prod_serv ON prod_serv.prod_id = prod_org_sched.prod_id " + 
+        "JOIN prod_img ON prod_img.prod_id = prod_serv.prod_id " + 
+        "WHERE prod_org_sched.org_id = ? AND prod_serv.status = 'In Stock';"
+
+        conn.query(query, orgID, (err, results) => {
+            if (err) {
+                console.log(err);
+                return callback(err,null);
+            }
+            callback(null,results);
+        })
+}
 /** Gets all in stock products sorting by price and accepts a boolean parameter that tells if the filtering 
  * should be done descending or ascending  */
 function getShopProductsByPrice(desc) {
@@ -130,8 +147,6 @@ function getScheduleByScheduleID(id) {
         callback(null,results);
     });
 }
-
-
 
 
 module.exports = {
