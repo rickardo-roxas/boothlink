@@ -6,15 +6,15 @@ require 'view/vendor/page-fragments/Header.php'
 <main>
     <div id="salesboard" class="container">
         <div class="grid-container">
-            <div class="Item1">
+            <div class="logo-tagline">
                 <div id="logo" class="website-logo">
                     <h1>booth<span style="color:#1EBDEF">link</span></h1>
                 </div>
-            </div>
 
-            <div class="tagline">
-                <div class="tagline-paragraph">
-                    <p>Organization Selector</p>
+                <div class="tagline">
+                    <div class="tagline-paragraph">
+                        <p>Organization Selector</p>
+                    </div>
                 </div>
             </div>
 
@@ -25,9 +25,6 @@ require 'view/vendor/page-fragments/Header.php'
                             <?= htmlspecialchars($organization['org_name']); ?>
                         </a>
                     <?php endforeach; ?>
-                    <div class="add-button" id="add-button">
-                        <img src="<?php echo BASE_URL?>/assets/images/plus-button.png" alt="Add Organization">
-                    </div>
                 </div>
             </div>
         </div>
