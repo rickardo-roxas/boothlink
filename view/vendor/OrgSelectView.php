@@ -25,9 +25,6 @@ require 'view/vendor/page-fragments/Header.php'
                             <?= htmlspecialchars($organization['org_name']); ?>
                         </a>
                     <?php endforeach; ?>
-                    <div class="add-button" id="add-button">
-                        <img src="<?php echo BASE_URL?>/assets/icons/add-blue-outline.png" alt="Add Organization">
-                    </div>
                 </div>
             </div>
         </div>

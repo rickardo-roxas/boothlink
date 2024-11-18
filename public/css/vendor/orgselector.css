@@ -43,8 +43,8 @@
 
 .org-container {
     display: flex;
-    gap: 3rem;
-    padding-left: 23rem;
+    gap: 5rem;
+    padding-left: 29rem;
     margin-bottom: 5rem;
 }
 
