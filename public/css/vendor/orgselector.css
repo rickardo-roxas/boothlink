@@ -4,78 +4,74 @@
     font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
 }
 .grid-container {
-    grid-template-columns: 1rem 1rem 1rem;
-    grid-template-rows: auto;
-    gap: 4rem;
+    display: grid;
+
 }
 
 
-.Item1 {
-    width: 133rem;
+.logo-tagline {
+    width: 50rem;
     height: 25rem;
+    padding-left: 30rem;
+    padding-top: 8rem
 }
 
 .tagline {
-    width: 133rem;
-    height: 5rem;
-    grid-column: 2/1;
+    width: 25rem;
+    padding-left: 3rem;
 }
 
 .org-selector {
-   /* background: #53c1ea;*/
-    width: 132rem;
-    height: 20rem;
-    grid-column: 3/1;
+/*    background: #53c1ea;*/
+    width: 90rem;
 }
 
 .website-logo {
-    font-size: 80px;
+    font-size: 50px;
     font-style: normal;
-    font-weight: 800;
-    text-align: center;
-    margin-top: 18rem;
+    font-weight: 80;
+
 }
 
 .tagline-paragraph {
-    font-size: 2rem;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 800;
+    font-weight: 500;
     line-height: normal;
     text-align: center;
 }
 
 .org-container {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 5rem;
-    margin-bottom: 14rem;
+    gap: 3rem;
+    padding-left: 23rem;
+    margin-bottom: 5rem;
 }
 
 .button, .add-button {
-    width: 250px;
-    height: 250px;
+    width: 12rem;
+    height: 12rem;
     cursor: pointer;
-    border-radius: 300px;
+    border-radius: 6rem;
     transition: transform 0.2s ease;
 }
 
 .button {
     background-color: #1EBDEF;
-    width: 300px;
-    height: 300px;
-    border-radius: 300px;
+    width: 12rem;
+    height: 12rem;
+    border-radius: 6rem;
 }
 
 
 .add-button img {
-    width: 300px;
-    height: 300px;
-    border-radius: 300px;
+    width: 12rem;
+    height: 12rem;
+    border-radius: 6rem;
 }
 
 .button:hover {
-    transform: scale(1.1); /*ayee*/
+    transform: scale(1.1);
 }
 
 .add-button:hover {
