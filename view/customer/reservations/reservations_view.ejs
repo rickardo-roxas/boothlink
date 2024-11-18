@@ -1,19 +1,51 @@
 <!DOCTYPE html>
-
-<html lang = "en">
+<html lang="en">
 <%- include('../partials/header.ejs') %>
 <%- include('../partials/navbar.ejs')%>
 
-<body class = "body">
-<h1>Reservations Page </h1>
+<body>
+    <main>
+        <div class="main-panel">
+            <div class="header">
+                <p>Reservations</p>
+                <div class="filter-btns">
+                    <!-- filter btns here to be added soon-->
+                </div>
+            </div>
+            <div class="reservation-panel">
+                <% reservations.forEach(reservation => { %>
+                    <div class="product-card">
+                        <div class="image-container">
+                            <img src="<%= reservation.image_source %>" alt="Product Image">
+                        </div>
+                        <div class="product-container">
+                            <div class="product-info">
+                                <!-- Essential Information -->
+                                <img src="<%= reservation.image_source %>" alt=""> <!-- image source -->
+                                <p class="org"><%= reservation.org_name %></p> <!-- Organization -->
+                                <p class="item"><%= reservation.item_name %></p> <!-- Item Name -->
+                                <p class="category"><%= reservation.category %></p> <!-- Category -->
+                                <p class="price">₱ <%= reservation.price %></p> <!-- Price -->
 
-<% if (data.length > 0) { %>
-    <% data.forEach(item => { %>
-        <p> <%= item.title %></p>
-        <p><%= item.description %></p>
-    <% })%>
-<% } %>
-
+                                <!-- Date and Status -->
+                                <div class="date-container">
+                                    <p class="date"><%= new Date(reservation.date).toLocaleDateString() %></p> <!-- Date -->
+                                </div>
+                                <div class="status-container">
+                                    <p class="status"><%= reservation.status %></p> <!-- Status -->
+                                </div>
+                            </div>
+                            <div class="buy-again">
+                                <!-- total here -->
+                                <p class="total">₱ <%= reservation.total_price %></p> <!-- Total Price -->
+                                <!-- buy again btn here to be added soon-->
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </main>
 </body>
 
 <%- include('../partials/footer.ejs')%>
