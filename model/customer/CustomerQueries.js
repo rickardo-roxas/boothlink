@@ -98,7 +98,7 @@ function getShopProductsByPrice(desc) {
 
 /** Gets all in stock products, filtering based on category provided as parameter. 
  *      Possible Parameters: ITEM, SERVICE, FOOD */
-function getShopProductsByPrice(category) {
+function getShopProductsByCategory(category) {
     var query =  "SELECT prod_serv.prod_id, prod_serv.prod_serv_name, prod_serv.price, " + 
     "prod_serv.description, prod_img.img_src FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " + 
     "WHERE prod_serv.category = '?' ";
@@ -183,5 +183,13 @@ function getReservations(username, callback){
 module.exports = {
     getFirstName,
     getLastName,
+    getBooths,
+    getShopProducts, 
+    getOrgProducts, 
+    getShopProductsByPrice, 
+    getShopProductsByCategory, 
+    getProductByID, 
+    getScheduleByScheduleID, 
     getReservations
+    
 }
