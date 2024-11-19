@@ -15,9 +15,9 @@ class VendorQueries {
     }
 
     // Destructor to close the connection when the object is destroyed
-    public function __destruct() {
-        $this->conn->close();
-    }
+//    public function __destruct() {
+//        $this->conn->close();
+//    }
 
     /**
      * Adds a new product to the database with its corresponding vendor 
@@ -27,13 +27,17 @@ class VendorQueries {
      * Duplication Checking
      */
     public function addProduct($org_id, $status, $category, $prod_serv_name, $price, $description, $image_src) {
+        $schedules = $this->getAllScheduleByWeek();
 
-        // Adds into prod_serv
+        if (empty($schedules)) {
+            throw new Exception("No schedules found for the current week.");
+        }
+
         $query1 = "
-        INSERT INTO prod_serv (status, category, prod_serv_name, price, description)
-        VALUES (?, ?, ?, ?, ?) 
-        ";
-        
+    INSERT INTO prod_serv (status, category, prod_serv_name, price, description)
+    VALUES (?, ?, ?, ?, ?)
+    ";
+
         $stmt1 = $this->conn->prepare($query1);
         $stmt1->bind_param('sssds', $status, $category, $prod_serv_name, $price, $description);
         $stmt1->execute();
@@ -42,30 +46,31 @@ class VendorQueries {
         $prod_id = $stmt1->insert_id;
         $stmt1->close();
 
-        // Adds into prod_img
         $query2 = "
-        INSERT INTO prod_img (prod_id, img_src)
-        VALUES (?, ?)
-        ";
-
+    INSERT INTO prod_img (prod_id, img_src)
+    VALUES (?, ?)
+    ";
         $stmt2 = $this->conn->prepare($query2);
         $stmt2->bind_param('is', $prod_id, $image_src);
         $stmt2->execute();
         $stmt2->close();
 
-        // Adds into prod_org_sched
         $query3 = "
-        INSERT INTO prod_org_sched (prod_id, org_id, sched_id)
-        VALUES (?, ?, ?)
-        ";
-
+    INSERT INTO prod_org_sched (prod_id, org_id, sched_id)
+    VALUES (?, ?, ?)
+    ";
 
         $stmt3 = $this->conn->prepare($query3);
-        $sched_id = 7; //FOR CHECKING
-        $stmt3->bind_param('iii', $prod_id, $org_id, $sched_id); //7 is default for checking
-        $stmt3->execute();
+
+        foreach ($schedules as $schedule) {
+            $sched_id = $schedule['sched_id'];
+            $stmt3->bind_param('iii', $prod_id, $org_id, $sched_id);
+            $stmt3->execute();
+        }
         $stmt3->close();
     }
+
+
 
 
     /**
@@ -73,21 +78,32 @@ class VendorQueries {
      */
     public function getProducts($org_id) {
         $query = "
-        SELECT * FROM prod_serv
-        JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id
-        WHERE prod_org_sched.org_id = ?
-        ";
-    
+    SELECT DISTINCT prod_org_sched.prod_id, 
+                    prod_org_sched.org_id, 
+                    prod_serv.prod_serv_name, 
+                    prod_serv.price, 
+                    prod_serv.description, 
+                    prod_serv.status, 
+                    prod_serv.category
+    FROM prod_serv
+    JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id
+    WHERE prod_org_sched.org_id = ?
+    ";
+
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $org_id);
         $stmt->execute();
-    
+
         $result = $stmt->get_result();
         $stmt->close();
-    
+
         // Fetch all results as an associative array
-        return $result; 
+        return $result;
     }
+
+
+
+
 
     public function getProductsByCategory($org_id, $filter){
         $query = "
@@ -513,16 +529,16 @@ class VendorQueries {
         $result = $stmt->get_result();
         $schedules = [];
 
-        if ($row = $result->fetch_assoc()) {
-            $schedule = new SchedulePageModel();
-            $schedule->setDate($row['date']);
-            $schedule->setStartTime($row['start_time']);
-            $schedule->setEndTime($row['end_time']);
-            $schedule->setLocationRoom($row['loc_room']);
-            $schedule->setLocationStallNum($row['stall_number']);
-
-            $schedules[] = $schedule;
-        }
+//        if ($row = $result->fetch_assoc()) {
+//            $schedule = new SchedulePageModel();
+//            $schedule->setDate($row['date']);
+//            $schedule->setStartTime($row['start_time']);
+//            $schedule->setEndTime($row['end_time']);
+//            $schedule->setLocationRoom($row['loc_room']);
+//            $schedule->setLocationStallNum($row['stall_number']);
+//
+//            $schedules[] = $schedule;
+//        }
 
         $stmt->close();
         return $schedules;
@@ -793,10 +809,13 @@ class VendorQueries {
     }
 
     public function getAllScheduleByWeek() {
-        $query = "SELECT date, start_time, end_time 
-              FROM schedule 
-              WHERE WEEK(date, 1) = WEEK(CURDATE(), 1) 
-              AND YEAR(date) = YEAR(CURDATE())";
+        $query = "SELECT sched_id, date, start_time, end_time, loc_room, stall_number
+                  FROM schedule
+                  JOIN location ON schedule.loc_id = location.loc_id
+                  WHERE WEEK(date, 1) = WEEK(CURDATE(), 1) 
+                  AND YEAR(date) = YEAR(CURDATE());
+                  ";
+
 
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -804,6 +823,7 @@ class VendorQueries {
         $schedules = $result->fetch_all(MYSQLI_ASSOC);
         return $schedules;
     }
+
 
 }
 

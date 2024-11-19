@@ -10,13 +10,13 @@ require('view/vendor/page-fragments/Header.php');
             <div class="form-input">
                 <h1>Add New Product</h1>
                 <div class="header">Product Information</div>
-                
+
                 <div class="form-group">
                     <label for="name">Product Name</label>
                     <input type="text" name="name" id="name" required oninput="updatePreview()"
                            placeholder="Enter product name"
                            minlength="3" maxlength="50"
-                           pattern=".*\S.*" 
+                           pattern=".*\S.*"
                            title="Product Name cannot be empty or contain only spaces."
                            value="<?php echo htmlspecialchars($productData['prod_serv_name'] ?? ''); ?>"
                            onkeydown="restrictInvalidCharacters(event)">
@@ -59,49 +59,47 @@ require('view/vendor/page-fragments/Header.php');
                                 title="Description cannot be empty or contain only spaces."><?php echo htmlspecialchars($productData['description'] ?? ''); ?></textarea>
                 </div>
 
-                <div class="form-group schedule-group">
-                    <label>Schedule</label>
-                    <table class="schedule-table">
-                        <thead>
-                        <tr>
-                            <th>Select</th>
-                            <th>Date</th>
-                            <th>Start Time</th>
-                            <th>End Time</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        $model = new AddNewProductModel();
-                        $schedules = $model->getSchedule();
-                        if (!empty($schedules)) {
-                            foreach ($schedules as $schedule) {
-                                $date = $schedule['date'];
-                                $startTime = $schedule['start_time'];
-                                $endTime = $schedule['end_time'];
-                                echo '<tr>';
-                                echo '<td><input type="checkbox" name="schedule[]" value="' . htmlspecialchars($date) . '"></td>';
-                                echo '<td>' . htmlspecialchars($date) . '</td>';
-                                echo '<td>' . htmlspecialchars($startTime) . '</td>';
-                                echo '<td>' . htmlspecialchars($endTime) . '</td>';
-                                echo '</tr>';
-                            }
-                        } else {
-                            echo '<tr><td colspan="4">No schedules available for this week.</td></tr>';
+                <table class="schedule-table">
+                    <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th>Stall Number</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $model = new AddNewProductModel();
+                    $schedules = $model->getSchedule();
+                    if (!empty($schedules)) {
+                        foreach ($schedules as $schedule) {
+                            // Check if 'loc_room' exists before using it
+                            $location = isset($schedule['loc_room']) ? htmlspecialchars($schedule['loc_room']) : 'Unknown Location';
+                            echo '<tr>';
+                            echo '<td><input type="checkbox" name="schedule[]" value="' . htmlspecialchars($schedule['sched_id']) . '"></td>';
+                            echo '<td>' . htmlspecialchars($schedule['date']) . '</td>';
+                            echo '<td>' . $location . '</td>';  // Output 'location' safely
+                            echo '<td>' . htmlspecialchars($schedule['stall_number']) . '</td>';
+                            echo '<td>' . htmlspecialchars($schedule['start_time']) . '</td>';
+                            echo '<td>' . htmlspecialchars($schedule['end_time']) . '</td>';
+                            echo '</tr>';
                         }
-                        ?>
-                        </tbody>
-                    </table>
-                </div>
-
-
+                    } else {
+                        echo '<tr><td colspan="6">No schedules available for this week.</td></tr>';
+                    }
+                    ?>
+                    </tbody>
+                </table>
 
             </div>
 
             <!-- Preview Section -->
             <div class="preview-container">
                 <div class="header">Preview</div>
-                
+
                 <div class="file-upload">
                     <input name="file[]" type="file" id="file-input" multiple accept="image/*" onchange="previewImages()" style="display: none;">
                     <label for="file-input" class="btn-file">Upload Image</label>
@@ -140,7 +138,7 @@ require('view/vendor/page-fragments/Header.php');
             event.preventDefault();
             return false;
         }
-        return true; 
+        return true;
     }
     function restrictInvalidCharacters(event) {
         const key = event.key;
