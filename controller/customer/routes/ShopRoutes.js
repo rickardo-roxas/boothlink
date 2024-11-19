@@ -5,16 +5,26 @@ const controller = require ('../shop/ShopController')
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    switch (req.body.title) {
+    controller.index(req,res);
+});
+
+router.get('/filter', (req, res) => {
+    const {title, price, category} = req.query;
+    switch (title) {
         case "price":
+            controller.sortByPrice(price)
             break;
         case "category":
+            controller.sortByCategory(category)
             break;
         default:
-            res.redirect("/");
+            // Error Case
+            res.redirect("/shop");
+            break;
     }
     controller.index(req,res);
 });
+
 
 router.post('/', (req,res) => {
     if (req.body.action == "Add to Cart") {
