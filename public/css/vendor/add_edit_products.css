@@ -77,7 +77,7 @@ input, select, textarea {
 }
 
 textarea {
-    height: 100px;
+    height: 70px;
     resize: none;
     font-family: inherit;
 }
@@ -91,14 +91,72 @@ textarea {
     width: 48%;
 }
 
-.schedule-group {
-    display: flex;
-    flex-direction: column;
+.schedule-table {
+    display: block;
+    max-height: 120px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%; 
+    table-layout: fixed; 
 }
 
-.checkbox-group {
-    display: flex;
-    justify-content: space-between;
+.schedule-table th, .schedule-table td {
+    text-align: center; 
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word; 
+}
+
+.schedule-table th {
+    background-color: #f4f4f9;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 20rem;
+}
+
+.selected-row {
+    background-color: #1EBDEF; 
+    color: white; 
+    font-weight: medium;
+}
+
+.schedule-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.schedule-table th:nth-child(1),
+.schedule-table td:nth-child(1) {
+    width: 20%; 
+}
+
+.schedule-table th:nth-child(2),
+.schedule-table td:nth-child(2){
+    width: 20;
+}
+.schedule-table th:nth-child(3),
+.schedule-table td:nth-child(3){
+    width: 20;
+}
+.schedule-table th:nth-child(4),
+.schedule-table td:nth-child(4){
+    width: 20;
+}
+.schedule-table th:nth-child(5),
+.schedule-table td:nth-child(5){
+    width: 20;
+}
+
+.schedule-table th:nth-child(6),
+.schedule-table td:nth-child(6){
+    width: 20;
+}
+
+.schedule-table th:nth-child(7),
+.schedule-table td:nth-child(7){
+    width: 20;
 }
 
 .preview-container {
@@ -160,6 +218,7 @@ textarea {
     border-radius: 8px;
     padding: 20px;
     height: 200px;
+    overflow-y: auto;
 }
 
 .preview-box h3 {
@@ -170,6 +229,11 @@ textarea {
 
 .preview-box div {
     margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.preview-box div span {
+    font-weight: normal; 
 }
 
 .preview-image div:first-child {

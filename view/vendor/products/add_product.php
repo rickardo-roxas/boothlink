@@ -15,7 +15,7 @@ require('view/vendor/page-fragments/Header.php');
                     <label for="name">Product Name</label>
                     <input type="text" name="name" id="name" required oninput="updatePreview()"
                            placeholder="Enter product name"
-                           minlength="3" maxlength="50"
+                           minlength="3" maxlength="35"
                            pattern=".*\S.*"
                            title="Product Name cannot be empty or contain only spaces."
                            value="<?php echo htmlspecialchars($productData['prod_serv_name'] ?? ''); ?>"
@@ -54,12 +54,13 @@ require('view/vendor/page-fragments/Header.php');
                     <label for="description">Description</label>
                     <textarea name="description" id="description" required oninput="updatePreview()"
                                 placeholder="Enter product description"
-                                minlength="10" maxlength="60"
+                                minlength="10" maxlength="160"
                                 pattern=".*\S.*"
                                 title="Description cannot be empty or contain only spaces."><?php echo htmlspecialchars($productData['description'] ?? ''); ?></textarea>
                 </div>
 
                 <table class="schedule-table">
+                <label for="schedule">Schedule</label>
                     <thead>
                     <tr>
                         <th>Select</th>
@@ -116,7 +117,7 @@ require('view/vendor/page-fragments/Header.php');
                     <div>Description: <span id="preview-description">Input description.</span></div>
                     <div>Price: <span id="preview-price">Php 0.00</span></div>
                     <div>Status: <span id="preview-status">Select Status</span></div>
-                    <div>Schedule: <span id="preview-schedule">Select Schedule</span></div>
+                    <div>Schedule: <span id="preview-schedule">Select a schedule</span></div>
                 </div>
 
                 <div class="buttons">
@@ -133,8 +134,23 @@ require('view/vendor/page-fragments/Header.php');
     function validateForm() {
         const nameInput = document.getElementById("name").value.trim();
         const descriptionInput = document.getElementById("description").value.trim();
+        const scheduleSelected = document.querySelector('.schedule-table tbody input[type="checkbox"]:checked') !== null;
+        const fileInput = document.getElementById('file-input');
+        const hasUploadedPhoto = fileInput.files.length > 0;
+
         if (!nameInput || !descriptionInput) {
             alert("Product name and description cannot be empty or just spaces.");
+            event.preventDefault();
+            return false;
+        }
+        if (!scheduleSelected) {
+            alert('Please select at least one schedule.');
+            event.preventDefault();
+            return false;
+        }
+        // uncomment if it affects the backend
+        if (!hasUploadedPhoto) {
+            alert('Please upload at least one product photo.');
             event.preventDefault();
             return false;
         }
