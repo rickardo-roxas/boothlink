@@ -1,10 +1,11 @@
 const express = require('express');
 
-const controller = require ('../shop/ShopController')
+var controller;
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
+    controller = require ('../shop/ShopController');
     controller.index(req,res);
 });
 
@@ -25,6 +26,12 @@ router.get('/filter', (req, res) => {
     controller.index(req,res);
 });
 
+router.get('/booth', (req,res)=> {
+    controller = require('../shop/ShopBoothController');
+    const id = req.query;
+    controller.index(id, req, res);
+});
+
 
 router.post('/', (req,res) => {
     if (req.body.action == "Add to Cart") {
@@ -32,4 +39,5 @@ router.post('/', (req,res) => {
         req.session.cart.push(item);
     }
 });
+
 module.exports = router;

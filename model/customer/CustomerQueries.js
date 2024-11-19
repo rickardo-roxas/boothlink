@@ -180,6 +180,20 @@ function getReservations(username, callback){
     })
 }
 
+/** Method to get booth, its associated image, and social links */
+function getBoothData(id, callback) {
+    const query = "SELECT organization.org_name, organization.org_img, " + 
+    "organization.fb_link, organization.x_link, organization.ig_link FROM organization"
+
+    conn.query(query, (err, results)=> {
+        if (err) {
+            console.log(err);
+            return callback(err, null);
+        }
+        callback(null,results);
+    })
+}
+
 module.exports = {
     getFirstName,
     getLastName,
@@ -190,6 +204,7 @@ module.exports = {
     getShopProductsByCategory, 
     getProductByID, 
     getScheduleByScheduleID, 
-    getReservations
+    getReservations, 
+    getBoothData
     
 }
