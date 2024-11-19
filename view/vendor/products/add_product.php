@@ -80,7 +80,7 @@ require('view/vendor/page-fragments/Header.php');
                             // Check if 'loc_room' exists before using it
                             $location = isset($schedule['loc_room']) ? htmlspecialchars($schedule['loc_room']) : 'Unknown Location';
                             echo '<tr>';
-                            echo '<td><input type="checkbox" name="schedule[]" value="' . htmlspecialchars($schedule['sched_id']) . '"></td>';
+                            echo '<td><input type="checkbox" name="schedule_ids[]" value="' . htmlspecialchars($schedule['sched_id']) . '"></td>';
                             echo '<td>' . htmlspecialchars($schedule['date']) . '</td>';
                             echo '<td>' . $location . '</td>';  // Output 'location' safely
                             echo '<td>' . htmlspecialchars($schedule['stall_number']) . '</td>';
