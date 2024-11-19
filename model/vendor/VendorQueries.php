@@ -771,6 +771,32 @@ class VendorQueries {
         return $schedules;
     }
 
+    public function getProductScheduleIds($prod_id) {
+        $stmt = $this->conn->prepare("SELECT sched_id FROM prod_org_sched WHERE prod_id = ?");
+        $stmt->bind_param("i", $prod_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $schedule_ids = [];
+        while ($row = $result->fetch_assoc()) {
+            $schedule_ids[] = $row['sched_id'];
+        }
+
+        return $schedule_ids;
+    }
+    public function addProductSchedule($prod_id, $sched_id) {
+        $stmt = $this->conn->prepare("INSERT INTO prod_org_sched (prod_id, sched_id) VALUES (?, ?)");
+        $stmt->bind_param("ii", $prod_id, $sched_id);
+        return $stmt->execute();
+    }
+
+    public function removeProductSchedule($prod_id, $sched_id) {
+        $stmt = $this->conn->prepare("DELETE FROM prod_org_sched WHERE prod_id = ? AND sched_id = ?");
+        $stmt->bind_param("ii", $prod_id, $sched_id);
+        return $stmt->execute();
+    }
+
+
     public function cancelReservation($reservation_id) {
         $query = "UPDATE reservation SET status = 'Cancelled' WHERE reservation_id = ?";
         $stmt = $this->conn->prepare($query);

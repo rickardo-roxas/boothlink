@@ -55,9 +55,14 @@ class EditProductsController {
 
     // Handle GET request: Fetch and display the product data
     private function handleGetRequest($prod_id) {
+        // Fetch product data
         $productData = $this->editProductsModel->getProductsByID($prod_id);
 
         if ($productData) {
+            // Fetch associated schedule IDs
+            $productData['schedule_ids'] = $this->editProductsModel->getProductScheduleIds($prod_id);
+
+            // Pass the data to the view
             require 'view/vendor/products/edit_product.php'; // Render the edit form
         } else {
             echo "Product not found.";
@@ -73,16 +78,36 @@ class EditProductsController {
         $price = floatval($_POST['price'] ?? 0);
         $status = $_POST['status'] ?? '';
         $description = trim($_POST['description'] ?? '');
+        $selected_schedule_ids = $_POST['schedule_ids'] ?? []; // array of checked schedId
 
+        // Validate required fields
         if (empty($prod_serv_name) || empty($category) || empty($price) || empty($status) || empty($description)) {
             $_SESSION['error'] = "Please fill in all required fields.";
             header("Location: /cs-312-boothlink/products/edit-product?prod_id=$prod_id");
             exit();
         }
 
+        // Update product details
         $result = $this->editProductsModel->updateProducts($prod_id, $prod_serv_name, $category, $price, $status, $description);
 
         if ($result) {
+            // Get current schedule IDs from the database
+            $current_schedule_ids = $this->editProductsModel->getProductScheduleIds($prod_id);
+
+            // Determine IDs to add and remove
+            $ids_to_add = array_diff($selected_schedule_ids, $current_schedule_ids);
+            $ids_to_remove = array_diff($current_schedule_ids, $selected_schedule_ids);
+
+            // Add new schedule IDs
+            foreach ($ids_to_add as $sched_id) {
+                $this->editProductsModel->addProductSchedule($prod_id, $sched_id);
+            }
+
+            // Remove unchecked schedule IDs
+            foreach ($ids_to_remove as $sched_id) {
+                $this->editProductsModel->removeProductSchedule($prod_id, $sched_id);
+            }
+
             $_SESSION['product_updated'] = true;
             header("Location: /cs-312_boothlink/products");
         } else {
@@ -91,4 +116,5 @@ class EditProductsController {
         }
         exit();
     }
+
 }
