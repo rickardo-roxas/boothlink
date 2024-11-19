@@ -110,12 +110,17 @@ textarea {
 }
 
 .schedule-table th {
-    background-color: #1EBDEF; 
-    color: white; 
+    background-color: #f4f4f9;
     position: sticky;
     top: 0;
     z-index: 1;
     width: 20rem;
+}
+
+.selected-row {
+    background-color: #1EBDEF; 
+    color: white; 
+    font-weight: medium;
 }
 
 .schedule-table tbody tr:last-child td {
@@ -213,6 +218,7 @@ textarea {
     border-radius: 8px;
     padding: 20px;
     height: 200px;
+    overflow-y: auto;
 }
 
 .preview-box h3 {
@@ -223,6 +229,11 @@ textarea {
 
 .preview-box div {
     margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.preview-box div span {
+    font-weight: normal; 
 }
 
 .preview-image div:first-child {
