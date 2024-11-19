@@ -15,4 +15,5 @@ class AddNewProductModel{
     public function getSchedule(){
         return $this->vendorQueries->getAllScheduleByWeek();
     }
+
 }
