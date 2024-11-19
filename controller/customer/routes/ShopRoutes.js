@@ -32,6 +32,12 @@ router.get('/booth', (req,res)=> {
     controller.index(id, req, res);
 });
 
+router.get('/reserve', (req,res) => {
+    ctrler = require('../shop/ShopReserveController'); //Makes use of a different name to not interfere with filter functionality
+    const productID = req.query;
+    ctrler.index(productID, req,res);
+});
+
 
 router.post('/', (req,res) => {
     if (req.body.action == "Add to Cart") {

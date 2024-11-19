@@ -148,6 +148,59 @@ function getScheduleByScheduleID(id, callback) {
     });
 }
 
+/** Method to get booth, its associated image, and social links */
+function getBoothData(id, callback) {
+    const query = "SELECT organization.org_name, organization.org_img, " + 
+    "organization.fb_link, organization.x_link, organization.ig_link FROM organization WHERE organization.org_id = ?"
+
+    conn.query(query,id,(err, results)=> {
+        if (err) {
+            console.log(err);
+            return callback(err, null);
+        }
+        callback(null,results);
+    })
+}
+
+
+//TODO: Include Organization Part
+/** Gets all in stock products sorting by price and accepts a boolean parameter that tells if the filtering 
+ * should be done descending or ascending  */
+function getShopProductsByPriceInOrganization(id, desc, callback) {
+    var query =  "SELECT prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name, prod_serv.price, " + 
+    "prod_serv.description, prod_img.img_src FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " + 
+    "WHERE prod_serv.status = 'In Stock' ORDER BY prod_serv.price ";
+     
+    if (desc) query += "DESC"; // Not sure if this is allowed
+
+    conn.query(query, (err, results) => {
+        if (err) {
+            console.log(err);
+            return callback(err,null);
+        }
+        callback(null,results);
+    });
+}
+
+//TODO: Include Organization Part
+/** Gets all in stock products, filtering based on category provided as parameter. 
+ *      Possible Parameters: ITEM, SERVICE, FOOD */
+function getShopProductsByCategoryInOrganization(id, category, callback) {
+    var query =  "SELECT prod_serv.prod_id, prod_serv.prod_serv_name, prod_serv.price, " + 
+    "prod_serv.description, prod_img.img_src FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " + 
+    "WHERE prod_serv.category = '?' ";
+
+    conn.query(query, category, (err, results) => {
+        if (err) {
+            console.log(err);
+            return callback(err,null);
+        }
+        callback(null,results);
+    });
+}
+
+/** End of Shop */
+
 // Returns the reservations of a certain user
 // DATA: Org Name, Item Name, Price, Date, Status, Quantity, and total price
 function getReservations(username, callback){
@@ -180,19 +233,7 @@ function getReservations(username, callback){
     })
 }
 
-/** Method to get booth, its associated image, and social links */
-function getBoothData(id, callback) {
-    const query = "SELECT organization.org_name, organization.org_img, " + 
-    "organization.fb_link, organization.x_link, organization.ig_link FROM organization"
 
-    conn.query(query, (err, results)=> {
-        if (err) {
-            console.log(err);
-            return callback(err, null);
-        }
-        callback(null,results);
-    })
-}
 
 module.exports = {
     getFirstName,
