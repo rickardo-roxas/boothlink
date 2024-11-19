@@ -161,9 +161,11 @@
 
 
 .sales img {
-    max-width: 3.5vh;
-    max-height: 3.5vh;
+    max-width: 12vh;
+    max-height: 12vh;
     margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 #product-sales-table {
     max-width: 100%;

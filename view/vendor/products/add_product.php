@@ -15,7 +15,7 @@ require('view/vendor/page-fragments/Header.php');
                     <label for="name">Product Name</label>
                     <input type="text" name="name" id="name" required oninput="updatePreview()"
                            placeholder="Enter product name"
-                           minlength="3" maxlength="50"
+                           minlength="3" maxlength="35"
                            pattern=".*\S.*" 
                            title="Product Name cannot be empty or contain only spaces."
                            value="<?php echo htmlspecialchars($productData['prod_serv_name'] ?? ''); ?>"
@@ -54,7 +54,7 @@ require('view/vendor/page-fragments/Header.php');
                     <label for="description">Description</label>
                     <textarea name="description" id="description" required oninput="updatePreview()"
                                 placeholder="Enter product description"
-                                minlength="10" maxlength="60"
+                                minlength="10" maxlength="80"
                                 pattern=".*\S.*"
                                 title="Description cannot be empty or contain only spaces."><?php echo htmlspecialchars($productData['description'] ?? ''); ?></textarea>
                 </div>
