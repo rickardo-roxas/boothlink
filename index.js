@@ -32,6 +32,7 @@ app.use((req, res, next) => {
     console.log("host: " + req.hostname);
     console.log("path: " + req.path);
     console.log("method: " + req.method);
+    console.log("url: " + req.baseUrl);
     next();
 })
 
@@ -46,10 +47,10 @@ app.use(session({
 
 // Routes
 
-app.use('/', homeRouter);
 app.use('/reservations', reservationsRouter);
 app.use('/shop', shopRouter);
 app.use('/cart', cartRouter)
+app.use('/', homeRouter);
 
 // Error Page
 app.use((req, res) => {
