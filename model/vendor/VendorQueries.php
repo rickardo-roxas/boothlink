@@ -423,32 +423,23 @@ class VendorQueries {
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-
-
-
     public function getAllOrgs() {
-        $query = "SELECT org_id, org_name FROM organization";
-        
+        $query = "SELECT org_id, org_name, org_img FROM organization";
         $stmt = $this->conn->prepare($query);
-        
         $stmt->execute();
-        
         $result = $stmt->get_result();
-        
         $organizations = [];
-        
+
         while ($row = $result->fetch_assoc()) {
             $organizations[] = [
-                'id' => $row['org_id'],  
-                'name' => $row['org_name']
-            ]; 
+                'id' => $row['org_id'],
+                'name' => $row['org_name'],
+                'img' => $row['org_img']
+            ];
         }
-    
         $stmt->close();
-        
         return $organizations;
     }
-
     public function getVendorID($username) {
         $query = "SELECT vendor_id FROM users WHERE username = ?";
         $stmt = $this->conn->prepare($query);
@@ -461,7 +452,6 @@ class VendorQueries {
         }
         return null;
     }
-
 
     public function getRecentReservations($org_id, $date): array
     {
