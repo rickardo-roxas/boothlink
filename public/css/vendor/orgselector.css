@@ -56,19 +56,15 @@
     transition: transform 0.2s ease;
 }
 
-.button {
-    background-color: #1EBDEF;
-    width: 12rem;
-    height: 12rem;
-    border-radius: 6rem;
+
+.org-image {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+
 }
 
-
-.add-button img {
-    width: 12rem;
-    height: 12rem;
-    border-radius: 6rem;
-}
 
 .button:hover {
     transform: scale(1.1);
