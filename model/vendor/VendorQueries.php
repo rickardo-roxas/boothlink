@@ -809,10 +809,13 @@ class VendorQueries {
     }
 
     public function getAllScheduleByWeek() {
-        $query = "SELECT sched_id, date, start_time, end_time 
-              FROM schedule 
-              WHERE WEEK(date, 1) = WEEK(CURDATE(), 1) 
-              AND YEAR(date) = YEAR(CURDATE())";
+        $query = "SELECT sched_id, date, start_time, end_time, loc_room, stall_number
+                  FROM schedule
+                  JOIN location ON schedule.loc_id = location.loc_id
+                  WHERE WEEK(date, 1) = WEEK(CURDATE(), 1) 
+                  AND YEAR(date) = YEAR(CURDATE());
+                  ";
+
 
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -820,6 +823,7 @@ class VendorQueries {
         $schedules = $result->fetch_all(MYSQLI_ASSOC);
         return $schedules;
     }
+
 
 }
 
