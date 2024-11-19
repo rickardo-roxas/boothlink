@@ -33,6 +33,8 @@ class AddProductsController{
             $price = $_POST['price'];
             $status = $_POST['status'];
             $description = $_POST['description'];
+            $selected_schedule_ids = isset($_POST['schedule_ids']) ? $_POST['schedule_ids'] : [];
+
 
             if (isset($_FILES['file']) && count($_FILES['file']['name']) > 0) {
                 $target_dir = "assets/prod_img/";
@@ -50,7 +52,7 @@ class AddProductsController{
 
                 }
               //  $image_src = "dummysource.png"
-                $this->model->addProduct($orgId, $status, $category, $prod_serv_name, $price, $description, $file_name);
+                $this->model->addProduct($orgId, $status, $category, $prod_serv_name, $price, $description, $file_name, $selected_schedule_ids);
 
 
                 $_SESSION['product_added'] = true;

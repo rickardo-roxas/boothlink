@@ -26,49 +26,42 @@ class VendorQueries {
      * Image and SchedulePageModel Picking
      * Duplication Checking
      */
-    public function addProduct($org_id, $status, $category, $prod_serv_name, $price, $description, $image_src) {
-        $schedules = $this->getAllScheduleByWeek();
-
-        if (empty($schedules)) {
-            throw new Exception("No schedules found for the current week.");
-        }
-
+    public function addProduct($org_id, $status, $category, $prod_serv_name, $price, $description, $image_src, $selected_schedule_ids) {
+        // Insert the product into the prod_serv table
         $query1 = "
-    INSERT INTO prod_serv (status, category, prod_serv_name, price, description)
-    VALUES (?, ?, ?, ?, ?)
+        INSERT INTO prod_serv (status, category, prod_serv_name, price, description)
+        VALUES (?, ?, ?, ?, ?)
     ";
-
         $stmt1 = $this->conn->prepare($query1);
         $stmt1->bind_param('sssds', $status, $category, $prod_serv_name, $price, $description);
         $stmt1->execute();
-
-        // Get the last inserted product ID
         $prod_id = $stmt1->insert_id;
         $stmt1->close();
 
+        // Insert the product image into the prod_img table
         $query2 = "
-    INSERT INTO prod_img (prod_id, img_src)
-    VALUES (?, ?)
+        INSERT INTO prod_img (prod_id, img_src)
+        VALUES (?, ?)
     ";
         $stmt2 = $this->conn->prepare($query2);
         $stmt2->bind_param('is', $prod_id, $image_src);
         $stmt2->execute();
         $stmt2->close();
 
+        // Insert selected schedules into prod_org_sched
         $query3 = "
-    INSERT INTO prod_org_sched (prod_id, org_id, sched_id)
-    VALUES (?, ?, ?)
+        INSERT INTO prod_org_sched (prod_id, org_id, sched_id)
+        VALUES (?, ?, ?)
     ";
-
         $stmt3 = $this->conn->prepare($query3);
 
-        foreach ($schedules as $schedule) {
-            $sched_id = $schedule['sched_id'];
+        foreach ($selected_schedule_ids as $sched_id) {
             $stmt3->bind_param('iii', $prod_id, $org_id, $sched_id);
             $stmt3->execute();
         }
         $stmt3->close();
     }
+
 
 
 
