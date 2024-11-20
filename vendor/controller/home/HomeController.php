@@ -45,7 +45,7 @@ class HomeController
             $foodReservations = $this->model->getFoodReservations($org_id, $dateToday);
             $serviceReservations = $this->model->getServiceReservations($org_id, $dateToday);
 
-            require_once 'view/vendor/home/home_view.php';
+            require_once 'vendor/view/home/home_view.php';
         } else {
             header('Location: home_view.php');
             exit();

@@ -69,7 +69,7 @@ class EditProductsController
         $productData = $this->editProductsModel->getProductsByID($prod_id);
 
         if ($productData) {
-            require 'view/vendor/products/edit_product.php'; // Render the edit form
+            require 'vendor/view/products/edit_product.php'; // Render the edit form
         } else {
             echo "Product not found.";
             exit();
