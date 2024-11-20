@@ -1,4 +1,4 @@
-const { getReservations : getReservationsQuery } = require('model/customer/CustomerQueries.js');
+const { getReservations : getReservationsQuery } = require('../CustomerQueries.js');
 
 function getReservations(username){
     return new Promise((resolve, reject) => {
