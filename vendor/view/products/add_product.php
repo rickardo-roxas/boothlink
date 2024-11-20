@@ -131,7 +131,8 @@ require('view/vendor/page-fragments/Header.php');
         </form>
     </div>
 </main>
-<?php require 'view/vendor/page-fragments/Footer.php'; ?>
+<?php require('vendor/view/page-fragments/Footer.php'); ?>
+
 <script src="<?php echo BASE_URL?>/public/javascript/vendor/add_product.js" defer></script>
 <script>
     function validateForm() {
