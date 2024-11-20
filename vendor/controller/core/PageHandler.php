@@ -31,7 +31,7 @@ class PageHandler
         switch ($path) {
             case '/home':
                 $title = 'Home';
-                require __DIR__ . '/../../controller/vendor/home/HomeController.php';
+                require __DIR__ . '/../../controller/home/HomeController.php';
                 $controller = new HomeController();
                 $controller->index($firstTime);
                 break;
@@ -76,13 +76,13 @@ class PageHandler
 
             case '/org_select':
                 $title = 'Org Select';
-                require __DIR__ . '/../../model/vendor/VendorQueries.php';
+                require __DIR__ . '/../../model/VendorQueries.php';
                 $vendorQueries = new VendorQueries($conn);
 
-                require __DIR__ . '/../../model/vendor/OrgSelectModel.php';
+                require __DIR__ . '/../../model/OrgSelectModel.php';
                 $orgSelectModel = new OrgSelectModel($vendorQueries);
 
-                require __DIR__ . '/../../controller/vendor/OrgSelectController.php';
+                require __DIR__ . '/../../controller/OrgSelectController.php';
                 $controller = new OrgSelectController($orgSelectModel);
                 $controller->displayOrgSelector();
                 break;

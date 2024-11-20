@@ -4,7 +4,7 @@ namespace model\vendor\reservations;
 
 use model\vendor\VendorQueries;
 
-require_once 'model/vendor/VendorQueries.php';
+require_once 'vendor/model/VendorQueries.php';
 
 class ReservationsPageModel
 {

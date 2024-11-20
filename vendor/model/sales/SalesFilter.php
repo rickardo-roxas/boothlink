@@ -1,8 +1,7 @@
 <?php
 
 namespace model\vendor\sales;
-
-use model\vendor\VendorQueries;
+require_once 'vendor/model/VendorQueries.php';
 
 class SalesFilter
 {
