@@ -58,32 +58,26 @@ class PageHandler
 
             case '/schedule':
                 $title = 'SchedulePageModel';
-                require ('vendor/controller//schedule/ScheduleController.php');
+                require ('vendor/controller/schedule/ScheduleController.php');
                 $controller = new ScheduleController();
                 $controller->index();
                 break;
 
             case '/schedule/add-schedule':
-                require ('vendor/controller//schedule/AddScheduleController.php');
+                require ('vendor/controller/schedule/AddScheduleController.php');
                 (new AddScheduleController())->addSchedule();
                 break;
             case '/sales':
                 $title = 'Sales';
-                require ('vendor/controller//sales/SalesController.php');
+                require ('vendor/controller/sales/SalesController.php');
                 $controller = new SalesController();
                 $controller->index();
                 break;
 
             case '/org_select':
                 $title = 'Org Select';
-                require ('vendor/model/VendorQueries.php');
-                $vendorQueries = new VendorQueries($conn);
-
-                require ('vendor/model/OrgSelectModel.php');
-                $orgSelectModel = new OrgSelectModel($vendorQueries);
-
-                require ('vendor/controller/OrgSelectController.php');
-                $controller = new OrgSelectController($orgSelectModel);
+                require('vendor/controller/org-select/OrgSelectController.php');
+                $controller = new OrgSelectController();
                 $controller->displayOrgSelector();
                 break;
 

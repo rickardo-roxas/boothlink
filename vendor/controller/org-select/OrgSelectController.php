@@ -1,21 +1,18 @@
 <?php
 namespace controller\vendor;
+use model\vendor\OrgSelectModel;
+
+require_once 'vendor/model/org-select/OrgSelectModel.php';
 
 class OrgSelectController
 {
     private $orgSelectModel;
 
-    public function __construct($orgSelectModel)
+    public function __construct()
     {
-        $this->orgSelectModel = $orgSelectModel;
+        $this->orgSelectModel = new OrgSelectModel();
     }
 
-//    public function displayOrgSelector() {
-//        // Retrieve list of organizations
-//        $organizations = $this->orgSelectModel->getAllOrganizations();
-//        include 'view/vendor/OrgSelectView.php';
-//    }x
-//    // Organization selection controller (e.g., OrgSelectController.php)
     public function displayOrgSelector()
     {
         if (!isset($_SESSION['vendor_id'])) {
@@ -26,7 +23,7 @@ class OrgSelectController
         $vendor_id = $_SESSION['vendor_id'];
         $organizations = $this->orgSelectModel->getOrganizationsByVendorID($vendor_id);
 
-        require_once 'vendor/view/OrgSelectView.php';
+        require_once 'vendor/view/org-select/org_select_view.php';
     }
 
 
@@ -36,5 +33,4 @@ class OrgSelectController
         header('Location: /home');
         exit();
     }
-
 }

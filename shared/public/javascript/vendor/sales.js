@@ -14,7 +14,7 @@ function populateTable(productList) {
         productInfo.classList.add('product-info');
 
         let img = document.createElement('img');
-        img.src = "/cs-312_boothlink/assets/prod_img/" + productList[index].img_src;
+        img.src = "/cs-312_boothlink/shared/assets/prod_img/" + productList[index].img_src;
         img.alt = productList[index].name || "Product Image";
         img.classList.add('product-img');
 

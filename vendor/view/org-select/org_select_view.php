@@ -1,8 +1,8 @@
 <?php
 $pageTitle = "Select Organization";
-require ('vendor/view/page-fragments/Header.php');
+require('vendor/view/page-fragments/Header.php');
 ?>
-<link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/orgselector.css">
+<link rel="stylesheet" href="<?php echo BASE_URL?>/shared/public/css/vendor/orgselector.css">
 <main>
     <div id="salesboard" class="container">
         <div class="grid-container">
@@ -22,7 +22,7 @@ require ('vendor/view/page-fragments/Header.php');
                 <div class="org-container" id="button-container">
                     <?php foreach ($organizations as $organization): ?>
                         <a href="/cs-312_boothlink/select_org?org_id=<?= htmlspecialchars($organization['org_id']); ?>" class="button">
-                            <img src="<?= htmlspecialchars(BASE_URL . '/assets/images/org/' . $organization['org_img']); ?>"
+                            <img src="<?= htmlspecialchars(BASE_URL . '/shared/assets/images/org/' . $organization['org_img']); ?>"
                                  alt="<?= htmlspecialchars($organization['org_name']); ?>" class="org-image">
                             <span><?= htmlspecialchars($organization['org_name']); ?></span>
                         </a>
@@ -33,4 +33,4 @@ require ('vendor/view/page-fragments/Header.php');
         </div>
     </div>
 </main>
-<?php require ('vendor/view/page-fragments/Footer.php') ?>
+<?php require('vendor/view/page-fragments/Footer.php') ?>
