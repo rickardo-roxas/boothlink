@@ -62,7 +62,7 @@ class ProductsController
         $products = $this->model->getFilteredProducts($orgId, $filter);
 
         // Include the view and pass the products data
-        require 'view/vendor/products/products_view.php';
+        require 'vendor/view/products/products_view.php';
 
     }
 }

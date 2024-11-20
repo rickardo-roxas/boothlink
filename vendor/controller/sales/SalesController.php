@@ -71,7 +71,7 @@ class SalesController
         $labels = $this->getModel()->getLabels();
         $productList = $this->products;
 
-        require_once 'view/vendor/sales/sales_view.php';
+        require_once 'vendor/view/sales/sales_view.php';
         /*
         header('Location: /cs-312_boothlink/view/vendor/sales/sales_view.php?productList='
             .serialize($this->products)

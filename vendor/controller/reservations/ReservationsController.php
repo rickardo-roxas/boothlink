@@ -31,7 +31,7 @@ class ReservationsController
 
         $reservations = $this->model->getReservations($org_id);
 
-        require_once 'view/vendor/reservations/reservations_view.php';
+        require_once 'vendor/view/reservations/reservations_view.php';
         exit();
     }
 
@@ -40,6 +40,6 @@ class ReservationsController
         $org_id = $_SESSION['org_id'];
         $reservations = $this->model->getReservationsByStatus($org_id, $filter);
 
-        require 'view/vendor/reservations/reservations_view.php';
+        require 'vendor/view/reservations/reservations_view.php';
     }
 }
