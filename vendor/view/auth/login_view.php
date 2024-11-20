@@ -4,7 +4,7 @@ $pageTitle = "Login";
 const BASE_URL = '/cs-312_boothlink';
 $title = $pageTitle;
 ?>
-<link rel="stylesheet" href="<?php echo BASE_URL?>/shared/public/css/auth/login.css">
+<link rel="stylesheet" href="<?php echo BASE_URL?>../../public/css/login.css">
 <main>
     <div class="container">
     <!--Left section logo part-->

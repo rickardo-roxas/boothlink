@@ -2,7 +2,7 @@
 $pageTitle = "Products";
 require('vendor/view/page-fragments/Header.php');
 ?>
-<link rel="stylesheet" href="<?php echo BASE_URL?>/shared/public/css/vendor/add_edit_products.css">
+<link rel="stylesheet" href="<?php echo BASE_URL?>../../public/css/add_edit_products.css">
 <main>
     <div class="container">
         <!-- Form Section -->

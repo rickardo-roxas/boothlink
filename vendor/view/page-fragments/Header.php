@@ -14,8 +14,8 @@ $title = $pageTitle;
     <meta name="description" content="BoothLink lets you discover and reserve unique products and services from student
     booths at Saint Louis University. Support SLU's vibrant student community today!">
     <title>BoothLink | <?php echo $title?></title>
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/shared/public/css/vendor/interactive.css">
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/shared/public/css/vendor/style.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>../../public/css/interactive.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>../../public/css/style.css">
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo BASE_URL; ?>/shared/assets/favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo BASE_URL; ?>/shared/assets/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo BASE_URL; ?>/shared/assets/favicon_io/favicon-16x16.png">

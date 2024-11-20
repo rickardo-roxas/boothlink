@@ -2,7 +2,7 @@
 $pageTitle = "Select Organization";
 require('vendor/view/page-fragments/Header.php');
 ?>
-<link rel="stylesheet" href="<?php echo BASE_URL?>/shared/public/css/vendor/orgselector.css">
+<link rel="stylesheet" href="<?php echo BASE_URL?>../../public/css/orgselector.css">
 <main>
     <div id="salesboard" class="container">
         <div class="grid-container">

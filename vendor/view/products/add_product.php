@@ -5,7 +5,7 @@ use model\vendor\products\AddNewProductModel;
 $pageTitle = "Products";
 require('vendor/view/page-fragments/Header.php');
 ?>
-<link rel="stylesheet" href="<?php echo BASE_URL?>/shared/public/css/vendor/add_edit_products.css">
+<link rel="stylesheet" href="<?php echo BASE_URL?>../../public/css/add_edit_products.css">
 <main>
     <div class="container">
         <!-- Form Section -->
@@ -133,7 +133,7 @@ require('vendor/view/page-fragments/Header.php');
 </main>
 <?php require('vendor/view/page-fragments/Footer.php'); ?>
 
-<script src="<?php echo BASE_URL?>/shared/public/javascript/vendor/add_product.js" defer></script>
+<script src="<?php echo BASE_URL?>../../public/js/add_product.js" defer></script>
 <script>
     function validateForm() {
         const nameInput = document.getElementById("name").value.trim();

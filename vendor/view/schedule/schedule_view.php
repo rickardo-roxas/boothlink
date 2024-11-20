@@ -2,10 +2,10 @@
 $pageTitle = "Schedule";
 require('vendor/view/page-fragments/Header.php');
 ?>
-<link rel="stylesheet" href="<?php echo BASE_URL ?>/shared/public/css/vendor/schedule.css">
-<link rel="stylesheet" href="<?php echo BASE_URL ?>/shared/public/css/vendor/schedule_selector.css">
-<script src="<?php echo BASE_URL ?>/shared/public/javascript/vendor/schedule.js" defer></script>
-<script src="<?php echo BASE_URL ?>/shared/public/javascript/vendor/schedule_selector.js" defer></script>
+<link rel="stylesheet" href="<?php echo BASE_URL ?>../../public/css/schedule.css">
+<link rel="stylesheet" href="<?php echo BASE_URL ?>../../public/css/schedule_selector.css">
+<script src="<?php echo BASE_URL ?>../../public/js/schedule.js" defer></script>
+<script src="<?php echo BASE_URL ?>../../public/js/schedule_selector.js" defer></script>
 <main>
     <input type="hidden" id="schedule-week" value="<?php echo htmlspecialchars(json_encode($scheduleThisWeek), ENT_QUOTES);;?>">
     <div class="main-table">

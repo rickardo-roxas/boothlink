@@ -2,8 +2,8 @@
 $pageTitle = "Reservations";
 require('vendor/view/page-fragments/Header.php');
 ?>
-    <link rel="stylesheet" href="<?php echo BASE_URL?>/shared/public/css/vendor/reservations.css">
-    <script src="<?php echo BASE_URL?>/shared/public/javascript/vendor/reservations.js" defer></script>
+    <link rel="stylesheet" href="<?php echo BASE_URL?>../../public/css/reservations.css">
+    <script src="<?php echo BASE_URL?>../../public/js/reservations.js" defer></script>
     <main>
         <input type="hidden" id="reservations-data" value='<?php echo htmlspecialchars(json_encode($reservations), ENT_QUOTES); ?>'>
         <div class="main-table">

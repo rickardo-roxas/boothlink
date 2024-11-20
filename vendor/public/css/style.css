@@ -1,27 +1,27 @@
 @font-face {
     font-family: 'Plus Jakarta Sans';
-    src: url('../../../assets/fonts/Plus_Jakarta_Sans/PlusJakartaSans-VariableFont_wght.ttf') format("truetype");
+    src: url('../../../shared/assets/fonts/Plus_Jakarta_Sans/PlusJakartaSans-VariableFont_wght.ttf') format("truetype");
 }
 
 @font-face {
     font-family: 'Roboto';
-    src: url(../../../assets/fonts/Roboto/Roboto-Regular.ttf) format("truetype");
+    src: url(../../../shared/assets/fonts/Roboto/Roboto-Regular.ttf) format("truetype");
 }
 
 @font-face {
     font-family: 'Roboto';
-    src: url(../../../assets/fonts/Roboto/Roboto-Bold.ttf) format("truetype");
+    src: url(../../../shared/assets/fonts/Roboto/Roboto-Bold.ttf) format("truetype");
     font-weight: bold;
 }
 
 @font-face {
     font-family: 'Poppins';
-    src: url(../../../assets/fonts/Poppins/Poppins-Regular.ttf) format("truetype");
+    src: url(../../../shared/assets/fonts/Poppins/Poppins-Regular.ttf) format("truetype");
 }
 
 @font-face {
     font-family: 'Poppins';
-    src: url(../../../assets/fonts/Poppins/Poppins-Bold.ttf) format("truetype");
+    src: url(../../../shared/assets/fonts/Poppins/Poppins-Bold.ttf) format("truetype");
     font-weight: bold;
 }
 
