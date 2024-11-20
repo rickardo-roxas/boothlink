@@ -24,7 +24,14 @@ class LoginController
             $password = $_POST['password'];
 
             $login = new Login($this->conn);
-            if ($login->authenticateVendor($username, $password)) {
+
+            if (!isset($_SESSION['loginAttempts'])) {
+                $_SESSION['loginAttempts'] = 0;
+            }
+            if ($_SESSION['loginAttempts'] === 5) {
+                // 
+                
+            } else if ($login->authenticateVendor($username, $password)) {
                 $_SESSION['user'] = $username;
                 $_SESSION['vendor_id'] = $login->getUserID($username);
 
@@ -42,6 +49,8 @@ class LoginController
                     header("Location: http://localhost:3000/" . $id . "/" . urlencode($username));
                     exit();
                 } else {
+                    $_SESSION['loginAttempts'] = $_SESSION['loginAttempts'] +1;
+
                     //Add a script where an alert will pop up that log in failed, incorrect credentials
                     $_SESSION['login_error'] = 'Invalid username or password';
                     header("Location: /cs-312_boothlink/login");
