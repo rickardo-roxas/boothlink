@@ -52,7 +52,7 @@
 
 
 .sales #product-sales {
-    height: 81vh;
+    height: 95vh;
     width: 100vh;
     grid-area:left;
     overflow-y: auto;
@@ -64,11 +64,11 @@
     width: 57vh;
 }
 
-#sales-comparison {
+.sales #sales-comparison {
     grid-area:bottom-right;
-    height: 390px;
+    height: 350px;
     width:57vh;
-    margin-top: 0.5%;
+    overflow-y: hidden;
 }
 
 .product-sales-right-head li {
@@ -161,10 +161,16 @@
 
 
 .sales img {
-    max-width: 3.5vh;
-    max-height: 3.5vh;
+    max-width: 8vh;
+    max-height: 8vh;
     margin: 0 auto;
 }
+
+.product-name {
+    font-size: 0;
+}
+
+
 #product-sales-table {
     max-width: 100%;
     vertical-align: top;

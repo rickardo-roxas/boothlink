@@ -27,7 +27,7 @@ require('vendor/view/page-fragments/Header.php');
 
             <!-- The header of the Product sales section and the form functionality -->
             <div class="product-sales-head">
-                <h1>Product Sales</h1>
+                <h1>Sales</h1>
                 <div class = "product-sales-right-head">
                     <form name = "filter-form" action="<?php echo BASE_URL . "/sales" ?>"  method="GET">
                         <label class="toggle-button">

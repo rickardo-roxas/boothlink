@@ -44,7 +44,7 @@ class LoginController
                 } else {
                     //Add a script where an alert will pop up that log in failed, incorrect credentials
                     $_SESSION['login_error'] = 'Invalid username or password';
-                    header("Location: /login");
+                    header("Location: /cs-312_boothlink/login");
                     exit();
                 }
             }
