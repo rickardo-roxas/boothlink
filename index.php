@@ -1,12 +1,12 @@
 <?php
 
-// Starts session
 use controller\auth\Authenticator;
 use controller\core\Router;
 use controller\vendor\PageHandler;
 use controller\vendor\products\EditProductsController;
 use controller\vendor\reservations\ActionReservationsController;
 
+// Starts session
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -16,7 +16,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 include 'vendor/config/Connection.php';
-require 'vendor/controller/core/Router.php';
+require 'vendor/controller/routes/Router.php';
 require 'vendor/controller/auth/Authenticator.php';
 
 
@@ -42,7 +42,7 @@ $router->addRoute('POST', '/signup', function() use ($conn, $authenticator){
 
 if (isset($_SESSION['vendor_id'])) {
 
-    require 'vendor/controller/core/PageHandler.php';
+    require 'vendor/controller/routes/PageHandler.php';
     $pageHandler = new PageHandler();
 
 // Home route
@@ -57,17 +57,17 @@ if (isset($_SESSION['vendor_id'])) {
     });
 
 
-// Reservations route
+    // Reservations route
     $router->addRoute('GET', '/reservations', function () use ($pageHandler) {
         $pageHandler->renderVendor('/reservations', false);
     });
 
-// Products route
+    // Products route
     $router->addRoute('GET', '/products', function () use ($pageHandler) {
         $pageHandler->renderVendor('/products', false);
     });
 
-// Add Products route
+    // Add Products route
     $router->addRoute('GET', '/products/add-product', function () use ($pageHandler) {
         $pageHandler->renderVendor('/products/add-product', false);
     });
@@ -76,7 +76,7 @@ if (isset($_SESSION['vendor_id'])) {
         $pageHandler->renderVendor('/products/add-product', false);
     });
 
-// SchedulePageModel route
+        // SchedulePageModel route
     $router->addRoute('GET', '/schedule', function () use ($pageHandler) {
         $pageHandler->renderVendor('/schedule', false);
     });
@@ -85,12 +85,12 @@ if (isset($_SESSION['vendor_id'])) {
         $pageHandler->renderVendor('/schedule/add-schedule', false);
     });
 
-// Sales route
+    // Sales route
     $router->addRoute('GET', '/sales', function () use ($pageHandler) {
         $pageHandler->renderVendor('/sales', false);
     });
 
-// orgSelector
+    // orgSelector
     $router->addRoute('GET', '/org_select', function () use ($pageHandler) {
         $pageHandler->renderVendor('/org_select', false);
     });
