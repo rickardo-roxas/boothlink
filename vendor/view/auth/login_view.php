@@ -33,6 +33,15 @@ $title = $pageTitle;
         <div class="right">
             <h2>Log In</h2>
             <p>Don't have an account yet? <a href="/cs-312_boothlink/signup">Sign Up</a></p>
+
+
+            <?php
+            if (isset($_SESSION['login_error'])) {
+                echo "<script>alert('" . $_SESSION['login_error'] . "');</script>";
+                unset($_SESSION['login_error']); // Unset after displaying the alert
+            }
+            ?>
+            
             <form action="/cs-312_boothlink/login" method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>
