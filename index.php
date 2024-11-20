@@ -38,6 +38,10 @@ $router->addRoute('POST', '/signup', function() use ($conn, $authenticator){
     $authenticator->renderAuth('/signup', $conn);
 });
 
+$router->addRoute('GET', '/signup', function() use ($conn, $authenticator) {
+    $authenticator->renderAuth('/signup', $conn);
+});
+
  /** -- Vendor routes -- */
 
 if (isset($_SESSION['vendor_id'])) {
@@ -45,7 +49,7 @@ if (isset($_SESSION['vendor_id'])) {
     require 'vendor/controller/routes/PageHandler.php';
     $pageHandler = new PageHandler();
 
-// Home route
+    // Home route
     $router->addRoute('GET', '/home', function () use ($pageHandler) {
         if (!isset($_SESSION['org_id'])) {
             header('Location: /org_select');
@@ -140,5 +144,4 @@ if (isset($_SESSION['user'])) {
 } else {
     $authenticator = new Authenticator();
     $authenticator->renderAuth('/login', $conn);
-
 }

@@ -32,7 +32,10 @@ class Authenticator
 
             case '/signup':
                 $title = 'Signup';
-                // Include signup controller and logic if available
+                require('vendor/controller/auth/SignupController.php');
+                $controller = new SignupController($conn);
+                $controller->handleSignup();
+                exit();
                 break;
 
             default:

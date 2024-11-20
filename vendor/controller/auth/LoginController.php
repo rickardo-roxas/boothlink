@@ -47,7 +47,6 @@ class LoginController
                     header("Location: /login");
                     exit();
                 }
-
             }
         }
     }
