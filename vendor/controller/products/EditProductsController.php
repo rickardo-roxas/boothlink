@@ -1,6 +1,6 @@
 <?php
 
-namespace controller\vendor\products;
+namespace vendor\controller\products;
 
 use model\vendor\products\EditProductsModel;
 

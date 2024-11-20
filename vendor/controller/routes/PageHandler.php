@@ -97,7 +97,7 @@ class PageHandler
 
             case '/products/edit-product':
                 $title = 'Edit Product';
-                require ('vendor/controller//products/EditProductsController.php');
+                require ('vendor/controller/products/EditProductsController.php');
                 $controller = new EditProductsController();
                 $prod_id = $_GET['prod_id'] ?? null;
                 $controller->index($prod_id);
