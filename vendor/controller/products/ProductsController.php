@@ -23,7 +23,7 @@ class ProductsController
     public function __construct()
     {
 
-        include(__DIR__ . '/../../../model/vendor/products/ProductsPageModel.php');
+        include('vendor/model/products/ProductsPageModel.php');
         $this->model = new ProductsPageModel();
 
     }
@@ -49,7 +49,7 @@ class ProductsController
         $products = $this->model->getProducts($orgId);
 
         // Include the view and pass the products data
-        require 'view/vendor/products/products_view.php';
+        require 'vendor/view/products/products_view.php';
     }
 
     public function filteredCategory($filter)

@@ -1,6 +1,6 @@
 <?php
 $pageTitle = "Sales";
-require(__DIR__ . '/../page-fragments/Header.php');
+require('vendor/view/page-fragments/Header.php');
 ?>
 <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/sales.css">
 

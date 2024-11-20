@@ -1,6 +1,6 @@
 <?php
 $pageTitle = "Select Organization";
-require 'view/vendor/page-fragments/Header.php'
+require ('vendor/view/page-fragments/Header.php');
 ?>
 <link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/orgselector.css">
 <main>
@@ -33,4 +33,4 @@ require 'view/vendor/page-fragments/Header.php'
         </div>
     </div>
 </main>
-<?php require 'view/vendor/page-fragments/Footer.php' ?>
+<?php require ('vendor/view/page-fragments/Footer.php') ?>

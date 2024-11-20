@@ -7,7 +7,7 @@ use model\vendor\reservations\ReservationsPageModel;
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once('model/vendor/reservations/ReservationsPageModel.php');
+require_once('vendor/model/reservations/ReservationsPageModel.php');
 
 if (isset($_GET['status'])) {
     $filter = $_GET['status'];

@@ -2,6 +2,7 @@
 
 namespace controller\vendor\schedule;
 
+use DateTime;
 use model\vendor\schedule\SchedulePageModel;
 
 class ScheduleController
@@ -10,7 +11,7 @@ class ScheduleController
 
     public function __construct()
     {
-        include(__DIR__ . '/../../../model/vendor/schedule/SchedulePageModel.php');
+        include('vendor/model/schedule/SchedulePageModel.php');
         $this->model = new SchedulePageModel();
     }
 
@@ -45,7 +46,7 @@ class ScheduleController
 
         $scheduleThisWeek = $this->model->getScheduleThisWeek($org_id, $startDateRange, $endDateRange);
 
-        require_once 'view/vendor/schedule/schedule_view.php';
+        require_once 'vendor/view/schedule/schedule_view.php';
         exit();
     }
 }

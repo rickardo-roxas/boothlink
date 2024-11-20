@@ -31,58 +31,58 @@ class PageHandler
         switch ($path) {
             case '/home':
                 $title = 'Home';
-                require __DIR__ . '/../../controller/home/HomeController.php';
+                require ('vendor/controller/home/HomeController.php');
                 $controller = new HomeController();
                 $controller->index($firstTime);
                 break;
 
             case '/reservations':
                 $title = 'Reservations';
-                require __DIR__ . '/../../controller/vendor/reservations/ReservationsController.php';
+                require ('vendor/controller/reservations/ReservationsController.php');
                 $controller = new ReservationsController();
                 $controller->index();
                 break;
 
             case '/products':
                 $title = 'Products';
-                require __DIR__ . '/../../controller/vendor/products/ProductsController.php';
+                require ('vendor/controller/products/ProductsController.php');
                 $controller = new ProductsController();
                 $controller->index();
                 break;
 
             case '/products/add-product':
                 $title = 'Products';
-                require __DIR__ . '/../../controller/vendor/products/AddProductsController.php';
+                require ('vendor/controller/products/AddProductsController.php');
                 (new AddProductsController())->index();
                 break;
 
             case '/schedule':
                 $title = 'SchedulePageModel';
-                require __DIR__ . '/../../controller/vendor/schedule/ScheduleController.php';
+                require ('vendor/controller//schedule/ScheduleController.php');
                 $controller = new ScheduleController();
                 $controller->index();
                 break;
 
             case '/schedule/add-schedule':
-                require __DIR__ . '/../../controller/vendor/schedule/AddScheduleController.php';
+                require ('vendor/controller//schedule/AddScheduleController.php');
                 (new AddScheduleController())->addSchedule();
                 break;
             case '/sales':
                 $title = 'Sales';
-                require __DIR__ . '/../../controller/vendor/sales/SalesController.php';
+                require ('vendor/controller//sales/SalesController.php');
                 $controller = new SalesController();
                 $controller->index();
                 break;
 
             case '/org_select':
                 $title = 'Org Select';
-                require __DIR__ . '/../../model/VendorQueries.php';
+                require ('vendor/model/VendorQueries.php');
                 $vendorQueries = new VendorQueries($conn);
 
-                require __DIR__ . '/../../model/OrgSelectModel.php';
+                require ('vendor/model/OrgSelectModel.php');
                 $orgSelectModel = new OrgSelectModel($vendorQueries);
 
-                require __DIR__ . '/../../controller/OrgSelectController.php';
+                require ('vendor/controller/OrgSelectController.php');
                 $controller = new OrgSelectController($orgSelectModel);
                 $controller->displayOrgSelector();
                 break;
@@ -103,7 +103,7 @@ class PageHandler
 
             case '/products/edit-product':
                 $title = 'Edit Product';
-                require __DIR__ . '/../../controller/vendor/products/EditProductsController.php';
+                require ('vendor/controller//products/EditProductsController.php');
                 $controller = new EditProductsController();
                 $prod_id = $_GET['prod_id'] ?? null;
                 $controller->index($prod_id);
@@ -113,7 +113,6 @@ class PageHandler
                 echo "404 Not Found";
                 break;
         }
-
         $_SESSION['page_title'] = $title;
     }
 }

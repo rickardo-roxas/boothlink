@@ -7,7 +7,7 @@ use model\vendor\schedule\AddScheduleModel;
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once './model/vendor/schedule/AddScheduleModel.php';
+require_once 'vendor/model/schedule/AddScheduleModel.php';
 
 class AddScheduleController
 {

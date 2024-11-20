@@ -30,7 +30,7 @@ class SalesController
     public function __construct()
     {
 
-        include(__DIR__ . '/../../../model/vendor/sales/SalesModel.php');
+        include('vendor/model/sales/SalesModel.php');
         $this->model = new SalesModel();
         $this->org_id = $_SESSION['org_id'];
     }
