@@ -1,0 +1,152 @@
+@import "styles.css";
+
+main {
+    padding: var(--spacing-xl);
+}
+
+.icon {
+    width: 1.4375rem;
+    height: 1.49863rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.3rem;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.checkout-btn {
+    border: none;
+    border-radius: 0.3125rem;
+    background: #1EBDEF;
+    padding: 1rem 2.5rem;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.clear-btn {
+    border: none;
+    background: none;
+    font-size: 1rem;
+    color: var(--sky-blue);
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.remove-btn {
+    border: none;
+    background: none;
+    color: var(--text);
+    font-family: Inter;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25rem; /* 125% */
+}
+
+.heading {
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.container input {
+    margin-right: 0.5rem;
+}
+
+#cart-table td {
+    padding: 0.5rem;
+}
+
+/* Table */
+#cart-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 1rem;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    line-height: 1.25rem;
+}
+
+#cart-table thead,
+#cart-table tfoot,
+#cart-table tbody {
+    background: #FFF;
+    box-shadow: var(--dark1);
+}
+
+#cart-table thead {
+    height: 4.125rem;
+    background: #FFF;
+}
+
+#cart-table thead th,
+ #cart-table tfoot td {
+    padding: 0 1.5rem;
+    text-align: center;
+}
+
+#cart-table th {
+    font-weight: normal;
+}
+
+#cart-table tfoot {
+    height: 6.4375rem;
+    background: #FFF;
+}
+
+/* Rounded corners of table */
+#cart-table thead tr:first-child th:first-child {
+    border-top-left-radius: 1.25rem; /* Top-left corner */
+}
+
+#cart-table thead tr:first-child th:last-child {
+    border-top-right-radius: 1.25rem; /* Top-right corner */
+}
+
+#cart-table tfoot tr:last-child td:first-child {
+    border-bottom-left-radius: 1.25rem; /* Bottom-left corner */
+}
+
+#cart-table tfoot tr:last-child td:last-child {
+    border-bottom-right-radius: 1.25rem; /* Bottom-right corner */
+}
+
+/* Products */
+.prod-head {
+    border-bottom: var(--text);
+}
+
+.prod img {
+    width: 8rem;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 1.25rem;
+    margin-right: 1rem;
+}
+
+.prod .item {
+    margin-right: 5rem;
+}
+
+.prod .pickup,
+.prod .qty {
+    height: 2.3125rem;
+    border-radius: 0.3125rem;
+    border: 2px solid #D9D9D9;
+    background: #FFF;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.prod .pickup {
+    width: 10.4375rem;
+}
+
+.prod .qty {
+    width: 5.4375rem;
+}
+
+
+
