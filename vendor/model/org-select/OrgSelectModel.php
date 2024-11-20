@@ -7,9 +7,9 @@ class OrgSelectModel
 {
     private $vendorQueries;
 
-    public function __construct($vendorQueries)
+    public function __construct()
     {
-        $this->vendorQueries = $vendorQueries;
+        $this->vendorQueries = new VendorQueries();
     }
 
     public function getAllOrganizations()

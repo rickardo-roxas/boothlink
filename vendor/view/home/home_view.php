@@ -20,7 +20,7 @@ require('vendor/view/page-fragments/Header.php');
             <article id="dash-org" class="card">
                 <h2>Organization</h2>
                 <div class="container">
-                    <img id="dash-org-img" src="<?php echo BASE_URL; ?>/shared/assets/images/org" alt="Organization picture">
+                    <img id="dash-org-img" src="<?php echo BASE_URL; ?>/shared/assets/images/org/" alt="Organization picture">
                     <h3 id="dash-org-name"></h3>
                 </div>
                 <div class="column-container">
