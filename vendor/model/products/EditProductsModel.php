@@ -1,10 +1,13 @@
 <?php
 
+use model\vendor\VendorQueries;
+
+require ('vendor/model/VendorQueries.php');
+
 class EditProductsModel {
     private $vendorQueries;
 
     public function __construct() {
-        include 'model/vendor/VendorQueries.php';
         $this->vendorQueries = new VendorQueries();
     }
 

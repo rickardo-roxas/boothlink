@@ -2,7 +2,7 @@
 
 namespace controller\vendor\products;
 
-use model\vendor\products\EditProductsModel;
+use EditProductsModel;
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
