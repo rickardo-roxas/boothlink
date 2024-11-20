@@ -1,6 +1,12 @@
 <?php
 
 // Starts session
+use controller\auth\Authenticator;
+use controller\core\Router;
+use controller\vendor\PageHandler;
+use controller\vendor\products\EditProductsController;
+use controller\vendor\reservations\ActionReservationsController;
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
