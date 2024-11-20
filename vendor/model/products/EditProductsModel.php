@@ -1,16 +1,10 @@
 <?php
 
-namespace model\vendor\products;
-
-use model\vendor\VendorQueries;
-
-class EditProductsModel
-{
+class EditProductsModel {
     private $vendorQueries;
 
-    public function __construct()
-    {
-        require_once 'vendor/model/VendorQueries.php';
+    public function __construct() {
+        include 'model/vendor/VendorQueries.php';
         $this->vendorQueries = new VendorQueries();
     }
 
@@ -29,4 +23,19 @@ class EditProductsModel
     {
         return $this->vendorQueries->deleteProduct($prod_id);
     }
+    public function getSchedule(){
+        return $this->vendorQueries->getAllScheduleByWeek();
+    }
+    public function getProductScheduleIds($prod_id) {
+        return $this->vendorQueries->getProductScheduleIds($prod_id);
+    }
+
+    public function addProductSchedule($prod_id, $sched_id) {
+        return $this->vendorQueries->addProductSchedule($prod_id, $sched_id);
+    }
+
+    public function removeProductSchedule($prod_id, $sched_id) {
+        return $this->vendorQueries->removeProductSchedule($prod_id, $sched_id);
+    }
+
 }
