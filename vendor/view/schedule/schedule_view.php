@@ -47,4 +47,4 @@ require('view/vendor/page-fragments/Header.php');
     </div>
 </main>
 
-<?php require 'view/vendor/page-fragments/Footer.php' ?>
+<?php require('vendor/view/page-fragments/Footer.php'); ?>

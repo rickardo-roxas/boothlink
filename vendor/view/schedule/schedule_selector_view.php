@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="../../../public/css/vendor/schedule_selector.css">
-</head>
-<body>
+
+<link rel="stylesheet" href="../../../public/css/vendor/schedule_selector.css">
+<main>
     <?php
         // Get the current month, year, and day
         $currentMonth = date('F');
@@ -115,5 +112,5 @@
 
     <script src="../../../public/javascript/vendor/schedule_selector.js" defer></script>
 
-</body>
-</html>
+</main>
+<?php require('vendor/view/page-fragments/Footer.php'); ?>
