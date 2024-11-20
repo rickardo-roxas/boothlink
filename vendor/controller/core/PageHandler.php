@@ -79,10 +79,10 @@ class PageHandler
                 require ('vendor/model/VendorQueries.php');
                 $vendorQueries = new VendorQueries($conn);
 
-                require ('vendor/model/OrgSelectModel.php');
+                require('vendor/model/OrgSelectModel.php');
                 $orgSelectModel = new OrgSelectModel($vendorQueries);
 
-                require ('vendor/controller/OrgSelectController.php');
+                require('vendor/controller/OrgSelectController.php');
                 $controller = new OrgSelectController($orgSelectModel);
                 $controller->displayOrgSelector();
                 break;

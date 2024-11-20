@@ -18,12 +18,12 @@ class Authenticator
             case '/login':
                 $title = 'Login';
                 if (!isset($_SESSION['user'])) {
-                    require('auth/controller/LoginController.php');
+                    require('vendor/controller/auth/LoginController.php');
                     $controller = new LoginController($conn);
                     $controller->handleLogin();
                 } else {
                     session_destroy();
-                    require('auth/controller/LoginController.php');
+                    require('vendor/controller/auth/LoginController.php');
                     $controller = new LoginController($conn);
                     $controller->handleLogin();
                     exit();

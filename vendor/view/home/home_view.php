@@ -2,7 +2,7 @@
 $pageTitle = "Home";
 require('vendor/view/page-fragments/Header.php');
 ?>
-<script src="<?php echo BASE_URL?>/public/javascript/vendor/home.js" defer></script>
+<script src="<?php echo BASE_URL?>/shared/public/javascript/vendor/home.js" defer></script>
 <main>
     <input type="hidden" id="org-data" value='<?php echo htmlspecialchars(json_encode($organizationData), ENT_QUOTES); ?>'>
     <input type="hidden" id="recent-reservations-data" value='<?php echo htmlspecialchars(json_encode($recentReservations), ENT_QUOTES); ?>'>
@@ -20,20 +20,20 @@ require('vendor/view/page-fragments/Header.php');
             <article id="dash-org" class="card">
                 <h2>Organization</h2>
                 <div class="container">
-                    <img id="dash-org-img" src="<?php echo BASE_URL; ?>/assets/images/org" alt="Organization picture">
+                    <img id="dash-org-img" src="<?php echo BASE_URL; ?>/shared/assets/images/org" alt="Organization picture">
                     <h3 id="dash-org-name"></h3>
                 </div>
                 <div class="column-container">
                     <a id="fb-link" href="" target="_blank" class="container soc-med">
-                        <img src="<?php echo BASE_URL; ?>/assets/icons/soc-med/facebook.png" alt="Facebook logo">
+                        <img src="<?php echo BASE_URL; ?>/shared/assets/icons/soc-med/facebook.png" alt="Facebook logo">
                         <p></p>
                     </a>
                     <a id="ig-link" href="" target="_blank" class="container soc-med">
-                        <img src="<?php echo BASE_URL; ?>/assets/icons/soc-med/instagram.png" alt="Instagram logo">
+                        <img src="<?php echo BASE_URL; ?>/shared/assets/icons/soc-med/instagram.png" alt="Instagram logo">
                         <p></p>
                     </a>
                     <a id="x-link" href="" target="_blank" class="container soc-med">
-                        <img src="<?php echo BASE_URL; ?>/assets/icons/soc-med/twitter.png" alt="X logo">
+                        <img src="<?php echo BASE_URL; ?>/shared/assets/icons/soc-med/twitter.png" alt="X logo">
                         <p></p>
                     </a>
                 </div>

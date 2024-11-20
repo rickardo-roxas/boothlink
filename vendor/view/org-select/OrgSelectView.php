@@ -1,8 +1,8 @@
 <?php
 $pageTitle = "Select Organization";
-require ('vendor/view/page-fragments/Header.php');
+require('vendor/view/page-fragments/Header.php');
 ?>
-<link rel="stylesheet" href="<?php echo BASE_URL?>/public/css/vendor/orgselector.css">
+<link rel="stylesheet" href="<?php echo BASE_URL?>/shared/public/css/vendor/orgselector.css">
 <main>
     <div id="salesboard" class="container">
         <div class="grid-container">
@@ -33,4 +33,4 @@ require ('vendor/view/page-fragments/Header.php');
         </div>
     </div>
 </main>
-<?php require ('vendor/view/page-fragments/Footer.php') ?>
+<?php require('vendor/view/page-fragments/Footer.php') ?>

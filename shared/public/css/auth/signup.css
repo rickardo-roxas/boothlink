@@ -1,5 +1,5 @@
-@import "/public/css/vendor/style.css";
-@import "/public/css/vendor/interactive.css";
+@import "/shared/public/public/css/vendor/style.css";
+@import "/shared/public/public/css/vendor/interactive.css";
 
 * {
     font-family: 'Poppins', sans-serif;

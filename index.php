@@ -17,7 +17,7 @@ ini_set('display_errors', 1);
 
 include 'vendor/config/Connection.php';
 require 'vendor/controller/core/Router.php';
-require 'auth/controller/Authenticator.php';
+require 'vendor/controller/auth/Authenticator.php';
 
 
 $router = new Router();
