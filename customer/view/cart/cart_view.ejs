@@ -1,21 +1,93 @@
-<!DOCTYPE html>
-
-<html lang = "en">
 <%- include('../partials/header.ejs') %>
 <%- include('../partials/navbar.ejs')%>
+<link rel="stylesheet" href="/cart.css">
+<main>
+    <div class="container heading">
+        <img class="icon" src="/icons/logo-black-outline.png" alt="Cart icon">
+        <h2>Your Cart</h2>
+    </div>
+    <div class="container ">
+        <table id="cart-table">
+            <thead class="card">
+                <tr>
+                    <th>
+                        <div class="container">
+                            <input type="checkbox"> 
+                            <p class="bold">Select All Products</p>
+                        </div>
+                    </th>
+                    <th>Pickup</td>
+                    <th>Unit Price</td>
+                    <th>Quantity</td>
+                    <th>Total Price</td>
+                    <th>Action</td>
+                </tr>
+            </thead>
+            <tbody>
+                <!--To populate-->
+                <tr>
+                    <td class="card prod-head">
+                        <div class="container"> 
+                            <input type="checkbox">
+                            <p class="bold">SCHEMA</p>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="card prod">
+                    <!--Item with checkbox-->
+                    <td class="item">
+                        <div class="container">
+                            <input type="checkbox">
+                            <img src="/images/placeholder.jpeg">
+                            <p>Black Man (gwapo)</p>
+                        </div>
+                    </td>
+                    <!--Pickup time-->
+                    <td>
+                        <select class="pickup">
+                            <option>November 10 | 8 am</option>
+                        </select>
+                    </td>
+                    <td>
+                        Php 800.00
+                    </td>
+                    <td>
+                        <input type="number" class="qty">
+                    </td>
+                    <td>
+                       Php 800.00 
+                    </td>
+                    <td>
+                        <button class="remove-btn">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>
+                        <div class="container">
+                            <input type="checkbox"> 
+                            <p class="bold">Select All Products</p>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="clear-btn">Clear Cart</button>
+                    </td>
+                    <td></td>
+                    <td>Total (1 item):</td>
+                    <td>Php700.00</td>
+                    <td>
+                        <button class="checkout-btn">Check Out</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 
-<body class = "body">
-<h1>Cart Page </h1>
-
-<% if (sample.length > 0) { %>
-    <% sample.forEach(item => { %>
-        <p> <%= item.title %></p>
-        <p><%= item.description %></p>
-    <% })%>
-<% } %>
-
-</body>
-
+</main>
 <%- include('../partials/footer.ejs')%>
-
-</html>
