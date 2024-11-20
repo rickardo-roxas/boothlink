@@ -39,6 +39,58 @@ class Login
         }
     }
 
+    public function authenticateCustomer($username, $password)
+    {
+        $query = "SELECT username, password FROM customer WHERE username = ? LIMIT 1";
+
+        $stmt = $this->conn->prepare($query);
+        if (!$stmt) {
+            die("SQL error: " . $this->conn->error);
+        }
+
+        $stmt->bind_param('s', $username);
+        if (!$stmt->execute()) {
+            die("Execution failed: " . $stmt->error);
+        }
+
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            if ($password === $row['password']) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function getCustomerID($username){
+        $query = "SELECT customer_id FROM customer WHERE username = ? LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+
+        if (!$stmt) {
+            die("SQL error: " . $this->conn->error);
+        }
+
+        $stmt->bind_param('s', $username);
+        if (!$stmt->execute()) {
+            die("Execution failed: " . $stmt->error);
+        }
+
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['customer_id'];
+        }
+
+        return null;
+    }
+
     public function getUserID($username)
     {
         $query = "SELECT vendor_id FROM vendor WHERE username = ? LIMIT 1";

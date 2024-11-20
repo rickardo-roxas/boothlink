@@ -36,13 +36,16 @@ class LoginController
                 header("Location: /cs-312_boothlink/org_select");
                 exit();
             } else {
-                /** TODO: Insert Customer login authentication */
-                if (true) {
-                    $id = 1;
-                    $username = 'clifton';
+                if ($login->authenticateCustomer($username, $password)) {
+                    $id = $login->getCustomerID($username);
+                    $username = $username;
                     header("Location: http://localhost:3000/" . $id . "/" . urlencode($username));
+                    exit();
                 } else {
-                    // TODO: INSERT ERROR
+                    //Add a script where an alert will pop up that log in failed, incorrect credentials
+                    $_SESSION['login_error'] = 'Invalid username or password'
+                    header("Location: /login");
+                    exit();
                 }
 
             }
