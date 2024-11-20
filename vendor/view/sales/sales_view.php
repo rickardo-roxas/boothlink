@@ -2,7 +2,7 @@
 $pageTitle = "Sales";
 require('vendor/view/page-fragments/Header.php');
 ?>
-<link rel="stylesheet" href="<?php echo BASE_URL?>../../public/css/sales.css">
+<link rel="stylesheet" href="<?php echo BASE_URL?>/vendor/public/css/sales.css">
 
 
 <!-- Hidden Data to populate the javascript file -->
@@ -14,7 +14,7 @@ require('vendor/view/page-fragments/Header.php');
 
 
 <!-- Javascript file to handle populate this view -->
-<script src="<?php echo BASE_URL?>../../public/js/sales.js" defer></script>
+<script src="<?php echo BASE_URL?>/vendor/public/js/sales.js" defer></script>
 
 
 <main class = "sales">

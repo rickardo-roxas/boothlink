@@ -2,7 +2,7 @@
 $pageTitle = "Schedule";
 require('vendor/view/page-fragments/Header.php');
 ?>
-<link rel="stylesheet" href="../../public/css/schedule_selector.css">
+<link rel="stylesheet" href="<?php echo BASE_URL ?>/vendor/public/css/schedule_selector.css">
 <main>
     <?php
         // Get the current month, year, and day
@@ -112,8 +112,6 @@ require('vendor/view/page-fragments/Header.php');
             </div>
         </div>
     </form>
-
-    <script src="../../public/js/schedule_selector.js" defer></script>
-
+    <script src="<?php echo BASE_URL ?>/vendor/public/js/schedule_selector.js" defer></script>
 </main>
 <?php require('vendor/view/page-fragments/Footer.php'); ?>

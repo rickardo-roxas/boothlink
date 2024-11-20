@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BoothLink lets you discover and reserve unique products and services from student
-    booths at Saint Louis University. Support SLU's vibrant student community today!">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="/css/auth/signup.css">
-    <script defer src="/javascript/auth/signup.js"> </script>
-</head>
-<body>
+<?php
+$pageTitle = "Sign Up";
+
+const BASE_URL = '/cs-312_boothlink';
+$title = $pageTitle;
+?>
+<link rel="stylesheet" href="<?php echo BASE_URL?>/vendor/public/css/signup.css">
 <main>
     <div class="grid-container">
         <div id="grid-left">
@@ -60,5 +54,3 @@
         </div>
     </div>
 </main>
-</body>
-</html>

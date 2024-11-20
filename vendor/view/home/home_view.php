@@ -2,7 +2,7 @@
 $pageTitle = "Home";
 require('vendor/view/page-fragments/Header.php');
 ?>
-<script src="<?php echo BASE_URL?>../../public/js/home.js" defer></script>
+<script src="<?php echo BASE_URL?>/vendor/public/js/home.js" defer></script>
 <main>
     <input type="hidden" id="org-data" value='<?php echo htmlspecialchars(json_encode($organizationData), ENT_QUOTES); ?>'>
     <input type="hidden" id="recent-reservations-data" value='<?php echo htmlspecialchars(json_encode($recentReservations), ENT_QUOTES); ?>'>
