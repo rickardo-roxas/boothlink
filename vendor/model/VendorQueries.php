@@ -7,7 +7,7 @@ use model\objects\Reservation;
 use model\objects\Schedule;
 use model\vendor\schedule\SchedulePageModel;
 
-require __DIR__ . '/../../config/Connection.php';
+require 'vendor/config/Connection.php';
 
 class VendorQueries
 {
@@ -18,7 +18,7 @@ class VendorQueries
         global $conn;
         $this->conn = $conn;
         if (!isset($conn)) {
-            require 'config/Connection.php';
+            require 'vendor/config/Connection.php';
             global $conn;
             $this->conn = $conn;
         }

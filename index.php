@@ -15,7 +15,7 @@ if (session_status() == PHP_SESSION_NONE) {
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include 'config/Connection.php';
+include 'vendor/config/Connection.php';
 require 'vendor/controller/core/Router.php';
 require 'auth/controller/Authenticator.php';
 

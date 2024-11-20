@@ -3,7 +3,7 @@
 .vscode
 
 # Config files
-/config/Connection.php
+/vendor/config/Connection.php
 
 # Env files
 .env
