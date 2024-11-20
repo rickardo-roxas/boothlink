@@ -1,6 +1,12 @@
 <?php
 
 // Starts session
+use controller\auth\Authenticator;
+use controller\core\Router;
+use controller\vendor\PageHandler;
+use controller\vendor\products\EditProductsController;
+use controller\vendor\reservations\ActionReservationsController;
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -10,8 +16,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 include 'config/Connection.php';
-require 'controller/core/Router.php';
-require 'controller/auth/Authenticator.php';
+require 'vendor/controller/core/Router.php';
+require 'auth/controller/Authenticator.php';
 
 
 $router = new Router();
@@ -36,7 +42,7 @@ $router->addRoute('POST', '/signup', function() use ($conn, $authenticator){
 
 if (isset($_SESSION['vendor_id'])) {
 
-    require 'controller/vendor/PageHandler.php';
+    require 'vendor/controller/core/PageHandler.php';
     $pageHandler = new PageHandler();
 
 // Home route
@@ -101,49 +107,31 @@ if (isset($_SESSION['vendor_id'])) {
     });
 
 
-// Edit Product GET route
+    // Edit Product GET route
     $router->addRoute('GET', '/products/edit-product', function () use ($pageHandler) {
         $pageHandler->renderVendor('/products/edit-product', false);
     });
 
-// Edit Product POST route should go to EditProductsController
+    // Edit Product POST route should go to EditProductsController
     $router->addRoute('POST', '/products/edit-product', function () use ($conn) {
-        require_once __DIR__ . '/controller/vendor/products/EditProductsController.php';
+        require_once ('vendor/controller/products/EditProductsController.php');
         (new EditProductsController())->index();
     });
 
     $router->addRoute('POST', '/products/delete-product', function () use ($conn) {
-        require_once __DIR__ . '/controller/vendor/products/EditProductsController.php';
+        require_once ('vendor/controller/products/EditProductsController.php');
         (new EditProductsController())->delete();
     });
 
     $router->addRoute('POST', '/reservations/complete', function () use ($conn) {
-        require_once __DIR__ . '/controller/vendor/reservations/ActionReservationsController.php';
+        require_once ('vendor/controller/reservations/ActionReservationsController.php');
         (new ActionReservationsController())->completeReservation();
     });
 
     $router->addRoute('POST', '/reservations/reject', function () use ($conn) {
-        require_once __DIR__ . '/controller/vendor/reservations/ActionReservationsController.php';
+        require_once ('vendor/controller/reservations/ActionReservationsController.php');
         (new ActionReservationsController())->rejectReservation();
     });
-
-    /**Customer Side */
-} else if (isset($_SESSION['customer_id'])) {
-    require 'controller/customer/PageHandler.php';
-    $pageHandler = new PageHandler();
-
-    $router->addRoute('GET', '/home', function () use ($pageHandler) {
-        $pageHandler->renderCustomer('/home');
-    });
-
-    $router->addRoute('GET', '/shop', function () use ($pageHandler) {
-        $pageHandler->renderCustomer('/shop');
-    });
-
-    $router->addRoute('GET', '/reservations', function () use ($pageHandler) {
-        $pageHandler->renderCustomer('/reservations');
-    });
-
 }
 
 // Check if the user is logged in
