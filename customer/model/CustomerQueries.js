@@ -1,4 +1,4 @@
-const db = require("../../config/Conn");
+const db = require("../config/Conn");
 const conn = db.conn;
 
 function getFirstName(username, callback) {

@@ -13,7 +13,6 @@ router.get('/?/:id/:username', (req, res) =>{
 
 router.get('/', (req, res) => {
     if (!req.session.customerID || !req.session.username) {
-
         res.redirect("http://localhost/cs-312_boothlink");
     } else {
     controller.index(req,res);
