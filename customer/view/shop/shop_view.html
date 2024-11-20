@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+</head>
+<body>
+<main>
+<div id="shop-page">
+    <div class="grid-container">
+        <div class="card" id="shop-parent-container">
+            <h2>Booths</h2>
+            <div class="booths-icon-container">
+                <img id="booths-img" src="/shared/assets/icons/booth-4.png" alt="Booth Icon">
+            </div>
+            <div class="org-container">
+                <ul class="organization-list">
+                    <li class="schema-booth">
+                        <!--
+                        <a href="">
+                        <img src="" alt="">
+                        </a>>
+                        -->
+                    </li>
+                    <li class="stellaris-booth">
+                        <!--
+                        <a href="">
+                        <img src="" alt="">
+                        </a>>
+                        -->
+                    </li>
+                    <li class="wb-booth">
+                        <!--
+                        <a href="">
+                        <img src="" alt="">
+                        </a>>
+                        -->
+                    </li>
+                    <li class="rpg-booth">
+                        <!--
+                        <a href="">
+                        <img src="" alt="">
+                        </a>>
+                        -->
+                    </li>
+                    <li class="dailydose-booth">
+                        <!--
+                        <a href="">
+                        <img src="" alt="">
+                        </a>>
+                        -->
+                    </li>
+                    <li class="icon-booth">
+                        <!--
+                        <a href="">
+                        <img src="" alt="">
+                        </a>>
+                        -->
+                    </li>
+                </ul>
+            </div>
+            <div id="shops-and-sorting-container">
+                <h2>Shop</h2>
+                <div class="shop-icon-container">
+                    <img id="shops-img" src="/shared/assets/icons/shopping-bag 2.png" alt="Shop Icon">
+                </div>
+                <form id="sort-form" action="/shop" method="GET">
+                    <!--Pricing View Filter-->
+                    <div id="category-filter">
+                        <p>SORT BY</p>
+                        <select class="category-select" name="category" onchange="this.form.submit()">
+                            <option value="" disabled selected>>Price, Low to High</option>
+                            <option value="high-to-low">Price, High to Low</option>
+                        </select>
+                        <p>VIEW</p>
+                         <!--Type of Product View Filter-->
+                        <div id="view-filter">
+                            <label>
+                                <input type="radio" name="category" value="electronics" onchange="this.form.submit()">
+                                Item
+                            </label>
+                            <label>
+                                <input type="radio" name="category" value="clothing" onchange="this.form.submit()">
+                                Service
+                            </label>
+                            <label>
+                                <input type="radio" name="category" value="home" onchange="this.form.submit()">
+                                Food
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="product-listing">
+                <!--To be Added-->
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+</body>
+</html>
