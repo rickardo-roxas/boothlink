@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require_once "config/Connection.php";
-require_once "model/vendor/home/Home.php";
+require_once "vendor/model/home/Home.php";
 
 class HomeController
 {

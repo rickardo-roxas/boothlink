@@ -7,7 +7,7 @@ use model\vendor\reservations\ActionReservationsModel;
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-include 'model/vendor/reservations/ActionReservationsModel.php';
+include 'vendor/model/reservations/ActionReservationsModel.php';
 
 class ActionReservationsController
 {

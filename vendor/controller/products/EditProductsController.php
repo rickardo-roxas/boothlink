@@ -7,7 +7,7 @@ use model\vendor\products\EditProductsModel;
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once(__DIR__ . '/../../../model/vendor/products/EditProductsModel.php');
+require_once('vendor/model/products/EditProductsModel.php');
 
 class EditProductsController
 {

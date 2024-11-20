@@ -18,7 +18,7 @@ class VendorQueries
         global $conn;
         $this->conn = $conn;
         if (!isset($conn)) {
-            require __DIR__ . '/../../config/Connection.php';
+            require 'config/Connection.php';
             global $conn;
             $this->conn = $conn;
         }
@@ -300,7 +300,7 @@ class VendorQueries
 
     public function getReservations($org_id)
     {
-        include 'model/objects/Reservation.php';
+        include 'vendor/model/objects/Reservation.php';
 
         $query = "
         SELECT 
@@ -348,7 +348,7 @@ class VendorQueries
 
     public function getReservationsByStatus($org_id, $status): array
     {
-        include 'model/objects/Reservation.php';
+        include 'vendor/model/objects/Reservation.php';
 
         $query = "SELECT 
             prod_serv.prod_serv_name AS product_name, 
@@ -395,7 +395,7 @@ class VendorQueries
 
     public function getOrganizationByID($org_id)
     {
-        include 'model/objects/Organization.php';
+        include 'vendor/model/objects/Organization.php';
 
         $query = "SELECT * FROM organization WHERE org_id = ?";
         $stmt = $this->conn->prepare($query);
@@ -483,7 +483,7 @@ class VendorQueries
 
     public function getRecentReservations($org_id, $date): array
     {
-        include 'model/objects/Reservation.php';
+        include 'vendor/model/objects/Reservation.php';
         $query = "SELECT prod_org_sched.*, reservation.*, customer.last_name, prod_serv.prod_serv_name, prod_serv.price
             FROM prod_org_sched
             JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id
@@ -524,7 +524,7 @@ class VendorQueries
 
     public function getScheduleToday($org_id, $date): array
     {
-        include 'model/objects/Schedule.php';
+        include 'vendor/model/objects/Schedule.php';
         $query = "SELECT prod_org_sched.org_id, schedule.*, location.loc_room, location.stall_number
             FROM prod_org_sched
             JOIN schedule ON schedule.sched_id = prod_org_sched.sched_id
@@ -727,7 +727,7 @@ class VendorQueries
 
     public function getSchedules($org_id)
     {
-        include 'model/objects/Schedule.php';
+        include 'vendor/model/objects/Schedule.php';
         $query = "SELECT prod_org_sched.org_id, schedule.*, location.loc_room, location.stall_number 
             FROM prod_org_sched
             JOIN schedule ON schedule.sched_id = prod_org_sched.sched_id
@@ -758,7 +758,7 @@ class VendorQueries
 
     public function getSchedule($org_id, $date, $startTime, $endTime, $loc_id)
     {
-        include 'model/objects/Schedule.php';
+        include 'vendor/model/objects/Schedule.php';
         $query = "SELECT prod_org_sched.org_id, schedule.*,
         FROM prod_org_sched
         JOIN schedule ON schedule.sched_id = prod_org_sched.sched_id
@@ -779,7 +779,7 @@ class VendorQueries
 
     public function getScheduleThisWeek($org_id, $startDate, $endDate)
     {
-        include 'model/objects/Schedule.php';
+        include 'vendor/model/objects/Schedule.php';
         $query = "SELECT prod_org_sched.org_id, schedule.*, location.loc_room, location.stall_number 
             FROM prod_org_sched
             JOIN schedule ON schedule.sched_id = prod_org_sched.sched_id

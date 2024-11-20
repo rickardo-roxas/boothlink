@@ -1,4 +1,7 @@
-
+<?php
+$pageTitle = "Schedule";
+require('vendor/view/page-fragments/Header.php');
+?>
 <link rel="stylesheet" href="../../../public/css/vendor/schedule_selector.css">
 <main>
     <?php
