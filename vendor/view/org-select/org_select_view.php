@@ -17,7 +17,6 @@ require('vendor/view/page-fragments/Header.php');
                     </div>
                 </div>
             </div>
-
             <div class="org-selector">
                 <div class="org-container" id="button-container">
                     <?php foreach ($organizations as $organization): ?>
@@ -29,7 +28,6 @@ require('vendor/view/page-fragments/Header.php');
                     <?php endforeach; ?>
                 </div>
             </div>
-
         </div>
     </div>
 </main>
