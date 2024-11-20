@@ -7,14 +7,14 @@ const app = express();
 const session = require('express-session');
 
 // routers
-const homeRouter = require('./controller/customer/routes/HomeRoutes');
-const reservationsRouter = require('./controller/customer/routes/ReservationRoutes');
-const shopRouter = require('./controller/customer/routes/ShopRoutes');
-const cartRouter = require('./controller/customer/routes/CartRoutes');
+const homeRouter = require('./controller/routes/HomeRoutes');
+const reservationsRouter = require('./controller/routes/ReservationRoutes');
+const shopRouter = require('./controller/routes/ShopRoutes');
+const cartRouter = require('./controller/routes/CartRoutes');
 
 // view engine
 app.set("view engine", 'ejs');
-app.set('views', "view/customer/");
+app.set('views', "view/");
 
 //port
 const port = 3000;
@@ -23,8 +23,8 @@ const port = 3000;
 app.listen(port);
 
 // public files
-app.use(express.static('public/css/customer'));
-app.use(express.static('assets'));
+app.use(express.static('./public/css'));
+app.use(express.static('../shared/assets'));
 
 
 // Just gives information on the request
