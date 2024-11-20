@@ -1,4 +1,3 @@
-<!--commented out line 2 and 3 because of view not showing. Will readd later.-->
 <?php
 $pageTitle = "Login";
 

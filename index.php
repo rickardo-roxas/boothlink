@@ -16,8 +16,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 include 'config/Connection.php';
-require 'controller/core/Router.php';
-require 'controller/auth/Authenticator.php';
+require 'vendor/controller/core/Router.php';
+require 'auth/controller/Authenticator.php';
 
 
 $router = new Router();
@@ -42,7 +42,7 @@ $router->addRoute('POST', '/signup', function() use ($conn, $authenticator){
 
 if (isset($_SESSION['vendor_id'])) {
 
-    require 'controller/vendor/PageHandler.php';
+    require 'vendor/controller/core/PageHandler.php';
     $pageHandler = new PageHandler();
 
 // Home route
@@ -134,22 +134,6 @@ if (isset($_SESSION['vendor_id'])) {
     });
 
     /**Customer Side */
-} else if (isset($_SESSION['customer_id'])) {
-    require 'controller/customer/PageHandler.php';
-    $pageHandler = new PageHandler();
-
-    $router->addRoute('GET', '/home', function () use ($pageHandler) {
-        $pageHandler->renderCustomer('/home');
-    });
-
-    $router->addRoute('GET', '/shop', function () use ($pageHandler) {
-        $pageHandler->renderCustomer('/shop');
-    });
-
-    $router->addRoute('GET', '/reservations', function () use ($pageHandler) {
-        $pageHandler->renderCustomer('/reservations');
-    });
-
 }
 
 // Check if the user is logged in

@@ -10,7 +10,7 @@ class EditProductsModel
 
     public function __construct()
     {
-        include 'model/vendor/VendorQueries.php';
+        require_once 'vendor/model/VendorQueries.php';
         $this->vendorQueries = new VendorQueries();
     }
 

@@ -5,8 +5,8 @@ namespace controller\auth;
 use model\auth\Login;
 
 require_once "config/Connection.php";
-require_once "model/auth/Login.php";
-require_once 'view/auth/login_view.php';
+require_once "auth/model/Login.php";
+require_once 'auth/view/login_view.php';
 
 class LoginController
 {

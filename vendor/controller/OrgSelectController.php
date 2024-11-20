@@ -1,6 +1,6 @@
 <?php
-
 namespace controller\vendor;
+
 class OrgSelectController
 {
     private $orgSelectModel;
@@ -26,7 +26,7 @@ class OrgSelectController
         $vendor_id = $_SESSION['vendor_id'];
         $organizations = $this->orgSelectModel->getOrganizationsByVendorID($vendor_id);
 
-        require_once 'view/vendor/OrgSelectView.php';
+        require_once 'vendor/view/OrgSelectView.php';
     }
 
 
