@@ -1,11 +1,240 @@
 @import 'styles.css';
 
-main{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+main {
     min-height: 100vh;
     padding: 2rem;
     background-color: #f8f9fa;
+    margin: 0 auto; 
+    width: calc(100% - 80px); 
     font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    overflow-x: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%; 
+}
+
+.header p {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.header img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.filter-btns {
+    display: flex;
+    gap: 10px;
+    margin-right: 0; 
+    justify-content: flex-end;
+}
+
+.filter-btns label {
+    margin-right: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.filter-btns input[type="radio"] {
+    transform: scale(1.5); 
+    border: 2px solid #17a2d8; 
+}
+
+.filter-btns input[type="radio"]:checked {
+    background-color: #17a2d8; 
+    border-color: #17a2d8; 
+}
+
+.filter-btns input[type="radio"]:checked + span {
+    font-weight: bold; 
+}
+
+.filter-btns label:hover {
+    font-weight: bold;
+}
+
+.filter-btns input {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.reservation-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 550px; 
+    padding: 20px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.product-card:hover {
+    transform: scale(1.00); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+}
+
+.image-container {
+    width: 250px; 
+    height: 200px; 
+    overflow: hidden; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 10px; 
+    /* for testing
+    border: 1px solid #17a2d8; */
+} 
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.product-container {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: flex-start;
+    width: 100%; 
+    padding-left: 20px;
+}
+
+.product-info {
+    flex: 1;
+    margin-right: 10px;
+    gap: 10px;
+}
+
+.org {
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.org img {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+}
+
+.item {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.category, .date-container, .status-container {
+    font-size: 16px;
+    color: #555;
+}
+
+.item, .category, .price, .date-container, .status-container {
+    margin-top: 5px;
+}
+
+.date-container p, .status-container p {
+    margin: 0;
+}
+
+.status-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%;
+    margin-bottom: 2px; 
+}
+
+.status-container .status {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background-color: #d4edda;
+    color: #155724;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.status-container .status.pending {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background-color: #fff3cd;
+    color: #856404;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.status-container .status.cancelled {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background-color: #f8d7da;
+    color: #721c24;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.total-items {
+    text-align: right;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.buy-again {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-end; 
+    margin-top: 5px;
+    margin-bottom: 3px;
+}
+
+.action-btn {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.action-btn:hover {
+    background-color: #17a2d8;
 }
