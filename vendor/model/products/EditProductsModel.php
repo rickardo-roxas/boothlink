@@ -2,7 +2,7 @@
 
 namespace model\vendor\products;
 
-use vendor\model\VendorQueries;
+use model\vendor\VendorQueries;
 require_once('vendor/model/VendorQueries.php');
 class EditProductsModel {
     private $vendorQueries;
@@ -33,11 +33,11 @@ class EditProductsModel {
         return $this->vendorQueries->getProductScheduleIds($prod_id);
     }
 
-    public function addProductSchedule($prod_id, $sched_id) {
-        return $this->vendorQueries->addProductSchedule($prod_id, $sched_id);
+    public function addProductSchedule($prod_id, $sched_id, $org_id) {
+        return $this->vendorQueries->addProductSchedule($prod_id, $sched_id,$org_id);
     }
 
-    public function removeProductSchedule($prod_id, $sched_id) {
-        return $this->vendorQueries->removeProductSchedule($prod_id, $sched_id);
+    public function removeProductSchedule($prod_id, $sched_id, $org_id) {
+        return $this->vendorQueries->removeProductSchedule($prod_id, $sched_id,$org_id);
     }
 }

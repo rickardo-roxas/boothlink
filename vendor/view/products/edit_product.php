@@ -2,7 +2,7 @@
 $pageTitle = "Products";
 require('vendor/view/page-fragments/Header.php');
 ?>
-<link rel="stylesheet" href="<?php echo BASE_URL?>/vendor/public/css/add_edit_products.css">
+<link rel="stylesheet" href="<?php echo BASE_URL ?>/vendor/public/css/add_edit_products.css">
 <main>
     <div class="container">
         <!-- Form Section -->
@@ -11,27 +11,30 @@ require('vendor/view/page-fragments/Header.php');
                 <h1>Edit Product</h1>
                 <div class="header">Product Information</div>
                 <input type="hidden" name="prod_id" value="<?php echo htmlspecialchars($productData['prod_id'] ?? ''); ?>">
-
+                <input type="hidden" name="org_id" value="<?php echo htmlspecialchars($productData['org_id'] ?? ''); ?>">
+                <!-- Product Name -->
                 <div class="form-group">
                     <label for="name">Product Name</label>
-                    <input type="text" name="name" id="name" required oninput="updatePreview()" 
+                    <input type="text" name="name" id="name" required oninput="updatePreview()"
                            value="<?php echo htmlspecialchars($productData['prod_serv_name'] ?? ''); ?>"
                            placeholder="Enter product name" minlength="3" maxlength="50"
-                           pattern=".*\S.*" 
+                           pattern=".*\S.*"
                            title="Product Name cannot be empty or contain only spaces."
                            onkeydown="restrictInvalidCharacters(event)">
                 </div>
 
-            <div class="form-group">
-                <label for="type">Product Type</label>
-                <select name="type" id="type" required onchange="updatePreview()">
-                <option value="" disabled selected>Select product type</option>
-                    <option value="Item" <?php echo (isset($productData['category']) && $productData['category'] == 'Item') ? 'selected' : ''; ?>>Item</option>
-                    <option value="Food" <?php echo (isset($productData['category']) && $productData['category'] == 'Food') ? 'selected' : ''; ?>>Food</option>
-                    <option value="Service" <?php echo (isset($productData['category']) && $productData['category'] == 'Service') ? 'selected' : ''; ?>>Service</option>
-                </select>
-            </div>
+                <!-- Product Type -->
+                <div class="form-group">
+                    <label for="type">Product Type</label>
+                    <select name="type" id="type" required onchange="updatePreview()">
+                        <option value="" disabled selected>Select product type</option>
+                        <option value="Item" <?php echo (isset($productData['category']) && $productData['category'] === 'Item') ? 'selected' : ''; ?>>Item</option>
+                        <option value="Food" <?php echo (isset($productData['category']) && $productData['category'] === 'Food') ? 'selected' : ''; ?>>Food</option>
+                        <option value="Service" <?php echo (isset($productData['category']) && $productData['category'] === 'Service') ? 'selected' : ''; ?>>Service</option>
+                    </select>
+                </div>
 
+                <!-- Price and Status -->
                 <div class="form-row">
                     <div class="form-group half-width">
                         <label for="price">Price</label>
@@ -43,12 +46,13 @@ require('vendor/view/page-fragments/Header.php');
                     <div class="form-group half-width">
                         <label for="status">Status</label>
                         <select name="status" id="status" onchange="updatePreview()">
-                            <option value="In Stock" <?php echo (isset($productData['status']) && $productData['status'] == 'In Stock') ? 'selected' : ''; ?>>In Stock</option>
-                            <option value="Out of Stock" <?php echo (isset($productData['status']) && $productData['status'] == 'Out of Stock') ? 'selected' : ''; ?>>Out of Stock</option>
+                            <option value="In Stock" <?php echo (isset($productData['status']) && $productData['status'] === 'In Stock') ? 'selected' : ''; ?>>In Stock</option>
+                            <option value="Out of Stock" <?php echo (isset($productData['status']) && $productData['status'] === 'Out of Stock') ? 'selected' : ''; ?>>Out of Stock</option>
                         </select>
                     </div>
                 </div>
 
+                <!-- Description -->
                 <div class="form-group">
                     <label for="description">Description</label>
                     <textarea name="description" id="description" required oninput="updatePreview()"
@@ -57,22 +61,53 @@ require('vendor/view/page-fragments/Header.php');
                               title="Description cannot be empty or contain only spaces."><?php echo htmlspecialchars($productData['description'] ?? ''); ?></textarea>
                 </div>
 
-                <div class="form-group schedule-group">
-                    <label>Schedule</label>
-                    <div class="checkbox-group">
-                        <label><input type="checkbox"> Date 1</label>
-                        <label><input type="checkbox"> Date 2</label>
-                        <label><input type="checkbox"> Date 3</label>
-                        <label><input type="checkbox"> Date 4</label>
-                        <label><input type="checkbox"> Date 5</label>
-                    </div>
+                <!-- Schedule Table -->
+                <div class="form-group">
+                    <label for="schedule">Schedule</label>
+                    <table class="schedule-table">
+                        <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Stall Number</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        use model\vendor\products\EditProductsModel;
+
+                        $model = new EditProductsModel();
+                        $schedules = $model->getSchedule();
+                        $associatedSchedule = $productData['schedule_ids'] ?? [];
+
+                        if (!empty($schedules)) {
+                            foreach ($schedules as $schedule) {
+                                $isChecked = in_array($schedule['sched_id'], $associatedSchedule) ? 'checked' : '';
+                                echo '<tr>';
+                                echo '<td><input type="checkbox" name="schedule_ids[]" value="' . htmlspecialchars($schedule['sched_id']) . '" ' . $isChecked . '></td>';
+                                echo '<td>' . htmlspecialchars($schedule['date']) . '</td>';
+                                echo '<td>' . htmlspecialchars($schedule['loc_room'] ?? 'Unknown Location') . '</td>';
+                                echo '<td>' . htmlspecialchars($schedule['stall_number']) . '</td>';
+                                echo '<td>' . htmlspecialchars($schedule['start_time']) . '</td>';
+                                echo '<td>' . htmlspecialchars($schedule['end_time']) . '</td>';
+                                echo '</tr>';
+                            }
+                        } else {
+                            echo '<tr><td colspan="6">No schedules available for this week.</td></tr>';
+                        }
+                        ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
             <!-- Preview Section -->
             <div class="preview-container">
                 <div class="header">Preview</div>
-                
+
                 <div class="file-upload">
                     <input name="file[]" type="file" id="file-input" multiple accept="image/*" onchange="previewImages()" style="display: none;">
                     <label for="file-input" class="btn-file">Upload Image</label>
@@ -96,13 +131,13 @@ require('vendor/view/page-fragments/Header.php');
                     <button class="btn cancel" type="button" onclick="confirmCancel()">Cancel</button>
                     <button class="btn add" type="submit">Save Changes</button>
                 </div>
-                
+
             </div>
         </form>
     </div>
 </main>
 
-<?php require('vendor/view/page-fragments/Footer.php'); ?>
+<?php require 'vendor/view/page-fragments/Footer.php'; ?>
 
 <script>
     function validateForm() {
@@ -112,7 +147,7 @@ require('vendor/view/page-fragments/Header.php');
             alert("Product name and description cannot be empty or just spaces.");
             return false;
         }
-        return true; 
+        return true;
     }
 
     function restrictInvalidCharacters(event) {
@@ -129,5 +164,26 @@ require('vendor/view/page-fragments/Header.php');
             window.location.href = '/cs-312_boothlink/products';
         }
     }
+
     document.getElementById("name").addEventListener("keydown", restrictInvalidCharacters);
+
+    document.querySelector('form').addEventListener('submit', function(event) {
+        // Get all the checkboxes with the name 'schedule_ids[]'
+        var checkboxes = document.querySelectorAll('input[name="schedule_ids[]"]');
+        var checked = false;
+
+        // Loop through all checkboxes to check if at least one is checked
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                checked = true;
+            }
+        });
+
+        // If none are checked, show an alert and prevent form submission
+        if (!checked) {
+            alert("Please select at least one schedule.");
+            event.preventDefault(); // Prevent form submission
+        }
+    });
 </script>
+

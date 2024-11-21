@@ -542,17 +542,17 @@ class VendorQueries
         $result = $stmt->get_result();
         $schedules = [];
 
-        if ($row = $result->fetch_assoc()) {
-
-            $schedule = new SchedulePageModel();
-            $schedule->setDate($row['date']);
-            $schedule->setStartTime($row['start_time']);
-            $schedule->setEndTime($row['end_time']);
-            $schedule->setLocationRoom($row['loc_room']);
-            $schedule->setLocationStallNum($row['stall_number']);
-
-            $schedules[] = $schedule;
-        }
+//        if ($row = $result->fetch_assoc()) {
+//
+//            $schedule = new SchedulePageModel();
+//            $schedule->setDate($row['date']);
+//            $schedule->setStartTime($row['start_time']);
+//            $schedule->setEndTime($row['end_time']);
+//            $schedule->setLocationRoom($row['loc_room']);
+//            $schedule->setLocationStallNum($row['stall_number']);
+//
+//            $schedules[] = $schedule;
+//        }
 
         $stmt->close();
         return $schedules;
@@ -849,7 +849,33 @@ class VendorQueries
         return $schedules;
     }
 
+    public function getProductScheduleIds($prod_id)
+    {
+        $stmt = $this->conn->prepare("SELECT sched_id FROM prod_org_sched WHERE prod_id = ?");
+        $stmt->bind_param("i", $prod_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
+        $schedule_ids = [];
+        while ($row = $result->fetch_assoc()) {
+            $schedule_ids[] = $row['sched_id'];
+        }
+
+        return $schedule_ids;
+    }
+
+    public function addProductSchedule($prod_id, $sched_id, $org_id)
+    {
+        $stmt = $this->conn->prepare("INSERT INTO prod_org_sched (prod_id, sched_id, org_id) VALUES (?, ?, ?)");
+        $stmt->bind_param("iii", $prod_id, $sched_id, $org_id);
+        return $stmt->execute();
+    }
+    public function removeProductSchedule($prod_id, $sched_id, $org_id)
+    {
+        $stmt = $this->conn->prepare("DELETE FROM prod_org_sched WHERE prod_id = ? AND sched_id = ? AND org_id = ?");
+        $stmt->bind_param("iii", $prod_id, $sched_id, $org_id);
+        return $stmt->execute();
+    }
 }
 
 // Example usage
