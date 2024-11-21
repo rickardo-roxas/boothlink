@@ -144,8 +144,8 @@ body {
 }
 
 .org img {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
     margin-right: 8px;
 }
 
@@ -183,8 +183,8 @@ body {
 .status-container .status {
     display: inline-block;
     padding: 0.3rem 0.8rem;
-    background-color: #d4edda;
-    color: #155724;
+    background-color: #f8d7da;
+    color: #721c24;
     font-size: 14px;
     font-weight: bold;
     border-radius: 10px;
@@ -203,8 +203,8 @@ body {
 .status-container .status.cancelled {
     display: inline-block;
     padding: 0.3rem 0.8rem;
-    background-color: #f8d7da;
-    color: #721c24;
+    background-color: #f1b0b7;
+    color: #8a1c2c;  
     font-size: 14px;
     font-weight: bold;
     border-radius: 10px;
@@ -233,8 +233,12 @@ body {
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .action-btn:hover {
-    background-color: #17a2d8;
+    background-color: #555; 
+    color: #fff;  
+    transform: scale(1.05);  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  
 }
