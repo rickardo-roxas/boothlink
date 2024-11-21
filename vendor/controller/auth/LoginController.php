@@ -29,7 +29,9 @@ class LoginController
                 $_SESSION['loginAttempts'] = 0;
             }
             if ($_SESSION['loginAttempts'] === 5) {
-                // 
+                $_SESSION['login_error'] = 'You have reached the max number of attempts';
+                header("Location: /cs-312_boothlink/login");
+                exit();
                 
             } else if ($login->authenticateVendor($username, $password)) {
                 $_SESSION['user'] = $username;
@@ -50,7 +52,6 @@ class LoginController
                     exit();
                 } else {
                     $_SESSION['loginAttempts'] = $_SESSION['loginAttempts'] +1;
-
                     //Add a script where an alert will pop up that log in failed, incorrect credentials
                     $_SESSION['login_error'] = 'Invalid username or password';
                     header("Location: /cs-312_boothlink/login");
