@@ -526,7 +526,7 @@ class VendorQueries
 
     public function getScheduleToday($org_id, $date): array
     {
-        include 'vendor/model/objects/Schedule.php';
+
         $query = "SELECT prod_org_sched.org_id, schedule.*, location.loc_room, location.stall_number
             FROM prod_org_sched
             JOIN schedule ON schedule.sched_id = prod_org_sched.sched_id
@@ -543,6 +543,7 @@ class VendorQueries
         $schedules = [];
 
         if ($row = $result->fetch_assoc()) {
+
             $schedule = new SchedulePageModel();
             $schedule->setDate($row['date']);
             $schedule->setStartTime($row['start_time']);
