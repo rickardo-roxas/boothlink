@@ -4,49 +4,65 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="public/customer/reservations.css">
+    <link rel="stylesheet" href="../../../customer/public/css/reservations.css">
     <title>Reservations</title>
 </head>
 <body>
     <main>
         <div class="main-panel">
             <div class="header">
-                <p>Reservations</p>
+                <p><img src="reservation-icon.png" alt="Reservation Icon"> Reservations</p>
                 <div class="filter-btns">
-                    <!-- filter btns here -->
+                    <!-- Filters -->
+                    <label>
+                        <input type="radio" name="filter" value="Completed">
+                        <span>Completed</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="filter" value="Pending">
+                        <span>Pending</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="filter" value="Cancelled">
+                        <span>Cancelled</span>
+                    </label>
                 </div>
             </div>
             <div class="reservation-panel">
                 <div class="product-card">
+                    <!-- Image Section -->
                     <div class="image-container">
-                        <!-- image here -->
+                        <img src="prod-img.jpg" alt="Product Image">
                     </div>
+
+                    <!-- Product Section -->
                     <div class="product-container">
+                        <!-- Product Info Section -->
                         <div class="product-info">
-                            
-                            <!-- Essential Information -->
-                            <img src="" alt=""> icon
-                            <p class="org">SCHEMA</p>
+                            <p class="org">
+                                <img src="booth-icon.png" alt="Booth Icon"> SCHEMA
+                            </p>
                             <p class="item">Brown Leather Jacket</p>
                             <p class="category">Item</p>
-                            <p class="price">₱ 4, 500</p>
-
-                            <!-- Date and Status -->
+                            <p class="price">₱ 4,500</p>
                             <div class="date-container">
                                 <p class="date">November 20, 2024</p>
                             </div>
+
+                            <!-- Status and Total Items Row -->
                             <div class="status-container">
-                                <p class="status">Completed</p>
+                                <p class="status completed">Completed</p> 
+                                <p class="total-items">Total (Qty. 2):₱ 9,000</p> 
                             </div>
 
-                        </div>
-                        <div class="buy-again">
-                            <!-- total here -->
-                            <!-- buy again btn here -->
+                            <!-- Action Button -->
+                            <div class="buy-again">
+                                <button class="action-btn">Buy Again</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
     </main>
 </body>
