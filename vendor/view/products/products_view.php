@@ -9,7 +9,7 @@ require('vendor/view/page-fragments/Header.php');
         <input type="hidden" id="products-data" value='<?php echo htmlspecialchars(json_encode($products), ENT_QUOTES); ?>'>
         <div class="main-table">
             <div class="table-header">
-                <h2>Product Listing</h2>
+                <h2>Product/Service Listing</h2>
                 <div class="action-buttons">
                     <a href="<?php echo BASE_URL; ?>/products/add-product">
                         <button class="add-button">
