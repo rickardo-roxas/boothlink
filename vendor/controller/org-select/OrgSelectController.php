@@ -2,7 +2,7 @@
 namespace controller\vendor;
 use model\vendor\OrgSelectModel;
 
-require_once 'vendor/model/org-select/OrgSelectModel.php';
+require_once 'model/org-select/OrgSelectModel.php';
 
 class OrgSelectController
 {
@@ -23,7 +23,7 @@ class OrgSelectController
         $vendor_id = $_SESSION['vendor_id'];
         $organizations = $this->orgSelectModel->getOrganizationsByVendorID($vendor_id);
 
-        require_once 'vendor/view/org-select/org_select_view.php';
+        require_once 'view/org-select/org_select_view.php';
     }
 
 

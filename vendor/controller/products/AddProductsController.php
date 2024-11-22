@@ -7,7 +7,7 @@ use model\vendor\products\AddNewProductModel;
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once('vendor/model/products/AddNewProductModel.php');
+require_once('model/products/AddNewProductModel.php');
 
 class AddProductsController
 {
@@ -31,7 +31,7 @@ class AddProductsController
         $orgId = $_SESSION['org_id'];
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            require 'vendor/view/products/add_product.php';
+            require 'view/products/add_product.php';
         }
 
         // Add POST method here from query

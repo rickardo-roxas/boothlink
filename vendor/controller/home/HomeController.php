@@ -7,7 +7,7 @@ use model\vendor\home\Home;
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once "vendor/model/home/Home.php";
+require_once "model/home/Home.php";
 
 class HomeController
 {
@@ -44,7 +44,7 @@ class HomeController
             $foodReservations = $this->model->getFoodReservations($org_id, $dateToday);
             $serviceReservations = $this->model->getServiceReservations($org_id, $dateToday);
 
-            require_once 'vendor/view/home/home_view.php';
+            require_once 'view/home/home_view.php';
         } else {
             header('Location: home_view.php');
             exit();

@@ -1,11 +1,11 @@
 <?php
 $pageTitle = "Schedule";
-require('vendor/view/page-fragments/Header.php');
+require('view/page-fragments/Header.php');
 ?>
-<link rel="stylesheet" href="<?php echo BASE_URL ?>/vendor/public/css/schedule.css">
-<link rel="stylesheet" href="<?php echo BASE_URL ?>/vendor/public/css/schedule_selector.css">
-<script src="<?php echo BASE_URL ?>/vendor/public/js/schedule.js" defer></script>
-<script src="<?php echo BASE_URL ?>/vendor/public/js/schedule_selector.js" defer></script>
+<link rel="stylesheet" href="/public/css/schedule.css">
+<link rel="stylesheet" href="/public/css/schedule_selector.css">
+<script src="/public/js/schedule.js" defer></script>
+<script src="/public/js/schedule_selector.js" defer></script>
 <main>
     <input type="hidden" id="schedule-week" value="<?php echo htmlspecialchars(json_encode($scheduleThisWeek), ENT_QUOTES);;?>">
     <div class="main-table">
@@ -47,4 +47,4 @@ require('vendor/view/page-fragments/Header.php');
     </div>
 </main>
 
-<?php require('vendor/view/page-fragments/Footer.php'); ?>
+<?php require('view/page-fragments/Footer.php'); ?>

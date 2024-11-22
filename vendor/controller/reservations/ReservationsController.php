@@ -7,7 +7,7 @@ use model\vendor\reservations\ReservationsPageModel;
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once('vendor/model/reservations/ReservationsPageModel.php');
+require_once('model/reservations/ReservationsPageModel.php');
 
 if (isset($_GET['status'])) {
     $filter = $_GET['status'];
@@ -31,7 +31,7 @@ class ReservationsController
 
         $reservations = $this->model->getReservations($org_id);
 
-        require_once 'vendor/view/reservations/reservations_view.php';
+        require_once 'view/reservations/reservations_view.php';
         exit();
     }
 
@@ -40,6 +40,6 @@ class ReservationsController
         $org_id = $_SESSION['org_id'];
         $reservations = $this->model->getReservationsByStatus($org_id, $filter);
 
-        require 'vendor/view/reservations/reservations_view.php';
+        require 'view/reservations/reservations_view.php';
     }
 }

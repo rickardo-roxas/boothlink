@@ -23,7 +23,7 @@ class ProductsController
     public function __construct()
     {
 
-        include('vendor/model/products/ProductsPageModel.php');
+        include('model/products/ProductsPageModel.php');
         $this->model = new ProductsPageModel();
 
     }
@@ -49,7 +49,7 @@ class ProductsController
         $products = $this->model->getProducts($orgId);
 
         // Include the view and pass the products data
-        require 'vendor/view/products/products_view.php';
+        require 'view/products/products_view.php';
     }
 
     public function filteredCategory($filter)
@@ -62,7 +62,7 @@ class ProductsController
         $products = $this->model->getFilteredProducts($orgId, $filter);
 
         // Include the view and pass the products data
-        require 'vendor/view/products/products_view.php';
+        require 'view/products/products_view.php';
 
     }
 }

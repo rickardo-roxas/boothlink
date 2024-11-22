@@ -1,10 +1,10 @@
 <?php
 $pageTitle = "Products";
-require('vendor/view/page-fragments/Header.php');
+require('view/page-fragments/Header.php');
 ?>
-    <link rel="stylesheet" href="<?php echo BASE_URL?>/vendor/public/css/add_edit_products.css">
-    <link rel="stylesheet" href="<?php echo BASE_URL?>/vendor/public/css/products.css">
-    <script src="<?php echo BASE_URL?>/vendor/public/js/products.js" defer></script>
+    <link rel="stylesheet" href="/public/css/add_edit_products.css">
+    <link rel="stylesheet" href="/public/css/products.css">
+    <script src="/vendor/public/js/products.js" defer></script>
     <main>
         <input type="hidden" id="products-data" value='<?php echo htmlspecialchars(json_encode($products), ENT_QUOTES); ?>'>
         <div class="main-table">
@@ -13,7 +13,7 @@ require('vendor/view/page-fragments/Header.php');
                 <div class="action-buttons">
                     <a href="<?php echo BASE_URL; ?>/products/add-product">
                         <button class="add-button">
-                            <img src="<?php echo BASE_URL; ?>/shared/assets/icons/add-blue-outline.png" alt="Add Icon" class="add-icon">
+                            <img src="/shared/assets/icons/add-blue-outline.png" alt="Add Icon" class="add-icon">
                             Add
                         </button>
                     </a>
@@ -50,4 +50,4 @@ require('vendor/view/page-fragments/Header.php');
         </div>
     </main>
 
-<?php require('vendor/view/page-fragments/Footer.php'); ?>
+<?php require('view/page-fragments/Footer.php'); ?>

@@ -1,7 +1,7 @@
 <?php
 
 namespace model\vendor;
-require_once 'vendor/model/VendorQueries.php';
+require_once 'model/VendorQueries.php';
 
 class OrgSelectModel
 {

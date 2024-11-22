@@ -3,9 +3,9 @@
 namespace controller\auth;
 
 
-require_once "vendor/config/Connection.php";
-// require_once "vendor/model/auth/Signup.php";
-require_once 'vendor/view/auth/signup_view.php';
+require_once "config/Connection.php";
+// require_once "model/auth/Signup.php";
+require_once 'view/auth/signup_view.php';
 
 class SignupController
 {
@@ -17,7 +17,7 @@ class SignupController
 
     public function handleSignup() {
         // code here
-        require_once 'vendor/view/auth/signup_view.php';
+        require_once 'view/auth/signup_view.php';
 
     }
 

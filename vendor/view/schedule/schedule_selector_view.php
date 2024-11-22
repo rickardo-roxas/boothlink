@@ -1,6 +1,6 @@
 <?php
 $pageTitle = "Schedule";
-require('vendor/view/page-fragments/Header.php');
+require('view/page-fragments/Header.php');
 ?>
 <link rel="stylesheet" href="<?php echo BASE_URL ?>/vendor/public/css/schedule_selector.css">
 <main>
@@ -114,4 +114,4 @@ require('vendor/view/page-fragments/Header.php');
     </form>
     <script src="<?php echo BASE_URL ?>/vendor/public/js/schedule_selector.js" defer></script>
 </main>
-<?php require('vendor/view/page-fragments/Footer.php'); ?>
+<?php require('view/page-fragments/Footer.php'); ?>

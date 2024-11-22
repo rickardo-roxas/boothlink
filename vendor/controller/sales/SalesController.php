@@ -30,7 +30,7 @@ class SalesController
     public function __construct()
     {
 
-        include('vendor/model/sales/SalesModel.php');
+        include('model/sales/SalesModel.php');
         $this->model = new SalesModel();
         $this->org_id = $_SESSION['org_id'];
     }
@@ -71,7 +71,7 @@ class SalesController
         $labels = $this->getModel()->getLabels();
         $productList = $this->products;
 
-        require_once 'vendor/view/sales/sales_view.php';
+        require_once 'view/sales/sales_view.php';
         /*
         header('Location: /cs-312_boothlink/view/vendor/sales/sales_view.php?productList='
             .serialize($this->products)

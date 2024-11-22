@@ -1,0 +1,37 @@
+services:
+
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile.nodejs
+    volumes:
+      - ./customer:/usr/src/app
+      - shared-package:/usr/src/app/shared
+    depends_on:
+      - mysql
+    ports:
+      - "3000:3000"
+  apache:
+    build:
+      context: .
+      dockerfile: Dockerfile.apache
+    volumes:
+      - ./vendor:/var/www/html
+      - shared-package:/var/www/html/shared
+    depends_on:
+      - mysql
+    ports:
+      - "8080:80"
+
+  mysql:
+    image: mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  shared-package:
+    driver: local

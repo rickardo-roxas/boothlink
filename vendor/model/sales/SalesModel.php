@@ -4,8 +4,8 @@ namespace model\vendor\sales;
 
 use model\vendor\VendorQueries;
 
-if (file_exists('vendor/model/VendorQueries.php'))
-    require_once 'vendor/model/VendorQueries.php';
+if (file_exists('model/VendorQueries.php'))
+    require_once 'model/VendorQueries.php';
 else {
     require __DIR__ . '/../VendorQueries.php';
 }
