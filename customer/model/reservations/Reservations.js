@@ -30,7 +30,7 @@ function processReservations(results){
         date: reservation.date,                
         status: reservation.status,            
         qty: reservation.qty,                  
-        grand_total: reservation.total_price   
+        total_price: reservation.total_price   
     }));
 }
 
