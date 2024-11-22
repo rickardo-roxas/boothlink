@@ -25,6 +25,7 @@ app.listen(port);
 // public files
 app.use(express.static('./public/css'));
 app.use(express.static('../shared/assets'));
+app.use(express.static('../shared/assets/prod_img'));
 
 
 // Just gives information on the request
