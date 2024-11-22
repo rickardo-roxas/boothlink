@@ -876,6 +876,16 @@ class VendorQueries
         $stmt->bind_param("iii", $prod_id, $sched_id, $org_id);
         return $stmt->execute();
     }
+    public function createAccount($email, $username, $last_name, $first_name, $password)
+    {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $query = "INSERT INTO customer (email, username, last_name, first_name, password) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("sssss", $email, $username, $last_name, $first_name, $hashedPassword);
+        return true;
+    }
+
+
 }
 
 // Example usage
