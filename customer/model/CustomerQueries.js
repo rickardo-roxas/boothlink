@@ -48,8 +48,8 @@ function getBooths(callback) {
  *      if item in stock
 */
 function getShopProducts(callback) {
-    const query =  "SELECT prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name, prod_serv.price, " + 
-        "prod_serv.description, prod_img.img_src FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " + 
+    const query =  "SELECT prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name AS 'name', prod_serv.price, " + 
+        "prod_serv.description, prod_img.img_src as 'image' FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " + 
         "WHERE prod_serv.status = 'In Stock'";
 
     conn.query(query, (err, results) => {
