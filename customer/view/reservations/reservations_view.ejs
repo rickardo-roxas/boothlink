@@ -46,7 +46,7 @@
 
                                 <!-- Status and Total Items Row -->
                                 <div class="status-container">
-                                    <p class="status"><%= reservation.status %></p> 
+                                    <p class="status <%= reservation.status.toLowerCase() %>"><%= reservation.status %></p> 
                                     <p class="total">Total: ₱ <%= reservation.total_price %></p> 
                                 </div>
 

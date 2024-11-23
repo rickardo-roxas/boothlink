@@ -250,8 +250,7 @@ function getReservationsByStatus(status, callback){
                   "JOIN prod_org_sched pos ON ps.prod_id = pos.prod_id " + 
                   "JOIN organization o ON pos.org_id = o.org_id " + 
                   "JOIN prod_img pi ON ps.prod_id = pi.prod_id " + 
-                  "WHERE r.status = ?;";  // Filter by status only
-
+                  "WHERE r.status = ?;"; 
     conn.query(query, [status], (err, results) => {
         if(err){
             console.log(err);
