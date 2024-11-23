@@ -16,4 +16,10 @@ class SignUp {
     {
         return $this->vendorQueries->createAccount($username, $email, $password, $last_name, $first_name);
     }
+    public function checkEmail($email){
+        return $this->vendorQueries->checkEmail($email);
+    }
+    public function checkUsername($username){
+        return $this->vendorQueries->checkUsername($username);
+    }
 }

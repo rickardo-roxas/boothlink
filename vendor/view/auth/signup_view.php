@@ -53,12 +53,43 @@ $title = $pageTitle;
 
                 <div class="input-control">
                     <label for="password">Password</label>
-                    <input type="password" id="password" class="signup-input" name="password">
+                    <input type="password" id="password" class="signup-input" name="password" required>
                     <div class="error"></div>
                 </div>
 
+                <div class="input-control">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" class="signup-input" name="confirm-password" required>
+                    <div class="error"></div>
+                </div>
+
+                <script>
+                    document.querySelector("form").addEventListener("submit", function(event) {
+                        const password = document.getElementById("password").value;
+                        const confirmPassword = document.getElementById("confirm-password").value;
+                        const confirmPasswordError = document.querySelector("#confirm-password + .error");
+                        confirmPasswordError.textContent = "";
+                        if (password !== confirmPassword) {
+                            event.preventDefault();
+                            confirmPasswordError.textContent = "Passwords do not match."; // Set error message
+                            return false;
+                        }
+                    });
+                </script>
                 <button type="submit" class="signup-button">Sign up</button>
             </form>
         </div>
     </div>
+    <?php if (!empty($error)): ?>
+        <script>
+            alert("<?php echo $error; ?>");
+        </script>
+    <?php endif; ?>
+
+    <?php if (!empty($isSignupSuccessful)): ?>
+        <script>
+            alert("Account successfully created! You can now log in.");
+            window.location.href = '/cs-312_boothlink/login';
+        </script>
+    <?php endif; ?>
 </main>

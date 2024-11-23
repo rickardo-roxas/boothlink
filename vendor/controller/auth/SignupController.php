@@ -17,23 +17,33 @@ class SignupController {
     }
 
     public function handleSignup() {
-        include 'vendor/view/auth/signup_view.php';
+        $isSignupSuccessful = false;
+        $error = "";
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
             $last_name = $_POST['last_name'];
             $first_name = $_POST['first_name'];
             $email = $_POST['email'];
+
             try {
-                $success = $this->model->createAccount($email, $username,$last_name, $first_name, $password);
-                if ($success) {
-                    header('Location: /cs-312_boothlink/login');
+                if ($this->model->checkUsername($username)) {
+                    $error = "Username is already taken. Please choose another.";
+                } elseif ($this->model->checkEmail($email)) {
+                    $error = "Email is already registered. Please use another email.";
                 } else {
-                    echo "Error creating account.";
+                $success = $this->model->createAccount($email, $username, $last_name, $first_name, $password);
+                if ($success) {
+                    $isSignupSuccessful = true;
+                } else {
+                    $error = "Error creating account.";
+                }
                 }
             } catch (\Exception $e) {
-                echo "An error occurred: " . $e->getMessage();
+                $error = "An error occurred: " . $e->getMessage();
             }
         }
+        include 'vendor/view/auth/signup_view.php';
     }
+
 }
