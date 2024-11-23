@@ -48,9 +48,11 @@ function getBooths(callback) {
  *      if item in stock
 */
 function getShopProducts(callback) {
-    const query =  "SELECT prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name AS 'name', prod_serv.price, " + 
-        "prod_serv.description, prod_img.img_src as 'image' FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " + 
-        "WHERE prod_serv.status = 'In Stock'";
+    const query =  "SELECT organization.org_name AS organization, prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name AS 'name', prod_serv.price, " +
+        " prod_serv.description, prod_img.img_src as 'image' FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " +
+        " LEFT JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id " + 
+        " LEFT JOIN organization ON prod_org_sched.org_id = organization.org_id " + 
+        " WHERE prod_serv.status = 'In Stock' ";
 
     conn.query(query, (err, results) => {
         if (err) {
@@ -68,7 +70,7 @@ function getOrgProducts(orgID, callback) {
         "prod_serv.description, prod_img.img_src " + 
         "FROM prod_org_sched JOIN prod_serv ON prod_serv.prod_id = prod_org_sched.prod_id " + 
         "JOIN prod_img ON prod_img.prod_id = prod_serv.prod_id " + 
-        "WHERE prod_org_sched.org_id = ? AND prod_serv.status = 'In Stock';"
+        "WHERE prod_org_sched.org_id = ? AND prod_serv.status = 'In Stock' ";
 
         conn.query(query, orgID, (err, results) => {
             if (err) {
@@ -81,9 +83,11 @@ function getOrgProducts(orgID, callback) {
 /** Gets all in stock products sorting by price and accepts a boolean parameter that tells if the filtering 
  * should be done descending or ascending  */
 function getShopProductsByPrice(desc, callback) {
-    var query =  "SELECT prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name, prod_serv.price, " + 
-    "prod_serv.description, prod_img.img_src FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " + 
-    "WHERE prod_serv.status = 'In Stock' ORDER BY prod_serv.price ";
+    const query = "SELECT prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name, prod_serv.price, " +
+    "prod_serv.description, prod_img.img_src " + 
+    "FROM prod_org_sched JOIN prod_serv ON prod_serv.prod_id = prod_org_sched.prod_id " + 
+    "JOIN prod_img ON prod_img.prod_id = prod_serv.prod_id " + 
+    "WHERE prod_org_sched.org_id = ? AND prod_serv.status = 'In Stock' ORDER BY prod_serv.price ";
      
     if (desc) query += "DESC"; // Not sure if this is allowed
 
@@ -99,9 +103,11 @@ function getShopProductsByPrice(desc, callback) {
 /** Gets all in stock products, filtering based on category provided as parameter. 
  *      Possible Parameters: ITEM, SERVICE, FOOD */
 function getShopProductsByCategory(category, callback) {
-    var query =  "SELECT prod_serv.prod_id, prod_serv.prod_serv_name, prod_serv.price, " + 
-    "prod_serv.description, prod_img.img_src FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " + 
-    "WHERE prod_serv.category = '?' ";
+    const query = "SELECT prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name, prod_serv.price, " +
+    "prod_serv.description, prod_img.img_src " + 
+    "FROM prod_org_sched JOIN prod_serv ON prod_serv.prod_id = prod_org_sched.prod_id " + 
+    "JOIN prod_img ON prod_img.prod_id = prod_serv.prod_id " + 
+    "WHERE prod_serv.category = '?' AND prod_serv.status = 'In Stock'";
 
     conn.query(query, category, (err, results) => {
         if (err) {
