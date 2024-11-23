@@ -28,12 +28,14 @@
                     <form id="sort-form" action="/shop" method="GET">
                         <!--Pricing View Filter-->
                         <div id="category-filter">
-                            <p id="sort-by">SORT BY</p>
+                            <p id="sort-by">SORT BY:</p>
                             <select class="category-select" name="category" onchange="this.form.submit()">
-                                <option value="" disabled selected>Price, Low to High</option>
+                                <option value="" disabled selected>Filter</option>
+                                <option value="best-selling">Best Selling</option>
+                                <option value="low-to-high">Price, Low to High</option>
                                 <option value="high-to-low">Price, High to Low</option>
                             </select>
-                            <p id="view-gap">VIEW</p>
+                            <p id="view-gap">VIEW:</p>
                             <!--Type of Product View Filter-->
                             <div id="view-filter">
                                 <label>
@@ -64,7 +66,10 @@
                                 <!-- Display product name, description, category, and price -->
                                 <p class="product-name"><%= product.name %></p>
                                 <p class="product-description"><%= product.description %></p>
-                                <p class="product-category">Category: <%= product.category %></p>
+                                <p class="product-org">
+                                    <img src="/icons/booth-black-outline.png" alt="Org Icon"> <%= product.organization %>
+                                </p>
+                                <p class="product-category"><%= product.category %></p>
                                 <p class="product-price">₱ <%= product.price.toFixed(2) %></p>
                             </div>
                         </div>
