@@ -1,5 +1,10 @@
-<%- include('../partials/header.ejs') %>
-<%- include('../partials/navbar.ejs')%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/customer/public/css/booth.css">
+</head>
 <body>
 <main>
     <div id="booth-page">
@@ -8,19 +13,20 @@
                 <div id="navbar">
                     <p id="navbar-text">Shop > Booth</p>
                 </div>
-
-                <div class="org-banner-and-details">
+                <div class="org-banner-and-details" style="background-image: url('/shared/assets/images/samcis-banner.png');">
                     <div id="banner-content">
-                        <img id="banner-org-image" src="images/org/schema.jpg" alt="Schema Logo">
-                        <p id="banner-org-name">SCHEMA</p>
+                        <div id="banner-org-and-name">
+                            <img src="/shared/assets/images/org/schema.jpg" alt="Schema Logo">
+                            <p>SCHEMA</p>
+                        </div>
                         <div id="banner-org-socials">
-                            <img src="icons/soc-med/facebook.png" alt="facebook image">
+                            <img src="/shared/assets/icons/soc-med/facebook.png" alt="facebook image">
                             <p>www.facebook.com/schemaslu</p>
 
-                            <img src="icons/soc-med/instagram.png" alt="instagram image">
+                            <img src="/shared/assets/icons/soc-med/instagram.png" alt="instagram image">
                             <p>www.instagram.com/@schemaslu</p>
 
-                            <img src="icons/soc-med/twitter.png" alt="twitter image">
+                            <img src="/shared/assets/icons/soc-med/twitter.png" alt="twitter image">
                             <p>www.x.com/@schemaslu</p>
                         </div>
                     </div>
@@ -62,4 +68,3 @@
 </main>
 </body>
 </html>
-<%- include('../partials/footer.ejs')%>

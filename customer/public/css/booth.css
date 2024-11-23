@@ -1,0 +1,117 @@
+#booth-shop-container {
+/*    background-color: #5a96d6;*/
+    min-height: 50rem;
+    padding: 2rem;
+    margin: 0 auto;
+    width: calc(100% - 7.5rem);
+    font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
+}
+
+#navbar {
+    background-color: #ffffff;
+}
+
+#navbar p {
+
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: rgba(0, 0, 0, 0.60);
+}
+
+.org-banner-and-details {
+    background-color: oldlace;
+    width: 67.1875rem;
+    height: 10.1875rem;
+    border-radius: 0.5rem;
+}
+
+#banner-org-and-name {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+#banner-org-and-name p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #eaa953;
+}
+
+#banner-org-and-name img {
+    width: 6.25rem;
+    height: 6.77888rem;
+    border-radius: 1.25rem;
+    margin-left: 1.5rem;
+    margin-top: 1.6rem;
+}
+
+
+#banner-org-socials {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 0.8rem;
+}
+
+#banner-org-socials img {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.2rem;
+}
+
+#banner-org-socials p {
+    font-size: 1rem;
+    color: #eaa953;
+}
+
+
+#shop-booth-name {
+    font-size: 1.6875rem;
+    font-style: normal;
+    font-weight: 700;
+}
+
+#sort-form {
+/*    background-color: #354261;*/
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+#category-filter {
+    display: flex;
+    align-items: center;
+}
+
+#view-filter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#sort-form p {
+    font-weight: bold;
+}
+
+#sort-by {
+    font-weight: bold;
+    padding-right: 0.5rem;
+}
+
+#view-gap {
+    font-weight: bold;
+    padding: 0.5rem;
+}
+
+.booth-name-and-filter {
+/*    background-color: #856404;*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
