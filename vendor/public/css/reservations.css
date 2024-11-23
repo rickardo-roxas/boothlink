@@ -1,44 +1,44 @@
-@import '../..css';
+@import 'vendor/public/css/style.css';
 
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding: 2rem;
-    background-color: #f8f9fa;
+    padding: var(--spacing-xl, 1.5rem);
     font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
+    background-color: var(--stroke-primary, #F6F5F6);
 }
 
 .main-table {
-    width: 95%;
-    margin-top: 0.5rem;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 1.5rem;
-    height: 800px;
+    width: 100%;
+    border: 1px solid var(--stroke-primary, #F6F5F6);
+    padding: var(--spacing-xl, 1.5rem) var(--spacing-xl, 1rem);
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
+    background: var(--surface-secondary, #FFF);
+    border-radius: 0.75rem;
+    box-shadow: var(--light1);
 }
 
 .table-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
     margin-bottom: 0.5rem;
 }
 
-.table-header p {
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: #000;
-    margin: 0;
+.table-header h2 {
+    color: var(--text);
+    font-size: 1.4rem;
+    font-weight: bold;
 }
 
 .action-buttons {
     display: flex;
-    align-items: center;
+    align-content: start;
     gap: 15px; /* Ensures space between buttons and selects */
 }
 
@@ -67,13 +67,14 @@ main {
 }
 
 .category-filter {
-    padding: 0.75rem 1rem;
+    padding: 0.25rem 1rem;
     border-radius: 4px;
     border: 2px solid #ced4da;
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 500;
     font-size: 1rem;
     margin-left: 10px;
+    height: fit-content;
     min-width: 180px; /* Ensure the select dropdown doesn't shrink */
 }
 
@@ -82,15 +83,13 @@ main {
 .table-products {
     width: 100%;
     overflow-y: auto; 
-    max-height: 700px; 
+    max-height: 800px;
     margin-top: 1rem;
 }
 
 .table-products table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1rem;
-    font-family: 'Roboto', sans-serif;
 }
 
 .table-products table th,
@@ -98,13 +97,6 @@ main {
     padding: 0.75rem;
     text-align: left;
     border-bottom: 1px solid #dee2e6;
-}
-
-.table-products thead {
-    position: sticky;
-    top: 0; 
-    background-color: #1EBDEF; 
-    z-index: 1; 
 }
 
 .table-products table th {
@@ -156,8 +148,9 @@ main {
     padding: 0.5rem;
     width: fit-content;
     background-color: white;
-    font-weight: bold;
+    color: var(--text);
     font-size: 1rem;
+    font-weight: bold;
 }
 
 .reject-btn {
