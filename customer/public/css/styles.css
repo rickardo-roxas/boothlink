@@ -154,7 +154,7 @@ button:hover, a:hover {
     border-radius:1rem;
     padding:1rem;
     padding-left: 3rem;
-    background-color: var(--light-gray);
+    background-color: #F0F0F0;
     border:none;
     margin-top: .5rem;
 
