@@ -180,11 +180,11 @@ body {
     margin-bottom: 2px; 
 }
 
-.status-container .status {
+.status-container .status.completed {
     display: inline-block;
     padding: 0.3rem 0.8rem;
-    background-color: #f8d7da;
-    color: #721c24;
+    background-color: #ECFDF3;
+    color: #067647;
     font-size: 14px;
     font-weight: bold;
     border-radius: 10px;
