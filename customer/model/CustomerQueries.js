@@ -233,6 +233,36 @@ function getReservations(username, callback){
     })
 }
 
+function getReservationsByStatus(status, callback){
+    const query = "SELECT " + 
+                  "pi.img_src AS image_source, " + 
+                  "o.org_name, " + 
+                  "ps.prod_serv_name AS item_name, " + 
+                  "ps.category, " +  
+                  "ps.price, " + 
+                  "r.date, " + 
+                  "r.status, " + 
+                  "r.qty, " + 
+                  "(ps.price * r.qty) AS total_price " + 
+                  "FROM reservation r " + 
+                  "JOIN customer c ON r.customer_id = c.customer_id " + 
+                  "JOIN prod_serv ps ON r.prod_id = ps.prod_id " + 
+                  "JOIN prod_org_sched pos ON ps.prod_id = pos.prod_id " + 
+                  "JOIN organization o ON pos.org_id = o.org_id " + 
+                  "JOIN prod_img pi ON ps.prod_id = pi.prod_id " + 
+                  "WHERE r.status = ?;"; 
+    conn.query(query, [status], (err, results) => {
+        if(err){
+            console.log(err);
+            return callback(err, null);
+        }else{
+            return callback(null, results);
+        }
+    })
+}
+
+
+
 
 
 module.exports = {

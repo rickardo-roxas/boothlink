@@ -143,5 +143,5 @@ if (isset($_SESSION['user'])) {
     $router->handleRequest();
 } else {
     $authenticator = new Authenticator();
-    $authenticator->renderAuth('/login', $conn);
+    $authenticator->renderAuth($_SERVER['REQUEST_URI'], $conn);
 }

@@ -41,12 +41,12 @@
                                 <p class="category"><%= reservation.category %></p>
                                 <p class="price">₱ <%= reservation.price %></p>
                                 <div class="date-container">
-                                    <p class="date"><%= new Date(reservation.date).toLocaleDateString() %></p>
+                                    <p class="date"><%= new Date(reservation.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
                                 </div>
 
                                 <!-- Status and Total Items Row -->
                                 <div class="status-container">
-                                    <p class="status"><%= reservation.status %></p> 
+                                    <p class="status <%= reservation.status.toLowerCase() %>"><%= reservation.status %></p> 
                                     <p class="total">Total: ₱ <%= reservation.total_price %></p> 
                                 </div>
 
