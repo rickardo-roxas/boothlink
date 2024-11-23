@@ -6,11 +6,15 @@ const index = (req, res) => {
     if (!products) {
         products = model.getProducts;
     }
-
-    res.render('shop/shop_view', 
-        { 
-            title : "Shop", 
-        });
+    let boothsPromise = model.getBooths();
+    Promise.all([boothsPromise]).then (values => {
+        res.render('shop/shop_view',
+            {
+                title: "Shop",
+                //  products : products,
+                booths: values[0],
+            });
+    });
 }
 
 function sortByPrice(desc) {
