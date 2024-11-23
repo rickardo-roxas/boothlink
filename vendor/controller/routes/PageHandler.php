@@ -2,6 +2,7 @@
 
 namespace controller\vendor;
 
+use controller\auth\SignupController;
 use controller\vendor\home\HomeController;
 use controller\vendor\products\AddProductsController;
 use controller\vendor\products\EditProductsController;
@@ -10,8 +11,6 @@ use controller\vendor\reservations\ReservationsController;
 use controller\vendor\sales\SalesController;
 use controller\vendor\schedule\AddScheduleController;
 use controller\vendor\schedule\ScheduleController;
-use model\vendor\OrgSelectModel;
-use model\vendor\VendorQueries;
 
 /**
  * Handles the rendition of pages.
@@ -101,6 +100,13 @@ class PageHandler
                 $controller = new EditProductsController();
                 $prod_id = $_GET['prod_id'] ?? null;
                 $controller->index($prod_id);
+                break;
+
+            case '/signup';
+                $title = 'Signup';
+                require('vendor/controller/auth/SignupController.php');
+                $controller = new SignupController();
+                $controller->handleSignup();
                 break;
 
             default:

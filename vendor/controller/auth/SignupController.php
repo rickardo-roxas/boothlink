@@ -17,9 +17,6 @@ class SignupController {
     }
 
     public function handleSignup() {
-        if ($_SERVER['REQUEST_URI'] === '/cs-312_boothlink/signup' && $_SERVER['REQUEST_METHOD'] === 'GET') {
-            require_once 'vendor/view/auth/signup_view.php';
-        }
         include 'vendor/view/auth/signup_view.php';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
