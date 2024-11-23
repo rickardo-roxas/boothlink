@@ -4,15 +4,15 @@ var products;
 
 const index = (req, res) => {
     if (!products) {
-        products = model.getProducts;
+        products = model.getProducts();
     }
     let boothsPromise = model.getBooths();
-    Promise.all([boothsPromise]).then (values => {
+    Promise.all([boothsPromise, products]).then (values => {
         res.render('shop/shop_view',
             {
                 title: "Shop",
-                //  products : products,
                 booths: values[0],
+                products : values[1],
             });
     });
 }
