@@ -876,6 +876,39 @@ class VendorQueries
         $stmt->bind_param("iii", $prod_id, $sched_id, $org_id);
         return $stmt->execute();
     }
+    public function createAccount($email, $username, $last_name, $first_name, $password)
+    {
+        $query = "INSERT INTO customer (email, username, last_name, first_name, password) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("sssss", $email, $username, $last_name, $first_name, $password);
+        if ($stmt->execute())
+        {
+            return true;
+        }
+    }
+    public function checkUsername($username)
+    {
+        $stmt = $this->conn->prepare("SELECT COUNT(*) FROM customer WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $stmt->bind_result($count);
+        $stmt->fetch();
+        $stmt->close();
+
+        return $count > 0;
+    }
+
+    public function checkEmail($email)
+    {
+        $stmt = $this->conn->prepare("SELECT COUNT(*) FROM customer WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->bind_result($count);
+        $stmt->fetch();
+        $stmt->close();
+
+        return $count > 0;
+    }
 }
 
 // Example usage
