@@ -6,21 +6,24 @@
         <div class="main-panel">
             <div class="header">
                 <p><img src="/icons/reservations-black-outline.png" alt="Reservation Icon"> Reservations</p>
-                <div class="filter-btns">
-                    <!-- Filters -->
-                    <label>
-                        <input type="radio" name="filter" value="Completed">
-                        <span>Completed</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="filter" value="Pending">
-                        <span>Pending</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="filter" value="Cancelled">
-                        <span>Cancelled</span>
-                    </label>
-                </div>
+                <form method="GET" action="/reservations">
+                    <div class="filter-btns">
+                        <!-- Filters -->
+                        <label>
+                            <input type="radio" name="filter" value="Completed" <%= filter === 'Completed' ? 'checked' : '' %>>
+                            <span>Completed</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="filter" value="Pending" <%= filter === 'Pending' ? 'checked' : '' %>>
+                            <span>Pending</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="filter" value="Cancelled" <%= filter === 'Cancelled' ? 'checked' : '' %>>
+                            <span>Cancelled</span>
+                        </label>
+                    </div>
+                    <button type="submit">Apply Filter</button>
+                </form>                                                                
             </div>
             <div class="reservation-panel">
                 <% reservations.forEach(reservation => { %>
