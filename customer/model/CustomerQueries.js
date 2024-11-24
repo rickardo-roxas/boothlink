@@ -239,7 +239,7 @@ function getReservations(username, callback){
     })
 }
 
-function getReservationsByStatus(status, callback){
+function getReservationsByStatus(status, username, callback){
     const query = "SELECT " + 
                   "pi.img_src AS image_source, " + 
                   "o.org_name, " + 
@@ -256,8 +256,8 @@ function getReservationsByStatus(status, callback){
                   "JOIN prod_org_sched pos ON ps.prod_id = pos.prod_id " + 
                   "JOIN organization o ON pos.org_id = o.org_id " + 
                   "JOIN prod_img pi ON ps.prod_id = pi.prod_id " + 
-                  "WHERE r.status = ?"; // Filter by status
-    conn.query(query, [status], (err, results) => {
+                  "WHERE r.status = ? AND c.username = ?"; // Filter by status and username
+    conn.query(query, [status, username], (err, results) => {
         if(err){
             console.log(err);
             return callback(err, null);
@@ -266,6 +266,7 @@ function getReservationsByStatus(status, callback){
         }
     })
 }
+
 
 module.exports = {
     getFirstName,

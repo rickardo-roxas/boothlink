@@ -21,7 +21,7 @@ const index = (req, res) => {
                 res.status(500).send('Internal Server Error');
             });
     } else {
-        model.getReservationsByStatus(filter)
+        model.getReservationsByStatus(filter, username)
             .then(reservations => {
                 res.render('reservations/reservations_view', {
                     title: "Reservations",

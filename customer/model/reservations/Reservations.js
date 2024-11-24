@@ -17,9 +17,9 @@ function getReservations(username){
     });
 }
 
-function getReservationsByStatus(status){
+function getReservationsByStatus(status, username){
     return new Promise((resolve, reject) => {
-        getReservationsByStatusQuery(status, (err, results) => {
+        getReservationsByStatusQuery(status, username, (err, results) => {
             if(err){
                 return reject(err);
             }
