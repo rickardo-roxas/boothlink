@@ -2,10 +2,10 @@
 $pageTitle = "Schedule";
 require('view/page-fragments/Header.php');
 ?>
-<link rel="stylesheet" href="<?php echo BASE_URL ?>/vendor/public/css/schedule.css">
-<link rel="stylesheet" href="<?php echo BASE_URL ?>/vendor/public/css/schedule_selector.css">
-<script src="<?php echo BASE_URL ?>/vendor/public/js/schedule.js" defer></script>
-<script src="<?php echo BASE_URL ?>/vendor/public/js/schedule_selector.js" defer></script>
+<link rel="stylesheet" href="/public/css/schedule.css">
+<link rel="stylesheet" href="/public/css/schedule_selector.css">
+<script src="/public/js/schedule.js" defer></script>
+<script src="/public/js/schedule_selector.js" defer></script>
 <main>
     <input type="hidden" id="schedule-week" value="<?php echo htmlspecialchars(json_encode($scheduleThisWeek), ENT_QUOTES);;?>">
     <div class="main-table">
@@ -14,7 +14,7 @@ require('view/page-fragments/Header.php');
             <h2><?php echo $dateRange?></h2>
             <div class="action-buttons">
                 <button class="add-button" onclick="openSchedulePopup()">
-                    <img src="<?php echo BASE_URL?>/shared/assets/icons/add-blue-outline.png" alt="Add Icon" class="add-icon">
+                    <img src="/shared/assets/icons/add-blue-outline.png" alt="Add Icon" class="add-icon">
                     Add Schedule
                 </button>
             </div>

@@ -2,18 +2,18 @@
 $pageTitle = "Products";
 require('view/page-fragments/Header.php');
 ?>
-    <link rel="stylesheet" href="<?php echo BASE_URL?>/vendor/public/css/add_edit_products.css">
-    <link rel="stylesheet" href="<?php echo BASE_URL?>/vendor/public/css/products.css">
-    <script src="<?php echo BASE_URL?>/vendor/public/js/products.js" defer></script>
+    <link rel="stylesheet" href="/public/css/add_edit_products.css">
+    <link rel="stylesheet" href="/public/css/products.css">
+    <script src="/public/js/products.js" defer></script>
     <main>
         <input type="hidden" id="products-data" value='<?php echo htmlspecialchars(json_encode($products), ENT_QUOTES); ?>'>
         <div class="main-table">
             <div class="table-header">
                 <h2>Product/Service Listing</h2>
                 <div class="action-buttons">
-                    <a href="<?php echo BASE_URL; ?>/products/add-product">
+                    <a href="/products/add-product">
                         <button class="add-button">
-                            <img src="<?php echo BASE_URL; ?>/shared/assets/icons/add-blue-outline.png" alt="Add Icon" class="add-icon">
+                            <img src="/shared/assets/icons/add-blue-outline.png" alt="Add Icon" class="add-icon">
                             Add
                         </button>
                     </a>

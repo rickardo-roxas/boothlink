@@ -9,7 +9,7 @@ require('view/page-fragments/Header.php');
     <main>
         <div class="container">
             <!-- Form Section -->
-            <form class="form-container" method="POST" action="<?php echo BASE_URL; ?>/products/add-product" enctype="multipart/form-data" onsubmit="validateForm()">
+            <form class="form-container" method="POST" action="/products/add-product" enctype="multipart/form-data" onsubmit="validateForm()">
                 <div class="form-input">
                     <h1>Add New Product</h1>
                     <div class="header">Product Information</div>
