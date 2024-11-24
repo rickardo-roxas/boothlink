@@ -282,6 +282,6 @@ module.exports = {
     getProductByID, 
     getScheduleByScheduleID, 
     getReservations, 
-    getBoothData
-    
+    getBoothData,
+    getReservationsByStatus
 }

@@ -22,7 +22,7 @@ function processReservations(results){
     }
 
     return results.map(reservation => ({
-        img_src: reservation.image_source,     
+        image_source: reservation.image_source,     
         org_name: reservation.org_name,        
         item_name: reservation.item_name,      
         category: reservation.category,        
