@@ -7,23 +7,29 @@
         <div id="shop-container">
             <div class="parent-container">
                 <div id="booth-icon-and-header">
-                    <img id="booths-img" src="icons/booth-black-outline.png" alt="Booth Icon">
-                    <p>Booths</p>
+                    <p>
+                        <img src="icons/booth-black-outline.png" alt="Booth Icon" class="icon"> 
+                        Booth
+                    </p>
                 </div>
                 <div class="org-container">
                     <ul class="organization-list">
                         <li class="org-booths">
                             <% booths.forEach(booth => { %>
-                                <!--<p><%= booth.org_name %></p>-->
-                                <img src="<%= booth.org_img %>">
+                                <div class="booth-card">
+                                    <img class="booth-img" src="<%= booth.org_img %>" alt="<%= booth.org_name %>">
+                                    <p class="booth-name"><%= booth.org_name %></p>
+                                </div>
                             <% }); %>
                         </li>
                     </ul>
                 </div>
                 <div id="shops-and-sorting-container">
                     <div id="shop-icon-header">
-                        <img id="shops-img" src="icons/shopping-bag 2.png" alt="Shop Icon">
-                        <p>Shop</p>
+                        <p>
+                            <img src="icons/shop-black-outline.png" alt="Shop Icon" class="icon"> 
+                            Shop
+                        </p>
                     </div>
                     <form id="sort-form" action="/shop" method="GET">
                         <!--Pricing View Filter-->
