@@ -15,9 +15,9 @@ if (session_status() == PHP_SESSION_NONE) {
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include 'vendor/config/Connection.php';
-require 'vendor/controller/routes/Router.php';
-require 'vendor/controller/auth/Authenticator.php';
+include 'config/Connection.php';
+require 'controller/routes/Router.php';
+require 'controller/auth/Authenticator.php';
 
 
 $router = new Router();
@@ -46,7 +46,7 @@ $router->addRoute('GET', '/signup', function() use ($conn, $authenticator) {
 
 if (isset($_SESSION['vendor_id'])) {
 
-    require 'vendor/controller/routes/PageHandler.php';
+    require 'controller/routes/PageHandler.php';
     $pageHandler = new PageHandler();
 
     // Home route
@@ -118,22 +118,22 @@ if (isset($_SESSION['vendor_id'])) {
 
     // Edit Product POST route should go to EditProductsController
     $router->addRoute('POST', '/products/edit-product', function () use ($conn) {
-        require_once ('vendor/controller/products/EditProductsController.php');
+        require_once ('controller/products/EditProductsController.php');
         (new EditProductsController())->index();
     });
 
     $router->addRoute('POST', '/products/delete-product', function () use ($conn) {
-        require_once ('vendor/controller/products/EditProductsController.php');
+        require_once ('controller/products/EditProductsController.php');
         (new EditProductsController())->delete();
     });
 
     $router->addRoute('POST', '/reservations/complete', function () use ($conn) {
-        require_once ('vendor/controller/reservations/ActionReservationsController.php');
+        require_once ('controller/reservations/ActionReservationsController.php');
         (new ActionReservationsController())->completeReservation();
     });
 
     $router->addRoute('POST', '/reservations/reject', function () use ($conn) {
-        require_once ('vendor/controller/reservations/ActionReservationsController.php');
+        require_once ('controller/reservations/ActionReservationsController.php');
         (new ActionReservationsController())->rejectReservation();
     });
 }

@@ -4,8 +4,8 @@ namespace controller\auth;
 
 use model\vendor\SignUp;
 
-require_once "vendor/config/Connection.php";
-require_once "vendor/model/auth/SignUp.php";
+require_once "config/Connection.php";
+require_once "model/auth/SignUp.php";
 
 class SignupController {
     protected $conn;
@@ -43,7 +43,7 @@ class SignupController {
                 $error = "An error occurred: " . $e->getMessage();
             }
         }
-        include 'vendor/view/auth/signup_view.php';
+        include 'view/auth/signup_view.php';
     }
 
 }

@@ -1,7 +1,7 @@
 <?php
 $pageTitle = "Login";
 
-const BASE_URL = '/cs-312_boothlink';
+const BASE_URL = '';
 $title = $pageTitle;
 ?>
 <head>

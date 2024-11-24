@@ -3,7 +3,7 @@
 namespace model\vendor\products;
 
 use model\vendor\VendorQueries;
-require_once('vendor/model/VendorQueries.php');
+require_once('model/VendorQueries.php');
 class EditProductsModel {
     private $vendorQueries;
 

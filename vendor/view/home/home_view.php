@@ -1,6 +1,6 @@
 <?php
 $pageTitle = "Home";
-require('vendor/view/page-fragments/Header.php');
+require('view/page-fragments/Header.php');
 ?>
 <script src="<?php echo BASE_URL?>/vendor/public/js/home.js" defer></script>
 <main>
@@ -124,4 +124,4 @@ require('vendor/view/page-fragments/Header.php');
         </div>
     </div>
 </main>
-<?php require('vendor/view/page-fragments/Footer.php'); ?>
+<?php require('view/page-fragments/Footer.php'); ?>
