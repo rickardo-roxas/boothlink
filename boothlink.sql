@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2024 at 03:28 PM
+-- Generation Time: Nov 24, 2024 at 01:23 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -93,16 +93,16 @@ CREATE TABLE `location` (
 
 INSERT INTO `location` (`loc_id`, `loc_room`, `stall_number`) VALUES
 (1, 'Devesse', 6),
-(2, 'Silang', 3),
-(3, 'Perfecto', 7),
+(2, 'Devesse', 3),
+(3, 'Devesse', 7),
 (4, 'Devesse', 5),
-(5, 'Rizal', 9),
-(6, 'Burgos', 2),
+(5, 'Devesse', 9),
+(6, 'Devesse', 2),
 (7, 'Devesse', 6),
-(8, 'Perfecto', 4),
+(8, 'Devesse', 4),
 (9, 'Devesse', 8),
-(10, 'Rizal', 1),
-(11, 'Burgos', 10);
+(10, 'Devesse', 1),
+(11, 'Devesse', 10);
 
 -- --------------------------------------------------------
 
@@ -159,7 +159,8 @@ INSERT INTO `prod_img` (`prod_id`, `img_src`) VALUES
 (12, 'cotton_tshirt.jpg'),
 (13, 'spaghetti_bolognese.jpg'),
 (14, 'leather_wallet.jpg'),
-(15, 'ice_cream_sundae.jpg');
+(15, 'ice_cream_sundae.jpg'),
+(16, 'testpaper.png');
 
 -- --------------------------------------------------------
 
@@ -178,16 +179,17 @@ CREATE TABLE `prod_org_sched` (
 --
 
 INSERT INTO `prod_org_sched` (`prod_id`, `org_id`, `sched_id`) VALUES
-(10, 2, 1),
-(3, 3, 2),
-(4, 1, 3),
-(5, 1, 4),
 (1, 2, 5),
-(12, 3, 6),
-(8, 1, 7),
+(3, 3, 2),
+(4, 3, 3),
+(5, 1, 4),
 (7, 3, 8),
-(15, 2, 9),
-(11, 1, 10);
+(8, 1, 7),
+(10, 2, 1),
+(11, 3, 10),
+(12, 3, 6),
+(15, 1, 9),
+(16, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -223,7 +225,8 @@ INSERT INTO `prod_serv` (`prod_id`, `status`, `category`, `prod_serv_name`, `pri
 (12, 'Out of Stock', 'Item', 'Cotton T-Shirt', 350, 'Comfortable cotton t-shirt available in all s'),
 (13, 'In Stock', 'Food', 'Spaghetti Bolognese', 180, 'Classic spaghetti with a rich meat sauce.'),
 (14, 'In Stock', 'Item', 'Leather Wallet', 750, 'Durable leather wallet with multiple compartm'),
-(15, 'In Stock', 'Food', 'Ice Cream Sundae', 65, 'Vanilla ice cream topped with chocolate syrup');
+(15, 'In Stock', 'Food', 'Ice Cream Sundae', 65, 'Vanilla ice cream topped with chocolate syrup'),
+(16, 'In Stock', 'Item', 'Testing', 999, 'This is an example for adding');
 
 -- --------------------------------------------------------
 
@@ -327,16 +330,16 @@ CREATE TABLE `schedule` (
 --
 
 INSERT INTO `schedule` (`sched_id`, `loc_id`, `org_id`, `date`, `start_time`, `end_time`) VALUES
-(1, 4, 1, '2024-10-23', '09:00:00', '11:00:00'),
-(2, 7, 3, '2024-11-02', '13:30:00', '15:30:00'),
-(3, 2, 1, '2024-10-25', '08:00:00', '10:00:00'),
-(4, 9, 1, '2024-10-27', '14:00:00', '16:00:00'),
-(5, 1, 2, '2024-11-01', '07:00:00', '09:00:00'),
-(6, 5, 3, '2024-10-30', '10:30:00', '12:30:00'),
-(7, 3, 1, '2024-10-28', '11:00:00', '13:00:00'),
-(8, 6, 3, '2024-11-05', '16:00:00', '18:00:00'),
-(9, 10, 2, '2024-10-26', '09:30:00', '11:30:00'),
-(10, 8, 1, '2024-11-03', '12:00:00', '14:00:00'),
+(1, 4, 1, '2024-11-23', '09:00:00', '11:00:00'),
+(2, 7, 3, '2024-11-25', '13:30:00', '15:30:00'),
+(3, 2, 1, '2024-11-25', '08:00:00', '10:00:00'),
+(4, 9, 1, '2024-11-24', '14:00:00', '16:00:00'),
+(5, 1, 2, '2024-11-26', '07:00:00', '09:00:00'),
+(6, 5, 3, '2024-11-25', '10:30:00', '12:30:00'),
+(7, 3, 1, '2024-11-24', '11:00:00', '13:00:00'),
+(8, 6, 3, '2024-11-25', '16:00:00', '18:00:00'),
+(9, 10, 2, '2024-10-24', '09:30:00', '11:30:00'),
+(10, 8, 1, '2024-11-25', '12:00:00', '14:00:00'),
 (11, 2, 3, '2024-11-06', '09:00:00', '11:00:00'),
 (12, 1, 1, '2024-11-06', '12:00:00', '14:00:00'),
 (13, 2, 2, '2024-11-06', '15:00:00', '17:00:00'),
@@ -346,12 +349,12 @@ INSERT INTO `schedule` (`sched_id`, `loc_id`, `org_id`, `date`, `start_time`, `e
 (17, 6, 3, '2024-11-06', '14:00:00', '16:00:00'),
 (18, 7, 1, '2024-11-06', '11:00:00', '15:00:00'),
 (19, 8, 2, '2024-11-06', '08:30:00', '11:00:00'),
-(20, 9, 3, '2024-11-06', '13:00:00', '15:30:00'),
-(21, 10, 1, '2024-11-06', '13:00:00', '14:00:00'),
-(22, 1, 2, '2024-11-07', '09:00:00', '11:00:00'),
-(23, 2, 3, '2024-11-07', '12:00:00', '14:00:00'),
-(24, 3, 1, '2024-11-07', '15:00:00', '17:00:00'),
-(25, 4, 2, '2024-11-07', '08:00:00', '09:30:00'),
+(20, 9, 3, '2024-11-28', '13:00:00', '15:30:00'),
+(21, 10, 1, '2024-11-26', '13:00:00', '14:00:00'),
+(22, 1, 2, '2024-11-25', '09:00:00', '11:00:00'),
+(23, 2, 3, '2024-11-26', '12:00:00', '14:00:00'),
+(24, 3, 1, '2024-11-27', '15:00:00', '17:00:00'),
+(25, 4, 2, '2024-11-26', '08:00:00', '09:30:00'),
 (26, 5, 3, '2024-11-07', '10:00:00', '12:30:00'),
 (27, 6, 1, '2024-11-07', '14:00:00', '16:00:00'),
 (28, 7, 2, '2024-11-07', '17:00:00', '19:00:00'),
@@ -453,9 +456,7 @@ ALTER TABLE `prod_img`
 -- Indexes for table `prod_org_sched`
 --
 ALTER TABLE `prod_org_sched`
-  ADD PRIMARY KEY (`prod_id`,`org_id`),
-  ADD KEY `fk_org_id` (`org_id`),
-  ADD KEY `fk_sched_id` (`sched_id`);
+  ADD PRIMARY KEY (`prod_id`,`org_id`,`sched_id`);
 
 --
 -- Indexes for table `prod_serv`
@@ -529,7 +530,7 @@ ALTER TABLE `organization`
 -- AUTO_INCREMENT for table `prod_serv`
 --
 ALTER TABLE `prod_serv`
-  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `reservation`
@@ -564,14 +565,6 @@ ALTER TABLE `vendor`
 --
 ALTER TABLE `prod_img`
   ADD CONSTRAINT `fk_prod_img(prodserv)` FOREIGN KEY (`prod_id`) REFERENCES `prod_serv` (`prod_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `prod_org_sched`
---
-ALTER TABLE `prod_org_sched`
-  ADD CONSTRAINT `fk_org_id` FOREIGN KEY (`org_id`) REFERENCES `organization` (`org_id`),
-  ADD CONSTRAINT `fk_prod_id` FOREIGN KEY (`prod_id`) REFERENCES `prod_serv` (`prod_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_sched_id` FOREIGN KEY (`sched_id`) REFERENCES `schedule` (`sched_id`);
 
 --
 -- Constraints for table `reservation`
