@@ -25,3 +25,6 @@ Thumbs.db
 
 # folders and directories
 node_modules
+
+# Ignore MySQL socket files
+*.sock
