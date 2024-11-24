@@ -57,7 +57,7 @@ input {
 }
 
 /* Cart Table */
-#cart-table {
+#cart-table, #checkout-receipt {
     margin-top: 1.5rem;
     width: 100%;
 }

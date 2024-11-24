@@ -1,0 +1,70 @@
+/*styles.css header interactive*/
+nav ul li {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+nav ul li {
+    --primary-color: #111;
+    --hovered-color: #1EBDEFFF;
+    position: relative;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+nav ul li::before {
+    position: absolute;
+    width: 0%;
+    inset: 0;
+    color: var(--hovered-color);
+    overflow: hidden;
+    transition: 0.3s ease-out;
+}
+
+nav ul li::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    left: 0;
+    bottom: -1px;
+    background: var(--hovered-color);
+    height: 1px;
+    transition: 0.3s ease-out;
+}
+
+nav ul li:hover::after { width: 100%; }
+
+.listing-button:hover {
+    background-color: #6fc5ff;
+    box-shadow: 0 0 20px #6fc5ff50;
+    transform: scale(1.1);
+}
+
+.listing-button:active {
+    background-color: #3d94cf;
+    transition: all 0.25s;
+    box-shadow: none;
+    transform: scale(0.98);
+}
+
+.org-pic-button:hover {
+    background-color: #6fc5ff;
+    box-shadow: 0 0 20px #6fc5ff50;
+    transform: scale(1.1);
+}
+
+.org-pic-button:active {
+    background-color: #3d94cf;
+    transition: all 0.25s;
+    box-shadow: none;
+    transform: scale(0.98);
+}
+
+.active {
+    color: var(--sky-blue);
+    text-decoration: underline;
+}
