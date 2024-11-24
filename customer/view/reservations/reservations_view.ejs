@@ -6,24 +6,20 @@
         <div class="main-panel">
             <div class="header">
                 <p><img src="/icons/reservations-black-outline.png" alt="Reservation Icon"> Reservations</p>
-                <form method="GET" action="/reservations">
-                    <div class="filter-btns">
-                        <!-- Filters -->
-                        <label>
-                            <input type="radio" name="filter" value="Completed" <%= filter === 'Completed' ? 'checked' : '' %>>
-                            <span>Completed</span>
-                        </label>
-                        <label>
-                            <input type="radio" name="filter" value="Pending" <%= filter === 'Pending' ? 'checked' : '' %>>
-                            <span>Pending</span>
-                        </label>
-                        <label>
-                            <input type="radio" name="filter" value="Cancelled" <%= filter === 'Cancelled' ? 'checked' : '' %>>
-                            <span>Cancelled</span>
-                        </label>
-                    </div>
-                    <button type="submit">Apply Filter</button>
-                </form>                                                                
+                <form method="GET" action="/reservations" id="filterForm">
+                    <label>
+                        <input type="radio" name="filter" value="Completed" <%= filter === 'Completed' ? 'checked' : '' %> onchange="this.form.submit()">
+                        <span>Completed</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="filter" value="Pending" <%= filter === 'Pending' ? 'checked' : '' %> onchange="this.form.submit()">
+                        <span>Pending</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="filter" value="Cancelled" <%= filter === 'Cancelled' ? 'checked' : '' %> onchange="this.form.submit()">
+                        <span>Cancelled</span>
+                    </label>
+                </form>                                                                                
             </div>
             <div class="reservation-panel">
                 <% reservations.forEach(reservation => { %>
