@@ -108,7 +108,7 @@
     gap: 1rem;
     justify-content: center;
     overflow: hidden;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     padding: 1rem;
 
 }
@@ -119,16 +119,17 @@
     border-radius: 30px;
     padding: 1.5rem;
     max-width: 100%;
-    min-height: 20rem;
+    min-height: 25rem;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    align-items: flex-start;
+    align-items: stretch;
     text-align: left;
     overflow: hidden;
     margin: auto;
+    justify-content: space-between;
 }
 
 .product-card:hover {
@@ -166,6 +167,7 @@
     font-size: 22px;
     font-weight: bold;
     margin: 0;
+    white-space: nowrap;
 }
 
 .product-org {
@@ -201,7 +203,7 @@
     font-weight: lighter;
     font-size: 16px;
     margin: 0;
-    white-space: normal; 
+    white-space: nowrap; 
     text-overflow: ellipsis; 
     overflow: hidden;
 }
