@@ -56,6 +56,24 @@
                         </div>
                     </form>
                 </div>
+                <!-- Product Listing -->
+                <div id="product-listing">
+                    <% products.forEach(product => { %>
+                        <div class="product-card">
+                            <!-- Product Image -->
+                            <div class="image-container">
+                                <img src="<%= product.image %>" alt="<%= product.name %>">
+                            </div>
+                            <div class="product-info">
+                                <!-- Product Details -->
+                                <p class="product-name"><%= product.name %></p>
+                                <p class="product-description"><%= product.description %></p>
+                                <p class="product-category"><%= product.category %></p>
+                                <p class="product-price">₱ <%= product.price.toFixed(2) %></p>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
             </div>
         </div>
     </div>
