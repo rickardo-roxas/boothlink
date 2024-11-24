@@ -1,0 +1,65 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs')%>
+<body>
+<main>
+    <div id="booth-page">
+        <div id="booth-shop-container">
+            <div class="parent-container">
+                <div id="navbar">
+                    <p id="navbar-text">Shop > Booth</p>
+                </div>
+
+                <div class="org-banner-and-details">
+                    <div id="banner-content">
+                        <img id="banner-org-image" src="images/org/schema.jpg" alt="Schema Logo">
+                        <p id="banner-org-name">SCHEMA</p>
+                        <div id="banner-org-socials">
+                            <img src="icons/soc-med/facebook.png" alt="facebook image">
+                            <p>www.facebook.com/schemaslu</p>
+
+                            <img src="icons/soc-med/instagram.png" alt="instagram image">
+                            <p>www.instagram.com/@schemaslu</p>
+
+                            <img src="icons/soc-med/twitter.png" alt="twitter image">
+                            <p>www.x.com/@schemaslu</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="booth-name-and-filter">
+                    <p id="shop-booth-name">SCHEMA</p>
+                    <form id="sort-form" action="/shop" method="GET">
+                        <!--Pricing View Filter-->
+                        <div id="category-filter">
+                            <p id="sort-by">SORT BY:</p>
+                            <select class="category-select" name="category" onchange="this.form.submit()">
+                                <option value="" disabled selected>Filter</option>
+                                <option value="best-selling">Best Selling</option>
+                                <option value="low-to-high">Price, Low to High</option>
+                                <option value="high-to-low">Price, High to Low</option>
+                            </select>
+                            <p id="view-gap">VIEW:</p>
+                            <!--Type of Product View Filter-->
+                            <div id="view-filter">
+                                <label>
+                                    <input type="radio" name="category" value="item" onchange="this.form.submit()">
+                                    Item
+                                </label>
+                                <label>
+                                    <input type="radio" name="category" value="service" onchange="this.form.submit()">
+                                    Service
+                                </label>
+                                <label>
+                                    <input type="radio" name="category" value="food" onchange="this.form.submit()">
+                                    Food
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
+<%- include('../partials/footer.ejs')%>

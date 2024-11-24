@@ -15,7 +15,14 @@ class Authenticator
         $title = '';
 
         switch ($path) {
-            case '/login':
+            case '/cs-312_boothlink/signup':
+                $title = 'Signup';
+                require('vendor/controller/auth/SignupController.php');
+                $controller = new SignupController($conn);
+                $controller->handleSignup();
+                exit();
+
+            default:
                 $title = 'Login';
                 if (!isset($_SESSION['user'])) {
                     require('vendor/controller/auth/LoginController.php');
@@ -28,18 +35,6 @@ class Authenticator
                     $controller->handleLogin();
                     exit();
                 }
-                break;
-
-            case '/signup':
-                $title = 'Signup';
-                require('vendor/controller/auth/SignupController.php');
-                $controller = new SignupController($conn);
-                $controller->handleSignup();
-                exit();
-                break;
-
-            default:
-                echo "404 Not Found";
                 break;
         }
         $_SESSION['page_title'] = $title;

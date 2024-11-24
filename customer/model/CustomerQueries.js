@@ -48,9 +48,11 @@ function getBooths(callback) {
  *      if item in stock
 */
 function getShopProducts(callback) {
-    const query =  "SELECT prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name, prod_serv.price, " + 
-        "prod_serv.description, prod_img.img_src FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " + 
-        "WHERE prod_serv.status = 'In Stock'";
+    const query =  "SELECT organization.org_name AS organization, prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name AS 'name', prod_serv.price, " +
+        " prod_serv.description, prod_img.img_src as 'image' FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " +
+        " LEFT JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id " + 
+        " LEFT JOIN organization ON prod_org_sched.org_id = organization.org_id " + 
+        " WHERE prod_serv.status = 'In Stock' ";
 
     conn.query(query, (err, results) => {
         if (err) {
@@ -68,7 +70,7 @@ function getOrgProducts(orgID, callback) {
         "prod_serv.description, prod_img.img_src " + 
         "FROM prod_org_sched JOIN prod_serv ON prod_serv.prod_id = prod_org_sched.prod_id " + 
         "JOIN prod_img ON prod_img.prod_id = prod_serv.prod_id " + 
-        "WHERE prod_org_sched.org_id = ? AND prod_serv.status = 'In Stock';"
+        "WHERE prod_org_sched.org_id = ? AND prod_serv.status = 'In Stock' ";
 
         conn.query(query, orgID, (err, results) => {
             if (err) {
@@ -81,9 +83,11 @@ function getOrgProducts(orgID, callback) {
 /** Gets all in stock products sorting by price and accepts a boolean parameter that tells if the filtering 
  * should be done descending or ascending  */
 function getShopProductsByPrice(desc, callback) {
-    var query =  "SELECT prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name, prod_serv.price, " + 
-    "prod_serv.description, prod_img.img_src FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " + 
-    "WHERE prod_serv.status = 'In Stock' ORDER BY prod_serv.price ";
+    const query = "SELECT prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name, prod_serv.price, " +
+    "prod_serv.description, prod_img.img_src " + 
+    "FROM prod_org_sched JOIN prod_serv ON prod_serv.prod_id = prod_org_sched.prod_id " + 
+    "JOIN prod_img ON prod_img.prod_id = prod_serv.prod_id " + 
+    "WHERE prod_org_sched.org_id = ? AND prod_serv.status = 'In Stock' ORDER BY prod_serv.price ";
      
     if (desc) query += "DESC"; // Not sure if this is allowed
 
@@ -99,9 +103,11 @@ function getShopProductsByPrice(desc, callback) {
 /** Gets all in stock products, filtering based on category provided as parameter. 
  *      Possible Parameters: ITEM, SERVICE, FOOD */
 function getShopProductsByCategory(category, callback) {
-    var query =  "SELECT prod_serv.prod_id, prod_serv.prod_serv_name, prod_serv.price, " + 
-    "prod_serv.description, prod_img.img_src FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " + 
-    "WHERE prod_serv.category = '?' ";
+    const query = "SELECT prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name, prod_serv.price, " +
+    "prod_serv.description, prod_img.img_src " + 
+    "FROM prod_org_sched JOIN prod_serv ON prod_serv.prod_id = prod_org_sched.prod_id " + 
+    "JOIN prod_img ON prod_img.prod_id = prod_serv.prod_id " + 
+    "WHERE prod_serv.category = '?' AND prod_serv.status = 'In Stock'";
 
     conn.query(query, category, (err, results) => {
         if (err) {
@@ -233,6 +239,33 @@ function getReservations(username, callback){
     })
 }
 
+function getReservationsByStatus(status, username, callback){
+    const query = "SELECT " + 
+                  "pi.img_src AS image_source, " + 
+                  "o.org_name, " + 
+                  "ps.prod_serv_name AS item_name, " + 
+                  "ps.category, " +  
+                  "ps.price, " + 
+                  "r.date, " + 
+                  "r.status, " + 
+                  "r.qty, " + 
+                  "(ps.price * r.qty) AS total_price " + 
+                  "FROM reservation r " + 
+                  "JOIN customer c ON r.customer_id = c.customer_id " + 
+                  "JOIN prod_serv ps ON r.prod_id = ps.prod_id " + 
+                  "JOIN prod_org_sched pos ON ps.prod_id = pos.prod_id " + 
+                  "JOIN organization o ON pos.org_id = o.org_id " + 
+                  "JOIN prod_img pi ON ps.prod_id = pi.prod_id " + 
+                  "WHERE r.status = ? AND c.username = ?"; // Filter by status and username
+    conn.query(query, [status, username], (err, results) => {
+        if(err){
+            console.log(err);
+            return callback(err, null);
+        }else{
+            return callback(null, results);
+        }
+    })
+}
 
 
 module.exports = {
@@ -246,6 +279,6 @@ module.exports = {
     getProductByID, 
     getScheduleByScheduleID, 
     getReservations, 
-    getBoothData
-    
+    getBoothData,
+    getReservationsByStatus
 }

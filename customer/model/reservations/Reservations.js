@@ -1,4 +1,7 @@
-const { getReservations : getReservationsQuery } = require('../CustomerQueries');
+const { 
+    getReservations : getReservationsQuery,
+    getReservationsByStatus : getReservationsByStatusQuery
+ } = require('../CustomerQueries');
 
 function getReservations(username){
     return new Promise((resolve, reject) => {
@@ -14,6 +17,19 @@ function getReservations(username){
     });
 }
 
+function getReservationsByStatus(status, username){
+    return new Promise((resolve, reject) => {
+        getReservationsByStatusQuery(status, username, (err, results) => {
+            if(err){
+                return reject(err);
+            }
+            
+            const processedResults = processReservations(results);
+            resolve(processedResults);
+        })
+    })
+}
+
 function processReservations(results){
 
     if (!Array.isArray(results)) {
@@ -22,7 +38,7 @@ function processReservations(results){
     }
 
     return results.map(reservation => ({
-        img_src: reservation.image_source,     
+        image_source: reservation.image_source,     
         org_name: reservation.org_name,        
         item_name: reservation.item_name,      
         category: reservation.category,        
@@ -35,5 +51,6 @@ function processReservations(results){
 }
 
 module.exports = {
-    getReservations
+    getReservations,
+    getReservationsByStatus
 }
