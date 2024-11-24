@@ -2,7 +2,7 @@
 $pageTitle = "Sales";
 require('view/page-fragments/Header.php');
 ?>
-<link rel="stylesheet" href="<?php echo BASE_URL?>/vendor/public/css/sales.css">
+<link rel="stylesheet" href="/public/css/sales.css">
 
 
 <!-- Hidden Data to populate the javascript file -->
@@ -14,7 +14,7 @@ require('view/page-fragments/Header.php');
 
 
 <!-- Javascript file to handle populate this view -->
-<script src="<?php echo BASE_URL?>/vendor/public/js/sales.js" defer></script>
+<script src="/public/js/sales.js" defer></script>
 
 
 <main class = "sales">
@@ -29,7 +29,7 @@ require('view/page-fragments/Header.php');
             <div class="product-sales-head">
                 <h1>Sales</h1>
                 <div class = "product-sales-right-head">
-                    <form name = "filter-form" action="<?php echo BASE_URL . "/sales" ?>"  method="GET">
+                    <form name = "filter-form" action="/sales"  method="GET">
                         <label class="toggle-button">
                             <button class="toggle-options" name="status" value="In Stock" >In stock</button>
                             <button class="toggle-options" name="status" value="Out of Stock" >Out of Stock</button>

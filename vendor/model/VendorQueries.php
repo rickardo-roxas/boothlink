@@ -197,28 +197,28 @@ class VendorQueries
      */
     public function getProductSales($org_id)
     {
-        $query = "
-            SELECT prod_img.img_src, prod_serv.prod_serv_name, prod_serv.price, prod_serv.category, 
+        $products = [];
+        $query = "SELECT prod_img.img_src, prod_serv.prod_serv_name, prod_serv.price, prod_serv.category, 
                    COUNT(RESERVATION.status='COMPLETED') AS sold, 
-                   'In Stock' AS status
-            
-            FROM prod_serv         
+                   'In Stock' AS status FROM prod_serv         
                 JOIN prod_org_sched ON PROD_SERV.prod_id = prod_org_sched.prod_id    
                 JOIN prod_img ON PROD_SERV.prod_id = prod_img.prod_id     
                 LEFT JOIN RESERVATION ON PROD_SERV.prod_id = RESERVATION.prod_id         
                     WHERE prod_org_sched.org_id = ?
-            GROUP BY prod_serv.prod_serv_name;";
+            GROUP BY prod_serv.prod_serv_name, prod_img.img_src, prod_serv.price, prod_serv.category";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", $org_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-
-
-        $products = [];
-        if ($result) {
-            $products = $result->fetch_all(MYSQLI_ASSOC);
+        if (!$stmt) {
+            die($this->conn->error);
+        }
+        if($stmt) {
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("i", $org_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result) {
+                $products = $result->fetch_all(MYSQLI_ASSOC);
+            }
         }
 
         return $products;
@@ -231,7 +231,7 @@ class VendorQueries
 	    INNER JOIN SCHEDULE ON PROD_ORG_SCHED.sched_id = SCHEDULE.sched_id 
     	INNER JOIN SALES ON RESERVATION.reservation_id = SALES.reservation_id
         INNER JOIN PROD_SERV ON RESERVATION.prod_id = PROD_SERV.prod_id
-    	WHERE SCHEDULE.org_id=? and RESERVATION.date=CURRENT_DATE();";
+    	WHERE SCHEDULE.org_id=? and RESERVATION.date=CURRENT_DATE()";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $org_id);
@@ -285,7 +285,7 @@ class VendorQueries
         WHERE SCHEDULE.org_id = ?
         AND RESERVATION.date BETWEEN 
             DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) + 1 DAY) AND
-            DATE_ADD(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) + 1 DAY), INTERVAL 6 DAY);";
+            DATE_ADD(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) + 1 DAY), INTERVAL 6 DAY)";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $org_id);
@@ -320,7 +320,7 @@ class VendorQueries
         JOIN prod_serv ON reservation.prod_id = prod_serv.prod_id
         JOIN customer ON reservation.customer_id = customer.customer_id
         WHERE organization.org_id = ?
-        ORDER BY reservation.reservation_id DESC;
+        ORDER BY reservation.reservation_id DESC
     ";
 
         $stmt = $this->conn->prepare($query);
@@ -368,7 +368,7 @@ class VendorQueries
         JOIN customer ON reservation.customer_id = customer.customer_id
         WHERE organization.org_id = ?
         AND reservation.status = ?
-        ORDER BY reservation.reservation_id DESC;";
+        ORDER BY reservation.reservation_id DESC";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("is", $org_id, $status);
@@ -494,7 +494,7 @@ class VendorQueries
             WHERE prod_org_sched.org_id = ? 
             AND reservation.date = ?
             ORDER BY reservation.date ASC 
-            LIMIT 5;";
+            LIMIT 5";
 
 
         $stmt = $this->conn->prepare($query);
@@ -533,7 +533,7 @@ class VendorQueries
             JOIN location ON location.loc_id = schedule.loc_id
             WHERE prod_org_sched.org_id = ?
             AND schedule.date = ?
-            ORDER BY schedule.sched_id ASC;";
+            ORDER BY schedule.sched_id ASC";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("is", $org_id, $date);
@@ -565,7 +565,7 @@ class VendorQueries
             JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id 
             WHERE prod_org_sched.org_id = ?
             AND reservation.date = ? 
-            AND reservation.status = 'Pending';";
+            AND reservation.status = 'Pending'";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("is", $org_id, $date);
@@ -589,7 +589,7 @@ class VendorQueries
             JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id 
             WHERE prod_org_sched.org_id = ?
             AND reservation.date = ? 
-            AND reservation.status = 'Completed';";
+            AND reservation.status = 'Completed'";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("is", $org_id, $date);
@@ -644,7 +644,7 @@ class VendorQueries
             INNER JOIN prod_serv ON reservation.prod_id = prod_serv.prod_id
             WHERE prod_org_sched.org_id = ?
             AND reservation.date = ? 
-            AND prod_serv.category = 'Item';";
+            AND prod_serv.category = 'Item'";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("is", $org_id, $date);
