@@ -128,6 +128,7 @@
     align-items: flex-start;
     text-align: left;
     overflow: hidden;
+    margin: auto;
 }
 
 .product-card:hover {
@@ -137,13 +138,14 @@
 }
 
 .image-container {
-    width: 235px; 
+    width: 240px; 
     height: 250px; 
     overflow: hidden; 
     display: flex;
     justify-content: center; 
     align-items: center; 
     border-radius: 10px; 
+    margin: 0 auto; 
 }
 
 .product-card img {
