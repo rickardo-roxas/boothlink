@@ -28,6 +28,7 @@ const index = (req, res) => {
                 sample: model.sample,
                 first_name: firstName,
                 last_name: lastName,
+                bestSellers: []
             });
         }
     );
