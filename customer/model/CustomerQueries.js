@@ -159,7 +159,7 @@ function getBoothData(id, callback) {
     const query = "SELECT organization.org_name, organization.org_img, " + 
     "organization.fb_link, organization.x_link, organization.ig_link FROM organization WHERE organization.org_id = ?"
 
-    conn.query(query,id,(err, results)=> {
+    conn.query(query, id, (err, results)=> {
         if (err) {
             console.log(err);
             return callback(err, null);

@@ -27,8 +27,10 @@ services:
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: boothlink
     volumes:
       - ./mysql-data:/var/lib/mysql
+      - ./boothlink.sql:/docker-entrypoint-initdb.d/boothlink.sql
     ports:
       - "3306:3306"
 
