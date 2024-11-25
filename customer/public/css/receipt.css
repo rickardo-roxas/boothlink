@@ -1,3 +1,22 @@
 @import 'interactive.css';
 @import "styles.css";
 @import 'cart.css';
+
+#receipt-table {
+    display: block;
+    margin-top: 1.5rem;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+#receipt-table .head,
+#receipt-table .body,
+#receipt-table .foot {
+    align-items: center;
+}
+
+#receipt-table .head {
+    display: block;
+}

@@ -2,15 +2,21 @@
 <%- include('../partials/navbar.ejs')%>
 <link rel="stylesheet" href="/receipt.css">
 <main>
-    <div id="receipt">
-
+    <div class="container heading">
+        <img class="icon" src="/icons/receipt-black-outline.png" alt="receipt icon">
+        <h2>Receipt</h2>
     </div>
-    <div class="card container">
-        <h2>Reservations Confirmed</h2>
-        <div class="column-container">
-            <p>Your reservations have been sent to the respective booths.</p>
-            <p>You may view your reservations</p>
+    <div id="receipt-table">
+        <div class="head">
+            <img class="icon" src="/icons/logo-black-outline.png">
+            <h2>booth<span style="color: var(--sky-blue)">link</span></h2>
+        </div>
+        <div class="body">
+
+        </div>
+        <div>
+
         </div>
     </div>
 </main>
-<%- include('../partials/footer.ejs')%>`
+<%- include('../partials/footer.ejs')%>
