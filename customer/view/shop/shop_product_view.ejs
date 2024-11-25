@@ -2,12 +2,15 @@
 <%- include('../partials/navbar.ejs') %>
 <body>
     <main>
-        <p><%= boothData.org_name %></p>
-        <p><%= boothData.org_img %></p>
-        <p><%= boothData.fb_link %></p>
-        <p><%= boothData.x_link %></p>
-        <p><%= boothData.ig_link %></p>
-        <p><%= id %></p>
+        <p><%= product.id %></p>
+        <p><%= product.org_name %></p>
+        <p><%= product.org_img %></p>
+        <p><%= product.category %></p>
+        <p><%= product.prod_serv_name %></p>
+        <p><%= product.price %></p>
+        <p><%= product.description %></p>
+        <p><%= product.img_src %></p>
+        <p><%= product.sched_id %></p>
     </main>
 </body>
 <%- include('../partials/footer.ejs')%>

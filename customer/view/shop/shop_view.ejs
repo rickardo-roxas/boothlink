@@ -16,10 +16,8 @@
                     <ul class="organization-list">
                         <li class="org-booths">
                             <% booths.forEach(booth => { %>
-                                <div class="booth-card">
-                                    <img class="booth-img" src="<%= booth.org_img %>" alt="<%= booth.org_name %>">
-                                    <p class="booth-name"><%= booth.org_name %></p>
-                                </div>
+                                <!--<p><%= booth.org_name %></p>-->
+                                <img src="<%= booth.org_img %>" data-id="<%= booth.org_id %>" onclick="handleBoothClick('<%= booth.org_id %>')">
                             <% }); %>
                         </li>
                     </ul>
@@ -87,7 +85,11 @@
 </main>
 <script>
     function handleProductClick(productId) {
-        window.location.href = `shop/booth?id=${productId}`;
+        window.location.href = `shop/reserve?id=${productId}`;
+    }
+
+    function handleBoothClick(boothId) {
+        window.location.href = `shop/booth?id=${boothId}`;
     }
 </script>
 </body>

@@ -48,7 +48,7 @@ class LoginController
                 if ($login->authenticateCustomer($username, $password)) {
                     $id = $login->getCustomerID($username);
                     $username = $username;
-                    echo "<script>window.location.href = 'http://localhost:3000/" . $id . "/" . urlencode($username) . " ';</script>";
+                    echo "<script>window.location.href = 'http://localhost:3000/login/" . base64_encode($id) . "/" . base64_encode(urlencode($username)) . " ';</script>";
                //     header("Location: http://localhost:3000/" . $id . "/" . urlencode($username));
                     exit();
                 } else {

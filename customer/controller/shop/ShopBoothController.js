@@ -1,4 +1,4 @@
-const model = require("../../model/shop/ShopProduct");
+const model = require("../../model/shop/ShopBooth");
 
 
 
@@ -7,7 +7,7 @@ function index(id, req, res) {
     const orgProducts = model.getOrgProducts(id);
 
     Promise.all([boothData, orgProducts]).then (values => {
-        res.render("shop/shop_product_view", {
+        res.render("shop/shop_booth_view", {
             title: "Shop Booth",
     
             // Dynamic Objects
