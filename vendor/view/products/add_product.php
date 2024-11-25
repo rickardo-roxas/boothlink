@@ -3,13 +3,13 @@
 use model\vendor\products\AddNewProductModel;
 
 $pageTitle = "Products";
-require('vendor/view/page-fragments/Header.php');
+require('view/page-fragments/Header.php');
 ?>
     <link rel="stylesheet" href="<?php echo BASE_URL?>/vendor/public/css/add_edit_products.css">
     <main>
         <div class="container">
             <!-- Form Section -->
-            <form class="form-container" method="POST" action="<?php echo BASE_URL; ?>/products/add-product" enctype="multipart/form-data" onsubmit="validateForm()">
+            <form class="form-container" method="POST" action="/products/add-product" enctype="multipart/form-data" onsubmit="validateForm()">
                 <div class="form-input">
                     <h1>Add New Product</h1>
                     <div class="header">Product Information</div>
@@ -131,7 +131,7 @@ require('vendor/view/page-fragments/Header.php');
             </form>
         </div>
     </main>
-<?php require 'vendor/view/page-fragments/Footer.php'; ?>
+<?php require 'view/page-fragments/Footer.php'; ?>
     <script src="<?php echo BASE_URL?>/vendor/public/js/add_product.js" defer></script>
     <script>
         function validateForm() {

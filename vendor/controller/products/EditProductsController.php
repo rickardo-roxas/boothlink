@@ -9,7 +9,7 @@ use model\vendor\products\EditProductsModel;
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require ('vendor/model/products/EditProductsModel.php');
+require ('model/products/EditProductsModel.php');
 
 class EditProductsController {
     private $editProductsModel;
@@ -70,7 +70,7 @@ class EditProductsController {
             $productData['schedule_ids'] = $this->editProductsModel->getProductScheduleIds($prod_id);
 
             // Pass the data to the view
-            require 'vendor/view/products/edit_product.php'; // Render the edit form
+            require 'view/products/edit_product.php'; // Render the edit form
         } else {
             echo "Product not found.";
             exit();

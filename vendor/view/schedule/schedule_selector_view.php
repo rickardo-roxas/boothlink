@@ -1,8 +1,8 @@
 <?php
 $pageTitle = "Schedule";
-require('vendor/view/page-fragments/Header.php');
+require('view/page-fragments/Header.php');
 ?>
-<link rel="stylesheet" href="<?php echo BASE_URL ?>/vendor/public/css/schedule_selector.css">
+<link rel="stylesheet" href="/public/css/schedule_selector.css">
 <main>
     <?php
         // Get the current month, year, and day
@@ -19,7 +19,7 @@ require('vendor/view/page-fragments/Header.php');
         $endTime = $_GET["endTime"] ?? "7:00";
     ?>
 
-    <form action="<?php echo BASE_URL ?>/schedule/add-schedule" method="POST">
+    <form action="/schedule/add-schedule" method="POST">
         <div class="schedule-selector card">
             <h3><?php echo "$month $year"; ?></h3>
             
@@ -112,6 +112,6 @@ require('vendor/view/page-fragments/Header.php');
             </div>
         </div>
     </form>
-    <script src="<?php echo BASE_URL ?>/vendor/public/js/schedule_selector.js" defer></script>
+    <script src="/public/js/schedule_selector.js" defer></script>
 </main>
-<?php require('vendor/view/page-fragments/Footer.php'); ?>
+<?php require('view/page-fragments/Footer.php'); ?>

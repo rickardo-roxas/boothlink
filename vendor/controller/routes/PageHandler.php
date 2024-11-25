@@ -30,52 +30,52 @@ class PageHandler
         switch ($path) {
             case '/home':
                 $title = 'Home';
-                require ('vendor/controller/home/HomeController.php');
+                require ('controller/home/HomeController.php');
                 $controller = new HomeController();
                 $controller->index($firstTime);
                 break;
 
             case '/reservations':
                 $title = 'Reservations';
-                require ('vendor/controller/reservations/ReservationsController.php');
+                require ('controller/reservations/ReservationsController.php');
                 $controller = new ReservationsController();
                 $controller->index();
                 break;
 
             case '/products':
                 $title = 'Products';
-                require ('vendor/controller/products/ProductsController.php');
+                require ('controller/products/ProductsController.php');
                 $controller = new ProductsController();
                 $controller->index();
                 break;
 
             case '/products/add-product':
                 $title = 'Products';
-                require ('vendor/controller/products/AddProductsController.php');
+                require ('controller/products/AddProductsController.php');
                 (new AddProductsController())->index();
                 break;
 
             case '/schedule':
                 $title = 'SchedulePageModel';
-                require ('vendor/controller/schedule/ScheduleController.php');
+                require ('controller/schedule/ScheduleController.php');
                 $controller = new ScheduleController();
                 $controller->index();
                 break;
 
             case '/schedule/add-schedule':
-                require ('vendor/controller/schedule/AddScheduleController.php');
+                require ('controller/schedule/AddScheduleController.php');
                 (new AddScheduleController())->addSchedule();
                 break;
             case '/sales':
                 $title = 'Sales';
-                require ('vendor/controller/sales/SalesController.php');
+                require ('controller/sales/SalesController.php');
                 $controller = new SalesController();
                 $controller->index();
                 break;
 
             case '/org_select':
                 $title = 'Org Select';
-                require('vendor/controller/org-select/OrgSelectController.php');
+                require('controller/org-select/OrgSelectController.php');
                 $controller = new OrgSelectController();
                 $controller->displayOrgSelector();
                 break;
@@ -96,7 +96,7 @@ class PageHandler
 
             case '/products/edit-product':
                 $title = 'Edit Product';
-                require ('vendor/controller/products/EditProductsController.php');
+                require ('controller/products/EditProductsController.php');
                 $controller = new EditProductsController();
                 $prod_id = $_GET['prod_id'] ?? null;
                 $controller->index($prod_id);
@@ -104,7 +104,7 @@ class PageHandler
 
             case '/signup';
                 $title = 'Signup';
-                require('vendor/controller/auth/SignupController.php');
+                require('controller/auth/SignupController.php');
                 $controller = new SignupController();
                 $controller->handleSignup();
                 break;

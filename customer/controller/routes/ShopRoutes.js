@@ -29,7 +29,8 @@ router.get('/filter', (req, res) => {
 router.get('/booth', (req,res)=> {
     controller = require('../shop/ShopBoothController');
     const id = req.query;
-    controller.index(id, req, res);
+    const boothParameter = req.query.id;
+    controller.index(boothParameter, req, res);
 });
 
 router.get('/reserve', (req,res) => {

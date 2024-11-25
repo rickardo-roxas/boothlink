@@ -4,9 +4,9 @@ namespace controller\auth;
 
 use model\auth\Login;
 
-require_once "vendor/config/Connection.php";
-require_once "vendor/model/auth/Login.php";
-require_once 'vendor/view/auth/login_view.php';
+require_once "./config/Connection.php";
+require_once "./model/auth/Login.php";
+require_once './view/auth/login_view.php';
 
 class LoginController
 {
@@ -42,13 +42,14 @@ class LoginController
                 } else {
                     $_SESSION['first_time'] = false; // Not first time
                 }
-                header("Location: /cs-312_boothlink/org_select");
+                echo "<script>window.location.href = '/cs-312_boothlink/org_select';</script>";
                 exit();
             } else {
                 if ($login->authenticateCustomer($username, $password)) {
                     $id = $login->getCustomerID($username);
                     $username = $username;
-                    header("Location: http://localhost:3000/" . $id . "/" . urlencode($username));
+                    echo "<script>window.location.href = 'http://localhost:3000/" . $id . "/" . urlencode($username) . " ';</script>";
+               //     header("Location: http://localhost:3000/" . $id . "/" . urlencode($username));
                     exit();
                 } else {
                     $_SESSION['loginAttempts'] = $_SESSION['loginAttempts'] +1;

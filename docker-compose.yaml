@@ -1,0 +1,39 @@
+services:
+  customer:
+    build:
+      context: ./customer
+      dockerfile: Dockerfile.node
+    volumes:
+      - ./customer:/app
+      - ./shared:/app/shared
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+
+  vendor:
+    build:
+      context: ./vendor
+      dockerfile: Dockerfile.apache
+    volumes:
+      - ./vendor:/var/www/html
+      - ./shared:/var/www/html/shared
+    depends_on:
+      - database
+    ports:
+      - "8080:80"
+
+  database:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: boothlink
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+      - ./boothlink.sql:/docker-entrypoint-initdb.d/boothlink.sql
+    ports:
+      - "3306:3306"
+
+volumes:
+  shared:
+    driver: local

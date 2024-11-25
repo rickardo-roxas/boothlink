@@ -63,7 +63,7 @@
                 <!-- Product Listing -->
                 <div id="product-listing">
                     <% products.forEach(product => { %>
-                        <div class="product-card">
+                        <div class="product-card" data-id="<%= product.prod_id %>" onclick="handleProductClick('<%= product.prod_id %>')">
                             <!-- Display product image -->
                             <div class="image-container">
                                 <img src="<%= product.image %>" alt="<%= product.name %>">
@@ -85,6 +85,11 @@
         </div>
     </div>
 </main>
+<script>
+    function handleProductClick(productId) {
+        window.location.href = `shop/booth?id=${productId}`;
+    }
+</script>
 </body>
 </html>
 <%- include('../partials/footer.ejs')%>

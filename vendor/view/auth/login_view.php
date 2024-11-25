@@ -1,7 +1,7 @@
 <?php
 $pageTitle = "Login";
 
-const BASE_URL = '/cs-312_boothlink';
+const BASE_URL = '';
 $title = $pageTitle;
 ?>
 <head>
@@ -12,13 +12,13 @@ $title = $pageTitle;
     <meta name="description" content="BoothLink lets you discover and reserve unique products and services from student
     booths at Saint Louis University. Support SLU's vibrant student community today!">
     <title>BoothLink | <?php echo $title?></title>
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/vendor/public/css/interactive.css">
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/vendor/public/css/style.css">
-    <link rel="stylesheet" href="<?php echo BASE_URL?>/vendor/public/css/login.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo BASE_URL; ?>/shared/assets/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo BASE_URL; ?>/shared/assets/favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo BASE_URL; ?>/shared/assets/favicon_io/favicon-16x16.png">
-    <link rel="manifest" href="<?php echo BASE_URL; ?>/shared/assets/favicon_io/site.webmanifest">
+    <link rel="stylesheet" href="/public/css/interactive.css">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/login.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/shared/assets/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/shared/assets/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/shared/assets/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/shared/assets/favicon_io/site.webmanifest">
 </head>
 <main>
     <div class="container">

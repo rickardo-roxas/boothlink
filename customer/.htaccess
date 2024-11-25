@@ -1,0 +1,7 @@
+RewriteEngine On # Activate runtime of Apache server rewriting engine
+RewriteBase /cs-312_boothlink/
+
+# Redirect all requests to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.js [QSA,L] # Redirect all upcoming requests to index.php

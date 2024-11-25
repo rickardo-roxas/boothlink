@@ -1,9 +1,9 @@
 <?php
 $pageTitle = "Reservations";
-require('vendor/view/page-fragments/Header.php');
+require('view/page-fragments/Header.php');
 ?>
-    <link rel="stylesheet" href="<?php echo BASE_URL?>/vendor/public/css/reservations.css">
-    <script src="<?php echo BASE_URL?>/vendor/public/js/reservations.js" defer></script>
+    <link rel="stylesheet" href="/public/css/reservations.css">
+    <script src="/public/js/reservations.js" defer></script>
     <main>
         <input type="hidden" id="reservations-data" value='<?php echo htmlspecialchars(json_encode($reservations), ENT_QUOTES); ?>'>
         <div class="main-table">
@@ -46,4 +46,4 @@ require('vendor/view/page-fragments/Header.php');
         </div>
     </main>
 
-<?php require('vendor/view/page-fragments/Footer.php'); ?>
+<?php require('view/page-fragments/Footer.php'); ?>

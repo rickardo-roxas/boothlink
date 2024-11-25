@@ -1,0 +1,27 @@
+FROM php:7.4-apache
+
+# Install MySQLi extension
+RUN docker-php-ext-install mysqli
+
+# Enable mod_rewrite
+RUN a2enmod rewrite
+
+# Expose port 80 for Apache
+EXPOSE 80
+
+# Copy project files into the container
+COPY . /var/www/html/
+
+# Set the correct permissions for the .htaccess file
+RUN chmod 644 /var/www/html/.htaccess
+
+# Configure Apache to allow overrides for .htaccess files
+RUN echo '<Directory /var/www/html/> \n\
+    AllowOverride All \n\
+    </Directory>' >> /etc/apache2/apache2.conf
+
+# Set working directory to Apache root
+WORKDIR /var/www/html/
+
+# Ensure Apache runs in the background when container starts
+CMD ["apache2-foreground"]

@@ -1,14 +1,21 @@
-const model = require("../../../model/customer/shop/ShopBooth");
+const model = require("../../model/shop/ShopProduct");
 
 
 
 function index(id, req, res) {
     const boothData = model.getBoothData(id);
-    const orgProducts = model.getOrgProducts (id);
+    const orgProducts = model.getOrgProducts(id);
 
-    res.render("shop/shop_booth_view", {
-        title: "Shop Booth"
-        // Dynamic Objects
+    Promise.all([boothData, orgProducts]).then (values => {
+        res.render("shop/shop_product_view", {
+            title: "Shop Booth",
+    
+            // Dynamic Objects
+            boothData : values[0],
+            orgProducts : values[1],
+            id : id
+        });
+
     });
 }
 

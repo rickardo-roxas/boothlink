@@ -11,7 +11,7 @@ class ScheduleController
 
     public function __construct()
     {
-        include('vendor/model/schedule/SchedulePageModel.php');
+        include('model/schedule/SchedulePageModel.php');
         $this->model = new SchedulePageModel();
     }
 
@@ -46,7 +46,7 @@ class ScheduleController
 
         $scheduleThisWeek = $this->model->getScheduleThisWeek($org_id, $startDateRange, $endDateRange);
 
-        require_once 'vendor/view/schedule/schedule_view.php';
+        require_once 'view/schedule/schedule_view.php';
         exit();
     }
 }

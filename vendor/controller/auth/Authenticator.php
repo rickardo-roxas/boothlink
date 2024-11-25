@@ -17,7 +17,7 @@ class Authenticator
         switch ($path) {
             case '/cs-312_boothlink/signup':
                 $title = 'Signup';
-                require('vendor/controller/auth/SignupController.php');
+                require('controller/auth/SignupController.php');
                 $controller = new SignupController($conn);
                 $controller->handleSignup();
                 exit();
@@ -25,12 +25,12 @@ class Authenticator
             default:
                 $title = 'Login';
                 if (!isset($_SESSION['user'])) {
-                    require('vendor/controller/auth/LoginController.php');
+                    require('controller/auth/LoginController.php');
                     $controller = new LoginController($conn);
                     $controller->handleLogin();
                 } else {
                     session_destroy();
-                    require('vendor/controller/auth/LoginController.php');
+                    require('controller/auth/LoginController.php');
                     $controller = new LoginController($conn);
                     $controller->handleLogin();
                     exit();
