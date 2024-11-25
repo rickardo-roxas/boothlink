@@ -1,24 +1,83 @@
-<!DOCTYPE html>
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+<link rel="stylesheet" href="home.css">
 
-<html lang = "en">
-    <%- include('../partials/header.ejs') %>
-    <%- include('../partials/navbar.ejs')%>
+<body>
+<main>
+    <div id="banner-container">
+        <div style="background-image: url('/shared/assets/images/banner.png')" id="banner">
+            <div class="banner-button-container">
+                <button class="banner-button">SHOP NOW</button>
+            </div>
+        </div>
+        <div class="divider-bar"></div>
+    </div>
 
-    <body class = "body">
-    <h1>Home Page </h1>
+    <div id="home-container">
+        <!-- Best-selling items section -->
+        <div class="header">
+            <h2>RECENT BEST SELLERS</h2>
+        </div>
+        <div id="best-sellers">
+            <% bestSellers.forEach(item => { %>
+                <div class="best-sellers-card">
+                    <div class="image-container">
+                        <img src="<%= item.image %>" alt="<%= item.name %>">
+                    </div>
+                    <p class="product-name"><%= item.name %></p>
+                    <p class="product-description"><%= item.description %></p>
+                    <p class="product-price">₱ <%= item.price.toFixed(2) %></p>
+                </div>
+            <% }); %>
+        </div>
 
-    <p> <%= first_name %></p>
-    <p> <%= last_name %></p>
+        <div class="button-container">
+            <button class="best-sellers-button"><h3>View All Products</h3></button>
+        </div>
 
-        <% if (sample.length > 0) { %>
-            <% sample.forEach(item => { %>
-                <p> <%= item.title %></p>
-                <p><%= item.description %></p>
-            <% })%>
-        <% } %>
+        <div class="divider-line"></div>
 
-    </body>
+        <!-- Browse by category -->
+        <div id="browse">
+            <div class="header">
+                <h2>BROWSE BY CATEGORY</h2>
+            </div>
+            <div class="grid-container">
+                <div class="grid-card category-food">
+                    <p>Food</p>
+                    <img src="/images/food.png" alt="Food">
+                </div>
+                <div class="grid-card category-services">
+                    <p>Services</p>
+                    <img src="/images/services.png" alt="Services">
+                </div>
+                <div class="grid-card category-items">
+                    <p>Items</p>
+                    <img src="/images/items.png" alt="Items">
+                </div>
+            </div>
+        </div>
 
-    <%- include('../partials/footer.ejs')%>
-
-</html>
+        <!-- Booths -->
+        <div id="discover">
+            <div class="discover-card">
+                <div class="discover-text">
+                    <h2>DISCOVER NEW FINDS, CHECK OUT THE BOOTHS!</h2>
+                </div>
+                <div class="logos">
+                    <div class="logos-slide">
+                        <img src="/images/booth1.png" alt="Booth 1">
+                    </div>
+                    <div class="logos-slide">
+                        <img src="/images/booth2.png" alt="Booth 2">
+                    </div>
+                    <div class="logos-slide">
+                        <img src="/images/booth3.png" alt="Booth 3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+<%- include('../partials/footer.ejs') %>
