@@ -30,12 +30,14 @@ body {
     font-weight: bold;
     display: flex;
     align-items: center;
+    vertical-align: middle;
 }
 
 .header img {
     width: 24px;
     height: 24px;
-    margin-right: 10px;
+    margin-right: 5px;
+    vertical-align: middle;
 }
 
 .filter-btns {

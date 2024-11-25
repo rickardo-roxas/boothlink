@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/customer/public/css/home.css">
+</head>
+<body>
+<main>
+    <div id="banner-container">
+        <div style="background-image: url('/shared/assets/images/banner.png')" id="banner"> <!-- can't work in css -->
+            <!--<img src="/shared/assets/images/banner.png">-->
+            <div class="banner-button-container">
+                <button class="banner-button">SHOP NOW</button>
+            </div>
+        </div>
+        <!-- Insert black bar for dividing banner and next section -->
+        <div class="divider-bar"></div>
+    </div>
+    <div id="home-container">
+        <!-- Best-selling items section -->
+        <div class="header">
+            <h2>RECENT BEST SELLERS</h2>
+        </div>
+        <div id="best-sellers">
+            <!-- Cards for each item -->
+            <div class="best-sellers-card"> <!-- Change to ejs for automatic population -->
+                <div class="image-container">
+                    <img src="" class="">
+                </div>
+                <p class="product-name">Product Name</p>
+                <p class="product-description">Product Desc</p>
+                <p class="product-price">Product Price</p>
+            </div>
+            <div class="best-sellers-card"> <!-- Change to ejs for automatic population -->
+                <div class="image-container">
+                    <img src="" class="">
+                </div>
+                <p class="product-name">Product Name</p>
+                <p class="product-description">Product Desc</p>
+                <p class="product-price">Product Price</p>
+            </div>
+            <div class="best-sellers-card"> <!-- Change to ejs for automatic population -->
+                <div class="image-container">
+                    <img src="" class="">
+                </div>
+                <p class="product-name">Product Name</p>
+                <p class="product-description">Product Desc</p>
+                <p class="product-price">Product Price</p>
+            </div>
+            <div class="best-sellers-card"> <!-- Change to ejs for automatic population -->
+                <div class="image-container">
+                    <img src="" class="">
+                </div>
+                <p class="product-name">Product Name</p>
+                <p class="product-description">Product Desc</p>
+                <p class="product-price">Product Price</p>
+            </div>
+            <!-- Cards for each item -->
+        </div>
+        <!-- Button "View All Products" -->
+        <div class="button-container">
+            <button class="best-sellers-button"><h3>View All Products</h3></button>
+        </div>
+
+        <!-- Insert thin line for dividing banner and next section -->
+        <div class="divider-line"></div>
+
+        <!-- Browse by category use grid cards -->
+        <div id="browse">
+            <div class="header">
+                <h2>BROWSE BY CATEGORY</h2>
+            </div>
+            <div class="grid-container">
+                <div class="grid-card food">
+                    <p>Food</p>
+                    <img src="/shared/assets/images/food.png">
+                </div>
+                <div class="grid-card items">
+                    <p>Items</p>
+                    <img src="/shared/assets/images/items.png">
+                </div>
+                <div class="grid-card services">
+                    <p>Services</p>
+                    <img src="/shared/assets/images/services.png">
+                </div>
+            </div>
+        </div>
+
+        <!-- Booths logo carousel in here -->
+        <div id="discover">
+            <div class="discover-card">
+                <div class="discover-text"><h2>DISCOVER NEW FINDS, CHECK OUT THE BOOTHS!</h2></div>
+                <div class="logos">
+                    <div class="logos-slide">
+                        <img src="/shared/assets/images/org/schema.jpg"/>
+                        <img src="/shared/assets/images/org/rpg.jpg"/>
+                        <img src="/shared/assets/images/org/w&b.jpg"/>
+                        <img src="/shared/assets/images/org/comelec.jpg"/>
+                    </div>
+                    <div class="logos-slide">
+                        <img src="/shared/assets/images/org/schema.jpg"/>
+                        <img src="/shared/assets/images/org/rpg.jpg"/>
+                        <img src="/shared/assets/images/org/w&b.jpg"/>
+                        <img src="/shared/assets/images/org/comelec.jpg"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

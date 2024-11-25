@@ -6,87 +6,64 @@
         <img class="icon" src="/icons/logo-black-outline.png" alt="Cart icon">
         <h2>Your Cart</h2>
     </div>
-    <div class="container ">
-        <table id="cart-table">
-            <thead class="card">
-                <tr>
-                    <th>
-                        <div class="container">
-                            <input type="checkbox"> 
-                            <p class="bold">Select All Products</p>
-                        </div>
-                    </th>
-                    <th>Pickup</td>
-                    <th>Unit Price</td>
-                    <th>Quantity</td>
-                    <th>Total Price</td>
-                    <th>Action</td>
-                </tr>
-            </thead>
-            <tbody>
-                <!--To populate-->
-                <tr>
-                    <td class="card prod-head">
-                        <div class="container"> 
-                            <input type="checkbox">
-                            <p class="bold">SCHEMA</p>
-                        </div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr class="card prod">
-                    <!--Item with checkbox-->
-                    <td class="item">
-                        <div class="container">
-                            <input type="checkbox">
-                            <img src="/images/placeholder.jpeg">
-                            <p>Black Man (gwapo)</p>
-                        </div>
-                    </td>
-                    <!--Pickup time-->
-                    <td>
+    <div id="cart-table" class="column-container">
+        <div class="head">
+            <div class="container select-all">
+                <input type="checkbox">
+                <p>Select All Products/Services</p>
+            </div>
+            <p>Pickup</p>
+            <p>Unit Price</p>
+            <p>Quantity</p>
+            <p>Total Price</p>
+            <p></p>
+        </div>
+        <div class="body column-container">
+            <div class="org-wrapper">
+                <div class="org container">
+                    <input class="org-checkbox" type="checkbox">
+                    <h3 class="org-name">SCHEMA</h3>
+                </div>
+                <div class="item container">
+                    <div class="container prod">
+                        <input class="item-checkbox" type="checkbox">
+                        <img src="/images/placeholder.jpeg">
+                        <p>Black Man (Gwapo)</p>
+                    </div>
+                    <div>
                         <select class="pickup">
-                            <option>November 10 | 8 am</option>
+                            <option>Nov. 23 - 8 AM</option>
                         </select>
-                    </td>
-                    <td>
-                        Php 800.00
-                    </td>
-                    <td>
-                        <input type="number" class="qty">
-                    </td>
-                    <td>
-                       Php 800.00 
-                    </td>
-                    <td>
-                        <button class="remove-btn">Remove</button>
-                    </td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td>
-                        <div class="container">
-                            <input type="checkbox"> 
-                            <p class="bold">Select All Products</p>
-                        </div>
-                    </td>
-                    <td>
-                        <button class="clear-btn">Clear Cart</button>
-                    </td>
-                    <td></td>
-                    <td>Total (1 item):</td>
-                    <td>Php700.00</td>
-                    <td>
-                        <button class="checkout-btn">Check Out</button>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
+                    </div>
+                    <p class="unit-price">Php 500.00</p>
+                    <div>
+                        <input type="number" class="qty" min="1" max="10"></input>
+                    </div>
+                    <p class="total-price">Php 700.00</p>
+                    <button class="remove-btn">
+                        Remove
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="foot container">
+            <div class="container">
+                <div class="container select-all">
+                    <input type="checkbox">
+                    <p>Select All Products</p>
+                </div>
+                <button class="clear-btn">Clear Cart</button>
+            </div>
+            <div class="container total">
+                <p>Total (1 item): <span id="grand-total">Php 700.00</span></p>
+                <form method="get" action="/cart/checkout">
+                    <button class="checkout-btn">
+                        Check Out
+                    </button>
+                </form>
+            </div>
+
+        </div>
     </div>
 
 </main>
