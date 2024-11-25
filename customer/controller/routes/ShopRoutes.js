@@ -28,14 +28,13 @@ router.get('/filter', (req, res) => {
 
 router.get('/booth', (req,res)=> {
     controller = require('../shop/ShopBoothController');
-    const id = req.query;
     const boothParameter = req.query.id;
     controller.index(boothParameter, req, res);
 });
 
 router.get('/reserve', (req,res) => {
-    ctrler = require('../shop/ShopReserveController'); //Makes use of a different name to not interfere with filter functionality
-    const productID = req.query;
+    ctrler = require('../shop/ShopProductController'); //Makes use of a different name to not interfere with filter functionality
+    const productID = req.query.id;
     ctrler.index(productID, req,res);
 });
 

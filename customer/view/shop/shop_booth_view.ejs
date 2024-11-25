@@ -1,0 +1,25 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+<body>
+    <main>
+        <p><%= orgProducts[0].prod_id %></p>
+        <p><%= orgProducts[0].category %></p>
+        <p><%= orgProducts[0].prod_serv_name %></p>
+        <p><%= orgProducts[0].price %></p>
+        <p><%= orgProducts[0].description %></p>
+        <p><%= orgProducts[0].img_src %></p>
+
+        <% orgProducts.forEach(product => { %>
+            <p><%= product.prod_id %></p>
+            <p><%= product.category %></p>
+            <p><%= product.prod_serv_name %></p>
+            <p><%= product.price %></p>
+            <p><%= product.description %></p>
+            <img src="/<%= product.img_src %>">
+
+
+        <% }); %>
+
+    </main>
+</body>
+<%- include('../partials/footer.ejs')%>

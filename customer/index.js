@@ -46,14 +46,35 @@ app.use(session({
 
 }));
 
+app.use('/login/:id/:username', (req, res) =>{
+    console.log("reached")
+    var {id, username} = req.params;
+    id = atob(id);
+    username = atob(username);
+    req.session.customerID=id;
+    req.session.username=username;
+    res.redirect("/");
+});
+
 // Routes
+app.use((req,res, next) => {
+    if (!req.session.customerID || !req.session.username) {
+        res.redirect("http://localhost:8080/cs-312_boothlink");
+    }    
+    next();
+});
+
+console.log('reached 2');
+
 
 app.use('/reservations', reservationsRouter);
 app.use('/shop', shopRouter);
 app.use('/cart', cartRouter)
 app.use('/', homeRouter);
 
+
+
 // Error Page
 app.use((req, res) => {
-    res.send("404: Page Not Found.")
+    res.redirect("http://localhost:8080/cs-312_boothlink");
 });

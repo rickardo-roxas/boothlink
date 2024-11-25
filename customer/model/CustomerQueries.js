@@ -107,7 +107,7 @@ function getShopProductsByCategory(category, callback) {
     "prod_serv.description, prod_img.img_src " + 
     "FROM prod_org_sched JOIN prod_serv ON prod_serv.prod_id = prod_org_sched.prod_id " + 
     "JOIN prod_img ON prod_img.prod_id = prod_serv.prod_id " + 
-    "WHERE prod_serv.category = '?' AND prod_serv.status = 'In Stock'";
+    "WHERE prod_serv.category = ? AND prod_serv.status = 'In Stock'";
 
     conn.query(query, category, (err, results) => {
         if (err) {
@@ -123,19 +123,19 @@ function getShopProductsByCategory(category, callback) {
  * Output will include sched id, which will be used to get the schedule of the product in the same view.
  *  */
 function getProductByID(id, callback) {
-    var query =  "SELECT organization.org_id, organization.org_name, organization.org_img, prod_serv.category, " +
+    var query =  "SELECT organization.org_id AS 'id', organization.org_name, organization.org_img, prod_serv.category, " +
     "prod_serv.prod_serv_name, prod_serv.price, prod_serv.description, prod_img.img_src, prod_org_sched.sched_id FROM prod_serv " +  
 	" JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " + 
     " JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id " + 
     " JOIN organization ON prod_org_sched.org_id = organization.org_id " + 
-    "WHERE prod_serv.prod_id = '?'";
+    "WHERE prod_serv.prod_id = ?";
 
     conn.query(query, id, (err, results) => {
         if (err) {
             console.log(err);
             return callback(err,null);
         }
-        callback(null,results);
+        callback(null,results[0]);
     });
 }
 

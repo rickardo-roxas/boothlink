@@ -1,7 +1,7 @@
-RewriteEngine On # Activate runtime of Apache server rewriting engine
+RewriteEngine On
 RewriteBase /cs-312_boothlink/
 
-# Redirect all requests to index.php
+# Redirect all requests to the Node.js application running on localhost:3000
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /index.js [QSA,L] # Redirect all upcoming requests to index.php
+RewriteRule ^(.*)$ http://localhost:3000/$1 [P,QSA,L]
