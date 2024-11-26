@@ -1,16 +1,73 @@
 <%- include('../partials/header.ejs') %>
 <%- include('../partials/navbar.ejs') %>
+<link rel="stylesheet" href="/product_reserve.css">
 <body>
     <main>
-        <p><%= product.id %></p>
-        <p><%= product.org_name %></p>
-        <p><%= product.org_img %></p>
-        <p><%= product.category %></p>
-        <p><%= product.prod_serv_name %></p>
-        <p><%= product.price %></p>
-        <p><%= product.description %></p>
-        <p><%= product.img_src %></p>
-        <p><%= product.sched_id %></p>
+        <div id="reserve-page">
+            <div id="reserve-container">
+                <p>Shop > Reserve</p>
+                <div class="product-and-details">
+                    <div id="product-image">
+                        <img src="/<%= product.img_src %>" alt="<%= product.prod_serv_name %>">
+                    </div>
+                    <div id="product-details">
+                        <p id="product-name"><%= product.prod_serv_name %></p>
+                        <p id="product-type"><%= product.category %></p>
+                        <p id="product-price"><%= product.price %></p>
+                        <p id="product-description"><%= product.description %></p>
+
+                        <hr>
+                        <p class="generic-text">Seller:</p>
+                        <div class="org-seller">
+                            <img src="/<%= product.org_img %>" alt="Booth">
+                            <p id="booth-org"><%= product.org_name %></p>
+                        </div>
+                        <hr>
+
+                        <p class="generic-text">Schedule</p>
+                        <div class="radio-group">
+
+                            <input class="radio-input" name="radio-group" id="radio1" type="radio">
+                            <label class="radio-label" for="radio1">Sched 1</label>
+
+                            <input class="radio-input" name="radio-group" id="radio2" type="radio">
+                            <label class="radio-label" for="radio2">Sched 2</label>
+
+                            <input class="radio-input" name="radio-group" id="radio3" type="radio">
+                            <label class="radio-label" for="radio3">Sched 3</label>
+                        </div>
+                        <hr>
+
+                        <div class="increment-cart">
+                            <div class="wrapper">
+                                <span class="minus">-</span>
+                                <span class="num">01</span>
+                                <span class="plus">+</span>
+                            </div>
+                            <button id="add-to-cart">Add to Cart</button>
+                        </div>
+                        <script>
+                            const plus = document.querySelector(".plus"),
+                                minus = document.querySelector(".minus"),
+                                num = document.querySelector(".num");
+                            let a = 1;
+                            plus.addEventListener("click", ()=>{
+                                a++;
+                                a = (a < 10) ? "0" + a : a;
+                                num.innerText = a;
+                            });
+                            minus.addEventListener("click", ()=>{
+                                if(a > 1){
+                                    a--;
+                                    a = (a < 10) ? "0" + a : a;
+                                    num.innerText = a;
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 </body>
 <%- include('../partials/footer.ejs')%>
