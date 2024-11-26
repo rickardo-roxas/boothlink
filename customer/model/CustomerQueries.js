@@ -214,6 +214,7 @@ function getShopProductsByCategoryInOrganization(id, category, callback) {
 // DATA: Org Name, Item Name, Price, Date, Status, Quantity, and total price
 function getReservations(username, callback){
     const query = "SELECT " + 
+              "ps.prod_id, " +
               "pi.img_src AS image_source, " + 
               "o.org_name, " + 
               "ps.prod_serv_name AS item_name, " + 

@@ -38,6 +38,7 @@ function processReservations(results){
     }
 
     return results.map(reservation => ({
+        prod_id: reservation.prod_id,
         image_source: reservation.image_source,     
         org_name: reservation.org_name,        
         item_name: reservation.item_name,      
