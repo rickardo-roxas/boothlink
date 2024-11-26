@@ -43,7 +43,6 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {secure : false}
-
 }));
 
 app.use('/login/:id/:username', (req, res) =>{
@@ -75,7 +74,7 @@ app.use('/cart', cartRouter)
 app.use('/', homeRouter);
 app.get('/logout', (req,res) => {
     if (req.session) {
-        req.session.destroy();
+        res.session.destroy();
         res.redirect('/cs-312_boothlink/login');
     }
 });

@@ -1,8 +1,9 @@
-const sample = [
-    {title : 'item1', description : 'lorem ipsum'},
-    {title : 'item2', description : 'lorem ipsum'},
-]
+const customerQueries = require('../CustomerQueries');
 
-module.exports = {
-    sample
+function getSchedules(callback) {
+
+}
+
+function getProducts(org_id, callback) {
+
 }
