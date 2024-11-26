@@ -7,14 +7,6 @@ main {
     background-color: var(--stroke-primary, #F6F5F6);
 }
 
-#banner-container {
-    min-height: 50rem;
-    padding: 0;
-    margin: 0 auto;
-    width: 100%;
-    font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
-}
-
 .header {
     width: 100%;
     text-align: center;
@@ -25,6 +17,7 @@ main {
     color: var(--text);
     font-size: 3rem;
     font-weight: bold;
+    background-color: red;
 }
 
 #home-container {
@@ -50,60 +43,75 @@ main {
     box-shadow: var(--light1);
 }
 
+#banner-container + .divider-line {
+    margin-top: 0;
+}
+
+#banner-container {
+    min-height: 100vh;
+    padding: 0;
+    margin-top: 0;
+    width: 100%;
+    font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
+}
+
+#banner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /*background-image: url("/shared/assets/images/banner.png");*/
+    /*background-image: url('cs-312_boothlink/shared/assets/images/banner.png');*/
+}
+
+.banner-button {
+    padding: 15px 30px;
+    background-color: #1EBDEF; /* change color */
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 32px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.banner-button:hover {
+    background-color: #1799b2; /* change */
+}
+
+.banner-button-container{
+    padding: var(--spacing-xl, 4rem) var(--spacing-xl, 5rem);
+    position: absolute;
+    bottom: 20px; /* adjust higher or lower */
+    right: 20px;  /* adjust left or right */
+    text-align: center;
+}
+
+#banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: -1;
+}
+
+
 .divider-line {
     border-top: 1px solid #0000001a;
     width: 100%;
-    margin: 50px 0;
+    margin: 0;
+    position: relative
 }
 
 .divider-bar {
     background-color: black;
     width: 100%;
     height: 4rem;
-}
-
-#banner {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: flex-end;
-    align-items: end;
-    background-repeat: no-repeat;
-    background-size: 203vh;
-    background-position-y: bottom;
-    /*background: deepskyblue;*/
-    /*background-image: url("/shared/assets/images/banner.png");*/
-    /*background-image: url('cs-312_boothlink/shared/assets/images/banner.png');*/
-}
-
-#banner button {
-    height: 3rem;
-    width: fit-content;
-    padding: 0rem 5rem;
-    border: 1px orange;
-    color: white;
-    font-weight: bold;
-    font-size: 25px;
-    background-color: orange;
-    border-radius: 50px;
-    position: relative;
-}
-
-#banner button:hover {
-    color: white;
-    background-color: #d05f00;
-    transition-duration: 0.4s;
-}
-
-.banner-button-container{
-    padding: var(--spacing-xl, 4rem) var(--spacing-xl, 5rem);
-    position: relative;
-}
-
-#banner img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
 }
 
 #best-sellers {
