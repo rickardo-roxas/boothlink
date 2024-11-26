@@ -6,84 +6,84 @@
     <link rel="stylesheet" href="../../../customer/public/css/booth.css">
 </head>
 <body>
-<main>
-    <div id="booth-page">
-        <div id="booth-shop-container">
-            <div class="parent-container">
-                <div id="navbar">
-                    <p id="navbar-text">Shop > Booth</p>
-                </div>
-                <div class="org-banner-and-details" style="background-image: url('../../../shared/assets/images/samcis-banner.png');">
-                    <div id="banner-content">
-                        <div id="banner-org-and-name">
-                            <img src="../../../shared/assets/images/org/schema.jpg" alt="Schema Logo">
-                            <p>SCHEMA</p>
-                        </div>
-                        <div id="banner-org-socials">
-                            <img src="../../../shared/assets/icons/soc-med/facebook.png" alt="facebook image">
-                            <p>www.facebook.com/schemaslu</p>
-
-                            <img src="../../../shared/assets/icons/soc-med/instagram.png" alt="instagram image">
-                            <p>www.instagram.com/@schemaslu</p>
-
-                            <img src="../../../shared/assets/icons/soc-med/twitter.png" alt="twitter image">
-                            <p>www.x.com/@schemaslu</p>
-                        </div>
+    <main>
+        <div id="booth-page">
+            <div id="booth-shop-container">
+                <div class="parent-container">
+                    <div id="navbar">
+                        <p id="navbar-text">Shop > Booth</p>
                     </div>
-                </div>
-                <div class="booth-name-and-filter">
-                    <p id="shop-booth-name">SCHEMA</p>
-                    <form id="sort-form" action="/shop" method="GET">
-                        <div id="category-filter">
-                            <p id="sort-by">SORT BY:</p>
-                            <select class="category-select" name="category" onchange="this.form.submit()">
-                                <option value="" disabled selected>Filter</option>
-                                <option value="best-selling">Best Selling</option>
-                                <option value="low-to-high">Price, Low to High</option>
-                                <option value="high-to-low">Price, High to Low</option>
-                            </select>
-                            <p id="view-gap">VIEW:</p>
-                            <!--Type of Product View Filter-->
-                            <div id="view-filter">
-                                <label>
-                                    <input type="radio" name="category" value="item" onchange="this.form.submit()">
-                                    Item
-                                </label>
-                                <label>
-                                    <input type="radio" name="category" value="service" onchange="this.form.submit()">
-                                    Service
-                                </label>
-                                <label>
-                                    <input type="radio" name="category" value="food" onchange="this.form.submit()">
-                                    Food
-                                </label>
+                    <div class="org-banner-and-details" style="background-image: url('../../../shared/assets/images/samcis-banner.png');">
+                        <div id="banner-content">
+                            <div id="banner-org-and-name">
+                                <img src="../../../shared/assets/images/org/schema.jpg" alt="Schema Logo">
+                                <p>SCHEMA</p>
+                            </div>
+                            <div id="banner-org-socials">
+                                <img src="../../../shared/assets/icons/soc-med/facebook.png" alt="facebook image">
+                                <p>www.facebook.com/schemaslu</p>
+
+                                <img src="../../../shared/assets/icons/soc-med/instagram.png" alt="instagram image">
+                                <p>www.instagram.com/@schemaslu</p>
+
+                                <img src="../../../shared/assets/icons/soc-med/twitter.png" alt="twitter image">
+                                <p>www.x.com/@schemaslu</p>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="booth-name-and-filter">
+                        <p id="shop-booth-name">SCHEMA</p>
+                        <form id="sort-form" action="/shop" method="GET">
+                            <div id="category-filter">
+                                <p id="sort-by">SORT BY:</p>
+                                <select class="category-select" name="category" onchange="this.form.submit()">
+                                    <option value="" disabled selected>Filter</option>
+                                    <option value="best-selling">Best Selling</option>
+                                    <option value="low-to-high">Price, Low to High</option>
+                                    <option value="high-to-low">Price, High to Low</option>
+                                </select>
+                                <p id="view-gap">VIEW:</p>
+                                <!--Type of Product View Filter-->
+                                <div id="view-filter">
+                                    <label>
+                                        <input type="radio" name="category" value="item" onchange="this.form.submit()">
+                                        Item
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="category" value="service" onchange="this.form.submit()">
+                                        Service
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="category" value="food" onchange="this.form.submit()">
+                                        Food
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 
-                <!-- Product Listing -->
-                <div id="product-listing">
-                    <div class="product-card">
-                        <!-- Display product image -->
-                        <div class="image-container">
-                            <img src="../../../shared/assets/images/placeholder.jpeg" alt= "Product Image" >
-                        </div>
-                        <div class="product-info">
-                            <!-- Display product name, description, category, and price -->
-                            <p class="product-name">Product Name</p>
-                            <p class="product-description">ThisCription</p>
-                            <p class="product-org">
-                                <img src="../../../shared/assets/icons/booth-black-outline.png" alt="Org Icon"> Booth Name
-                            </p>
-                            <p class="product-category">Item</p>
-                            <p class="product-price">₱ 300.00</p>
+                    <!-- Product Listing -->
+                    <div id="product-listing">
+                        <div class="product-card">
+                            <!-- Display product image -->
+                            <div class="image-container">
+                                <img src="../../../shared/assets/images/placeholder.jpeg" alt= "Product Image" >
+                            </div>
+                            <div class="product-info">
+                                <!-- Display product name, description, category, and price -->
+                                <p class="product-name">Product Name</p>
+                                <p class="product-description">ThisCription</p>
+                                <p class="product-org">
+                                    <img src="../../../shared/assets/icons/booth-black-outline.png" alt="Org Icon"> Booth Name
+                                </p>
+                                <p class="product-category">Item</p>
+                                <p class="product-price">₱ 300.00</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 </body>
 </html>

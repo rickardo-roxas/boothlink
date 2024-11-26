@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs') %>
 <%- include('../partials/navbar.ejs') %>
-<link rel="stylesheet" href="shop.css">
+<link rel="stylesheet" href="/shop.css">
 <body>
 <main>
     <div id="shop-page">
@@ -15,9 +15,11 @@
                 <div class="org-container">
                     <ul class="organization-list">
                         <li class="org-booths">
-                            <% booths.forEach(booth => { %>
-                                <!--<p><%= booth.org_name %></p>-->
-                                <img src="<%= booth.org_img %>" data-id="<%= booth.org_id %>" onclick="handleBoothClick('<%= booth.org_id %>')">
+                            <% booths.forEach(booths => { %>
+                                <div class="booth-card">
+                                        <img class="booth-img" src="<%= booths.org_img %>" alt="<%= booths.org_name %>">
+                                        <p class="booth-name"><%= booths.org_name %></p>
+                                </div>
                             <% }); %>
                         </li>
                     </ul>

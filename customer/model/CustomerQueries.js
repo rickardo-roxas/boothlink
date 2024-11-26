@@ -14,7 +14,7 @@ function getFirstName(username, callback) {
         callback(null, results);
     })
 }
-
+//debuggged shop view, converted product and booth view to ejs, modified customerqueries
 function getLastName(username, callback) {
     const query = "SELECT last_name FROM customer where username=?";
 
@@ -33,7 +33,7 @@ function getLastName(username, callback) {
 
 /** Method to get booths, and their associated images */
 function getBooths(callback) {
-    const query = "SELECT org_id, organization.org_name, organization.org_img FROM organization"
+    const query = "SELECT org_id, organization.org_name, organization.org_img FROM organization";
 
     conn.query(query, (err, results)=> {
         if (err) {
@@ -125,9 +125,9 @@ function getShopProductsByCategory(category, callback) {
 function getProductByID(id, callback) {
     var query =  "SELECT organization.org_id AS 'id', organization.org_name, organization.org_img, prod_serv.category, " +
     "prod_serv.prod_serv_name, prod_serv.price, prod_serv.description, prod_img.img_src, prod_org_sched.sched_id FROM prod_serv " +  
-	" JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " + 
-    " JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id " + 
-    " JOIN organization ON prod_org_sched.org_id = organization.org_id " + 
+	" LEFT JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " +
+    " LEFT JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id " +
+    " LEFT JOIN organization ON prod_org_sched.org_id = organization.org_id " +
     "WHERE prod_serv.prod_id = ?";
 
     conn.query(query, id, (err, results) => {

@@ -81,12 +81,6 @@
     margin-top: 20px;
 }
 
-.org-booths img {
-    width: 10rem;
-    height: 10rem;
-    border-radius: 2rem;
-}
-
 .booth-card {
     display: flex;
     flex-direction: column;
