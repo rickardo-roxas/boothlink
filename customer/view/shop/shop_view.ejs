@@ -15,10 +15,10 @@
                 <div class="org-container">
                     <ul class="organization-list">
                         <li class="org-booths">
-                            <% booths.forEach(booths => { %>
+                            <% booths.forEach(booth => { %>
                                 <div class="booth-card">
-                                        <img class="booth-img" src="<%= booths.org_img %>" alt="<%= booths.org_name %>">
-                                        <p class="booth-name"><%= booths.org_name %></p>
+                                    <img class="booth-img" src="<%= booth.org_img %>" data-id="<%= booth.org_id %>" onclick="handleBoothClick('<%= booth.org_id %>')">
+                                    <p class="booth-name"><%= booth.org_name %></p>
                                 </div>
                             <% }); %>
                         </li>
