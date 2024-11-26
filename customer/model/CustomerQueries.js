@@ -170,7 +170,6 @@ function getBoothData(id, callback) {
 }
 
 
-//TODO: Include Organization Part
 /** Gets all in stock products sorting by price and accepts a boolean parameter that tells if the filtering 
  * should be done descending or ascending  */
 function getShopProductsByPriceInOrganization(id, desc, callback) {
@@ -191,7 +190,6 @@ function getShopProductsByPriceInOrganization(id, desc, callback) {
     });
 }
 
-//TODO: Include Organization Part
 /** Gets all in stock products, filtering based on category provided as parameter. 
  *      Possible Parameters: ITEM, SERVICE, FOOD */
 function getShopProductsByCategoryInOrganization(id, category, callback) {
