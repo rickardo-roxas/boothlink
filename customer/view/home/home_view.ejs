@@ -5,9 +5,9 @@
 <body>
 <main>
     <div id="banner-container">
-        <div style="background-image: url('/images/banner.png')" id="banner">
+        <div style="background-image: url('/images/home-banner.png')" id="banner">
             <div class="banner-button-container">
-                <button class="banner-button">SHOP NOW</button>
+                <a href="http://localhost:3000/shop" class="banner-button">SHOP NOW</a>
             </div>
         </div>
         <div class="divider-bar"></div>
@@ -15,8 +15,8 @@
 
     <div id="home-container">
         <!-- Best-selling items section -->
-        <div class="header">
-            <h2>RECENT BEST SELLERS</h2>
+        <div class="product-header">
+            <p>RECENT BEST SELLERS</p>
         </div>
         <div id="best-sellers">
             <% bestSellers.forEach(item => { %>
@@ -32,28 +32,28 @@
         </div>
 
         <div class="button-container">
-            <button class="best-sellers-button"><h3>View All Products</h3></button>
+            <a href="http://localhost:3000/shop" class="best-sellers-button">View All Products</a>
         </div>
 
         <div class="divider-line"></div>
 
         <!-- Browse by category -->
         <div id="browse">
-            <div class="header">
-                <h2>BROWSE BY CATEGORY</h2>
+            <div class="category-header">
+                <p>BROWSE BY CATEGORY</p>
             </div>
             <div class="grid-container">
                 <div class="grid-card category-food">
                     <p>Food</p>
                     <img src="/images/food.png" alt="Food">
                 </div>
-                <div class="grid-card category-services">
-                    <p>Services</p>
-                    <img src="/images/services.png" alt="Services">
-                </div>
                 <div class="grid-card category-items">
                     <p>Items</p>
                     <img src="/images/items.png" alt="Items">
+                </div>
+                <div class="grid-card category-services">
+                    <p>Services</p>
+                    <img src="/images/services.png" alt="Services">
                 </div>
             </div>
         </div>
@@ -62,19 +62,13 @@
         <div id="discover">
             <div class="discover-card">
                 <div class="discover-text">
-                    <h2>DISCOVER NEW FINDS, CHECK OUT THE BOOTHS!</h2>
+                    <p>DISCOVER NEW FINDS, CHECK OUT THE BOOTHS!</p>
                 </div>
                 <div class="logos">
                     <div class="logos-slide">
                         <img src="/images/org/comelec.jpg" alt="Booth">
-                    </div>
-                    <div class="logos-slide">
                         <img src="/images/org/rpg.jpg" alt="Booth">
-                    </div>
-                    <div class="logos-slide">
                         <img src="/images/org/w&b.jpg" alt="Booth">
-                    </div>
-                    <div class="logos-slide">
                         <img src="/images/org/schema.jpg" alt="Booth">
                     </div>
                 </div>
