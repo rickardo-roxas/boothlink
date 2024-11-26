@@ -16,8 +16,10 @@
                     <ul class="organization-list">
                         <li class="org-booths">
                             <% booths.forEach(booth => { %>
-                                <!--<p><%= booth.org_name %></p>-->
-                                <img src="<%= booth.org_img %>" data-id="<%= booth.org_id %>" onclick="handleBoothClick('<%= booth.org_id %>')">
+                                <div class="booth-card">
+                                    <img class="booth-img" src="<%= booth.org_img %>" data-id="<%= booth.org_id %>" onclick="handleBoothClick('<%= booth.org_id %>')">
+                                    <p class="booth-name"><%= booth.org_name %></p>
+                                </div>
                             <% }); %>
                         </li>
                     </ul>
