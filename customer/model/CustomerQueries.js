@@ -48,10 +48,10 @@ function getBooths(callback) {
  *      if item in stock
 */
 function getShopProducts(callback) {
-    const query =  "SELECT organization.org_name AS organization, prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name AS 'name', prod_serv.price, " +
+    const query =  "SELECT DISTINCT organization.org_name AS organization, prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name AS 'name', prod_serv.price, " +
         " prod_serv.description, prod_img.img_src as 'image' FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " +
-        " LEFT JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id " + 
-        " LEFT JOIN organization ON prod_org_sched.org_id = organization.org_id " + 
+        " JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id " + 
+        " JOIN organization ON prod_org_sched.org_id = organization.org_id " + 
         " WHERE prod_serv.status = 'In Stock' ";
 
     conn.query(query, (err, results) => {
@@ -125,7 +125,7 @@ function getShopProductsByCategory(category, callback) {
  *  */
 function getProductByID(id, callback) {
     var query =  "SELECT organization.org_id AS 'id', organization.org_name, organization.org_img, prod_serv.category, " +
-    "prod_serv.prod_serv_name, prod_serv.price, prod_serv.description, prod_img.img_src, prod_org_sched.sched_id FROM prod_serv " +  
+    "prod_serv.prod_serv_name, prod_serv.price, prod_serv.description, prod_img.img_src FROM prod_serv " +  
 	" LEFT JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " +
     " LEFT JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id " +
     " LEFT JOIN organization ON prod_org_sched.org_id = organization.org_id " +
@@ -141,11 +141,11 @@ function getProductByID(id, callback) {
 }
 
 /** Method to get the schedule and Location a product is being sold given its schedule ID */
-function getScheduleByScheduleID(id, callback) {
-    var query = "SELECT location.loc_room, location.stall_number, schedule.date, schedule.start_time, schedule.end_time " + 
+function getSchedulesByProductID(id, callback) {
+    var query = "SELECT prod_org_sched.sched_id, location.loc_room, location.stall_number, schedule.date, schedule.start_time, schedule.end_time " +
 	    "FROM schedule JOIN location ON location.loc_id = schedule.loc_id " +
-        "WHERE schedule.sched_id = ?";
-        
+        " JOIN prod_org_sched ON schedule.sched_id = prod_org_sched.sched_id " +
+        " WHERE prod_org_sched.prod_id = ? ";
     conn.query(query, id, (err, results) => {
         if (err) {
             console.log(err);
@@ -321,7 +321,7 @@ module.exports = {
     getShopProductsByPrice, 
     getShopProductsByCategory, 
     getProductByID, 
-    getScheduleByScheduleID, 
+    getSchedulesByProductID, 
     getReservations, 
     getBoothData,
     getReservationsByStatus,

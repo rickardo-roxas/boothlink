@@ -24,28 +24,30 @@
                         </div>
                         <hr>
 
-                        <p class="generic-text">Schedule</p>
-                        <div class="radio-group">
-
-                            <input class="radio-input" name="radio-group" id="radio1" type="radio">
-                            <label class="radio-label" for="radio1">Sched 1</label>
-
-                            <input class="radio-input" name="radio-group" id="radio2" type="radio">
-                            <label class="radio-label" for="radio2">Sched 2</label>
-
-                            <input class="radio-input" name="radio-group" id="radio3" type="radio">
-                            <label class="radio-label" for="radio3">Sched 3</label>
-                        </div>
-                        <hr>
-
-                        <div class="increment-cart">
-                            <div class="wrapper">
-                                <span class="minus">-</span>
-                                <span class="num">01</span>
-                                <span class="plus">+</span>
+                        <form action="addToCart" method="get">
+                            <p class="generic-text">Schedule</p>
+                            <div class="radio-group">
+                                <% schedules.forEach(schedule => { %>
+                                    <input class="radio-input" name="radio-group" id="radio1" type="radio" >
+                                    <label class="radio-label" for="radio1">
+                                        <%= schedule.loc_room %> |
+                                        Stall No# <%= schedule.stall_number %>
+                                        | <%= schedule.date %>
+                                        <%= schedule.start_time %>-<%= schedule.end_time %></label>
+                                <% }); %>
                             </div>
-                            <button id="add-to-cart">Add to Cart</button>
-                        </div>
+                            <hr>
+
+                            <div class="increment-cart">
+                                <div class="wrapper">
+                                    <span class="minus">-</span>
+                                    <span class="num">01</span>
+                                    <span class="plus">+</span>
+                                </div>
+                                <button id="add-to-cart">Add to Cart</button>
+                            </div>
+                        </form>
+                        
                         <script>
                             const plus = document.querySelector(".plus"),
                                 minus = document.querySelector(".minus"),
