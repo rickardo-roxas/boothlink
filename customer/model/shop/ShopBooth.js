@@ -18,7 +18,28 @@ function getOrgProducts(id) {
     });
 }
 
+function getShopProductsByPrice(id, desc) {
+    return new Promise((resolve, reject) => {
+        customerQueries.getShopProductsByPriceInOrganization(id, desc, (err,results) => {
+            if (err) reject (err);
+            else resolve(results);
+        });
+    });
+}
+
+function getShopProductsByCategory(id, category) {
+    return new Promise((resolve, reject) => {
+        customerQueries.getShopProductsByCategoryInOrganization(id, category, (err,results) => {
+            if (err) reject (err);
+            else resolve(results);
+        });
+    });
+}
+
+
 module.exports = {
     getBoothData,
-    getOrgProducts
+    getOrgProducts,
+    getShopProductsByPrice,
+    getShopProductsByCategory
 }

@@ -5,31 +5,78 @@ var controller;
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    controller = require ('../shop/ShopController');
-    controller.index(req,res);
+    const filter_type = req.query.category;
+    
+    if (filter_type) {
+        switch (filter_type) {
+            case "low-to-high":
+                controller.sortByPrice(false, req, res);
+                break;
+            case "high-to-low":
+                controller.sortByPrice(true, req, res);
+                break;
+            case "best-selling":
+                //TODO;
+                break;
+            case "item":
+                controller.sortByCategory("item", req, res);
+                break;
+            case "service":
+                controller.sortByCategory("sevice", req, res);
+                break;
+            case "food":
+                controller.sortByCategory("food", req, res);
+                break;
+
+            default:
+                // Error Case
+                res.redirect("/shop");
+                break;
+        }
+        controller.index(req,res);
+    } else {
+        controller = require ('../shop/ShopController');
+        controller.index(req,res);
+    }
 });
 
-router.get('/filter', (req, res) => {
-    const {title, price, category} = req.query;
-    switch (title) {
-        case "price":
-            controller.sortByPrice(price)
-            break;
-        case "category":
-            controller.sortByCategory(category)
-            break;
-        default:
-            // Error Case
-            res.redirect("/shop");
-            break;
-    }
-    controller.index(req,res);
-});
+
 
 router.get('/booth', (req,res)=> {
-    controller = require('../shop/ShopBoothController');
+    const filter_type = req.query.category;
     const boothParameter = req.query.id;
-    controller.index(boothParameter, req, res);
+    
+    if (filter_type) {
+        switch (filter_type) {
+            case "low-to-high":
+                controller.sortByPrice(id, false, req, res);
+                break;
+            case "high-to-low":
+                controller.sortByPrice(id, true, req, res);
+                break;
+            case "best-selling":
+                //TODO;
+                break;
+            case "item":
+                controller.sortByCategory(id, "item", req, res);
+                break;
+            case "service":
+                controller.sortByCategory(id, "sevice", req, res);
+                break;
+            case "food":
+                controller.sortByCategory(id, "food", req, res);
+                break;
+
+            default:
+                // Error Case
+                res.redirect("/shop");
+                break;
+        }
+        controller.index(req,res);
+    } else {
+        controller = require('../shop/ShopBoothController');
+        controller.index(boothParameter, req, res);
+    }
 });
 
 router.get('/reserve', (req,res) => {
