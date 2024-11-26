@@ -192,12 +192,15 @@ main {
 }
 
 .best-sellers-button {
-    border-radius: 62px;
+    border-radius: 70px;
     border: 1.5px solid rgba(0, 0, 0, 0.10);
-    background-color: var(--stroke-primary, #F6F5F6);
-    padding: 5px 54px;
-    font-weight: bold;
+    padding: 1rem;
     margin-bottom: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    color: black;
 }
 
 .best-sellers-button:hover {
@@ -209,7 +212,8 @@ main {
     width: 100%;
     text-align: center;
     padding: 1rem;
-    margin-bottom: 2rem;
+    margin-top: 40px;
+    margin-bottom: 10px;
 }
 
 .category-header p{
@@ -222,12 +226,13 @@ main {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xl, 1rem);
-    border-radius: 0.75rem;
+    border-radius: 80px;
     border: 1px solid var(--stroke-primary, #F6F5F6);
-    background: #F0F0F0;
+    background-color: #F0F0F0;
     box-shadow: 0 2px 4px 0 rgba(16, 24, 40, 0.2);
     justify-items: center;
-    min-height: 100vh;
+    width: 100%;
+    height: 880px;
     padding: 1rem 0;
     z-index: 1;
     margin-top: 20px;
@@ -238,10 +243,10 @@ main {
     width: calc(100% - 7.5rem);
     gap: 1.5rem;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr auto;
     padding: 0 2rem 3.5rem 2rem;
     margin: 0 auto;
-    align-content: center;
+    align-content: start;
 }
 
 .grid-card {
@@ -282,21 +287,21 @@ main {
     transition-duration: 0.4s;
 }
 
-.food {
-    grid-column: span 1; /* Spans across two columns */
-    grid-row: 1; /* Occupies the first row */
+.category-food {
+    grid-column: 1; /* First column */
+    grid-row: 1; /* First row */
     background-color: #2e5280;
 }
 
-.items {
-    grid-column: 2; /* Occupies the second column */
-    grid-row: 1; /* Occupies the first row */
+.category-items {
+    grid-column: 2; /* Second column */
+    grid-row: 1; /* First row */
     background-color: #cf761c;
 }
 
-.services {
-    grid-column: span 2; /* Spans across two columns */
-    grid-row: 2; /* Occupies the second row */
+.category-services {
+    grid-column: span 2; /* Spans across both columns */
+    grid-row: 2; /* Second row */
     background-color: #83522b;
 }
 
