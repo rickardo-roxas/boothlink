@@ -5,29 +5,18 @@ main {
     display: flex;
     flex-direction: column;
     background-color: var(--stroke-primary, #F6F5F6);
-}
-
-.header {
-    width: 100%;
-    text-align: center;
-    padding: 0 1rem;
-}
-
-.header h2{
-    color: var(--text);
-    font-size: 3rem;
-    font-weight: bold;
-    background-color: red;
+    font-family: 'Poppins', 'Roboto', sans-serif;
 }
 
 #home-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
     min-height: 50rem;
     padding: var(--spacing-xl, 1.5rem) var(--spacing-xl, 1rem);
-    width: calc(100% - 7rem);
-    font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
+    width: 100%;
+    font-family: 'Poppins', 'Roboto', sans-serif;
 }
 
 .card {
@@ -52,7 +41,7 @@ main {
     padding: 0;
     margin-top: 0;
     width: 100%;
-    font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
+    font-family: 'Poppins', 'Roboto', sans-serif;
 }
 
 #banner {
@@ -87,8 +76,8 @@ main {
 .banner-button-container{
     padding: var(--spacing-xl, 4rem) var(--spacing-xl, 5rem);
     position: absolute;
-    bottom: 20px; /* adjust higher or lower */
-    right: 20px;  /* adjust left or right */
+    bottom: 50px; /* adjust higher or lower */
+    right: 30px;  /* adjust left or right */
     text-align: center;
 }
 
@@ -99,7 +88,6 @@ main {
     position: absolute;
     z-index: -1;
 }
-
 
 .divider-line {
     border-top: 1px solid #0000001a;
@@ -114,14 +102,29 @@ main {
     height: 4rem;
 }
 
+.product-header {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.product-header p{
+    font-size: 50px;
+    font-weight: bolder;
+    font-family: 'Poppins', sans-serif;
+}
+
 #best-sellers {
     width: 100%;
     background: var(--stroke-primary);
     display: flex;
     justify-content: center;
-    padding: var(--spacing-xl, 1.5rem) 0px;
+    align-items: center;
+    padding: var(--spacing-xl, 1.5rem) 0;
     gap: 2rem;
     overflow-x: auto;
+    margin: 0 auto;
 }
 
 .best-sellers-card {
@@ -194,11 +197,25 @@ main {
     background-color: var(--stroke-primary, #F6F5F6);
     padding: 5px 54px;
     font-weight: bold;
+    margin-bottom: 30px;
 }
 
 .best-sellers-button:hover {
     background-color: rgba(0, 0, 0, 0.10);
     transition-duration: 0.4s;
+}
+
+.category-header {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.category-header p{
+    font-size: 50px;
+    font-weight: bolder;
+    font-family: 'Poppins', sans-serif;
 }
 
 #browse {
@@ -213,6 +230,7 @@ main {
     min-height: 100vh;
     padding: 1rem 0;
     z-index: 1;
+    margin-top: 20px;
 }
 
 .grid-container {
@@ -310,14 +328,14 @@ main {
 
 .discover-text {
     width: 50%;
-    padding: 0 1rem 0 4rem;
+    padding: 1rem;
 }
 
-.discover-text h2 {
-    font-weight: bold;
-    font-size: 2.5rem;
-    color: white;
-    font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
+.discover-text p {
+    font-size: 50px;
+    font-weight: bolder;
+    color:white;
+    font-family: 'Poppins', sans-serif;
 }
 
 @keyframes move {
