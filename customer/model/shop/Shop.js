@@ -36,12 +36,20 @@ function getShopProductsByCategory(category) {
     });
 }
 
-
+function getSearchedProductByName(searchTerm) {
+    return new Promise((resolve, reject) => {
+        customerQueries.getSearchedProductByName(searchTerm, (err, results) => {
+            if (err) reject(err);
+            else resolve(results);
+        });
+    });
+}
 
 
 module.exports = {
     getBooths,
     getProducts,
     getShopProductsByPrice,
-    getShopProductsByCategory
+    getShopProductsByCategory,
+    getSearchedProductByName
 }
