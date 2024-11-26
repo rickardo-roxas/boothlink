@@ -1,22 +1,42 @@
 @import 'interactive.css';
 @import "styles.css";
-@import 'cart.css';
+@import 'checkout.css';
 
 #receipt-table {
-    display: block;
+    margin: auto;
     margin-top: 1.5rem;
-    width: 70%;
-    justify-content: center;
+    width: 40.0625rem;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 1.25rem;
+    background: #FFF;
+    box-shadow: var(--dark1);
+    padding: 1.5rem;
     align-items: center;
-    align-self: center;
+    text-align: center;
 }
 
-#receipt-table .head,
-#receipt-table .body,
-#receipt-table .foot {
-    align-items: center;
+#receipt-table hr {
+    margin: 1rem 0;
 }
 
-#receipt-table .head {
-    display: block;
+#receipt-table .heading {
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+#receipt-table a {
+    text-decoration: none;
+}
+
+#receipt-table .checkout-btn a {
+    margin-top: 1.5rem;
+}
+
+.container-buttons {
+    padding: 1.5rem;
+    display: inline-block;
+    margin: auto;
+    align-items: center;
+    text-align: center;
 }
