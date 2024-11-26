@@ -1,5 +1,5 @@
+@import 'interactive.css';
 @import "styles.css";
-@import "customer/public/css/styles.css";
 
 main {
     display: flex;

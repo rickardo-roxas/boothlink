@@ -1,3 +1,6 @@
+@import 'interactive.css';
+@import "styles.css";
+
 #booth-shop-container {
     background-color: #5a96d6;
     min-height: 50rem;
