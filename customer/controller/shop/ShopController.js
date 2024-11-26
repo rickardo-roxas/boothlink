@@ -2,7 +2,7 @@ const model = require('../../model/shop/Shop');
 
 var products;
 
-const index = (req, res) => {
+function index  (req, res) {
     if (!products) {
         products = model.getProducts();
     }
@@ -17,12 +17,14 @@ const index = (req, res) => {
     });
 }
 
-function sortByPrice(desc) {
+function sortByPrice(desc, req, res) {
     products = model.getShopProductsByPrice(desc);
+    this.index(req,res);
 }
 
-function sortByCategory(category) {
+function sortByCategory(category, req, res) {
     products = model.getShopProductsByCategory(category);
+    this.index(req,res);
 }
 
 module.exports = {
