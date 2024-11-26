@@ -4,6 +4,7 @@
 
 # Config files
 /vendor/config/Connection.php
+/mysql-data
 
 # Env files
 .env
