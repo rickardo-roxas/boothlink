@@ -30,19 +30,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 #shop-icon-header {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 #sort-form {
     display: flex;
-    flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 0.8rem;
+    gap: 0.5rem;
 }
 
 #category-filter {
@@ -70,8 +72,11 @@
     padding: 0.5rem;
 }
 
+.category-select {
+    margin-left: 0.5rem;
+}
 .organization-list {
-    height: 13rem;
+    height: 15rem;
 }
 
 .org-booths {
