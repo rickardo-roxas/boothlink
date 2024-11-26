@@ -74,7 +74,7 @@ app.use('/cart', cartRouter)
 app.use('/', homeRouter);
 app.get('/logout', (req,res) => {
     if (req.session) {
-        res.session.destroy();
+        req.session.destroy();
         res.redirect('/cs-312_boothlink/login');
     }
 });
