@@ -230,7 +230,8 @@ function getReservations(username, callback){
               "JOIN prod_org_sched pos ON ps.prod_id = pos.prod_id " + 
               "JOIN organization o ON pos.org_id = o.org_id " + 
               "JOIN prod_img pi ON ps.prod_id = pi.prod_id " + 
-              "WHERE c.username = ?;";
+              "WHERE c.username = ?" + 
+              "ORDER BY r.date DESC;";
  
 
     conn.query(query, [username], (err, results) => {
@@ -260,7 +261,9 @@ function getReservationsByStatus(status, username, callback){
                   "JOIN prod_org_sched pos ON ps.prod_id = pos.prod_id " + 
                   "JOIN organization o ON pos.org_id = o.org_id " + 
                   "JOIN prod_img pi ON ps.prod_id = pi.prod_id " + 
-                  "WHERE r.status = ? AND c.username = ?"; // Filter by status and username
+                  "WHERE r.status = ? AND c.username = ?" + 
+                  "ORDER BY r.date DESC;";
+
     conn.query(query, [status, username], (err, results) => {
         if(err){
             console.log(err);
