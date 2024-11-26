@@ -38,31 +38,32 @@
                             </div>
                             <hr>
 
-                            <div class="increment-cart">
-                                <div class="wrapper">
-                                    <span class="minus">-</span>
-                                    <span class="num">01</span>
-                                    <span class="plus">+</span>
-                                </div>
-                                <button id="add-to-cart">Add to Cart</button>
+                        <div class="increment-cart">
+                            <div class="wrapper">
+                                <span class="minus">-</span>
+                                <span class="num">01</span>
+                                <span class="plus">+</span>
                             </div>
-                        </form>
-                        
+                            <button id="add-to-cart">Add to Cart</button>
+                        </div>
                         <script>
                             const plus = document.querySelector(".plus"),
                                 minus = document.querySelector(".minus"),
-                                num = document.querySelector(".num");
+                                num = document.querySelector(".num"),
+                                quantityInput = document.getElementById("quantity-input");
                             let a = 1;
                             plus.addEventListener("click", ()=>{
                                 a++;
                                 a = (a < 10) ? "0" + a : a;
                                 num.innerText = a;
+                                quantityInput.value = a;
                             });
                             minus.addEventListener("click", ()=>{
                                 if(a > 1){
                                     a--;
                                     a = (a < 10) ? "0" + a : a;
                                     num.innerText = a;
+                                    quantityInput.value = a;
                                 }
                             });
                         </script>

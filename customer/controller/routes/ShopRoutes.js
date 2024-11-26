@@ -85,12 +85,12 @@ router.get('/reserve', (req,res) => {
     ctrler.index(productID, req,res);
 });
 
-
-router.post('/', (req,res) => {
+router.post('/add-to-cart', (req,res) => {
     if (req.body.action == "Add to Cart") {
         const item = [req.body.productID, req.body.quantity];
         req.session.cart.push(item);
     }
+    res.redirect('/reserve')
 });
 
 module.exports = router;
