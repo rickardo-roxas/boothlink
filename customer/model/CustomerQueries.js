@@ -208,6 +208,43 @@ function getShopProductsByCategoryInOrganization(id, category, callback) {
     });
 }
 
+/** Search products through org, name, and category
+ */
+function getSearchedProductByName(searchTerm, callback) {
+    const query = `
+        SELECT 
+            organization.org_name AS organization, 
+            prod_serv.prod_id, 
+            prod_serv.category, 
+            prod_serv.prod_serv_name AS 'name', 
+            prod_serv.price, 
+            prod_serv.description, 
+            prod_img.img_src AS 'image' 
+        FROM prod_serv
+        JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id
+        LEFT JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id
+        LEFT JOIN organization ON prod_org_sched.org_id = organization.org_id
+        WHERE prod_serv.status = 'In Stock' 
+        AND (
+            prod_serv.prod_serv_name LIKE ? 
+            OR prod_serv.category LIKE ? 
+            OR organization.org_name LIKE ?
+        )
+    `;
+
+    // Add wildcards to the search term for partial matching
+    const searchKeyword = `%${searchTerm}%`;
+
+    conn.query(query, [searchKeyword, searchKeyword, searchKeyword], (err, results) => {
+        if (err) {
+            console.error("Error executing search query:", err);
+            return callback(err, null); // Return error to callback
+        }
+        callback(null, results); // Return results to callback
+    });
+}
+
+
 /** End of Shop */
 
 // Returns the reservations of a certain user
@@ -287,5 +324,7 @@ module.exports = {
     getScheduleByScheduleID, 
     getReservations, 
     getBoothData,
-    getReservationsByStatus
+    getReservationsByStatus,
+    getSearchedProductByName
+    
 }

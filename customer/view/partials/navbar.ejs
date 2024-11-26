@@ -16,9 +16,13 @@
 
 
     <div class = "container">
-        <label>
-            <input class = "search" type="text" placeholder= "Search for products...">
-        </label>
+        <form method="GET" action="/shop">
+            <label>
+                <input class="search" name="value" type="text" placeholder="Search for products..." required>
+            </label>
+            <button type="submit">Search</button>
+        </form>
+        
 
         <div class = "nav-btn  cart">
             <a href="/cart" target="_self" class = "container">
