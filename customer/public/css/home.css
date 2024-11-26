@@ -1,6 +1,16 @@
 @import 'interactive.css';
 @import "styles.css";
 
+/* Fixed header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+    background-color: #fff; 
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -60,17 +70,20 @@ main {
 
 .banner-button {
     padding: 15px 30px;
-    background-color: #1EBDEF; /* change color */
+    background-color: #666666; /* change color */
     color: white;
     text-decoration: none;
     border-radius: 50px;
     font-size: 32px;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .banner-button:hover {
-    background-color: #1799b2; /* change */
+    background-color: #999999; /* change */
+    transform: scale(1.1); 
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
 }
 
 .banner-button-container{
@@ -315,20 +328,20 @@ main {
     justify-content: center;
     padding: 3rem 0px;
     gap: 2rem;
+    overflow: hidden;
 }
 
 .discover-card {
     display: flex;
-    width: calc(100% - 1.8rem);
-    padding: var(--spacing-xl, 1.5rem) var(--spacing-xl, 1rem);
+    width: 100%;
+    padding: 4rem;
     justify-content: center;
     align-items: flex-start;
     gap: var(--spacing-xl, 1rem);
     flex-shrink: 0;
-    border-radius: 0.75rem;
+    border-radius: 20px;
     border: 1px solid var(--stroke-primary, #F6F5F6);
     background: black;
-    box-shadow: 0 2px 4px 0 rgba(16, 24, 40, 0.2);
 }
 
 .discover-text {
@@ -391,9 +404,9 @@ main {
 
 .logos-slide img {
     width: 180px;
-    height: 240px;
+    height: 180px;
     border-radius: 20px;
-    padding: 0px 0.3rem;
+    padding:10px;
 }
 
 .logos-slide img:hover {
