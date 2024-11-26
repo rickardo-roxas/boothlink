@@ -29,34 +29,36 @@
                             Shop
                         </p>
                     </div>
-                    <form id="sort-form" action="/shop" method="GET">
                         <!--Pricing View Filter-->
                         <div id="category-filter">
                             <p id="sort-by">SORT BY:</p>
+                        <form id="sort-form" action="/shop" method="GET">
                             <select class="category-select" name="category" onchange="this.form.submit()">
                                 <option value="" disabled selected>Filter</option>
                                 <option value="best-selling">Best Selling</option>
                                 <option value="low-to-high">Price, Low to High</option>
                                 <option value="high-to-low">Price, High to Low</option>
                             </select>
+                        </form>
                             <p id="view-gap">VIEW:</p>
                             <!--Type of Product View Filter-->
                             <div id="view-filter">
-                                <label>
-                                    <input type="radio" name="category" value="item" onchange="this.form.submit()">
-                                    Item
-                                </label>
-                                <label>
-                                    <input type="radio" name="category" value="service" onchange="this.form.submit()">
-                                    Service
-                                </label>
-                                <label>
-                                    <input type="radio" name="category" value="food" onchange="this.form.submit()">
-                                    Food
-                                </label>
+                                <form id="sort-form" action="/shop" method="GET">
+                                    <label>
+                                        <input type="radio" name="category" value="item" onchange="this.form.submit()">
+                                        Item
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="category" value="service" onchange="this.form.submit()">
+                                        Service
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="category" value="food" onchange="this.form.submit()">
+                                        Food
+                                    </label>
+                                </form>
                             </div>
                         </div>
-                    </form>
                 </div>
                 <!-- Product Listing -->
                 <div id="product-listing">

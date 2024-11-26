@@ -1,10 +1,14 @@
 const model = require("../../model/shop/ShopBooth");
 
 
+var orgProducts;
 
 function index(id, req, res) {
     const boothData = model.getBoothData(id);
-    const orgProducts = model.getOrgProducts(id);
+
+    if (!orgProducts) {
+        orgProducts = model.getOrgProducts(id);
+    }
 
     Promise.all([boothData, orgProducts]).then (values => {
         res.render("shop/shop_booth_view", {
@@ -18,13 +22,14 @@ function index(id, req, res) {
 
     });
 }
-
-function sortByPrice(desc) {
-    products = model.getShopProductsByPrice(desc);
+function sortByPrice(id, desc, req, res) {
+    products = model.getShopProductsByPriceInOrganization(id, desc);
+    this.index(id, req,res);
 }
 
-function sortByCategory(category) {
-    products = model.getShopProductsByCategory(category);
+function sortByCategory(id, category, req, res) {
+    products = model.getShopProductsByCategoryInOrganization(id, category);
+    this.index(id, req, res);
 }
 
 module.exports = {
