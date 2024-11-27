@@ -4,7 +4,7 @@ function getBoothData(id) {
     return new Promise((resolve, reject) => {
         customerQueries.getBoothData(id, (err, results) => {
             if (err) reject (err);
-            else resolve (results);
+            else resolve (results[0]);
         });
     });
 }

@@ -13,23 +13,23 @@
                     <div class="org-banner-and-details" style="background-image: url('/images/samcis-banner.png');">
                         <div id="banner-content">
                             <div id="banner-org-and-name">
-                                <img src="/schema.jpg" alt="Schema Logo">
-                                <p>SCHEMA</p>
+                                <img src="/<%= boothData.org_img %>" alt="Schema Logo">
+                                <p><%= boothData.org_name %></p>
                             </div>
                             <div id="banner-org-socials">
                                 <img src="/icons/soc-med/facebook.png" alt="facebook image">
-                                <p>www.facebook.com/schemaslu</p>
+                                <p>/<%= boothData.fb_link %></p>
 
                                 <img src="/icons/soc-med/instagram.png" alt="instagram image">
-                                <p>www.instagram.com/@schemaslu</p>
+                                <p><%= boothData.x_link %></p>
 
                                 <img src="/icons/soc-med/twitter.png" alt="twitter image">
-                                <p>www.x.com/@schemaslu</p>
+                                <p><%= boothData.ig_link %></p>
                             </div>
                         </div>
                     </div>
                     <div class="booth-name-and-filter">
-                        <p id="shop-booth-name">SCHEMA</p>
+                        <p id="shop-booth-name"><%= boothData.org_name %></p>
                         <form id="sort-form" action="/shop/booth" method="GET">
                                 <input hidden name="id" value="<%= id %>">
                             <div id="category-filter">
@@ -63,20 +63,21 @@
                     <!-- Product Listing -->
                     <div id="product-listing">
                         <% orgProducts.forEach(product => { %>
-                            <div class="product-card" data-id="<%= product.prod_id %>" onclick="handleproductClick('<%= product.prod_id%>')">
+                            <div class="product-card" data-id="<%= product.prod_id %>" onclick="handleProductClick('<%= product.prod_id %>')">
                                 <!-- Display product image -->
                                 <div class="image-container">
-                                    <img src="/<%= product.img_src %>" alt= "Product Image" >
+                                    <img src="/<%= product.img_src %>" alt="<%= product.prod_serv_name %>">
                                 </div>
                                 <div class="product-info">
+                                    <p><%= product.img_src %></p>
                                     <!-- Display product name, description, category, and price -->
                                     <p class="product-name"><%= product.prod_serv_name %></p>
-                                    <p class="product-description"><%= product.description%></p>
+                                    <p class="product-description"><%= product.description %></p>
                                     <p class="product-org">
-                                        <img src="/icons/booth-black-outline.png" alt="Org Icon"> Booth Name
+                                        <img src="/icons/booth-black-outline.png" alt="Org Icon"> <%= boothData.org_name %>
                                     </p>
-                                    <p class="product-category"><%= product.category%></p> 
-                                    <p class="product-price">₱ <%= product.price.toFixed(2) %></p> 
+                                    <p class="product-category"><%= product.category %></p>
+                                    <p class="product-price">₱ <%= product.price.toFixed(2) %></p>
                                 </div>
                             </div>
                         <% }); %>
@@ -85,5 +86,14 @@
             </div>
         </div>
     </main>
+    <script>
+        function handleProductClick(productId) {
+            window.location.href = `/shop/reserve?id=${productId}`;
+        }
+    
+        function handleBoothClick(boothId) {
+            window.location.href = `/shop/booth?id=${boothId}`;
+        }
+    </script>
 </body>
 <%- include('../partials/footer.ejs')%>

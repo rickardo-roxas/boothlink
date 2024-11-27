@@ -86,7 +86,7 @@ function getShopProducts(callback) {
 /** Method to get prod_id, category, name, price, description, img associated with an org if item in stock */
 
 function getOrgProducts(orgID, callback) {
-    const query = "SELECT prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name, prod_serv.price, " +
+    const query = "SELECT DISTINCT prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name, prod_serv.price, " +
         "prod_serv.description, prod_img.img_src " + 
         "FROM prod_org_sched JOIN prod_serv ON prod_serv.prod_id = prod_org_sched.prod_id " + 
         "JOIN prod_img ON prod_img.prod_id = prod_serv.prod_id " + 
@@ -103,7 +103,7 @@ function getOrgProducts(orgID, callback) {
 /** Gets all in stock products sorting by price and accepts a boolean parameter that tells if the filtering 
  * should be done descending or ascending  */
 function getShopProductsByPrice(desc, callback) {
-    var query =  "SELECT organization.org_name AS organization, prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name AS 'name', prod_serv.price, " +
+    var query =  "SELECT DISTINCT organization.org_name AS organization, prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name AS 'name', prod_serv.price, " +
     " prod_serv.description, prod_img.img_src as 'image' FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " +
     " LEFT JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id " + 
     " LEFT JOIN organization ON prod_org_sched.org_id = organization.org_id " + 
@@ -124,7 +124,7 @@ function getShopProductsByPrice(desc, callback) {
 /** Gets all in stock products, filtering based on category provided as parameter. 
  *      Possible Parameters: ITEM, SERVICE, FOOD */
 function getShopProductsByCategory(category, callback) {
-    var query =  "SELECT organization.org_name AS organization, prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name AS 'name', prod_serv.price, " +
+    var query =  "SELECT DISTINCT organization.org_name AS organization, prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name AS 'name', prod_serv.price, " +
     " prod_serv.description, prod_img.img_src as 'image' FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " +
     " LEFT JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id " + 
     " LEFT JOIN organization ON prod_org_sched.org_id = organization.org_id " + 
@@ -178,7 +178,7 @@ function getSchedulesByProductID(id, callback) {
 /** Method to get booth, its associated image, and social links */
 function getBoothData(id, callback) {
     const query = "SELECT organization.org_name, organization.org_img, " + 
-    "organization.fb_link, organization.x_link, organization.ig_link FROM organization WHERE organization.org_id = ?"
+    "organization.fb_link, organization.x_link, organization.ig_link FROM organization WHERE organization.org_id = ?";
 
     conn.query(query, id, (err, results)=> {
         if (err) {
@@ -193,8 +193,8 @@ function getBoothData(id, callback) {
 /** Gets all in stock products sorting by price and accepts a boolean parameter that tells if the filtering 
  * should be done descending or ascending  */
 function getShopProductsByPriceInOrganization(id, desc, callback) {
-    var query =  "SELECT organization.org_id, organization.org_name AS organization, prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name AS 'name', prod_serv.price, " +
-    " prod_serv.description, prod_img.img_src as 'image' FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " +
+    var query =  "SELECT DISTINCT organization.org_id, organization.org_name, prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name, prod_serv.price, " +
+    " prod_serv.description, prod_img.img_src FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " +
     " LEFT JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id " + 
     " LEFT JOIN organization ON prod_org_sched.org_id = organization.org_id " + 
     " WHERE prod_serv.status = 'In Stock' and organization.org_id = ? ORDER BY prod_serv.price ";
@@ -213,8 +213,8 @@ function getShopProductsByPriceInOrganization(id, desc, callback) {
 /** Gets all in stock products, filtering based on category provided as parameter. 
  *      Possible Parameters: ITEM, SERVICE, FOOD */
 function getShopProductsByCategoryInOrganization(id, category, callback) {
-    var query =  "SELECT organization.org_name AS organization, prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name AS 'name', prod_serv.price, " +
-    " prod_serv.description, prod_img.img_src as 'image' FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " +
+    var query =  "SELECT DISTINCT organization.org_name, prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name, prod_serv.price, " +
+    " prod_serv.description, prod_img.img_src FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " +
     " LEFT JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id " + 
     " LEFT JOIN organization ON prod_org_sched.org_id = organization.org_id " + 
     " WHERE prod_serv.status = 'In Stock' and prod_serv.category= ? and organization.org_id = ? ";

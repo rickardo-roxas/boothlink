@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
         controller.index(req,res);
     } else {
         controller = require ('../shop/ShopController');
-        controller.index(req,res);
+        controller.allProducts(req,res);
     }
 });
 
@@ -75,7 +75,7 @@ router.get('/booth', (req,res)=> {
         }
     } else {
         controller = require('../shop/ShopBoothController');
-        controller.index(boothParameter, req, res);
+        controller.allProducts(boothParameter, req, res);
     }
 });
 
