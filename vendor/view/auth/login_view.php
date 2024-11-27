@@ -37,7 +37,7 @@ $title = $pageTitle;
 
             <?php
             if (isset($_SESSION['login_error'])) {
-                echo "<script>alert('" . $_SESSION['login_error'] . "');</script>";
+                echo "<script> window.alert('Invalid Credentials'); </script>";
                 unset($_SESSION['login_error']); // Unset after displaying the alert
             }
             ?>

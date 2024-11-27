@@ -30,7 +30,8 @@ class LoginController
             }
             if ($_SESSION['loginAttempts'] === 5) {
                 $_SESSION['login_error'] = 'You have reached the max number of attempts';
-                header("Location: /cs-312_boothlink/login");
+                echo "<script> window.alert('Max Attempts: Clear your Cookies.'); </script>";
+                echo "<script>window.location.href = 'http://localhost:3000/login/';</script>";
                 exit();
                 
             } else if ($login->authenticateVendor($username, $password)) {
@@ -49,13 +50,13 @@ class LoginController
                     $id = $login->getCustomerID($username);
                     $username = $username;
                     echo "<script>window.location.href = 'http://localhost:3000/login/" . base64_encode($id) . "/" . base64_encode(urlencode($username)) . " ';</script>";
-               //     header("Location: http://localhost:3000/" . $id . "/" . urlencode($username));
                     exit();
                 } else {
                     $_SESSION['loginAttempts'] = $_SESSION['loginAttempts'] +1;
                     //Add a script where an alert will pop up that log in failed, incorrect credentials
                     $_SESSION['login_error'] = 'Invalid username or password';
-                    header("Location: /cs-312_boothlink/login");
+                    echo "<script> window.alert('Invalid username or password'); </script>";
+                    echo "<script>window.location.href = 'http://localhost:3000/login/';</script>";
                     exit();
                 }
             }
