@@ -19,19 +19,19 @@
             <p>RECENT BEST SELLERS</p>
         </div>
         <div id="product-listing">
-            <% bestSellers.forEach(item => { %>
-                <div class="product-card" data-id="<%= item.prod_id %>" onclick="handleProductClick('<%= item.prod_id %>')">
+            <% products.forEach(product => { %>
+                <div class="product-card" data-id="<%= product.prod_id %>" onclick="handleProductClick('<%= product.prod_id %>')">
                     <div class="image-container">
-                        <img src="<%= item.image %>" alt="<%= item.name %>">
+                        <img src="<%= product.image %>" alt="<%= product.name %>">
                     </div>
                     <div class="product-info">
-                        <p class="product-name"><%= item.name %></p>
-                        <p class="product-description"><%= item.description %></p>
+                        <p class="product-name"><%= product.name %></p>
+                        <p class="product-description"><%= product.description %></p>
                         <p class="product-org">
-                            <img src="/icons/booth-black-outline.png" alt="Org Icon"> <%= item.organization %>
+                            <img src="/icons/booth-black-outline.png" alt="Org Icon"> <%= product.organization %>
                         </p>
-                        <p class="product-category"><%= item.category %></p>
-                        <p class="product-price">₱ <%= item.price.toFixed(2) %></p>
+                        <p class="product-category"><%= product.category %></p>
+                        <p class="product-price">₱ <%= product.price.toFixed(2) %></p>
                     </div>
                 </div>
             <% }); %>
@@ -82,5 +82,10 @@
         </div>
     </div>
 </main>
+<script>
+    function handleProductClick(productId) {
+        window.location.href = `shop/reserve?id=${productId}`;
+    }
+</script>
 </body>
 <%- include('../partials/footer.ejs') %>
