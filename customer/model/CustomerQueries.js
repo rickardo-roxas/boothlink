@@ -28,6 +28,26 @@ function getLastName(username, callback) {
         callback(null, results);
     })
 }
+/** Home Queries */
+
+/** Method to get prod_id, category, name, price, description, img 
+ *      if item in stock limited to five products
+*/
+function getFiveShopProducts(callback) {
+    const query =  "SELECT DISTINCT organization.org_name AS organization, prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name AS 'name', prod_serv.price, " +
+        " prod_serv.description, prod_img.img_src as 'image' FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " +
+        " JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id " + 
+        " JOIN organization ON prod_org_sched.org_id = organization.org_id " + 
+        " WHERE prod_serv.status = 'In Stock' LIMIT 5 ";
+
+    conn.query(query, (err, results) => {
+        if (err) {
+            console.log(err);
+            return callback(err,null);
+        }
+        callback(null,results);
+    });
+}
 
 /** Shop Queries */
 
@@ -327,5 +347,6 @@ module.exports = {
     getReservationsByStatus,
     getSearchedProductByName,
     getShopProductsByPriceInOrganization,
-    getShopProductsByCategoryInOrganization
+    getShopProductsByCategoryInOrganization,
+    getFiveShopProducts
 }

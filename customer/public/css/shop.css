@@ -1,12 +1,23 @@
 @import 'interactive.css';
 @import "styles.css";
 
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+    background-color: #fff; 
+    height: 5.6875rem;
+}
+
 #shop-container {
     min-height: 50rem;
     padding: 2rem;
     margin: 0 auto;
     width: calc(100% - 7.5rem);
     font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
+    margin-top: 5.6875rem;
 }
 
 
@@ -102,16 +113,17 @@
     transition: transform 0.3s ease;
 }
 
-.booth-img:hover {
-    transform: scale(1.1);
-}
 
 .booth-name {
     font-size: 1.2rem;
     font-weight: bold;
     margin-top: 1rem;
     color: #333;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.booth-card:hover .booth-img {
+    transform: scale(1.1); 
 }
 
 .booth-card:hover .booth-name {
@@ -122,11 +134,23 @@
 #product-listing {
     display: grid;
     gap: 1rem;
-    justify-content: center;
+    justify-content: start;
     overflow: hidden;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     padding: 1rem;
 
+}
+
+@media (max-width: 768px) {
+    #product-listing {
+        grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    #product-listing {
+        grid-template-columns: repeat(1, minmax(15rem, 1fr)); 
+    }
 }
 
 .product-card {
@@ -134,8 +158,9 @@
     border: 1px solid #ddd;
     border-radius: 30px;
     padding: 1.5rem;
-    max-width: 100%;
-    min-height: 25rem;
+    width: 100%;
+    max-width: 20rem;
+    /* min-height: 25rem; */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
@@ -144,7 +169,7 @@
     align-items: stretch;
     text-align: left;
     overflow: hidden;
-    margin: auto;
+    margin: 0;
     justify-content: space-between;
 }
 
@@ -156,7 +181,7 @@
 }
 
 .image-container {
-    width: 240px; 
+    width: 100%; 
     height: 250px; 
     overflow: hidden; 
     display: flex;
@@ -188,8 +213,8 @@
 }
 
 .product-org {
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 600;
     margin: 0;
 }
 
@@ -201,12 +226,14 @@
 
 
 .product-category {
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 400;
     margin: 0;
+    color: #777777;
 }
 
 .product-description {
-    font-weight: lighter;
+    font-weight: 550;
     font-size: 16px;
     margin: 0;
     white-space: nowrap; 
