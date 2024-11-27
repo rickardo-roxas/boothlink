@@ -1,3 +1,4 @@
+/*
 @font-face {
     font-family: 'Plus Jakarta Sans';
     src: url('../../../shared/assets/fonts/Plus_Jakarta_Sans/PlusJakartaSans-VariableFont_wght.ttf') format("truetype");
@@ -24,6 +25,7 @@
     src: url(../../../shared/assets/fonts/Poppins/Poppins-Bold.ttf) format("truetype");
     font-weight: bold;
 }
+    */
 
 :root {
     /* Colors */

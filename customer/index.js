@@ -15,6 +15,7 @@ const cartRouter = require('./controller/routes/CartRoutes');
 // view engine
 app.set("view engine", 'ejs');
 app.set('views', "view/");
+app.set("views cache", true);
 
 //port
 const port = 3000;
