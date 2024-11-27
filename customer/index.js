@@ -74,12 +74,12 @@ app.use('/cart', cartRouter)
 app.use('/', homeRouter);
 app.get('/logout', (req,res) => {
     if (req.session) {
-        req.session.destroy();
+      //  req.session.destroy();
         res.redirect('/cs-312_boothlink/login');
     }
 });
 
 // Error Page
 app.use((req, res) => {
-    res.redirect("http://localhost:8080/cs-312_boothlink");
+   // res.redirect("http://localhost:8080/cs-312_boothlink");
 });

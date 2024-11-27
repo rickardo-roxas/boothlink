@@ -1,21 +1,7 @@
 <%- include('../partials/header.ejs') %>
 <%- include('../partials/navbar.ejs') %>
 <link rel="stylesheet" href="/booth.css">
-<!--<p><%= orgProducts[0].prod_id %></p>
-<p><%= orgProducts[0].category %></p>
-<p><%= orgProducts[0].prod_serv_name %></p>
-<p><%= orgProducts[0].price %></p>
-<p><%= orgProducts[0].description %></p>
-<p><%= orgProducts[0].img_src %></p>
 
-<% orgProducts.forEach(product => { %>
-    <p><%= product.prod_id %></p>
-    <p><%= product.category %></p>
-    <p><%= product.prod_serv_name %></p>
-    <p><%= product.price %></p>
-    <p><%= product.description %></p>
-    <img src="/<%= product.img_src %>">
-<% }); %>-->
 <body>
     <main>
         <div id="booth-page">
@@ -44,7 +30,8 @@
                     </div>
                     <div class="booth-name-and-filter">
                         <p id="shop-booth-name">SCHEMA</p>
-                        <form id="sort-form" action="/shop" method="GET">
+                        <form id="sort-form" action="/shop/booth" method="GET">
+                                <input hidden name="id" value="<%= id %>">
                             <div id="category-filter">
                                 <p id="sort-by">SORT BY:</p>
                                 <select class="category-select" name="category" onchange="this.form.submit()">
@@ -75,7 +62,7 @@
 
                     <!-- Product Listing -->
                     <div id="product-listing">
-                        <%= orgProducts.forEach(product => { %>
+                        <% orgProducts.forEach(product => { %>
                             <div class="product-card" data-id="<%= product.prod_id %>" onclick="handleproductClick('<%= product.prod_id%>')">
                                 <!-- Display product image -->
                                 <div class="image-container">
@@ -88,8 +75,8 @@
                                     <p class="product-org">
                                         <img src="/icons/booth-black-outline.png" alt="Org Icon"> Booth Name
                                     </p>
-                                    <p class="product-category"><%= product.category%></p>
-                                    <p class="product-price">₱ <%= product.price.toFixed(2) %></p>
+                                    <p class="product-category"><%= product.category%></p> 
+                                    <p class="product-price">₱ <%= product.price.toFixed(2) %></p> 
                                 </div>
                             </div>
                         <% }); %>

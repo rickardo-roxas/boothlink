@@ -1,12 +1,12 @@
 const model = require("../../model/shop/ShopBooth");
 
 
-var orgProducts;
+var orgProducts = [];
 
 function index(id, req, res) {
     const boothData = model.getBoothData(id);
 
-    if (!orgProducts) {
+    if (orgProducts.length ==0) {
         orgProducts = model.getOrgProducts(id);
     }
 
@@ -23,12 +23,12 @@ function index(id, req, res) {
     });
 }
 function sortByPrice(id, desc, req, res) {
-    products = model.getShopProductsByPriceInOrganization(id, desc);
+    orgProducts = model.sortByPrice(id, desc);
     this.index(id, req,res);
 }
 
 function sortByCategory(id, category, req, res) {
-    products = model.getShopProductsByCategoryInOrganization(id, category);
+    orgProducts = model.sortByCategory(id, category);
     this.index(id, req, res);
 }
 

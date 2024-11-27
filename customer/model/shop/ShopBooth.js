@@ -18,7 +18,8 @@ function getOrgProducts(id) {
     });
 }
 
-function getShopProductsByPrice(id, desc) {
+function sortByPrice(id, desc) {
+    if (id === null) return [];
     return new Promise((resolve, reject) => {
         customerQueries.getShopProductsByPriceInOrganization(id, desc, (err,results) => {
             if (err) reject (err);
@@ -27,7 +28,9 @@ function getShopProductsByPrice(id, desc) {
     });
 }
 
-function getShopProductsByCategory(id, category) {
+function sortByCategory(id, category) {
+    console.log("ID: " + id + " === CATEGORY: " + category);
+    if (id === null) return [];
     return new Promise((resolve, reject) => {
         customerQueries.getShopProductsByCategoryInOrganization(id, category, (err,results) => {
             if (err) reject (err);
@@ -40,6 +43,6 @@ function getShopProductsByCategory(id, category) {
 module.exports = {
     getBoothData,
     getOrgProducts,
-    getShopProductsByPrice,
-    getShopProductsByCategory
+    sortByPrice,
+    sortByCategory
 }
