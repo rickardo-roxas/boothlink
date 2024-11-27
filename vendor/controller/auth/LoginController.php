@@ -30,7 +30,7 @@ class LoginController
             }
             if ($_SESSION['loginAttempts'] === 5) {
                 $_SESSION['login_error'] = 'You have reached the max number of attempts';
-                echo "<script> window.alert('Max Attempts'); </script>";
+                echo "<script> window.alert('Max Attempts: Clear your Cookies.'); </script>";
                 echo "<script>window.location.href = 'http://localhost:3000/login/';</script>";
                 exit();
                 
@@ -55,6 +55,7 @@ class LoginController
                     $_SESSION['loginAttempts'] = $_SESSION['loginAttempts'] +1;
                     //Add a script where an alert will pop up that log in failed, incorrect credentials
                     $_SESSION['login_error'] = 'Invalid username or password';
+                    echo "<script> window.alert('Invalid username or password'); </script>";
                     echo "<script>window.location.href = 'http://localhost:3000/login/';</script>";
                     exit();
                 }
