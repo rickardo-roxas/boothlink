@@ -14,8 +14,18 @@ function getFiveProducts() {
     });
 }
 
+function getBooths() { 
+    return new Promise( (resolve, reject) => {
+        customerQueries.getBooths((err,results)=> {
+            if (err) reject (err);
+            else resolve(results);
+        });
+    });
+}
+
 
 module.exports = {
     sample,
-    getFiveProducts
+    getFiveProducts,
+    getBooths
 }

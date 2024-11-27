@@ -5,14 +5,16 @@ const customerQueries = require("../../model/CustomerQueries");
 
 const index = (req, res) => {
     const productsPromiseObj = model.getFiveProducts();
+    const boothHome = model.getBooths();
 
-    Promise.all([productsPromiseObj]).then(
-        ([productsPromiseObj]) => {
+    Promise.all([productsPromiseObj, boothHome]).then(
+        ([productsPromiseObj, boothHome]) => {
 
             res.render("home/home_view", {
                 title: "Home",
                 sample: model.sample,
-                products: productsPromiseObj
+                products: productsPromiseObj,
+                booths: boothHome
             });
         }
     );
