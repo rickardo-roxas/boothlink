@@ -128,6 +128,7 @@ main {
     font-family: 'Poppins', sans-serif;
 }
 
+/* to fix: line 132 - 199 */
 #best-sellers {
     width: 100%;
     background: var(--stroke-primary);
@@ -159,7 +160,6 @@ main {
     transition-duration: 0.3s;
 }
 
-/* to fix: line 163 - 199 */
 .image-container {
     width: 250px;
     height: 250px;
