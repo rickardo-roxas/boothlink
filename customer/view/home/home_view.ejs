@@ -18,18 +18,24 @@
         <div class="product-header">
             <p>RECENT BEST SELLERS</p>
         </div>
-        <div id="best-sellers">
+        <div id="product-listing">
             <% bestSellers.forEach(item => { %>
-                <div class="best-sellers-card">
+                <div class="product-card" data-id="<%= item.prod_id %>" onclick="handleProductClick('<%= item.prod_id %>')">
                     <div class="image-container">
                         <img src="<%= item.image %>" alt="<%= item.name %>">
                     </div>
-                    <p class="product-name"><%= item.name %></p>
-                    <p class="product-description"><%= item.description %></p>
-                    <p class="product-price">₱ <%= item.price.toFixed(2) %></p>
+                    <div class="product-info">
+                        <p class="product-name"><%= item.name %></p>
+                        <p class="product-description"><%= item.description %></p>
+                        <p class="product-org">
+                            <img src="/icons/booth-black-outline.png" alt="Org Icon"> <%= item.organization %>
+                        </p>
+                        <p class="product-category"><%= item.category %></p>
+                        <p class="product-price">₱ <%= item.price.toFixed(2) %></p>
+                    </div>
                 </div>
             <% }); %>
-        </div>
+        </div> 
 
         <div class="button-container">
             <a href="http://localhost:3000/shop" class="best-sellers-button">View All Products</a>
