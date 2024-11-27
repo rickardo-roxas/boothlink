@@ -22,6 +22,11 @@ function index(id, req, res) {
 
     });
 }
+
+function allProducts(id, req, res) {
+    orgProducts = model.getOrgProducts(id);
+    this.index(id, req,res);
+}
 function sortByPrice(id, desc, req, res) {
     orgProducts = model.sortByPrice(id, desc);
     this.index(id, req,res);
@@ -35,5 +40,6 @@ function sortByCategory(id, category, req, res) {
 module.exports = {
     index,
     sortByPrice,
-    sortByCategory
+    sortByCategory, 
+    allProducts
 }

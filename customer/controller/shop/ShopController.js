@@ -11,11 +11,7 @@ function index(req, res) {
     productsPromise = searchTerm 
         ? model.getSearchedProductByName(searchTerm) 
         : model.getProducts();
-
-    } else if (!productsPromise) {
-            productsPromise = model.getProducts();
-    }
-    
+    } 
     
     // always fetch booths
     const boothsPromise = model.getBooths();
@@ -32,6 +28,11 @@ function index(req, res) {
         })
 }
 
+function allProducts(req,res) {
+    productsPromise = model.getProducts();
+    this.index(req,res);
+}
+
 function sortByPrice(desc, req, res) {
     productsPromise = model.getShopProductsByPrice(desc);
     this.index(req,res);
@@ -45,5 +46,6 @@ function sortByCategory(category, req, res) {
 module.exports = {
     index,
     sortByPrice,
-    sortByCategory
+    sortByCategory,
+    allProducts
 }
