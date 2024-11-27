@@ -8,7 +8,10 @@ require('view/page-fragments/Header.php');
         <input type="hidden" id="reservations-data" value='<?php echo htmlspecialchars(json_encode($reservations), ENT_QUOTES); ?>'>
         <div class="main-table">
             <div class="table-header">
-                <h2>Reservations</h2>
+                <div class="heading-container">
+                    <img id="shopping-cart" src="/shared/assets/icons/shopping-cart.png" alt="shopping cart">
+                    <h2>Reservations</h2>
+                </div>
                 <div class="action-buttons">
                     <form action = "<?php echo BASE_URL ?>/reservations" method = "GET">
                         <label>

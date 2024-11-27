@@ -30,6 +30,16 @@ main {
     margin-bottom: 0.5rem;
 }
 
+.heading-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.table-header img {
+    width: 1.6rem;
+    height: 1.6rem;
+}
+
 .table-header h2 {
     color: var(--text);
     font-size: 1.4rem;
