@@ -30,7 +30,8 @@
                     </div>
                     <div class="booth-name-and-filter">
                         <p id="shop-booth-name">SCHEMA</p>
-                        <form id="sort-form" action="/shop" method="GET">
+                        <form id="sort-form" action="/shop/booth" method="GET">
+                                <input hidden name="id" value="<%= id %>">
                             <div id="category-filter">
                                 <p id="sort-by">SORT BY:</p>
                                 <select class="category-select" name="category" onchange="this.form.submit()">

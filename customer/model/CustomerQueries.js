@@ -173,13 +173,13 @@ function getBoothData(id, callback) {
 /** Gets all in stock products sorting by price and accepts a boolean parameter that tells if the filtering 
  * should be done descending or ascending  */
 function getShopProductsByPriceInOrganization(id, desc, callback) {
-    var query =  "SELECT organization.org_name AS organization, prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name AS 'name', prod_serv.price, " +
+    var query =  "SELECT organization.org_id, organization.org_name AS organization, prod_serv.prod_id, prod_serv.category, prod_serv.prod_serv_name AS 'name', prod_serv.price, " +
     " prod_serv.description, prod_img.img_src as 'image' FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " +
     " LEFT JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id " + 
     " LEFT JOIN organization ON prod_org_sched.org_id = organization.org_id " + 
     " WHERE prod_serv.status = 'In Stock' and organization.org_id = ? ORDER BY prod_serv.price ";
      
-    if (desc) query += "DESC"; 
+    if (desc) query =  query + "DESC"; 
 
     conn.query(query, id, (err, results) => {
         if (err) {
@@ -197,9 +197,9 @@ function getShopProductsByCategoryInOrganization(id, category, callback) {
     " prod_serv.description, prod_img.img_src as 'image' FROM prod_serv JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id " +
     " LEFT JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id " + 
     " LEFT JOIN organization ON prod_org_sched.org_id = organization.org_id " + 
-    " WHERE prod_serv.status = 'In Stock' and prod_serv.category= ?  and organization.org_id = ? ";
+    " WHERE prod_serv.status = 'In Stock' and prod_serv.category= ? and organization.org_id = ? ";
 
-    conn.query(query, category, id, (err, results) => {
+    conn.query(query, [category, id], (err, results) => {
         if (err) {
             console.log(err);
             return callback(err,null);
@@ -325,6 +325,7 @@ module.exports = {
     getReservations, 
     getBoothData,
     getReservationsByStatus,
-    getSearchedProductByName
-    
+    getSearchedProductByName,
+    getShopProductsByPriceInOrganization,
+    getShopProductsByCategoryInOrganization
 }

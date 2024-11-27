@@ -43,36 +43,36 @@ router.get('/', (req, res) => {
 
 
 router.get('/booth', (req,res)=> {
-    const filter_type = req.query.category;
+    controller = require ( '../shop/ShopBoothController');
     const boothParameter = req.query.id;
+    const filter_type = req.query.category;
     
     if (filter_type) {
         switch (filter_type) {
             case "low-to-high":
-                controller.sortByPrice(id, false, req, res);
+                controller.sortByPrice(boothParameter, false, req, res);
                 break;
             case "high-to-low":
-                controller.sortByPrice(id, true, req, res);
+                controller.sortByPrice(boothParameter, true, req, res);
                 break;
             case "best-selling":
                 //TODO;
                 break;
             case "item":
-                controller.sortByCategory(id, "item", req, res);
+                controller.sortByCategory(boothParameter, "item", req, res);
                 break;
             case "service":
-                controller.sortByCategory(id, "sevice", req, res);
+                controller.sortByCategory(boothParameter, "sevice", req, res);
                 break;
             case "food":
-                controller.sortByCategory(id, "food", req, res);
+                controller.sortByCategory(boothParameter, "food", req, res);
                 break;
 
             default:
                 // Error Case
-                res.redirect("/shop");
+             //   res.redirect("/shop");
                 break;
         }
-        controller.index(req,res);
     } else {
         controller = require('../shop/ShopBoothController');
         controller.index(boothParameter, req, res);
