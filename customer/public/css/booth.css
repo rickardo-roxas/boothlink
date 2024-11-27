@@ -2,7 +2,7 @@
 @import "styles.css";
 
 #booth-shop-container {
-    background-color: #5a96d6;
+
     min-height: 50rem;
     padding: 2rem;
     margin: 0 auto;
@@ -11,11 +11,9 @@
 }
 
 #navbar {
-    background-color: #ffffff;
+    padding-bottom: 1rem;
 }
-
 #navbar p {
-
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -24,7 +22,7 @@
 }
 
 .org-banner-and-details {
-    background-color: oldlace;
+
     width: 67.1875rem;
     height: 10.1875rem;
     border-radius: 0.5rem;
@@ -40,6 +38,7 @@
     font-size: 2rem;
     font-weight: bold;
     color: #eaa953;
+    padding-top: 2rem;
 }
 
 #banner-org-and-name img {
@@ -52,7 +51,6 @@
 
 
 #banner-org-socials {
-
     display: flex;
     flex-direction: row;
     justify-content: end;
@@ -68,6 +66,7 @@
 #banner-org-socials p {
     font-size: 1rem;
     color: #eaa953;
+    padding-top: 0.5rem;
 }
 
 
@@ -116,6 +115,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 2rem;
 
 }
 
