@@ -86,5 +86,14 @@
             </div>
         </div>
     </main>
+    <script>
+        function handleProductClick(productId) {
+            window.location.href = `/shop/reserve?id=${productId}`;
+        }
+    
+        function handleBoothClick(boothId) {
+            window.location.href = `/shop/booth?id=${boothId}`;
+        }
+    </script>
 </body>
 <%- include('../partials/footer.ejs')%>
