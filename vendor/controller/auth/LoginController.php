@@ -50,14 +50,12 @@ class LoginController
                     $id = $login->getCustomerID($username);
                     $username = $username;
                     echo "<script>window.location.href = 'http://localhost:3000/login/" . base64_encode($id) . "/" . base64_encode(urlencode($username)) . " ';</script>";
-               //     header("Location: http://localhost:3000/" . $id . "/" . urlencode($username));
                     exit();
                 } else {
                     $_SESSION['loginAttempts'] = $_SESSION['loginAttempts'] +1;
                     //Add a script where an alert will pop up that log in failed, incorrect credentials
                     $_SESSION['login_error'] = 'Invalid username or password';
                     echo "<script>window.location.href = 'http://localhost:3000/login/';</script>";
-                 //   header("Location: /cs-312_boothlink/");
                     exit();
                 }
             }
