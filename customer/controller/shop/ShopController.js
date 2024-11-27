@@ -1,17 +1,25 @@
 const model = require('../../model/shop/Shop');
 
-var products;
+var productsPromise;
 
 function index(req, res) {
     const searchTerm = req.query.value;
 
+    
+    if (searchTerm) {
     // if a search term is provided, fetch searched products; otherwise, fetch all products
-    const productsPromise = searchTerm 
+    productsPromise = searchTerm 
         ? model.getSearchedProductByName(searchTerm) 
         : model.getProducts();
 
+    } else if (!productsPromise) {
+            productsPromise = model.getProducts();
+    }
+    
+    
     // always fetch booths
     const boothsPromise = model.getBooths();
+
 
     // resolve promises and render the view
     Promise.all([boothsPromise, productsPromise])
@@ -25,12 +33,12 @@ function index(req, res) {
 }
 
 function sortByPrice(desc, req, res) {
-    products = model.getShopProductsByPrice(desc);
+    productsPromise = model.getShopProductsByPrice(desc);
     this.index(req,res);
 }
 
 function sortByCategory(category, req, res) {
-    products = model.getShopProductsByCategory(category);
+    productsPromise = model.getShopProductsByCategory(category);
     this.index(req,res);
 }
 
