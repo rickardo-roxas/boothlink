@@ -71,12 +71,11 @@
                     <p>DISCOVER NEW FINDS, CHECK OUT THE BOOTHS!</p>
                 </div>
                 <div class="logos">
-                    <div class="logos-slide">
-                        <img src="/images/org/comelec.jpg" alt="Booth">
-                        <img src="/images/org/rpg.jpg" alt="Booth">
-                        <img src="/images/org/w&b.jpg" alt="Booth">
-                        <img src="/images/org/schema.jpg" alt="Booth">
-                    </div>
+                    <% booths.forEach(booth => { %>
+                        <div class="logos-slide">
+                            <img class="booth-img" src="<%= booth.org_img %>" data-id="<%= booth.org_id %>" onclick="handleBoothClick('<%= booth.org_id %>')">
+                        </div>
+                    <% }); %>
                 </div>
             </div>
         </div>
@@ -85,6 +84,10 @@
 <script>
     function handleProductClick(productId) {
         window.location.href = `shop/reserve?id=${productId}`;
+    }
+
+    function handleBoothClick(boothId) {
+        window.location.href = `shop/booth?id=${boothId}`;
     }
 </script>
 </body>

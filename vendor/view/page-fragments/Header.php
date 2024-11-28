@@ -24,7 +24,7 @@ $title = $pageTitle;
 <header>
     <div class="logo">
         <a href="/cs-312_boothlink/home" target="_self" class="container">
-            <img src="/shared/assets/icons/logo-black-outline.png" alt="BoothLink logo">
+            <img src="/shared/assets/images/boothlink-logo.png" alt="BoothLink logo">
             <h1>booth<span class="sky-blue">link</span></h1>
         </a>
     </div>
