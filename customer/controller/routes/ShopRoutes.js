@@ -90,7 +90,8 @@ router.get('/reserve', (req,res) => {
 });
 
 router.post('/add-to-cart', (req,res) => {
-    req.session.alertMessage = 'Product successfully added to the cart!';
+    ctrler = require('../shop/ShopProductController'); 
+    ctrler.addProductToCart(req, res);
     res.redirect('/')
 });
 

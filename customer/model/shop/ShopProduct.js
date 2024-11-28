@@ -20,32 +20,28 @@ function getSchedulesByProductID(id) {
     });
 }
 
-function addOrgToCart(session, org_id) {
-    const cart = session.cart
-    if (!cart.includes(org_id)) {
-        session.cart.push({org_id, products:[]})
-    }
-}
-
 function addProductToCart(session, org_id, product) {
-    const org = session.cart.find(org => org.org_id === org_id);
-    if (org) {
-        const currProduct = org.products.find(prod => prod.product_id === product.product_id)
-        if (currProduct) {
-            currProduct.quantity += product.product_qty
-        } else {
-            org.products.push(product)
-        }
+    let cart = session.cart
+    let org = cart.find(org => org.org_id === org_id);
+
+    // adds a new org if it doesn't exist, since the product will be mapped to an org
+    if (!org) {
+        org = { org_id, products: [] }; 
+        cart.push(org);
+    }
+
+    let existingProduct = org.products.find(p => p.product_id === product.product_id);
+
+    if (existingProduct) {
+        existingProduct.quantity += product.product_qty;
     } else {
-        session.cart.push({
-            org_id,
-            products: [prod_id]
-        })
+        org.products.push(product);
     }
 }
 
 
 module.exports = {
     getProductByID,
-    getSchedulesByProductID
+    getSchedulesByProductID,
+    addProductToCart
 }
