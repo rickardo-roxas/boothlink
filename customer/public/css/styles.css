@@ -78,6 +78,10 @@ header {
     padding: var(--spacing-xl);
 }
 
+header button {
+    display: none;
+}
+
 footer {
     background-color: #FFFFFF;
     display: flex;
