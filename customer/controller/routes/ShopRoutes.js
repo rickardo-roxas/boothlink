@@ -5,6 +5,10 @@ var controller;
 const router = express.Router();
 
 router.get('/', (req, res) => {
+    if(!req.session.cart) {
+        req.session.cart = []
+    }
+
     const filter_type = req.query.category;
     
     if (filter_type) {
@@ -86,11 +90,8 @@ router.get('/reserve', (req,res) => {
 });
 
 router.post('/add-to-cart', (req,res) => {
-    if (req.body.action == "Add to Cart") {
-        const item = [req.body.productID, req.body.quantity];
-        req.session.cart.push(item);
-    }
-    res.redirect('/reserve')
+    req.session.alertMessage = 'Product successfully added to the cart!';
+    res.redirect('/')
 });
 
 module.exports = router;

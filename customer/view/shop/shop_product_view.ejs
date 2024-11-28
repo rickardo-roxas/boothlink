@@ -13,7 +13,7 @@
                     <div id="product-details">
                         <p id="product-name"><%= product.prod_serv_name %></p>
                         <p id="product-type"><%= product.category %></p>
-                        <p id="product-price"><%= product.price %></p>
+                        <p id="product-price">₱ <%= product.price %></p>
                         <p id="product-description"><%= product.description %></p>
 
                         <hr>
@@ -24,11 +24,11 @@
                         </div>
                         <hr>
 
-                        <form action="addToCart" method="get">
+                        <form action="/shop/add-to-cart" method="post">
                             <p class="generic-text">Schedule</p>
                             <div class="radio-group">
                                 <% schedules.forEach(schedule => { %>
-                                    <input class="radio-input" name="radio-group" id="radio1" type="radio" >
+                                    <input class="radio-input" name="radio-group" id="radio1" type="radio" required>
                                     <label class="radio-label" for="radio1">
                                         <%= schedule.loc_room %> |
                                         Stall No# <%= schedule.stall_number %>
@@ -37,36 +37,39 @@
                                 <% }); %>
                             </div>
                             <hr>
-
-                        <div class="increment-cart">
-                            <div class="wrapper">
-                                <span class="minus">-</span>
-                                <span class="num">01</span>
-                                <span class="plus">+</span>
+                            <div class="increment-cart">
+                                <div class="wrapper">
+                                    <span class="minus">-</span>
+                                    <span id="quantity-input" class="num">01</span>
+                                    <span class="plus">+</span>
+                                </div>
+                                <input type="hidden" name="org_id" value="<%=product.id%>">
+                                <input type="hidden" name="prod_id" value="<%= product.prod_id %>">
+                                <input type="hidden" name="prod_qty" id="prod-qty-input">
+                                <button id="add-to-cart" type="submit">Add to Cart</button>
                             </div>
-                            <button id="add-to-cart">Add to Cart</button>
-                        </div>
-                        <script>
-                            const plus = document.querySelector(".plus"),
-                                minus = document.querySelector(".minus"),
-                                num = document.querySelector(".num"),
-                                quantityInput = document.getElementById("quantity-input");
-                            let a = 1;
-                            plus.addEventListener("click", ()=>{
-                                a++;
-                                a = (a < 10) ? "0" + a : a;
-                                num.innerText = a;
-                                quantityInput.value = a;
-                            });
-                            minus.addEventListener("click", ()=>{
-                                if(a > 1){
-                                    a--;
+                            <script>
+                                const plus = document.querySelector(".plus"),
+                                    minus = document.querySelector(".minus"),
+                                    num = document.querySelector(".num"),
+                                    quantityInput = document.getElementById("quantity-input");
+                                let a = 1;
+                                plus.addEventListener("click", ()=>{
+                                    a++;
                                     a = (a < 10) ? "0" + a : a;
                                     num.innerText = a;
                                     quantityInput.value = a;
-                                }
-                            });
-                        </script>
+                                });
+                                minus.addEventListener("click", ()=>{
+                                    if(a > 1){
+                                        a--;
+                                        a = (a < 10) ? "0" + a : a;
+                                        num.innerText = a;
+                                        quantityInput.value = a;
+                                    }
+                                });
+                            </script>
+                        </form>
                     </div>
                 </div>
             </div>

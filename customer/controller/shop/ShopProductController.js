@@ -15,7 +15,18 @@ function index(id, req, res) {
             schedules : results[1]
         });
     });
-    
+}
+
+function addOrgToCart(req, res) {
+    const {org_id} = req.query(org_id)
+    model.addOrgToCart(req.session, org_id)
+    res.render('shop/shop_product_view', {
+        alertMessage: "Product successfully added"
+    })
+}
+
+function addProductToCart(req, res) {
+
 }
 
 
