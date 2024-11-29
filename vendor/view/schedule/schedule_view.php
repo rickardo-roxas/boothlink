@@ -10,7 +10,10 @@ require('view/page-fragments/Header.php');
     <input type="hidden" id="schedule-week" value="<?php echo htmlspecialchars(json_encode($scheduleThisWeek), ENT_QUOTES);;?>">
     <div class="main-table">
         <div class="table-header">
-            <h2>Schedule</h2>
+            <div class="heading-container">
+                <img src="/shared/assets/icons/schedule-black-outline.png" alt="Schedule Icon">
+                <h2>Schedule</h2>
+            </div>
             <h2><?php echo $dateRange?></h2>
             <div class="action-buttons">
                 <button class="add-button" onclick="openSchedulePopup()">

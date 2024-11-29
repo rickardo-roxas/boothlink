@@ -27,7 +27,10 @@ require('view/page-fragments/Header.php');
 
             <!-- The header of the Product sales section and the form functionality -->
             <div class="product-sales-head">
-                <h1>Sales</h1>
+                <div class="heading-container">
+                    <img src="/shared/assets/icons/sales-black-outline.png" alt="sales-outline">
+                    <h1>Sales</h1>
+                </div>
                 <div class = "product-sales-right-head">
                     <form name = "filter-form" action="/sales"  method="GET">
                         <label class="toggle-button">
