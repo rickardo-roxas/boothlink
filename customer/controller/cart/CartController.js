@@ -1,13 +1,20 @@
 const model = require('../../model/cart/Cart');
 
 const index = (req, res) => {
+    let cartPromise
 
-    res.render("cart/cart_view", 
+    const breadcrumbs = [
+        { label: "Cart", link: "/cart" },
+    ];
+
+    Promise.all().then(
+        res.render("cart/cart_view", 
         {
             title : "Cart", 
-            logo : "temp", 
-            sample : model.sample
+
         })
+    )
+    
 }
 
 module.exports = {

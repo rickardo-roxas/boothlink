@@ -2,6 +2,15 @@
 <%- include('../partials/navbar.ejs')%>
 <link rel="stylesheet" href="/receipt.css">
 <main>
+    <nav class="breadcrumbs">
+        <% breadcrumbs.forEach((breadcrumb, index) => { %>
+            <% if (index < breadcrumbs.length - 1) { %>
+                <a href="<%= breadcrumb.link %>"><%= breadcrumb.label %></a> >
+            <% } else { %>
+                <span><%= breadcrumb.label %></span>
+            <% } %>
+        <% }); %>
+    </nav>
     <div class="container heading">
         <img class="icon" src="/icons/receipt-black-outline.png" alt="receipt icon">
         <h2>Receipt</h2>

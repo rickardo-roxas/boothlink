@@ -4,6 +4,9 @@ var productsPromise;
 
 function index(req, res) {
     const searchTerm = req.query.value;
+    const breadcrumbs = [
+        { label: "Shop", link: "/shop" },
+    ];
 
     
     if (searchTerm) {
@@ -24,6 +27,7 @@ function index(req, res) {
                 title: searchTerm ? `Search Results for "${searchTerm}"` : "Shop",
                 booths: values[0],
                 products: values[1],
+                breadcrumbs
             });
         })
 }

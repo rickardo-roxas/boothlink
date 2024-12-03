@@ -6,6 +6,11 @@ var orgProducts = [];
 function index(id, req, res) {
     const boothData = model.getBoothData(id);
 
+    const breadcrumbs = [
+        { label: "Shop", link: "/shop" },
+        { label: "Booth", link: `/shop/booth/${id}` }, 
+    ];
+
     if (orgProducts.length ==0) {
         orgProducts = model.getOrgProducts(id);
     }
@@ -17,7 +22,8 @@ function index(id, req, res) {
             // Dynamic Objects
             boothData : values[0],
             orgProducts : values[1],
-            id : id
+            id : id,
+            breadcrumbs
         });
 
     });

@@ -2,6 +2,15 @@
 <%- include('../partials/navbar.ejs')%>
 <link rel="stylesheet" href="/checkout.css">
 <main>
+    <nav class="breadcrumbs">
+        <% breadcrumbs.forEach((breadcrumb, index) => { %>
+            <% if (index < breadcrumbs.length - 1) { %>
+                <a href="<%= breadcrumb.link %>"><%= breadcrumb.label %></a> >
+            <% } else { %>
+                <span><%= breadcrumb.label %></span>
+            <% } %>
+        <% }); %>
+    </nav>
     <div class="container heading">
         <img class="icon" src="/icons/checkout-black-outline.png" alt="checkout icon">
         <h2>Checkout</h2>

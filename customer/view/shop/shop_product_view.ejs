@@ -9,7 +9,15 @@ Description: Image panel and description panel are seperated for easier maintain
     <main>
         <div id="reserve-page">
             <div id="reserve-container">
-                <p>Shop > Reserve</p>
+                <nav class="breadcrumbs">
+                    <% breadcrumbs.forEach((breadcrumb, index) => { %>
+                        <% if (index < breadcrumbs.length - 1) { %>
+                            <a href="<%= breadcrumb.link %>"><%= breadcrumb.label %></a> >
+                        <% } else { %>
+                            <span><%= breadcrumb.label %></span>
+                        <% } %>
+                    <% }); %>
+                </nav>
                 <div class="product-and-details">
                     <div id="product-image">
                         <img src="/<%= product.img_src %>" alt="<%= product.prod_serv_name %>">
