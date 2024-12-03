@@ -71,6 +71,16 @@
     overflow-y: hidden;
 }
 
+.heading-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.heading-container img {
+    width: 1.8rem;
+    height: 1.8rem;
+}
+
 .product-sales-right-head li {
     font-family: 'Poppins', sans-serif;
     font-size: .9rem;
