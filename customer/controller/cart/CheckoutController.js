@@ -9,6 +9,7 @@ const index = (req, res) => {
     res.render('cart/checkout_view',
         {
             title: "Checkout",
+            breadcrumbs
         })
 }
 
