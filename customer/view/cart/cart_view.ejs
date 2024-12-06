@@ -47,6 +47,45 @@
                 </div>
             </div>
         </div>
+
+        <div class="body column-container">
+            <% if (Object.keys(orgProducts).length > 0) { %>
+                <% for (const [orgName, products] of Object.entries(orgProducts)) { %>
+                    <div class="org-wrapper">
+                        <div class="org container">
+                            <input class="org-checkbox" type="checkbox">
+                            <h3 class="org-name"><%= orgName %></h3>
+                        </div>
+                        <% products.forEach(product => { %>
+                            <div class="item container">
+                                <div class="container prod">
+                                    <input class="item-checkbox" type="checkbox">
+                                    <img src="<%= product.image %>" alt="<%= product.name %>">
+                                    <p><%= product.name %></p>
+                                </div>
+                                <div>
+                                    <select class="pickup">
+                                        <% product.schedules.forEach(schedule => { %>
+                                            <option><%= schedule %></option>
+                                        <% }) %>
+                                    </select>
+                                </div>
+                                <p class="unit-price">₱ <%= product.price %></p>
+                                <div>
+                                    <input type="number" class="qty" min="1" max="10" value="<%= product.quantity %>">
+                                </div>
+                                <p class="total-price">₱ <%= (product.quantity * product.price).toFixed(2) %></p>
+                                <button class="remove-btn">Remove</button>
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } %>
+            <% } else { %>
+                <p>No products in the cart.</p>
+            <% } %>
+        </div>
+
+
         <div class="foot container">
             <div class="container">
                 <div class="container select-all">

@@ -21,7 +21,8 @@ function getSchedulesByProductID(id) {
 }
 
 function addProductToCart(session, org_id, product) {
-    let cart = session.cart
+    /**
+    let cart = session.cart || []
     let org = cart.find(org => org.org_id === org_id);
 
     // adds a new org if it doesn't exist, since the product will be mapped to an org
@@ -37,6 +38,8 @@ function addProductToCart(session, org_id, product) {
     } else {
         org.products.push(product);
     }
+
+     */
 }
 
 

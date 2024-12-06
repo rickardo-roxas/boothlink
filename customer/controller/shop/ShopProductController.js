@@ -16,27 +16,33 @@ function index(id, req, res) {
             // Dynamic Objects
             product : results[0],
             schedules : results[1],
-            breadcrumbs
+            breadcrumbs,
+            prod_id: id
         });
     });
 }
 
-function addProductToCart(req, res) {
-    let org_id = req.query.org_id
-    let prod_id = req.query.prod_id
-    let prod_qty = req.query.prod_qty; 
-    let prod_sched = req.query.radio1;
+function addProductToCart(org_id, prod_id, prod_qty, prod_sched, req, res) {
+    //let org_id = parseInt(req.query.org_id)
+    //let prod_id = parseInt(req.query.prod_id)
+    //let prod_qty = parseInt(req.query.prod_qty)
+   // let prod_sched = req.query.radio1
+
     const product = {
         product_id: prod_id,
         product_qty: prod_qty,
         product_sched : prod_sched
     };
+
+    console.log("PRODUCT TO CART:  " + "ID: " + product.product_id + "QTY: " + product.product_qty + "SCHED: " + product.product_sched);
+
     model.addProductToCart(req.session, org_id, product);
 
     req.session.alertMessage = 'Product successfully added to the cart!';
+    console.log(req.session.cart); // Log cart to check if products are added
     
     // to change redirection to the same page.
-    res.redirect('/cart');
+   // res.redirect('/cart');
 }
 
 

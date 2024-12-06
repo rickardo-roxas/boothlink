@@ -5,7 +5,7 @@ var controller;
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    if(!req.session.cart) {
+    if (!req.session.cart) {
         req.session.cart = []
     }
 
@@ -66,7 +66,7 @@ router.get('/booth', (req,res)=> {
                 controller.sortByCategory(boothParameter, "item", req, res);
                 break;
             case "service":
-                controller.sortByCategory(boothParameter, "sevice", req, res);
+                controller.sortByCategory(boothParameter, "service", req, res);
                 break;
             case "food":
                 controller.sortByCategory(boothParameter, "food", req, res);
@@ -89,10 +89,18 @@ router.get('/reserve', (req,res) => {
     ctrler.index(productID, req,res);
 });
 
-router.post('/add-to-cart', (req,res) => {
-    ctrler = require('../shop/ShopProductController'); 
-    ctrler.addProductToCart(req, res);
-    res.redirect('/')
+router.get('/add-to-cart', (req,res) => {
+    //ctrler = require('../shop/ShopProductController');
+    console.log(req);
+    let org_id = req.query.org_id;
+    let prod_id = req.query.prod_id;
+    let prod_qty = req.query.prod_qty;
+    let prod_sched = req.query.radio1;
+
+    console.log("TEST: " + org_id + prod_id + prod_qty);
+
+    ctrler.addProductToCart(org_id, prod_id, prod_qty, prod_sched, req, res);
+    //res.redirect('/')
 });
 
 module.exports = router;
