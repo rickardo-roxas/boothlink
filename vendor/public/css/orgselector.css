@@ -1,5 +1,7 @@
 @import "/shared/public/public/css/vendor/style.css";
-
+/*
+Stylesheet for org_select_view
+ */
 * {
     font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
 }
@@ -9,7 +11,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-/*    background: #354261;*/
     height: 100%;
     width: 100%;
     overflow: hidden;
@@ -22,7 +23,6 @@
 }
 
 .website-logo {
-/*    background: #eaa953;*/
     font-size: 50px;
     font-style: normal;
     font-weight: 80;
