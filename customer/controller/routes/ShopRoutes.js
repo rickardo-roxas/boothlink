@@ -90,17 +90,16 @@ router.get('/reserve', (req,res) => {
 });
 
 router.get('/add-to-cart', (req,res) => {
-    //ctrler = require('../shop/ShopProductController');
+    ctrler = require('../shop/ShopProductController');
     console.log(req);
     let org_id = req.query.org_id;
     let prod_id = req.query.prod_id;
     let prod_qty = req.query.prod_qty;
-    let prod_sched = req.query.radio1;
+    let prod_sched = req.query.radio_group;
 
     console.log("TEST: " + org_id + prod_id + prod_qty);
 
     ctrler.addProductToCart(org_id, prod_id, prod_qty, prod_sched, req, res);
-    //res.redirect('/')
 });
 
 module.exports = router;

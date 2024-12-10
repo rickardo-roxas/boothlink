@@ -32,7 +32,7 @@ Description: Image panel and description panel are seperated for easier maintain
                             <p class="generic-text">Schedule</p>
                             <div class="radio-group">
                                 <% schedules.forEach(schedule => { %>
-                                    <input class="radio-input" name="radio-group" id="radio1" name="radio1" type="radio" required>
+                                    <input class="radio-input" name="radio_group" id="radio1" name="radio1" type="radio" value=<%=schedule.sched_id%> required>
                                     <label class="radio-label" for="radio1">
                                         <%= schedule.loc_room %> |
                                         Stall No# <%= schedule.stall_number %>
@@ -56,7 +56,7 @@ Description: Image panel and description panel are seperated for easier maintain
                                 const plus = document.querySelector(".plus"),
                                     minus = document.querySelector(".minus"),
                                     num = document.querySelector(".num"),
-                                    quantityInput = document.getElementById("quantity-input");
+                                    quantityInput = document.getElementById("prod-qty-input");
                                 let a = 1;
                                 plus.addEventListener("click", ()=>{
                                     a++;

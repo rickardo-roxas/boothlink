@@ -23,28 +23,40 @@ function index(id, req, res) {
 }
 
 function addProductToCart(org_id, prod_id, prod_qty, prod_sched, req, res) {
-    //let org_id = parseInt(req.query.org_id)
-    //let prod_id = parseInt(req.query.prod_id)
-    //let prod_qty = parseInt(req.query.prod_qty)
-   // let prod_sched = req.query.radio1
 
     const product = {
-        product_id: prod_id,
-        product_qty: prod_qty,
-        product_sched : prod_sched
+        product_id: parseInt(prod_id),
+        product_qty: parseInt(prod_qty),
+        product_sched : parseInt(prod_sched)
     };
 
-    console.log("PRODUCT TO CART:  " + "ID: " + product.product_id + "QTY: " + product.product_qty + "SCHED: " + product.product_sched);
+    if (!req.session.cart) {
+        req.session.cart = [];
+    }
 
-    model.addProductToCart(req.session, org_id, product);
+    let org = req.session.cart.find(org => org.org_id === org_id);
 
-    req.session.alertMessage = 'Product successfully added to the cart!';
-    console.log(req.session.cart); // Log cart to check if products are added
-    
-    // to change redirection to the same page.
-   // res.redirect('/cart');
+    if (!org) {
+        org = {
+            org_id: org_id,
+            products: [],
+        };
+        req.session.cart.push(org);
+    }
+
+    let cartProduct = org.products.find(prod => prod.product_id === product.product_id);
+
+    if (cartProduct) {
+        cartProduct.product_qty += product.product_qty;
+        cartProduct.product_sched = product.product_sched; 
+    } else {
+        // Add new product to the organization's products list
+        org.products.push(product);
+    }
+
+    console.log("Updated Session Cart:", JSON.stringify(req.session.cart, null, 2));
+    res.redirect('/cart'); // To change to an alert message
 }
-
 
 module.exports = {
     index,
