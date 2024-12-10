@@ -1,5 +1,7 @@
 @import "style.css";
-
+/*
+Stylesheet for sales_view
+ */
 /* SALES */
 .sales {
     padding: var(--spacing-xl, 1rem);
