@@ -267,8 +267,14 @@ function getSearchedProductByName(searchTerm, callback) {
 
 /** End of Shop */
 
-// Returns the reservations of a certain user
-// DATA: Org Name, Item Name, Price, Date, Status, Quantity, and total price
+
+/**
+ * Author: Jasmin, Ramon Emmiel P.
+ * Description: Returns the reservations of a certain user
+ * @param {*} username 
+ * @param {*} callback 
+ */
+
 function getReservations(username, callback){
     const query = "SELECT " + 
               "ps.prod_id, " +
@@ -301,6 +307,13 @@ function getReservations(username, callback){
     })
 }
 
+/**
+ * Author: Jasmin, Ramon Emmiel P.
+ * Description: Returns all the reservations of a user based on its status
+ * @param {*} status 
+ * @param {*} username 
+ * @param {*} callback 
+ */
 function getReservationsByStatus(status, username, callback){
     const query = "SELECT " + 
                   "pi.img_src AS image_source, " + 
