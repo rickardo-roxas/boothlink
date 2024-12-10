@@ -1,4 +1,6 @@
 const express = require('express')
+const cookieParser = require('cookie-parser'); 
+
 
 // express app
 const app = express();
@@ -46,12 +48,21 @@ app.use(session({
     cookie: {secure : false}
 }));
 
+app.use(cookieParser()); 
+
 app.use('/login/:id/:username', (req, res) =>{
     var {id, username} = req.params;
     id = atob(id);
     username = atob(username);
     req.session.customerID=id;
     req.session.username=username;
+
+    if (req.cookies.cart) {
+        req.session.cart = JSON.parse(req.cookies.cart); 
+    } else {
+        req.session.cart = [];
+    }
+
     res.redirect(`/`);
 });
 
@@ -59,21 +70,19 @@ app.use('/login/:id/:username', (req, res) =>{
 app.use((req,res, next) => {
     if (!req.session.customerID || !req.session.username) {
         res.redirect("http://localhost:8080/cs-312_boothlink");
-    }    
+    }
     next();
 });
-
-
-app.use(`/reservations`, reservationsRouter);
-app.use(`/shop`, shopRouter);
-app.use(`/cart`, cartRouter)
-app.use(`/`, homeRouter);
 
 app.use('/reservations', reservationsRouter);
 app.use('/shop', shopRouter);
 app.use('/cart', cartRouter)
 app.use('/', homeRouter);
 app.get('/logout', (req,res) => {
+    if (req.session.cart) {
+        res.cookie('cart', JSON.stringify(req.session.cart), { maxAge: 365 * 24 * 60 * 60 * 1000 });
+    }
+
     if (req.session) {
         req.session.destroy();
         res.redirect('/cs-312_boothlink/login');
