@@ -1,3 +1,19 @@
+/** 
+Shop Booth Controller
+
+This module defines the logic for handling requests related to a specific shop booth. 
+It includes functions to display booth data, sort products by various criteria, and 
+filter products by category. The controller interacts with the underlying ShopBooth 
+model to fetch, sort, and manipulate product data before rendering the view.
+
+Dependencies
+    model: The ShopBooth model is imported, which is responsible for fetching booth data 
+    and product information from the data source.
+
+Module Export
+    This module exports an object containing several functions: index, sortByPrice, 
+    sortByCategory, and allProducts.
+*/
 const model = require("../../model/shop/ShopBooth");
 
 

@@ -1,3 +1,25 @@
+/**
+Shop Product Module
+
+This module handles queries related to products, including retrieving product details, 
+schedules for a product, and adding products to the shopping cart. The module interacts 
+with the customerQueries module, which contains the actual SQL queries for these operations, 
+and returns results wrapped in Promises for asynchronous handling.
+
+Dependencies
+    customerQueries: The module relies on customerQueries for executing SQL queries related 
+    to products, schedules, and cart operations. These queries are callback-based and are 
+    wrapped in Promises for asynchronous handling.
+
+    Module Export
+    The module exports three functions:
+        getProductByID
+        getSchedulesByProductID
+        addProductToCart
+
+Each function is designed to interact with product-related data and provide the results or 
+update the session as needed.
+ */
 const customerQueries = require('../CustomerQueries');
 
 function getProductByID(id) {
