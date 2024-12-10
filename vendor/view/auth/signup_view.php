@@ -14,6 +14,7 @@ $title = $pageTitle;
     <title>BoothLink | <?php echo $title?></title>
     <link rel="stylesheet" href="/vendor/public/css/interactive.css">
     <link rel="stylesheet" href="/vendor/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/signup.css">
     <link rel="stylesheet" href="<?php echo BASE_URL?>/vendor/public/css/login.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/shared/assets/favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/shared/assets/favicon_io/favicon-32x32.png">

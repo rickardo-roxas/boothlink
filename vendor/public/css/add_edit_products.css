@@ -1,6 +1,8 @@
 @import "/shared/public/public/css/vendor/style.css";
 @import "/shared/public/public/css/vendor/interactive.css";
-
+/*
+Stylesheet for add_product and edit_product products
+ */
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background-color: #f4f4f9;
