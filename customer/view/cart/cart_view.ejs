@@ -19,7 +19,7 @@
             <p>Total Price</p>
             <p></p>
         </div>
-        <div class="body column-container">
+        <!-- <div class="body column-container">
             <div class="org-wrapper">
                 <div class="org container">
                     <input class="org-checkbox" type="checkbox">
@@ -46,7 +46,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="body column-container">
             <% if (Object.keys(orgProducts).length > 0) { %>
@@ -66,9 +66,9 @@
                                 <div>
                                     <select class="pickup">
                                         <% product.schedules.forEach(schedule => { %>
-                                            <option><%= schedule %></option>
+                                            <option value="<%= schedule.id %>" <%= schedule.id === product.selectedSchedule ? 'selected' : '' %>><%= schedule.date %> - <%= schedule.start_time %></option>
                                         <% }) %>
-                                    </select>
+                                    </select>                                    
                                 </div>
                                 <p class="unit-price">₱ <%= product.price %></p>
                                 <div>

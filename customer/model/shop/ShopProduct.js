@@ -21,7 +21,6 @@ function getSchedulesByProductID(id) {
 }
 
 function addProductToCart(session, org_id, product) {
-    /**
     let cart = session.cart || []
     let org = cart.find(org => org.org_id === org_id);
 
@@ -39,9 +38,8 @@ function addProductToCart(session, org_id, product) {
         org.products.push(product);
     }
 
-     */
+    session.cart = cart;
 }
-
 
 module.exports = {
     getProductByID,

@@ -8,30 +8,37 @@ const index = (req, res) => {
     let cartProductsPromise = model.getCart(req.session);
 
     cartProductsPromise.then(cartProducts => {
+        console.log("Cart products:", JSON.stringify(cartProducts, null, 2)); 
+
         let orgProducts = {} // object to hold products mapped to their organization
 
         let productDetailsPromise = cartProducts.map(product => {
-            return getProdDetails(product.prod_id).then(productDetails => {
-                let orgName = productDetails.org_name
+            console.log("Processing product with prod_id:", product.id); 
 
+            return getProdDetails(product.id).then(productDetails => {
+                let orgName = productDetails.org_name;
+        
                 if (!orgProducts[orgName]) {
                     orgProducts[orgName] = [];
                 }
-
+        
                 let productWithDetails = {
-                    id: product.prod_id,
+                    id: product.id,
                     name: productDetails.prod_serv_name,
                     image: productDetails.img_src,
                     price: productDetails.price,
-                    schedules: []
-                }
-
-                return getSchedules(product.prod_id).then(schedules => {
-                    productWithDetails.schedules = schedules;
-                    orgProducts[orgName].push(productWithDetails);
-                })
-            })
-        })
+                    schedules: [], 
+                    selectedSchedule: product.prod_sched, 
+                };
+        
+                return getSchedules(product.id)
+                    .then(schedules => {
+                        productWithDetails.schedules = schedules || []; 
+                        orgProducts[orgName].push(productWithDetails);
+                    });
+            });
+        });
+        
 
         Promise.all(productDetailsPromise).then(() => {
             const breadcrumbs = [
@@ -48,14 +55,16 @@ const index = (req, res) => {
 }
 
 
-function getProdDetails(prod_id) {
-    return model.getProductInfo(prod_id)
+function getProdDetails(id) {
+    return model.getProductInfo(id)
 }
 
-function getSchedules(prod_id) {
-    return model.getSchedules(prod_id)
+function getSchedules(id) {
+    return model.getSchedules(id)
 }
 
 module.exports = {
     index,
+    getProdDetails,
+    getSchedules
 }
