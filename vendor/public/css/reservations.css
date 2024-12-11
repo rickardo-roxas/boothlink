@@ -1,5 +1,7 @@
 @import 'public/css/style.css';
-
+/*
+Stylesheet for reservations_view
+ */
 main {
     display: flex;
     flex-direction: column;
