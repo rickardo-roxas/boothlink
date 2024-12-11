@@ -1,3 +1,21 @@
+/**
+Shop Routes (Express Router)
+
+This module defines the routes related to the shop section of an e-commerce application. 
+It handles HTTP requests for viewing products, filtering by categories, adding products 
+to the cart, and reserving items. The routes also interact with different controllers to 
+manage shop-related logic, such as sorting products and handling user interactions.
+
+Dependencies
+    express: The web application framework used to create the routes.
+    Dynamic Controller Import: The controller is dynamically imported based on the route
+    and the action to be performed (e.g., ShopController, ShopBoothController, 
+        ShopProductController).
+        
+Module Export
+    This module exports an Express router that is used to handle requests for shop-related 
+    actions.
+ */
 const express = require('express');
 
 var controller;

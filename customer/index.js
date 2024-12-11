@@ -1,3 +1,16 @@
+/**
+    Index.js
+
+    Manages the web platform, using routes and session management to handle user interactions. 
+    It provides routes for the homepage, reservations, shopping, and cart functionalities. 
+    The app uses EJS as its view engine to render dynamic content, displaying data from the 
+    backend based on user input. It also implements session handling with express-session, 
+    ensuring that users are authenticated before accessing certain pages (such as reservations 
+    or cart). The app includes a login mechanism where the user’s credentials are stored in the 
+    session, and a logout functionality that destroys the session. Static assets such as images,
+    CSS, and JavaScript are served to the client. Additionally, error handling redirects any invalid 
+    requests to a default page, ensuring smooth navigation within the platform.
+ */
 const express = require('express')
 const cookieParser = require('cookie-parser'); 
 
