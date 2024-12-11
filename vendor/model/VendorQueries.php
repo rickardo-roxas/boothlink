@@ -311,7 +311,8 @@ class VendorQueries
             prod_serv.category AS category,
             (reservation.qty * prod_serv.price) AS total_price,
             reservation.status AS status,
-            CONCAT(customer.last_name, ', ', customer.first_name) AS customer_name
+            CONCAT(customer.last_name, ', ', customer.first_name) AS customer_name,
+            customer.customer_id as customer_id
         FROM organization
         JOIN prod_org_sched ON organization.org_id = prod_org_sched.org_id
         JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id
@@ -338,6 +339,7 @@ class VendorQueries
             $reservation->setPrice($row['total_price']);
             $reservation->setStatus($row['status']);
             $reservation->setCustomer($row['customer_name']);
+            $reservation->setCustomerId($row['customer_id']);
 
             $reservations[] = $reservation;
         }
@@ -825,6 +827,16 @@ class VendorQueries
         $isUpdated = $stmt->affected_rows > 0;
         $stmt->close();
         return $isUpdated;
+    }
+
+    public function addSales($customer_id, $reservation_id, $grand_total) {
+        $query = "INSERT INTO sales (customer_id, reservation_id, grand_total)
+                    VALUES(?,?,?) ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("iid", $customer_id, $reservation_id, $grand_total);
+        $stmt->execute();
+        $stmt->close();
+        return true;
     }
 
     public function getAllScheduleByWeek() {

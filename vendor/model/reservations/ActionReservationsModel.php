@@ -15,9 +15,12 @@ class ActionReservationsModel
         $this->vendorQueries = new VendorQueries();
     }
 
-    public function acceptReservation($reservation_id)
+    public function acceptReservation($customer_id, $reservation_id, $grand_total)
     {
-        return $this->vendorQueries->completeReservation($reservation_id);
+        if ($this->vendorQueries->addSales($customer_id, $reservation_id, $grand_total)) {
+            return $this->vendorQueries->completeReservation($reservation_id);
+        };
+        return false;
     }
 
     public function rejectReservation($reservation_id)
