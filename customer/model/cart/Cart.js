@@ -3,6 +3,7 @@ const customerQueries = require('../CustomerQueries');
 function getCart(session) {
     return new Promise((resolve, reject) => {
         const cart = session.cart || [];
+        console.log(cart)
 
         const products = cart.flatMap(org =>
             org.products.map(product => ({
@@ -16,7 +17,7 @@ function getCart(session) {
         }
 
         const productDetailsPromises = products.map(product => {
-            const prod_id = product.product_id;
+            const prod_id = parseInt(product.product_id); 
             if (isNaN(prod_id)) {
                 console.error("Invalid product_id:", product.product_id);
                 return Promise.reject(new Error("Invalid product ID"));
@@ -31,6 +32,7 @@ function getCart(session) {
                     });
                     return {
                         ...productDetails,
+                        prod_id: product.product_id,
                         quantity: product.product_qty, 
                         schedule: product.product_sched, 
                         org_id: product.org_id 
@@ -44,7 +46,6 @@ function getCart(session) {
             .catch(reject);
     });
 }
-
 
 function getSchedules(prod_id) {
     return new Promise((resolve, reject) => {

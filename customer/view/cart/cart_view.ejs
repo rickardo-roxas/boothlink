@@ -138,7 +138,7 @@
         });
 
         document.getElementById('grand-total').textContent = '₱ ' + total.toFixed(2);
-        document.getElementById('selected-items-count').textContent = totalQuantity; // Update with total quantity
+        document.getElementById('selected-items-count').textContent = totalQuantity; 
 
         const checkoutButton = document.getElementById('checkout-btn');
         checkoutButton.disabled = selectedItems === 0;
