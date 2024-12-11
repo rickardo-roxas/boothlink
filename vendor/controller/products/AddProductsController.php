@@ -21,7 +21,6 @@ class AddProductsController
 
     public function index()
     {
-
         // Validate the session ID
         if (!isset($_SESSION['org_id'])) {
             echo "Error: Session ID is not valid.";
@@ -34,15 +33,14 @@ class AddProductsController
             require 'view/products/add_product.php';
         }
 
-        // Add POST method here from query
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Handle POST request
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $prod_serv_name = $_POST['name'];
             $category = $_POST['type'];
             $price = $_POST['price'];
             $status = $_POST['status'];
             $description = $_POST['description'];
             $selected_schedule_ids = isset($_POST['schedule_ids']) ? $_POST['schedule_ids'] : [];
-
 
             if (isset($_FILES['file']) && count($_FILES['file']['name']) > 0) {
                 $target_dir = "shared/assets/prod_img/";
@@ -55,19 +53,27 @@ class AddProductsController
                     // Define the target file path
                     $target_file = $target_dir . $file_name;
 
-                    // Move the file to the target directory
-                    move_uploaded_file($tmp_name, $target_file);
+                    // Ensure the file is a valid uploaded file before moving
+                    if (is_uploaded_file($tmp_name)) {
+                        if (move_uploaded_file($tmp_name, $target_file)) {
+                            // File upload succeeded, proceed with adding the product
+                            $this->model->addProduct($orgId, $status, $category, $prod_serv_name, $price, $description, $file_name, $selected_schedule_ids);
 
+                            $_SESSION['product_added'] = true;
+
+                            header("Location: " . $_SERVER['REQUEST_URI']);
+                            exit();
+                        } else {
+                            echo "Error moving the file: " . error_get_last()['message'];
+                            exit();
+                        }
+                    } else {
+                        echo "Invalid file upload.";
+                        exit();
+                    }
                 }
-                //  $image_src = "dummysource.png"
-                $this->model->addProduct($orgId, $status, $category, $prod_serv_name, $price, $description, $file_name, $selected_schedule_ids);
-
-
-                $_SESSION['product_added'] = true;
-
-                header("Location: " . $_SERVER['REQUEST_URI']);
-                exit();
             }
         }
     }
 }
+
