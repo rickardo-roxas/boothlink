@@ -10,7 +10,7 @@
     <div id="cart-table" class="column-container">
         <div class="head">
             <div class="container select-all">
-                <input type="checkbox">
+                <input type="checkbox" id="select-all" onclick="toggleSelectAll(this)">
                 <p>Select All Products/Services</p>
             </div>
             <p>Pickup</p>
@@ -53,29 +53,35 @@
                 <% for (const [orgName, products] of Object.entries(orgProducts)) { %>
                     <div class="org-wrapper">
                         <div class="org container">
-                            <input class="org-checkbox" type="checkbox">
+                            <input class="org-checkbox" type="checkbox" onclick="toggleOrgSelection(this)">
                             <h3 class="org-name"><%= orgName %></h3>
                         </div>
                         <% products.forEach(product => { %>
                             <div class="item container">
                                 <div class="container prod">
-                                    <input class="item-checkbox" type="checkbox">
+                                    <input class="item-checkbox" type="checkbox" name="selected-products" value="<%= product.id %>" onclick="updateTotal()">
                                     <img src="<%= product.image %>" alt="<%= product.name %>">
+                                    <% console.log(product); %>
                                     <p><%= product.name %></p>
                                 </div>
                                 <div>
                                     <select class="pickup">
                                         <% product.schedules.forEach(schedule => { %>
-                                            <option value="<%= schedule.id %>" <%= schedule.id === product.selectedSchedule ? 'selected' : '' %>><%= schedule.date %> - <%= schedule.start_time %></option>
+                                            <option value="<%= schedule.sched_id %>" <%= schedule.sched_id === product.selectedSchedule ? 'selected' : '' %>>
+                                                <%= formatDateTime(schedule.date, schedule.start_time) %>
+                                            </option>
                                         <% }) %>
-                                    </select>                                    
+                                    </select>                                
                                 </div>
                                 <p class="unit-price">₱ <%= product.price %></p>
                                 <div>
-                                    <input type="number" class="qty" min="1" max="10" value="<%= product.quantity %>">
+                                    <input type="number" class="qty" min="1" max="10" value="<%= product.quantity %>" onchange="updateTotal()">
                                 </div>
-                                <p class="total-price">₱ <%= (product.quantity * product.price).toFixed(2) %></p>
-                                <button class="remove-btn">Remove</button>
+                                <p class="total-price">₱ <%= (parseFloat(product.quantity) * parseFloat(product.price)).toFixed(2) %></p>
+                                <form method="get" action="/cart/remove" class="remove-form">
+                                    <input type="hidden" name="product_id" value="<%= product.id %>">
+                                    <button type="submit" class="remove-btn">Remove</button>
+                                </form>
                             </div>
                         <% }); %>
                     </div>
@@ -84,27 +90,61 @@
                 <p>No products in the cart.</p>
             <% } %>
         </div>
-
-
         <div class="foot container">
             <div class="container">
                 <div class="container select-all">
-                    <input type="checkbox">
+                    <input type="checkbox" id="select-all-footer" onclick="toggleSelectAll(this)">
                     <p>Select All Products</p>
                 </div>
                 <button class="clear-btn">Clear Cart</button>
             </div>
             <div class="container total">
-                <p>Total (1 item): <span id="grand-total">₱ 700.00</span></p>
+                <p>Total (<span id="selected-items-count">0</span> item(s)): <span id="grand-total">₱ 0.00</span></p>
                 <form method="get" action="/cart/checkout">
-                    <button class="checkout-btn">
+                    <button type="submit" class="checkout-btn" id="checkout-btn" disabled>
                         Check Out
                     </button>
                 </form>
             </div>
-
         </div>
     </div>
-
 </main>
 <%- include('../partials/footer.ejs')%>
+
+<script>
+    function updateTotal() {
+        let total = 0;
+        let selectedItems = 0;
+        const selectedProducts = document.querySelectorAll('input[name="selected-products"]:checked');
+
+        selectedProducts.forEach(productCheckbox => {
+            const productRow = productCheckbox.closest('.item');
+            const qty = parseInt(productRow.querySelector('.qty').value);
+            const price = parseFloat(productRow.querySelector('.unit-price').textContent.replace('₱', '').trim());
+            total += price * qty;
+            selectedItems++;
+        });
+
+        document.getElementById('grand-total').textContent = '₱ ' + total.toFixed(2);
+        document.getElementById('selected-items-count').textContent = selectedItems;
+
+        const checkoutButton = document.getElementById('checkout-btn');
+        checkoutButton.disabled = selectedItems === 0;
+    }
+
+    function toggleSelectAll(checkbox) {
+        const itemCheckboxes = document.querySelectorAll('input[name="selected-products"]');
+        itemCheckboxes.forEach(itemCheckbox => {
+            itemCheckbox.checked = checkbox.checked;
+        });
+        updateTotal();
+    }
+
+    function toggleOrgSelection(checkbox) {
+        const orgProducts = checkbox.closest('.org-wrapper').querySelectorAll('input[name="selected-products"]');
+        orgProducts.forEach(productCheckbox => {
+            productCheckbox.checked = checkbox.checked;
+        });
+        updateTotal();
+    }
+</script>
