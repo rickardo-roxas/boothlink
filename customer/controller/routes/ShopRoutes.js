@@ -91,7 +91,6 @@ router.get('/reserve', (req,res) => {
 
 router.get('/add-to-cart', (req,res) => {
     ctrler = require('../shop/ShopProductController');
-    console.log(req);
     let org_id = req.query.org_id;
     let prod_id = req.query.prod_id;
     let prod_qty = req.query.prod_qty;

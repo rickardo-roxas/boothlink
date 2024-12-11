@@ -19,35 +19,6 @@
             <p>Total Price</p>
             <p></p>
         </div>
-        <!-- <div class="body column-container">
-            <div class="org-wrapper">
-                <div class="org container">
-                    <input class="org-checkbox" type="checkbox">
-                    <h3 class="org-name">SCHEMA</h3>
-                </div>
-                <div class="item container">
-                    <div class="container prod">
-                        <input class="item-checkbox" type="checkbox">
-                        <img src="/images/placeholder.jpeg">
-                        <p>Black Man (Gwapo)</p>
-                    </div>
-                    <div>
-                        <select class="pickup">
-                            <option>Nov. 23 - 8 AM</option>
-                        </select>
-                    </div>
-                    <p class="unit-price">₱ 500.00</p>
-                    <div>
-                        <input type="number" class="qty" min="1" max="10"></input>
-                    </div>
-                    <p class="total-price">₱ 700.00</p>
-                    <button class="remove-btn">
-                        Remove
-                    </button>
-                </div>
-            </div>
-        </div> -->
-
         <div class="body column-container">
             <% if (Object.keys(orgProducts).length > 0) { %>
                 <% for (const [orgName, products] of Object.entries(orgProducts)) { %>
@@ -90,6 +61,34 @@
                 <p>No products in the cart.</p>
             <% } %>
         </div>
+        <!-- <div class="body column-container">
+            <div class="org-wrapper">
+                <div class="org container">
+                    <input class="org-checkbox" type="checkbox">
+                    <h3 class="org-name">SCHEMA</h3>
+                </div>
+                <div class="item container">
+                    <div class="container prod">
+                        <input class="item-checkbox" type="checkbox">
+                        <img src="/images/placeholder.jpeg">
+                        <p>Black Man (Gwapo)</p>
+                    </div>
+                    <div>
+                        <select class="pickup">
+                            <option>Nov. 23 - 8 AM</option>
+                        </select>
+                    </div>
+                    <p class="unit-price">₱ 500.00</p>
+                    <div>
+                        <input type="number" class="qty" min="1" max="10"></input>
+                    </div>
+                    <p class="total-price">₱ 700.00</p>
+                    <button class="remove-btn">
+                        Remove
+                    </button>
+                </div>
+            </div>
+        </div> -->
         <div class="foot container">
             <div class="container">
                 <div class="container select-all">
