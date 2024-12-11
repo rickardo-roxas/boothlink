@@ -1,3 +1,21 @@
+/*
+Shop Module
+
+This module is responsible for interacting with the database and executing various 
+queries related to booths and products in the shop. The queries are abstracted using 
+Promises, making them asynchronous and enabling cleaner error handling with resolve 
+and reject.
+
+Dependencies
+    customerQueries: This module relies on the customerQueries object, which contains 
+    the actual database queries for booths, products, and searching. It uses callback-based 
+    functions to execute queries, which are then wrapped in Promises for better asynchronous 
+    handling.
+
+Module Export
+    This module exports several functions, each corresponding to a specific query operation 
+    related to booths and products.
+*/
 const customerQueries = require('../CustomerQueries');
 
 function getBooths() { 

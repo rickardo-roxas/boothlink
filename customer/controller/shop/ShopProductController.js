@@ -1,3 +1,18 @@
+/**
+Shop Product Controller
+
+This module defines the logic for handling requests related to individual products in the 
+shop, including displaying product details, schedules, and adding products to the cart. 
+It interacts with the ShopProduct model to retrieve product and schedule data, as well as 
+handle cart functionality.
+
+Dependencies
+    model: The ShopProduct model is imported, which contains methods for retrieving product 
+    details, schedules, and managing the shopping cart.
+
+Module Export
+    This module exports an object containing two functions: index and addProductToCart. 
+*/
 const model = require("../../model/shop/ShopProduct");
 
 function index(id, req, res) {

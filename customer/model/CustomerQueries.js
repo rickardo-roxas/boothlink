@@ -1,3 +1,14 @@
+/*
+    Customer Queries Module
+
+    This module contains all the functions that directly interact with the database for 
+    querying related to the customer side. These queries include fetching customer 
+    information, fetching products in stock, sorting products by price or category, 
+    and retrieving reservation details.
+
+Dependencies
+    db.conn: This is the database connection pool object used to run SQL queries.
+*/
 const db = require("../config/Conn");
 const conn = db.conn;
 
