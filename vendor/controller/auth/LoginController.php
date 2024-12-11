@@ -31,7 +31,7 @@ class LoginController
             if ($_SESSION['loginAttempts'] === 5) {
                 $_SESSION['login_error'] = 'You have reached the max number of attempts';
                 echo "<script> window.alert('Max Attempts: Clear your Cookies.'); </script>";
-                echo "<script>window.location.href = 'http://localhost:3000/login/';</script>";
+                echo "<script>window.location.href = 'http://139.59.246.126:3000/login/';</script>";
                 exit();
                 
             } else if ($login->authenticateVendor($username, $password)) {
@@ -49,14 +49,14 @@ class LoginController
                 if ($login->authenticateCustomer($username, $password)) {
                     $id = $login->getCustomerID($username);
                     $username = $username;
-                    echo "<script>window.location.href = 'http://localhost:3000/login/" . base64_encode($id) . "/" . base64_encode(urlencode($username)) . " ';</script>";
+                    echo "<script>window.location.href = 'http://139.59.246.126:3000/login/" . base64_encode($id) . "/" . base64_encode(urlencode($username)) . " ';</script>";
                     exit();
                 } else {
                     $_SESSION['loginAttempts'] = $_SESSION['loginAttempts'] +1;
                     //Add a script where an alert will pop up that log in failed, incorrect credentials
                     $_SESSION['login_error'] = 'Invalid username or password';
                     echo "<script> window.alert('Invalid username or password'); </script>";
-                    echo "<script>window.location.href = 'http://localhost:3000/login/';</script>";
+                    echo "<script>window.location.href = 'http://139.59.246.126:3000/login/';</script>";
                     exit();
                 }
             }

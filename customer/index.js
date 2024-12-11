@@ -58,7 +58,7 @@ app.use('/login/:id/:username', (req, res) =>{
 // Routes
 app.use((req,res, next) => {
     if (!req.session.customerID || !req.session.username) {
-        res.redirect("http://localhost:8080/cs-312_boothlink");
+        res.redirect("http://139.59.246.126:8080/cs-312_boothlink");
     }    
     next();
 });
@@ -82,5 +82,5 @@ app.get('/logout', (req,res) => {
 
 // Error Page
 app.use((req, res) => {
-   res.redirect("http://localhost:8080/cs-312_boothlink");
+   res.redirect("http://139.59.246.126:8080/cs-312_boothlink");
 });
