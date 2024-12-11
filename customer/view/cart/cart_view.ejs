@@ -96,7 +96,9 @@
                     <input type="checkbox" id="select-all-footer" onclick="toggleSelectAll(this)">
                     <p>Select All Products</p>
                 </div>
-                <button class="clear-btn">Clear Cart</button>
+                <form method="post" action="/cart/clear">
+                    <button class="clear-btn">Clear Cart</button>
+                </form>
             </div>
             <div class="container total">
                 <p>Total (<span id="selected-items-count">0</span> item(s)): <span id="grand-total">₱ 0.00</span></p>
@@ -115,22 +117,33 @@
     function updateTotal() {
         let total = 0;
         let selectedItems = 0;
+        let totalQuantity = 0; 
+
         const selectedProducts = document.querySelectorAll('input[name="selected-products"]:checked');
 
-        selectedProducts.forEach(productCheckbox => {
-            const productRow = productCheckbox.closest('.item');
+        const allProducts = document.querySelectorAll('.item');
+        allProducts.forEach(productRow => {
             const qty = parseInt(productRow.querySelector('.qty').value);
-            const price = parseFloat(productRow.querySelector('.unit-price').textContent.replace('₱', '').trim());
-            total += price * qty;
-            selectedItems++;
+            const price = parseFloat(productRow.querySelector('.unit-price').textContent.replace(/[^\d.-]/g, ''));
+
+            const totalPriceElement = productRow.querySelector('.total-price');
+            const productTotal = price * qty;
+            totalPriceElement.textContent = '₱ ' + productTotal.toFixed(2);
+
+            if (productRow.querySelector('input[name="selected-products"]:checked')) {
+                total += productTotal;
+                selectedItems++;
+                totalQuantity += qty; 
+            }
         });
 
         document.getElementById('grand-total').textContent = '₱ ' + total.toFixed(2);
-        document.getElementById('selected-items-count').textContent = selectedItems;
+        document.getElementById('selected-items-count').textContent = totalQuantity; // Update with total quantity
 
         const checkoutButton = document.getElementById('checkout-btn');
         checkoutButton.disabled = selectedItems === 0;
     }
+
 
     function toggleSelectAll(checkbox) {
         const itemCheckboxes = document.querySelectorAll('input[name="selected-products"]');
