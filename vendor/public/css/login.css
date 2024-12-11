@@ -1,5 +1,7 @@
 @import "/shared/publictyle.css";
-
+/*
+Stylesheet for login_view
+ */
 * {
     margin: 0;
     padding: 0;
