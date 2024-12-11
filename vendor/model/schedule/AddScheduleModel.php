@@ -19,14 +19,4 @@ class AddScheduleModel
     {
         $this->vendorQueries->addSchedule($org_id, $date, $startTime, $endTime, $loc_id);
     }
-
-    public function getSchedules($org_id, $date, $startTime, $endTime, $loc_id)
-    {
-        return $this->vendorQueries->getSchedules($org_id, $date, $startTime, $endTime);
-    }
-
-    public function getSchedule($org_id, $date, $startTime, $endTime, $loc_id)
-    {
-        return $this->vendorQueries->getSchedule($org_id, $date, $startTime, $endTime, $loc_id);
-    }
 }

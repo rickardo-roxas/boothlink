@@ -1,42 +1,44 @@
 (function() {
-    let selectedDate = null; 
+    let selectedDate = null;
 
     // Highlight today's date in the calendar
     function highlightToday() {
         const today = new Date();
-        const todayStr = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+        const todayStr = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
         document.querySelectorAll("td[data-day]").forEach(cell => {
             if (cell.dataset.date === todayStr) {
-                cell.classList.add('today'); 
+                cell.classList.add('today');
             }
         });
     }
 
-    // function to highlight current date
+    // Function to highlight current date
     highlightToday();
 
     document.querySelectorAll("td[data-day]").forEach(cell => {
         cell.addEventListener("click", function() {
             const selectedDay = parseInt(cell.dataset.day);
-            const selectedDateStr = cell.dataset.date;
+            const selectedDateStr = cell.dataset.date; // Format: YYYY-MM-DD
             const today = new Date();
-            const todayStr = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+            const todayStr = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
 
             const dayOfWeek = new Date(selectedDateStr).getDay();
             if (dayOfWeek === 0) {
-                alert("You cannot select a date on Sunday."); // Prevent selection of Sundays
+                alert("You cannot select a date on Sunday.");
                 return;
             }
 
             if (selectedDay < today.getDate() || selectedDateStr < todayStr) {
-                alert("You cannot select a past date."); // Prevent selection of past dates
-                return;
+                alert("You cannot select a past date.");
             } else {
                 document.querySelectorAll("td.selected").forEach(selected => {
-                    selected.classList.remove("selected"); // Remove highlight from previously selected date
+                    selected.classList.remove("selected");
                 });
                 cell.classList.add("selected"); // Highlight newly selected date
                 selectedDate = selectedDateStr; // Store the selected date
+
+                // Set the hidden input field with the selected date
+                document.getElementById('selected-date').value = selectedDate; // This stores the selected date
 
                 document.querySelectorAll("td.today").forEach(todayCell => {
                     todayCell.classList.remove('today');
@@ -45,64 +47,62 @@
         });
     });
 
+
+
     // AM/PM toggle buttons
     document.querySelectorAll(".am-pm-toggle").forEach(toggle => {
         toggle.querySelectorAll("button").forEach(button => {
             button.addEventListener("click", function() {
                 toggle.querySelectorAll(".selected").forEach(selected => {
-                    selected.classList.remove("selected"); 
+                    selected.classList.remove("selected");
                 });
-                button.classList.add("selected"); 
+                button.classList.add("selected");
             });
         });
     });
 
     // Add click event listener for the Apply button
     document.querySelector('.apply').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent form submission 
+        event.preventDefault();
 
         if (!selectedDate) {
-            alert("Please select a date."); // Alert if no date is selected
+            alert("Please select a date.");
             return;
         }
 
         const startTimeSelect = document.getElementById('start-time');
         const endTimeSelect = document.getElementById('end-time');
 
+        // Get the selected start and end times
         const selectedStartTime = startTimeSelect.value;
         const selectedAMPM = document.querySelector(".am-pm-toggle .selected").textContent;
-        const startTimeInMinutes = getTimeIn24HourFormat(selectedStartTime, selectedAMPM); 
-
-        if (startTimeInMinutes > getTimeIn24HourFormat("07:00", "AM")) {
-            alert("Start time must be 7 AM or later."); // Alert if start time is before 7 AM
-            return;
-        }
+        const startTimeForSQL = formatTimeForSQL(selectedStartTime, selectedAMPM);
 
         const selectedEndTime = endTimeSelect.value;
         const selectedEndAMPM = document.querySelector("#end-time + .am-pm-toggle .selected").textContent;
-        const endTimeInMinutes = getTimeIn24HourFormat(selectedEndTime, selectedEndAMPM); 
+        const endTimeForSQL = formatTimeForSQL(selectedEndTime, selectedEndAMPM);
 
-        if (endTimeInMinutes < startTimeInMinutes) {
-            alert("End time cannot be earlier than start time."); // Alert if end time is before start time
-            return;
-        }
+        // Set the hidden inputs for SQL
+        document.getElementById('selected-date').value = selectedDate;
+        document.getElementById('selected-start-time').value = startTimeForSQL;
+        document.getElementById('selected-end-time').value = endTimeForSQL;
 
-        if (endTimeInMinutes > getTimeIn24HourFormat("19:00", "PM")) {
-            alert("End time must be 7 PM or earlier."); // Alert if end time is after 7 PM
-            return;
-        }
-
-        alert("Schedule added!"); // for validation only
+        document.querySelector('form').submit(); // Submit the form
     });
 
-    // Convert time to 24-hour format in total minutes
-    function getTimeIn24HourFormat(time, amPm) {
+    // Format time in HH:MM:SS format
+    function formatTimeForSQL(time, amPm) {
+        amPm = amPm.toUpperCase();
+
         let [hour, minute] = time.split(':').map(Number);
+
         if (amPm === 'PM' && hour < 12) {
             hour += 12; // Convert PM hour to 24-hour format
         } else if (amPm === 'AM' && hour === 12) {
             hour = 0; // Convert 12 AM to 0 hour
         }
-        return hour * 60 + minute; 
+
+        // Ensure the time format is HH:MM:00 for SQL
+        return `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:00`;
     }
 })();

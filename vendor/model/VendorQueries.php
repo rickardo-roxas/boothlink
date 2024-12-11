@@ -713,75 +713,24 @@ class VendorQueries
         return $result;
     }
 
-    public function addSchedule($date, $startTime, $endTime, $loc_id): void
+    public function addSchedule($org_id, $date, $startTime, $endTime, $loc_id): void
     {
-        $query = "INSERT INTO schedule (date, start_time, end_time, loc_id) VALUES (?, ?, ?, ?)";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("sssi", $date, $startTime, $endTime, $loc_id);
-        $stmt->execute();
-        $stmt->close();
-    }
+        $date = date('Y-m-d', strtotime($date));
 
-    public function getSchedules($org_id)
-    {
-        include 'model/objects/Schedule.php';
-        $query = "SELECT prod_org_sched.org_id, schedule.*, location.loc_room, location.stall_number 
-            FROM prod_org_sched
-            JOIN schedule ON schedule.sched_id = prod_org_sched.sched_id
-            JOIN location ON location.loc_id = schedule.loc_id
-            WHERE org_id = ?";
-
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", $org_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        $schedules = [];
-
-        while ($row = $result->fetch_assoc()) {
-            $schedule = new SchedulePageModel();
-            $schedule->setDate($row['date']);
-            $schedule->setStartTime($row['start_time']);
-            $schedule->setEndTime($row['end_time']);
-            $schedule->setLocationRoom($row['loc_room']);
-            $schedule->setLocationStallNum($row['stall_number']);
-
-            $schedules[] = $schedule->toArray();
-        }
-
-        $stmt->close();
-        return $schedules;
-    }
-
-    public function getSchedule($org_id, $date, $startTime, $endTime, $loc_id)
-    {
-        include 'model/objects/Schedule.php';
-        $query = "SELECT prod_org_sched.org_id, schedule.*,
-        FROM prod_org_sched
-        JOIN schedule ON schedule.sched_id = prod_org_sched.sched_id
-        WHERE prod_org_sched.org_id = ?
-        AND schedule.date = ?
-        AND schedule.start_time = ?
-        AND schedule.end_time = ?
-        AND loc_id = ?";
-
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("isssi", $org_id, $date, $startTime, $endTime, $loc_id);
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-
-        return $result;
+        $query = "INSERT INTO schedule(loc_id, org_id, date, start_time, end_time) VALUES (?, ?, ?, ?, ?)";
+        $stmt1 = $this->conn->prepare($query);
+        $stmt1->bind_param("iisss", $loc_id, $org_id, $date, $startTime, $endTime);
+        $stmt1->execute();
+        $stmt1->close();
     }
 
     public function getScheduleThisWeek($org_id, $startDate, $endDate)
     {
         include 'model/objects/Schedule.php';
-        $query = "SELECT prod_org_sched.org_id, schedule.*, location.loc_room, location.stall_number 
-            FROM prod_org_sched
-            JOIN schedule ON schedule.sched_id = prod_org_sched.sched_id
+        $query = "SELECT schedule.*, location.loc_room, location.stall_number 
+            FROM schedule
             JOIN location ON location.loc_id = schedule.loc_id
-            WHERE prod_org_sched.org_id = ?
+            WHERE schedule.org_id = ?
             AND schedule.date BETWEEN ? AND ?";
 
         $stmt = $this->conn->prepare($query);
