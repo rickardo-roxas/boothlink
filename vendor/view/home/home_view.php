@@ -44,7 +44,7 @@ require('view/page-fragments/Header.php');
                     <thead>
                     <tr>
                         <th>Reservation No.</th>
-                        <th>Customer (Last Name)</th>
+                        <th>Customer</th>
                         <th>Product/Service</th>
                         <th>Qty</th>
                         <th>Price</th>
@@ -78,25 +78,31 @@ require('view/page-fragments/Header.php');
                 <h2>Sales Today</h2>
                 <div class="column-container">
                     <p>₱ <span id="dash-sales-today"></span></p>
-                    <button class="refresh-btn">Refresh</button>
+                    <form action="/home">
+                        <button type="submit" class="refresh-btn">Refresh</button>
+                    </form>
                 </div>
                 <h2>Sales This Week</h2>
                 <div class="column-container">
                     <p>₱ <span id="dash-sales-week"></span></p>
-                    <button class="refresh-btn">Refresh</button>
+                    <form action="/home">
+                        <button type="submit" class="refresh-btn">Refresh</button>
+                    </form>
                 </div>
             </article>
             <article id="dash-total-reserv" class="card">
-                <h2>Total Reservations Today</h2>
+                <h2>Total Reservations</h2>
                 <div class="column-container">
                     <p><span id="item-count"></span> Item Products</p>
                     <p><span id="food-count"></span> Food Products</p>
                     <p><span id="service-count"></span> Services</p>
-                    <button class="refresh-btn">Refresh</button>
+                    <form action="/home">
+                        <button type="submit" class="refresh-btn">Refresh</button>
+                    </form>
                 </div>
             </article>
             <article id= "dash-summary" class="card">
-                <h2>Reservations Summary Today</h2>
+                <h2>Reservations Summary</h2>
                 <div class="column-container">
                     <div class="column-container">
                         <h3>Pending</h3>
@@ -118,7 +124,9 @@ require('view/page-fragments/Header.php');
                             <div class="progress" id="completed"></div>
                         </div>
                     </div>
-                    <button class="refresh-btn">Refresh</button>
+                    <form action="/home">
+                        <button type="submit" class="refresh-btn">Refresh</button>
+                    </form>
                 </div>
             </article>
         </div>

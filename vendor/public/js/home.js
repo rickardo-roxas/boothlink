@@ -47,7 +47,7 @@ function populateRecentReservations() {
 
     if (recentReservations && recentReservations.length > 0) {
         recentReservations.forEach(recentReservation => {
-            const row = document.createElement('tr');
+            let row = document.createElement('tr');
             row.innerHTML = `
                 <td>${recentReservation.id}</td>
                 <td>${recentReservation.customer}</td>

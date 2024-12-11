@@ -37,9 +37,9 @@ class Home
     }
 
 
-    public function getRecentReservations($org_id, $date): array
+    public function getRecentReservations($org_id): array
     {
-        $reservation = $this->vendorQueries->getRecentReservations($org_id, $date);
+        $reservation = $this->vendorQueries->getRecentReservations($org_id);
         $reservations = [];
 
         if ($reservation) {
@@ -82,36 +82,36 @@ class Home
         return $sales;
     }
 
-    public function getPendingReservations($org_id, $date)
+    public function getPendingReservations($org_id)
     {
-        $pendingReservations = $this->vendorQueries->getPendingReservationsCount($org_id, $date);
+        $pendingReservations = $this->vendorQueries->getPendingReservationsCount($org_id);
 
 
         return $pendingReservations;
     }
 
-    public function getCompletedReservations($org_id, $date)
+    public function getCompletedReservations($org_id)
     {
-        $completedReservations = $this->vendorQueries->getCompletedReservationsCount($org_id, $date);
+        $completedReservations = $this->vendorQueries->getCompletedReservationsCount($org_id);
 
         return $completedReservations;
     }
 
-    public function getTotalReservations($org_id, $date)
+    public function getTotalReservations($org_id)
     {
-        $totalReservations = $this->vendorQueries->getTotalReservationsCount($org_id, $date);
+        $totalReservations = $this->vendorQueries->getTotalReservationsCount($org_id);
         return $totalReservations;
     }
 
-    public function getItemReservations($org_id, $date)
+    public function getItemReservations($org_id)
     {
-        $itemReservations = $this->vendorQueries->getItemReservationsCount($org_id, $date);
+        $itemReservations = $this->vendorQueries->getItemReservationsCount($org_id);
         return $itemReservations;
     }
 
-    public function getFoodReservations($org_id, $date)
+    public function getFoodReservations($org_id)
     {
-        $foodReservations = $this->vendorQueries->getFoodReservationsCount($org_id, $date);
+        $foodReservations = $this->vendorQueries->getFoodReservationsCount($org_id);
         return $foodReservations;
     }
 

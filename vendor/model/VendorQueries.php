@@ -73,8 +73,6 @@ class VendorQueries
         $stmt3->close();
     }
 
-
-
     /**
      * Returns all products listed in the database with respect to a vendor
      */
@@ -483,31 +481,31 @@ class VendorQueries
     }
 
 
-    public function getRecentReservations($org_id, $date): array
+    public function getRecentReservations($org_id): array
     {
         include 'model/objects/Reservation.php';
-        $query = "SELECT prod_org_sched.*, reservation.*, customer.last_name, prod_serv.prod_serv_name, prod_serv.price
+        $query = "SELECT prod_org_sched.*, reservation.*, CONCAT(customer.last_name, ' ' ,customer.first_name) as customer_name, 
+            prod_serv.prod_serv_name, prod_serv.price
             FROM prod_org_sched
             JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id
             JOIN customer ON customer.customer_id = reservation.customer_id
             JOIN prod_serv ON reservation.prod_id = prod_serv.prod_id
             WHERE prod_org_sched.org_id = ? 
-            AND reservation.date = ?
-            ORDER BY reservation.date ASC 
+            ORDER BY reservation.date DESC 
             LIMIT 5";
 
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("is", $org_id, $date);
+        $stmt->bind_param("i", $org_id);
         $stmt->execute();
 
         $result = $stmt->get_result();
 
         $reservations = [];
-        if ($row = $result->fetch_assoc()) {
+        while ($row = $result->fetch_assoc()) {
             $reservation = new Reservation();
             $reservation->setID($row['reservation_id']);
-            $reservation->setCustomer($row['last_name']);
+            $reservation->setCustomer($row['customer_name']);
             $reservation->setProduct($row['prod_serv_name']);
 
             $totalPrice = $row['price'] * $row['qty'];
@@ -558,17 +556,16 @@ class VendorQueries
         return $schedules;
     }
 
-    public function getPendingReservationsCount($org_id, $date)
+    public function getPendingReservationsCount($org_id)
     {
         $query = "SELECT COUNT(*) AS count
             FROM prod_org_sched
             JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id 
             WHERE prod_org_sched.org_id = ?
-            AND reservation.date = ? 
             AND reservation.status = 'Pending'";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("is", $org_id, $date);
+        $stmt->bind_param("i", $org_id);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -582,17 +579,16 @@ class VendorQueries
         return $count;
     }
 
-    public function getCompletedReservationsCount($org_id, $date)
+    public function getCompletedReservationsCount($org_id)
     {
         $query = "SELECT COUNT(*) AS count 
             FROM prod_org_sched
             JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id 
             WHERE prod_org_sched.org_id = ?
-            AND reservation.date = ? 
             AND reservation.status = 'Completed'";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("is", $org_id, $date);
+        $stmt->bind_param("i", $org_id);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -610,16 +606,15 @@ class VendorQueries
         return $result;
     }
 
-    public function getTotalReservationsCount($org_id, $date)
+    public function getTotalReservationsCount($org_id)
     {
         $query = "SELECT COUNT(*) AS count
             FROM prod_org_sched
             JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id 
-            WHERE prod_org_sched.org_id = ?
-            AND reservation.date = ?";
+            WHERE prod_org_sched.org_id = ?";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("is", $org_id, $date);
+        $stmt->bind_param("i", $org_id);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -636,18 +631,17 @@ class VendorQueries
         return $result;
     }
 
-    public function getItemReservationsCount($org_id, $date)
+    public function getItemReservationsCount($org_id)
     {
         $query = "SELECT COUNT(*) AS count
             FROM prod_org_sched
             JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id
             INNER JOIN prod_serv ON reservation.prod_id = prod_serv.prod_id
             WHERE prod_org_sched.org_id = ?
-            AND reservation.date = ? 
             AND prod_serv.category = 'Item'";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("is", $org_id, $date);
+        $stmt->bind_param("i", $org_id);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -661,18 +655,17 @@ class VendorQueries
         return $count;
     }
 
-    public function getFoodReservationsCount($org_id, $date)
+    public function getFoodReservationsCount($org_id)
     {
         $query = "SELECT COUNT(*) AS count
             FROM prod_org_sched
             JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id
             INNER JOIN prod_serv ON reservation.prod_id = prod_serv.prod_id
             WHERE prod_org_sched.org_id = ?
-            AND reservation.date = ? 
             AND prod_serv.category = 'Food';";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("is", $org_id, $date);
+        $stmt->bind_param("i", $org_id);
         $stmt->execute();
 
         $result = $stmt->get_result();
