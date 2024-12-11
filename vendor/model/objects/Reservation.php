@@ -5,6 +5,7 @@ class Reservation
 {
     private $id;
     private $customer;
+    private $customer_id;
     private $product;
     private $quantity;
     private $category;
@@ -52,6 +53,10 @@ class Reservation
         return $this->price;
     }
 
+    public function getCustomerId() {
+        return $this->customer_id;
+    }
+
     public function setID($id)
     {
         $this->id = $id;
@@ -92,6 +97,10 @@ class Reservation
         $this->price = $price;
     }
 
+    public function setCustomerId($customer_id) {
+        $this->customer_id = $customer_id;
+    }
+
     public function toArray(): array
     {
         return [
@@ -102,7 +111,8 @@ class Reservation
             'category' => $this->getCategory(),
             'date' => $this->getDate(),
             'status' => $this->getStatus(),
-            'price' => $this->getPrice()
+            'price' => $this->getPrice(),
+            'customer_id' => $this->getCustomerId(),
         ];
     }
 }

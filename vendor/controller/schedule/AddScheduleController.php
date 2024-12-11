@@ -28,8 +28,9 @@ class AddScheduleController
             $endTime = $_POST["end-time"];
             $loc_id = 1;
 
-
-            $this->model->addSchedule($date, $startTime, $endTime, $org_id, $loc_id);
+            // Call the model to add the schedule
+            $this->model->addSchedule($org_id, $date, $startTime, $endTime, $loc_id);
+            header("Location: /cs-312_boothlink/schedule");
             exit();
         }
     }

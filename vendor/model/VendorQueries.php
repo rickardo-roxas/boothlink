@@ -73,8 +73,6 @@ class VendorQueries
         $stmt3->close();
     }
 
-
-
     /**
      * Returns all products listed in the database with respect to a vendor
      */
@@ -108,15 +106,14 @@ class VendorQueries
     {
         $query = "
             SELECT prod_img.img_src, prod_serv.prod_serv_name, prod_serv.price, prod_serv.category, 
-                   COUNT(RESERVATION.status='COMPLETED') AS sold, 
+                   COUNT(CASE WHEN RESERVATION.status = 'COMPLETED' THEN 1 ELSE NULL END) AS sold, 
                    'In Stock' AS status
-            
             FROM prod_serv         
                 JOIN prod_org_sched ON PROD_SERV.prod_id = prod_org_sched.prod_id    
                 JOIN prod_img ON PROD_SERV.prod_id = prod_img.prod_id     
                 LEFT JOIN RESERVATION ON PROD_SERV.prod_id = RESERVATION.prod_id         
                     WHERE prod_org_sched.org_id = ? AND prod_serv.category=?
-            GROUP BY prod_serv.prod_serv_name;";
+            GROUP BY prod_img.img_src, prod_serv.prod_serv_name, prod_serv.price, prod_serv.category";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("is", $org_id, $filter);
@@ -145,7 +142,7 @@ class VendorQueries
                 JOIN prod_img ON PROD_SERV.prod_id = prod_img.prod_id     
                 LEFT JOIN RESERVATION ON PROD_SERV.prod_id = RESERVATION.prod_id         
                     WHERE prod_org_sched.org_id = ? AND prod_serv.status=?
-            GROUP BY prod_serv.prod_serv_name;";
+            GROUP BY prod_img.img_src, prod_serv.prod_serv_name, prod_serv.price, prod_serv.category";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("is", $org_id, $filter);
         $stmt->execute();
@@ -317,7 +314,8 @@ public function getSalesDataPointsForWeek($org_id)
             prod_serv.category AS category,
             (reservation.qty * prod_serv.price) AS total_price,
             reservation.status AS status,
-            CONCAT(customer.last_name, ', ', customer.first_name) AS customer_name
+            CONCAT(customer.last_name, ', ', customer.first_name) AS customer_name,
+            customer.customer_id as customer_id
         FROM organization
         JOIN prod_org_sched ON organization.org_id = prod_org_sched.org_id
         JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id
@@ -344,6 +342,7 @@ public function getSalesDataPointsForWeek($org_id)
             $reservation->setPrice($row['total_price']);
             $reservation->setStatus($row['status']);
             $reservation->setCustomer($row['customer_name']);
+            $reservation->setCustomerId($row['customer_id']);
 
             $reservations[] = $reservation;
         }
@@ -487,31 +486,31 @@ public function getSalesDataPointsForWeek($org_id)
     }
 
 
-    public function getRecentReservations($org_id, $date): array
+    public function getRecentReservations($org_id): array
     {
         include 'model/objects/Reservation.php';
-        $query = "SELECT prod_org_sched.*, reservation.*, customer.last_name, prod_serv.prod_serv_name, prod_serv.price
+        $query = "SELECT prod_org_sched.*, reservation.*, CONCAT(customer.last_name, ' ' ,customer.first_name) as customer_name, 
+            prod_serv.prod_serv_name, prod_serv.price
             FROM prod_org_sched
             JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id
             JOIN customer ON customer.customer_id = reservation.customer_id
             JOIN prod_serv ON reservation.prod_id = prod_serv.prod_id
             WHERE prod_org_sched.org_id = ? 
-            AND reservation.date = ?
-            ORDER BY reservation.date ASC 
+            ORDER BY reservation.date DESC 
             LIMIT 5";
 
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("is", $org_id, $date);
+        $stmt->bind_param("i", $org_id);
         $stmt->execute();
 
         $result = $stmt->get_result();
 
         $reservations = [];
-        if ($row = $result->fetch_assoc()) {
+        while ($row = $result->fetch_assoc()) {
             $reservation = new Reservation();
             $reservation->setID($row['reservation_id']);
-            $reservation->setCustomer($row['last_name']);
+            $reservation->setCustomer($row['customer_name']);
             $reservation->setProduct($row['prod_serv_name']);
 
             $totalPrice = $row['price'] * $row['qty'];
@@ -562,17 +561,16 @@ public function getSalesDataPointsForWeek($org_id)
         return $schedules;
     }
 
-    public function getPendingReservationsCount($org_id, $date)
+    public function getPendingReservationsCount($org_id)
     {
         $query = "SELECT COUNT(*) AS count
             FROM prod_org_sched
             JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id 
             WHERE prod_org_sched.org_id = ?
-            AND reservation.date = ? 
             AND reservation.status = 'Pending'";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("is", $org_id, $date);
+        $stmt->bind_param("i", $org_id);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -586,17 +584,16 @@ public function getSalesDataPointsForWeek($org_id)
         return $count;
     }
 
-    public function getCompletedReservationsCount($org_id, $date)
+    public function getCompletedReservationsCount($org_id)
     {
         $query = "SELECT COUNT(*) AS count 
             FROM prod_org_sched
             JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id 
             WHERE prod_org_sched.org_id = ?
-            AND reservation.date = ? 
             AND reservation.status = 'Completed'";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("is", $org_id, $date);
+        $stmt->bind_param("i", $org_id);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -614,16 +611,15 @@ public function getSalesDataPointsForWeek($org_id)
         return $result;
     }
 
-    public function getTotalReservationsCount($org_id, $date)
+    public function getTotalReservationsCount($org_id)
     {
         $query = "SELECT COUNT(*) AS count
             FROM prod_org_sched
             JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id 
-            WHERE prod_org_sched.org_id = ?
-            AND reservation.date = ?";
+            WHERE prod_org_sched.org_id = ?";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("is", $org_id, $date);
+        $stmt->bind_param("i", $org_id);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -640,18 +636,17 @@ public function getSalesDataPointsForWeek($org_id)
         return $result;
     }
 
-    public function getItemReservationsCount($org_id, $date)
+    public function getItemReservationsCount($org_id)
     {
         $query = "SELECT COUNT(*) AS count
             FROM prod_org_sched
             JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id
             INNER JOIN prod_serv ON reservation.prod_id = prod_serv.prod_id
             WHERE prod_org_sched.org_id = ?
-            AND reservation.date = ? 
             AND prod_serv.category = 'Item'";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("is", $org_id, $date);
+        $stmt->bind_param("i", $org_id);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -665,18 +660,17 @@ public function getSalesDataPointsForWeek($org_id)
         return $count;
     }
 
-    public function getFoodReservationsCount($org_id, $date)
+    public function getFoodReservationsCount($org_id)
     {
         $query = "SELECT COUNT(*) AS count
             FROM prod_org_sched
             JOIN reservation ON reservation.prod_id = prod_org_sched.prod_id
             INNER JOIN prod_serv ON reservation.prod_id = prod_serv.prod_id
             WHERE prod_org_sched.org_id = ?
-            AND reservation.date = ? 
             AND prod_serv.category = 'Food';";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("is", $org_id, $date);
+        $stmt->bind_param("i", $org_id);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -723,75 +717,24 @@ public function getSalesDataPointsForWeek($org_id)
         return $result;
     }
 
-    public function addSchedule($date, $startTime, $endTime, $loc_id): void
+    public function addSchedule($org_id, $date, $startTime, $endTime, $loc_id): void
     {
-        $query = "INSERT INTO schedule (date, start_time, end_time, loc_id) VALUES (?, ?, ?, ?)";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("sssi", $date, $startTime, $endTime, $loc_id);
-        $stmt->execute();
-        $stmt->close();
-    }
+        $date = date('Y-m-d', strtotime($date));
 
-    public function getSchedules($org_id)
-    {
-        include 'model/objects/Schedule.php';
-        $query = "SELECT prod_org_sched.org_id, schedule.*, location.loc_room, location.stall_number 
-            FROM prod_org_sched
-            JOIN schedule ON schedule.sched_id = prod_org_sched.sched_id
-            JOIN location ON location.loc_id = schedule.loc_id
-            WHERE org_id = ?";
-
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("i", $org_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        $schedules = [];
-
-        while ($row = $result->fetch_assoc()) {
-            $schedule = new SchedulePageModel();
-            $schedule->setDate($row['date']);
-            $schedule->setStartTime($row['start_time']);
-            $schedule->setEndTime($row['end_time']);
-            $schedule->setLocationRoom($row['loc_room']);
-            $schedule->setLocationStallNum($row['stall_number']);
-
-            $schedules[] = $schedule->toArray();
-        }
-
-        $stmt->close();
-        return $schedules;
-    }
-
-    public function getSchedule($org_id, $date, $startTime, $endTime, $loc_id)
-    {
-        include 'model/objects/Schedule.php';
-        $query = "SELECT prod_org_sched.org_id, schedule.*,
-        FROM prod_org_sched
-        JOIN schedule ON schedule.sched_id = prod_org_sched.sched_id
-        WHERE prod_org_sched.org_id = ?
-        AND schedule.date = ?
-        AND schedule.start_time = ?
-        AND schedule.end_time = ?
-        AND loc_id = ?";
-
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("isssi", $org_id, $date, $startTime, $endTime, $loc_id);
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-
-        return $result;
+        $query = "INSERT INTO schedule(loc_id, org_id, date, start_time, end_time) VALUES (?, ?, ?, ?, ?)";
+        $stmt1 = $this->conn->prepare($query);
+        $stmt1->bind_param("iisss", $loc_id, $org_id, $date, $startTime, $endTime);
+        $stmt1->execute();
+        $stmt1->close();
     }
 
     public function getScheduleThisWeek($org_id, $startDate, $endDate)
     {
         include 'model/objects/Schedule.php';
-        $query = "SELECT prod_org_sched.org_id, schedule.*, location.loc_room, location.stall_number 
-            FROM prod_org_sched
-            JOIN schedule ON schedule.sched_id = prod_org_sched.sched_id
+        $query = "SELECT schedule.*, location.loc_room, location.stall_number 
+            FROM schedule
             JOIN location ON location.loc_id = schedule.loc_id
-            WHERE prod_org_sched.org_id = ?
+            WHERE schedule.org_id = ?
             AND schedule.date BETWEEN ? AND ?";
 
         $stmt = $this->conn->prepare($query);
@@ -836,6 +779,16 @@ public function getSalesDataPointsForWeek($org_id)
         $isUpdated = $stmt->affected_rows > 0;
         $stmt->close();
         return $isUpdated;
+    }
+
+    public function addSales($customer_id, $reservation_id, $grand_total) {
+        $query = "INSERT INTO sales (customer_id, reservation_id, grand_total)
+                    VALUES(?,?,?) ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("iid", $customer_id, $reservation_id, $grand_total);
+        $stmt->execute();
+        $stmt->close();
+        return true;
     }
 
     public function getAllScheduleByWeek() {

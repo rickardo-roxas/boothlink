@@ -14,6 +14,8 @@ function populateTable(reservations) {
                     <td class="actions-column">
                         <form action="/cs-312_boothlink/reservations/complete" method="POST"  onsubmit="return confirm('Are you sure you want to accept this reservation?')">
                             <input type="hidden" name="reservation_id" value="${reservation.id}">
+                            <input  name="customer_id" value="${reservation.customer_id}">
+                            <input type="hidden" name="grand_total" value="${reservation.price}">
                             <button class="accept-btn" type="submit">Mark As Completed</button>
                         </form>
                         <form action="/cs-312_boothlink/reservations/reject" method="POST" onsubmit="return confirm('Are you sure you want to reject this reservation?')">
@@ -29,11 +31,11 @@ function populateTable(reservations) {
             const rowHTML = `
                 <tr>
                     <td>${reservation.id}</td>
-                    <td>${reservation.date}</td>
+                    <td>${formatDate(reservation.date)}</td>
                     <td>${reservation.product}</td>
                     <td>${reservation.quantity}</td>
                     <td><span class="category-text">${reservation.category}</span></td>
-                    <td>₱ ${parseFloat(reservation.price).toFixed(2)}</td>
+                    <td>₱ <span style="text-align: right">${parseFloat(reservation.price).toFixed(2)}</span></td>
                     <td>${reservation.status}</td>
                     <td>${reservation.customer}</td>
                     ${actionButtonsHTML}
@@ -50,6 +52,11 @@ function populateTable(reservations) {
         `;
         tbody.innerHTML = noReservationsRow;
     }
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(date);
 }
 
 populateTable(reservations);

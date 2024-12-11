@@ -13,7 +13,7 @@ require('view/page-fragments/Header.php');
                     <h2>Reservations</h2>
                 </div>
                 <div class="action-buttons">
-                    <form action = "<?php echo BASE_URL ?>/reservations" method = "GET">
+                    <form action = "/reservations" method = "GET">
                         <label>
                             <select class="category-filter" name="status" onchange="this.form.submit()">
                                 <option value="" disabled selected>Status</option>

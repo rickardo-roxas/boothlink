@@ -21,7 +21,7 @@ require('view/page-fragments/Header.php');
                         </button>
                     </a>
 
-                    <form action = "<?php echo BASE_URL ?>/products" method = "GET">
+                    <form action = "/products" method = "GET">
                         <label>
                             <select class="category-filter" name="category" onchange="this.form.submit()">
                                 <option value="" disabled selected>Category</option>

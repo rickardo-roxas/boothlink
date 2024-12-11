@@ -21,9 +21,11 @@ class ActionReservationsController
     public function completeReservation()
     {
         $reservation_id = $_GET['reservation_id'] ?? $_POST['reservation_id'] ?? null;
+        $customer_id = $_GET['customer_id'] ?? $_POST['customer_id'] ?? null;
+        $grand_total = $_GET['grand_total'] ?? $_POST['grand_total'] ?? null;
 
         if ($reservation_id != null) {
-            $result = $this->actionReservationsModel->acceptReservation($reservation_id);
+            $result = $this->actionReservationsModel->acceptReservation($customer_id, $reservation_id, $grand_total);
             if ($result) {
                 header('location: /cs-312_boothlink/reservations');
             } else {
