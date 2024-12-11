@@ -1,3 +1,21 @@
+/**
+Shop Routes (Express Router)
+
+This module defines the routes related to the shop section of an e-commerce application. 
+It handles HTTP requests for viewing products, filtering by categories, adding products 
+to the cart, and reserving items. The routes also interact with different controllers to 
+manage shop-related logic, such as sorting products and handling user interactions.
+
+Dependencies
+    express: The web application framework used to create the routes.
+    Dynamic Controller Import: The controller is dynamically imported based on the route
+    and the action to be performed (e.g., ShopController, ShopBoothController, 
+        ShopProductController).
+        
+Module Export
+    This module exports an Express router that is used to handle requests for shop-related 
+    actions.
+ */
 const express = require('express');
 
 var controller;
@@ -5,7 +23,7 @@ var controller;
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    if(!req.session.cart) {
+    if (!req.session.cart) {
         req.session.cart = []
     }
 
@@ -66,7 +84,7 @@ router.get('/booth', (req,res)=> {
                 controller.sortByCategory(boothParameter, "item", req, res);
                 break;
             case "service":
-                controller.sortByCategory(boothParameter, "sevice", req, res);
+                controller.sortByCategory(boothParameter, "service", req, res);
                 break;
             case "food":
                 controller.sortByCategory(boothParameter, "food", req, res);
@@ -89,10 +107,16 @@ router.get('/reserve', (req,res) => {
     ctrler.index(productID, req,res);
 });
 
-router.post('/add-to-cart', (req,res) => {
-    ctrler = require('../shop/ShopProductController'); 
-    ctrler.addProductToCart(req, res);
-    res.redirect('/')
+router.get('/add-to-cart', (req,res) => {
+    ctrler = require('../shop/ShopProductController');
+    let org_id = req.query.org_id;
+    let prod_id = req.query.prod_id;
+    let prod_qty = req.query.prod_qty;
+    let prod_sched = req.query.radio_group;
+
+    console.log("TEST: " + org_id + prod_id + prod_qty);
+
+    ctrler.addProductToCart(org_id, prod_id, prod_qty, prod_sched, req, res);
 });
 
 module.exports = router;

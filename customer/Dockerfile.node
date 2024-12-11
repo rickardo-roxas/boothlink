@@ -8,6 +8,8 @@ RUN npm install --unsafe-perm
 
 RUN npm install -g nodemon
 
+RUN npm install -g cookie-parser
+
 COPY . .
 
 EXPOSE 3000

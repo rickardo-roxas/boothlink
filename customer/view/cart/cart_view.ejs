@@ -2,69 +2,177 @@
 <%- include('../partials/navbar.ejs')%>
 <link rel="stylesheet" href="/cart.css">
 <main>
+    <%- include('../partials/breadcrumbs.ejs') %>
     <div class="container heading">
         <img class="icon" src="/icons/logo-black-outline.png" alt="Cart icon">
         <h2>Your Cart</h2>
     </div>
-    <div id="cart-table" class="column-container">
-        <div class="head">
-            <div class="container select-all">
-                <input type="checkbox">
-                <p>Select All Products/Services</p>
-            </div>
-            <p>Pickup</p>
-            <p>Unit Price</p>
-            <p>Quantity</p>
-            <p>Total Price</p>
-            <p></p>
-        </div>
-        <div class="body column-container">
-            <div class="org-wrapper">
-                <div class="org container">
-                    <input class="org-checkbox" type="checkbox">
-                    <h3 class="org-name">SCHEMA</h3>
-                </div>
-                <div class="item container">
-                    <div class="container prod">
-                        <input class="item-checkbox" type="checkbox">
-                        <img src="/images/placeholder.jpeg">
-                        <p>Black Man (Gwapo)</p>
-                    </div>
-                    <div>
-                        <select class="pickup">
-                            <option>Nov. 23 - 8 AM</option>
-                        </select>
-                    </div>
-                    <p class="unit-price">₱ 500.00</p>
-                    <div>
-                        <input type="number" class="qty" min="1" max="10"></input>
-                    </div>
-                    <p class="total-price">₱ 700.00</p>
-                    <button class="remove-btn">
-                        Remove
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="foot container">
-            <div class="container">
+    <form method="post" action="/cart/checkout" id="checkout-form">
+        <div id="cart-table" class="column-container">
+            <div class="head">
                 <div class="container select-all">
-                    <input type="checkbox">
-                    <p>Select All Products</p>
+                    <input type="checkbox" id="select-all" onclick="toggleSelectAll(this)">
+                    <p>Select All Products/Services</p>
                 </div>
-                <button class="clear-btn">Clear Cart</button>
+                <p>Pickup</p>
+                <p>Unit Price</p>
+                <p>Quantity</p>
+                <p>Total Price</p>
+                <p></p>
             </div>
-            <div class="container total">
-                <p>Total (1 item): <span id="grand-total">₱ 700.00</span></p>
-                <form method="get" action="/cart/checkout">
-                    <button class="checkout-btn">
+            <div class="body column-container">
+                <% if (Object.keys(orgProducts).length > 0) { %>
+                    <% for (const [orgName, products] of Object.entries(orgProducts)) { %>
+                        <div class="org-wrapper">
+                            <div class="org container">
+                                <input class="org-checkbox" type="checkbox" onclick="toggleOrgSelection(this)">
+                                <h3 class="org-name"><%= orgName %></h3>
+                            </div>
+                            <% products.forEach(product => { %>
+                                <div class="item container">
+                                    <div class="container prod">
+                                        <input class="item-checkbox" type="checkbox" name="selected-products[]" value="<%= product.id %>" onclick="updateTotal()">
+                                        <img src="<%= product.image %>" alt="<%= product.name %>">
+                                        <% console.log(product); %>
+                                        <p><%= product.name %></p>
+                                    </div>
+                                    <div>
+                                        <select class="pickup">
+                                            <% product.schedules.forEach(schedule => { %>
+                                                <option value="<%= schedule.sched_id %>" <%= schedule.sched_id === product.selectedSchedule ? 'selected' : '' %>>
+                                                    <%= formatDateTime(schedule.date, schedule.start_time) %>
+                                                </option>
+                                            <% }) %>
+                                        </select>                                
+                                    </div>
+                                    <p class="unit-price">₱ <%= product.price %></p>
+                                    <div>
+                                        <input type="number" class="qty" min="1" max="10" value="<%= product.quantity %>" onchange="updateTotal()">
+                                    </div>
+                                    <p class="total-price">₱ <%= (parseFloat(product.quantity) * parseFloat(product.price)).toFixed(2) %></p>
+                                    <form method="get" action="/cart/remove" class="remove-form">
+                                        <input type="hidden" name="product_id" value="<%= product.id %>">
+                                        <button type="submit" class="remove-btn">Remove</button>
+                                    </form>
+                                </div>
+                            <% }); %>
+                        </div>
+                    <% } %>
+                <% } else { %>
+                    <p>No products in the cart.</p>
+                <% } %>
+            </div>
+            <!-- <div class="body column-container">
+                <div class="org-wrapper">
+                    <div class="org container">
+                        <input class="org-checkbox" type="checkbox">
+                        <h3 class="org-name">SCHEMA</h3>
+                    </div>
+                    <div class="item container">
+                        <div class="container prod">
+                            <input class="item-checkbox" type="checkbox">
+                            <img src="/images/placeholder.jpeg">
+                            <p>Black Man (Gwapo)</p>
+                        </div>
+                        <div>
+                            <select class="pickup">
+                                <option>Nov. 23 - 8 AM</option>
+                            </select>
+                        </div>
+                        <p class="unit-price">₱ 500.00</p>
+                        <div>
+                            <input type="number" class="qty" min="1" max="10"></input>
+                        </div>
+                        <p class="total-price">₱ 700.00</p>
+                        <button class="remove-btn">
+                            Remove
+                        </button>
+                    </div>
+                </div>
+            </div> -->
+            <div class="foot container">
+                <div class="container">
+                    <div class="container select-all">
+                        <input type="checkbox" id="select-all-footer" onclick="toggleSelectAll(this)">
+                        <p>Select All Products</p>
+                    </div>
+                    <form method="post" action="/cart/clear">
+                        <button class="clear-btn">Clear Cart</button>
+                    </form>
+                </div>
+                <div class="container total">
+                    <p>Total (<span id="selected-items-count">0</span> item(s)): <span id="grand-total">₱ 0.00</span></p>
+                    <button type="submit" class="checkout-btn" id="checkout-btn" disabled>
                         Check Out
                     </button>
-                </form>
+                </div>
             </div>
-
         </div>
-    </div>
-
+    </form>
 </main>
 <%- include('../partials/footer.ejs')%>
+
+<script>
+    function updateTotal() {
+        let total = 0;
+        let selectedItems = 0;
+        let totalQuantity = 0;
+
+        const checkoutForm = document.getElementById('checkout-form');
+        checkoutForm.querySelectorAll('input[type="hidden"]').forEach(input => input.remove());
+
+        const selectedProducts = document.querySelectorAll('input[name="selected-products[]"]:checked');
+
+        selectedProducts.forEach(selectedProduct => {
+            const productRow = selectedProduct.closest('.item');
+            const qty = parseInt(productRow.querySelector('.qty').value);
+            const price = parseFloat(productRow.querySelector('.unit-price').textContent.replace(/[^\d.-]/g, ''));
+            const schedId = productRow.querySelector('.pickup').value;
+            const prodId = selectedProduct.value;
+            const orgName = productRow.closest('.orgName');
+            
+            const productTotal = price * qty;
+            total += productTotal;
+            selectedItems++;
+            totalQuantity += qty;
+
+            const productData = {
+                prod_id: prodId,
+                sched_id: schedId,
+                qty: qty,
+            };
+
+            const productDataInput = document.createElement('input');
+            productDataInput.type = 'hidden';
+            productDataInput.name = 'selected-products';
+            productDataInput.value = JSON.stringify(productData); 
+            checkoutForm.appendChild(productDataInput); 
+
+            productRow.querySelector('.total-price').textContent = '₱ ' + productTotal.toFixed(2);
+        });
+
+        document.getElementById('grand-total').textContent = '₱ ' + total.toFixed(2);
+        document.getElementById('selected-items-count').textContent = totalQuantity;
+
+        const checkoutButton = document.getElementById('checkout-btn');
+        checkoutButton.disabled = selectedItems === 0;
+    }
+
+
+    function toggleSelectAll(checkbox) {
+        const itemCheckboxes = document.querySelectorAll('input[name="selected-products[]"]');
+        itemCheckboxes.forEach(itemCheckbox => {
+            itemCheckbox.checked = checkbox.checked;
+        });
+        updateTotal();
+        console.log(itemCheckboxes)
+    }
+
+    function toggleOrgSelection(checkbox) {
+        const orgProducts = checkbox.closest('.org-wrapper').querySelectorAll('input[name="selected-products[]"]');
+        orgProducts.forEach(productCheckbox => {
+            productCheckbox.checked = checkbox.checked;
+        });
+        updateTotal();
+    }
+</script>

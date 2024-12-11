@@ -1,3 +1,14 @@
+/*
+    Customer Queries Module
+
+    This module contains all the functions that directly interact with the database for 
+    querying related to the customer side. These queries include fetching customer 
+    information, fetching products in stock, sorting products by price or category, 
+    and retrieving reservation details.
+
+Dependencies
+    db.conn: This is the database connection pool object used to run SQL queries.
+*/
 const db = require("../config/Conn");
 const conn = db.conn;
 
@@ -344,6 +355,55 @@ function getReservationsByStatus(status, username, callback){
     })
 }
 
+function getCustomerID(username, callback) {
+    const query = "SELECT " + 
+                  "customer_id " + 
+                  "FROM customer " +
+                  "WHERE customer.username = ?";
+
+    conn.query(query, [username], (err, results) => {
+        if(err){
+            console.log(err);
+            return callback(err, null);
+        }else{
+            return callback(null, results);
+        }
+    })
+}
+
+function addReservation(prod_id, date, qty, customer_id, callback) {
+    const query = "INSERT INTO reservation (customer_id, prod_id, qty, date, status) " +
+                    "VALUES (?, ?, ?, ?, 'Pending')"
+
+    conn.query(query, [customer_id, prod_id, qty, date], (err, results) => {
+        if(err) {
+            console.log(err);
+            return callback(err, null);
+        } else {
+            return callback(null, results);
+        }
+    })
+}
+
+function getSchedule(sched_id, callback) {
+    const query = "SELECT " + 
+                  "date " + 
+                  "FROM schedule " +
+                  "WHERE sched_id = ?";
+
+    conn.query(query, [sched_id], (err, results) => {
+        if(err){
+            console.log(err);
+            return callback(err, null);
+        }else{
+            return callback(null, results);
+        }
+    })
+}
+
+function getBestSelling() {
+
+}
 
 module.exports = {
     getFirstName,
@@ -361,5 +421,9 @@ module.exports = {
     getSearchedProductByName,
     getShopProductsByPriceInOrganization,
     getShopProductsByCategoryInOrganization,
-    getFiveShopProducts
+    getFiveShopProducts,
+    addReservation,
+    getCustomerID,
+    getBestSelling,
+    getSchedule,
 }

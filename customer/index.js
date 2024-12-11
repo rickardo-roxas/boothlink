@@ -1,4 +1,19 @@
+/**
+    Index.js
+
+    Manages the web platform, using routes and session management to handle user interactions. 
+    It provides routes for the homepage, reservations, shopping, and cart functionalities. 
+    The app uses EJS as its view engine to render dynamic content, displaying data from the 
+    backend based on user input. It also implements session handling with express-session, 
+    ensuring that users are authenticated before accessing certain pages (such as reservations 
+    or cart). The app includes a login mechanism where the user’s credentials are stored in the 
+    session, and a logout functionality that destroys the session. Static assets such as images,
+    CSS, and JavaScript are served to the client. Additionally, error handling redirects any invalid 
+    requests to a default page, ensuring smooth navigation within the platform.
+ */
 const express = require('express')
+const cookieParser = require('cookie-parser'); 
+
 
 // express app
 const app = express();
@@ -28,6 +43,9 @@ app.use(express.static('./public/css'));
 app.use(express.static('./shared/assets'));
 app.use(express.static('./shared/assets/images/org'));
 app.use(express.static('./shared/assets/prod_img'));
+app.use(express.static('./public/js'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Just gives information on the request
 app.use((req, res, next) => {
@@ -46,12 +64,21 @@ app.use(session({
     cookie: {secure : false}
 }));
 
+app.use(cookieParser()); 
+
 app.use('/login/:id/:username', (req, res) =>{
     var {id, username} = req.params;
     id = atob(id);
     username = atob(username);
     req.session.customerID=id;
     req.session.username=username;
+
+    if (req.cookies.cart) {
+        req.session.cart = JSON.parse(req.cookies.cart); 
+    } else {
+        req.session.cart = [];
+    }
+
     res.redirect(`/`);
 });
 
@@ -63,17 +90,15 @@ app.use((req,res, next) => {
     next();
 });
 
-
-app.use(`/reservations`, reservationsRouter);
-app.use(`/shop`, shopRouter);
-app.use(`/cart`, cartRouter)
-app.use(`/`, homeRouter);
-
 app.use('/reservations', reservationsRouter);
 app.use('/shop', shopRouter);
 app.use('/cart', cartRouter)
 app.use('/', homeRouter);
 app.get('/logout', (req,res) => {
+    if (req.session.cart) {
+        res.cookie('cart', JSON.stringify(req.session.cart), { maxAge: 365 * 24 * 60 * 60 * 1000 });
+    }
+
     if (req.session) {
         req.session.destroy();
         res.redirect('/cs-312_boothlink/login');

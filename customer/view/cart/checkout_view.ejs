@@ -1,7 +1,9 @@
 <%- include('../partials/header.ejs') %>
-<%- include('../partials/navbar.ejs')%>
+<%- include('../partials/navbar.ejs') %>
 <link rel="stylesheet" href="/checkout.css">
+
 <main>
+    <%- include('../partials/breadcrumbs.ejs') %>
     <div class="container heading">
         <img class="icon" src="/icons/checkout-black-outline.png" alt="checkout icon">
         <h2>Checkout</h2>
@@ -11,64 +13,40 @@
             <div class="container">
                 <p>Products/Services</p>
             </div>
-            <p>Pickup</p>
             <p>Unit Price</p>
             <p>Quantity</p>
             <p>Total Price</p>
         </div>
+        
         <div class="body column-container">
-            <div class="org-wrapper">
-                <div class="container heading">
-                    <img class="icon" src="/assets/icons/checkout-black-outline.png">
-                    <h3>SCHEMA</h3>
-                </div>
+            <% products.forEach(product => { %>
                 <div class="item container">
                     <div class="container prod">
-                        <img src="/images/placeholder.jpeg">
-                        <p>Black Man (Gwapo)</p>
+                        <img src="<%= product.image %>" alt="<%= product.name %>">
+                        <p><%= product.name %></p>
                     </div>
-                    <p class="selected-pickup">Nov. 23 - 8 AM</p>
-                    <p class="unit-price">₱ 500.00</p>
-                    <p class="select-qty">2</p>
-                    <p class="selected-total">₱ 700.00</p>
+                    <p class="unit-price">₱ <%= product.price.toFixed(2) %></p>
+                    <p class="select-qty"><%= product.quantity %></p>
+                    <p class="selected-total">₱ <%= (product.price * product.quantity).toFixed(2) %></p>
                 </div>
-                <div class="container booth-footer">
-                    <div class="column-container">
-                        <p>For any special inquiries, please contact us through:</p>
-                        <div class="container">
-                            <a class="social-link container" href="" target="_blank">
-                                <img class="icon" src="/icons/soc-med/facebook.png">
-                                <p>www.facebook.com/schemaslu</p>
-                            </a>
-                            <a class="social-link container" href="" target="_blank">
-                                <img class="icon" src="/icons/soc-med/instagram.png">
-                                <p>www.facebook.com/schemaslu</p>
-                            </a>
-                            <a class="social-link container" href="" target="_blank">
-                                <img class="icon" src="/icons/soc-med/twitter.png">
-                                <p>www.facebook.com/schemaslu</p>
-                            </a>
-                        </div>
-                        
-                    </div>
-                    <div class="booth-total">
-                        <p>Booth Total (<span id="booth-qty">5 items</span>): <span id="booth-price">₱ 700.00</span></p>
-                    </div>
-                </div>
-            </div>
+            <% }) %>
         </div>
+
         <div class="checkout-totals">
-            <p>Grand Total (<span id="total-qty">5 items</span>): <span id="grand-total">₱ 700.00</span></p>
+            <p>Grand Total (<span id="total-qty"><%= products.length %> items</span>): <span id="grand-total">₱ 
+            <%= products.reduce((total, product) => total + (product.price * product.quantity), 0).toFixed(2) %></span></p>
         </div>
+
         <div class="foot container">
             <p class="cash-payment-reminder">*Cash payment must be paid to the respective booths.</p>
             <div class="cash">
                 <p>Cash</p>
             </div>
             <form method="post" action="/cart/receipt">
-                <button class="checkout-btn">Reserve</button>
+                <button type="submit" class="checkout-btn">Reserve</button>
             </form>
         </div>
     </div>
 </main>
-<%- include('../partials/footer.ejs')%>
+
+<%- include('../partials/footer.ejs') %>

@@ -18,3 +18,47 @@ Saint Louis University License
 
 ## Project status
 This project is under development.
+
+## Installation
+### Prerequisites
+Before getting started, ensure that Docker is installed on your system. If Docker is not installed, follow the instructions provided in the official Docker documentation:
+
+https://www.docker.com/products/docker-desktop/
+
+### Setting Up the Application
+1. Clone the Repository:
+Clone this repository to your local machine by running the following command in your terminal:
+git clone <https://gitlab.com/2233375/cs-312_boothlink.git>
+
+2. Install Docker:
+Make sure Docker is running on your machine. Open a terminal and navigate to the project directory:
+cd <cs-312_boothlink>
+
+3. Build and Run Containers:
+Run the following command to build the Docker images and start the containers:
+docker-compose up --build
+
+Wait for the build process to complete. Once the images and containers are successfully built, the application will be up and running.
+
+4. Set Up the Customer Interface:
+After the containers are running, navigate to the customer directory:
+cd customer
+
+Install the required dependencies by running the following command:
+npm install
+
+### Accessing the Application
+Once the application is set up and the dependencies are installed, you can access the website through the following URL:
+
+http://localhost:3000
+
+1. Logging In
+To log in, use the following credentials:
+
+Vendor Account:
+Username: ramon
+Password: ramon
+
+Customer Account:
+Username: john_doe
+Password: password123

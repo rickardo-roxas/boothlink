@@ -1,9 +1,29 @@
+/**
+Shop Controller
+
+This module defines the logic for handling requests related to the shop, 
+including fetching and displaying products, filtering and sorting products 
+by category or price, and performing product searches. It interacts with the 
+underlying Shop model to retrieve product and booth data and then renders the 
+appropriate view.
+
+Dependencies
+    model: The Shop model, which contains the business logic for fetching products, 
+    booths, and applying filters (e.g., by price or category).
+
+Module Export
+    This module exports an object containing the following functions: index, sortByPrice, 
+    sortByCategory, and allProducts.
+ */
 const model = require('../../model/shop/Shop');
 
 var productsPromise;
 
 function index(req, res) {
     const searchTerm = req.query.value;
+    const breadcrumbs = [
+        { label: "Shop", link: "/shop" },
+    ];
 
     
     if (searchTerm) {
@@ -24,6 +44,7 @@ function index(req, res) {
                 title: searchTerm ? `Search Results for "${searchTerm}"` : "Shop",
                 booths: values[0],
                 products: values[1],
+                breadcrumbs
             });
         })
 }

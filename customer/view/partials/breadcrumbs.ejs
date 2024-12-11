@@ -1,0 +1,9 @@
+<nav class="breadcrumbs">
+    <% breadcrumbs.forEach((breadcrumb, index) => { %>
+        <% if (index < breadcrumbs.length - 1) { %>
+            <a href="<%= breadcrumb.link %>"><%= breadcrumb.label %></a> >
+        <% } else { %>
+            <span><%= breadcrumb.label %></span>
+        <% } %>
+    <% }); %>
+</nav>

@@ -1,3 +1,18 @@
+/**
+Shop Product Controller
+
+This module defines the logic for handling requests related to individual products in the 
+shop, including displaying product details, schedules, and adding products to the cart. 
+It interacts with the ShopProduct model to retrieve product and schedule data, as well as 
+handle cart functionality.
+
+Dependencies
+    model: The ShopProduct model is imported, which contains methods for retrieving product 
+    details, schedules, and managing the shopping cart.
+
+Module Export
+    This module exports an object containing two functions: index and addProductToCart. 
+*/
 const model = require("../../model/shop/ShopProduct");
 
 function index(id, req, res) {
@@ -5,33 +20,58 @@ function index(id, req, res) {
     let schedulesPromise = model.getSchedulesByProductID(id);
 
     Promise.all([productPromise, schedulesPromise]).then(results => {
+        const breadcrumbs = [
+            { label: "Shop", link: "/shop" },
+            { label: "Reserve", link: `/shop/reserve/${id}` }, 
+        ];
+
         res.render("shop/shop_product_view", {
             title: "Shop Product",
     
             // Dynamic Objects
             product : results[0],
-            schedules : results[1]
+            schedules : results[1],
+            breadcrumbs,
+            prod_id: id
         });
     });
 }
 
-function addProductToCart(req, res) {
-    let org_id = req.query.org_id
-    let prod_id = req.query.prod_id
-    let prod_qty = req.query.prod_qty; 
+function addProductToCart(org_id, prod_id, prod_qty, prod_sched, req, res) {
+
     const product = {
-        product_id: prod_id,
-        product_qty: prod_qty,
-        // to add other information
+        product_id: parseInt(prod_id),
+        product_qty: parseInt(prod_qty),
+        product_sched : parseInt(prod_sched)
     };
-    model.addProductToCart(req.session, org_id, product);
 
-    req.session.alertMessage = 'Product successfully added to the cart!';
-    
-    // to change redirection to the same page.
-    res.redirect('/cart');
+    if (!req.session.cart) {
+        req.session.cart = [];
+    }
+
+    let org = req.session.cart.find(org => org.org_id === org_id);
+
+    if (!org) {
+        org = {
+            org_id: org_id,
+            products: [],
+        };
+        req.session.cart.push(org);
+    }
+
+    let cartProduct = org.products.find(prod => prod.product_id === product.product_id);
+
+    if (cartProduct) {
+        cartProduct.product_qty += product.product_qty;
+        cartProduct.product_sched = product.product_sched; 
+    } else {
+        // Add new product to the organization's products list
+        org.products.push(product);
+    }
+
+    console.log("Updated Session Cart:", JSON.stringify(req.session.cart, null, 2));
+    res.redirect('/cart'); // To change to an alert message
 }
-
 
 module.exports = {
     index,
