@@ -9,7 +9,7 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - boothlink-net
+      - multi-host-network
 
   vendor:
     build:
@@ -23,7 +23,7 @@ services:
     ports:
       - "8080:80"
     networks:
-      - boothlink-net
+      - multi-host-network
 
   database:
     image: mysql
@@ -36,8 +36,8 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - boothlink-net
+      - multi-host-network
 
 networks:
-  boothlink-net:
+  multi-host-network:
     external: true
