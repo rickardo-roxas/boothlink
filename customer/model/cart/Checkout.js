@@ -7,16 +7,14 @@ function getCheckout(session) {
 
         // Filter to ensure only valid objects are processed
         const products = checkout
-            .filter(item => typeof item === 'object' && item.prod_id && item.qty && item.sched_id && item.org_id)
+            .filter(item => typeof item === 'object' && item.product_id && item.product_qty && item.product_sched)
             .map(item => ({
-                prod_id: item.prod_id,
-                qty: item.qty,
-                sched_id: item.sched_id,
-                org_id: item.org_id,
+                prod_id: item.product_id,  
+                qty: item.product_qty,      
+                sched_id: item.product_sched 
             }));
 
         if (products.length === 0) {
-            console.error("Invalid session data: No valid products found");
             resolve([]);
             return;
         }
@@ -33,7 +31,6 @@ function getCheckout(session) {
                 prod_id: product.prod_id,
                 quantity: product.qty,
                 schedule: product.sched_id,
-                org_id: product.org_id,
             }));
         });
 
@@ -45,7 +42,6 @@ function getCheckout(session) {
             });
     });
 }
-
 
 function getProductInfo(prod_id) {
     return new Promise((resolve, reject) => {
@@ -63,30 +59,34 @@ function getOrgDetails(org_id) {
     })
 }
 
-function createReservation(username, prod_id, date, qty) {
+function getCustomerID(username) {
     return new Promise((resolve, reject) => {
-        getCustomerID(username)
-            .then(result => {
-                if (result.length === 0) {
-                    reject(new Error('Customer not found.'));
-                    return;
-                }
-                const customer_id = result[0].customer_id;
-
-                return createReservation(prod_id, date, qty, customer_id);
-            })
-            .then(reservationResult => {
-                resolve(reservationResult);  
-            })
-            .catch(err => {
-                reject(err); 
-            });
-    });
+        customerQueries.getCustomerID(username, (error, results) => {
+            error ? reject(error) : resolve(results)
+        })
+    })
 }
 
+function getScheduleDate(sched_id) {
+    return new Promise((resolve, reject) => {
+        customerQueries.getSchedule(sched_id, (error, results) => {
+            error ? reject(error) : resolve(results)
+        })
+    })
+}
+
+function createReservation(customer_id, prod_id, date, qty) {
+    return new Promise((resolve, reject) => {
+        customerQueries.addReservation(prod_id, date, qty, customer_id, (error, results) => {
+            error ? reject(error) : resolve(results)
+        })
+    })
+}
 
 module.exports = {
     getProductInfo,
     getCheckout,
-    createReservation
+    createReservation,
+    getCustomerID,
+    getScheduleDate,
 };

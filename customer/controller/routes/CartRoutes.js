@@ -15,11 +15,13 @@ router.use((req, res, next) => {
     if (!req.session.checkout) {
         req.session.checkout = []
     }
-
     next();
 });
 
 router.get('/', (req, res) => {
+    if (!req.session.checkout) {
+        req.session.checkout = []
+    }
     cartController.index(req,res);
 })
 
@@ -38,38 +40,53 @@ router.post('/clear', (req,res) => {
 })
 
 router.post('/checkout', (req, res) => {
-    // Log the request body for debugging
+    if (!req.session.checkout) {
+        req.session.checkout = []
+    }
+
     console.log('Request Body:', req.body);
+    let checkout = req.session.checkout;
 
-    // Extract selected products from the request
-    const selectedProductsData = req.body['selected-products'];
+    const selectedProducts = req.body['selected-products'];
 
-    // Check if the data is valid
-    if (!selectedProductsData) {
+    if (!selectedProducts) {
         console.error("No selected products found in the request body.");
-        return res.status(400).send("Invalid data received.");
     }
 
-    try {
-        // Handle both string and array cases
-        const selectedProducts = Array.isArray(selectedProductsData)
-            ? selectedProductsData.map(productData => JSON.parse(productData))
-            : [JSON.parse(selectedProductsData)];
+    cartController.addToCheckout(selectedProducts, req, res)
 
-        // Save selected products to session
-        req.session.checkout = selectedProducts;
+    console.log("Updated Session Checkout:", JSON.stringify(checkout, null, 2));
 
-        console.log("Updated Session Checkout:", JSON.stringify(req.session.checkout, null, 2));
-
-        checkoutController.index(req,res) // Redirect to the checkout page
-    } catch (error) {
-        console.error("Error processing selected products:", error);
-        res.status(500).send("An error occurred while processing your request.");
-    }
+    checkoutController.index(req,res) 
 });
 
-router.post('/receipt', (req,res) => {
-    receiptController.index(req,res)
-})
+router.post('/receipt', (req, res) => {
+    if (!req.session.checkout) {
+        req.session.checkout = [];
+    }
+
+    const checkoutItems = req.session.checkout;
+
+    const reservationPromises = checkoutItems.map(item => {
+        const { product_id, product_qty, product_sched } = item; 
+
+        return checkoutController.createReservation(req.session.username, product_id, product_sched, product_qty);
+    });
+
+    Promise.all(reservationPromises)
+        .then(() => {
+            // After all reservations are created, clear the checkout session
+            req.session.checkout = [];
+
+            receiptController.index(req, res);
+        })
+        .catch(error => {
+            console.error("Error creating reservations:", error);
+            res.status(500).send("Error creating reservation.");
+        });
+});
+
+module.exports = router;
+
 
 module.exports = router;

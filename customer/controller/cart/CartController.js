@@ -52,6 +52,7 @@ const index = (req, res) => {
                 orgProducts,
                 formatDateTime,
                 removeItem,
+                addToCheckout
             })
         })
     })
@@ -64,48 +65,59 @@ function addToCheckout(selectedItems, req, res) {
         return;
     }
 
-    const product = {
-        product_id: parseInt(prod_id),
-        product_qty: parseInt(prod_qty),
-        product_sched : parseInt(prod_sched)
-    };
-
     if (!req.session.checkout) {
         req.session.checkout = [];
     }
 
     selectedItems.forEach(item => {
-        const { org_id, product_id, product_qty, product_sched } = item;
+        let parsedItem;
 
-        const product = {
-            product_id: parseInt(product_id),
-            product_qty: parseInt(product_qty),
-            product_sched: parseInt(product_sched),
-        };
-
-        let org = req.session.checkout.find(org => org.org_id === org_id);
-
-        if (!org) {
-            org = {
-                org_id: org_id,
-                products: [],
-            };
-            req.session.checkout.push(org);
+        try {
+            parsedItem = JSON.parse(item); 
+        } catch (e) {
+            console.error("Failed to parse item as JSON:", item);
+            return; // Skip invalid items
         }
 
-        let cartProduct = org.products.find(prod => prod.product_id === product.product_id);
+        if (!parsedItem || typeof parsedItem !== 'object') {
+            console.error("Parsed item is not a valid object:", parsedItem);
+            return; // Skip invalid items
+        }
+
+        const { prod_id, sched_id, qty } = parsedItem;
+
+        if (
+            !prod_id || isNaN(parseInt(prod_id)) ||
+            !sched_id || isNaN(parseInt(sched_id)) ||
+            !qty || isNaN(parseInt(qty))
+        ) {
+            console.error("Invalid item properties:", parsedItem);
+            return; // Skip invalid items
+        }
+
+        const product = {
+            product_id: parseInt(prod_id),
+            product_qty: parseInt(qty),
+            product_sched: parseInt(sched_id),
+        };
+
+        let cartProduct = req.session.checkout.find(
+            prod => prod.product_id === product.product_id
+        );
 
         if (cartProduct) {
+            // If it exists, update the quantity and schedule
             cartProduct.product_qty += product.product_qty;
             cartProduct.product_sched = product.product_sched;
         } else {
-            org.products.push(product);
+            // Otherwise, add the new product directly to the session cart
+            req.session.checkout.push(product);
         }
     });
 
-    console.log("Updated Session Cart:", JSON.stringify(req.session.cart, null, 2));
-    res.redirect('/cart'); // To change to an alert message
+    console.log("Updated Session Checkout:", JSON.stringify(req.session.checkout, null, 2));
 }
+
 
 function getProdDetails(id) {
     return model.getProductInfo(id)
@@ -154,4 +166,5 @@ module.exports = {
     getSchedules,
     formatDateTime,
     removeItem,
+    addToCheckout
 }

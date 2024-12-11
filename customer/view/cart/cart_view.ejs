@@ -129,6 +129,7 @@
             const price = parseFloat(productRow.querySelector('.unit-price').textContent.replace(/[^\d.-]/g, ''));
             const schedId = productRow.querySelector('.pickup').value;
             const prodId = selectedProduct.value;
+            const orgName = productRow.closest('.orgName');
             
             const productTotal = price * qty;
             total += productTotal;
@@ -138,14 +139,14 @@
             const productData = {
                 prod_id: prodId,
                 sched_id: schedId,
-                qty: qty
+                qty: qty,
             };
 
             const productDataInput = document.createElement('input');
             productDataInput.type = 'hidden';
-            productDataInput.name = 'selected-products[]'; 
+            productDataInput.name = 'selected-products';
             productDataInput.value = JSON.stringify(productData); 
-            checkoutForm.appendChild(productDataInput);
+            checkoutForm.appendChild(productDataInput); 
 
             productRow.querySelector('.total-price').textContent = '₱ ' + productTotal.toFixed(2);
         });

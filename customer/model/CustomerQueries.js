@@ -344,11 +344,11 @@ function getReservationsByStatus(status, username, callback){
     })
 }
 
-function getCustomerID(username) {
+function getCustomerID(username, callback) {
     const query = "SELECT " + 
                   "customer_id " + 
-                  "FROM customer" +
-                  "WHERE username = ?";
+                  "FROM customer " +
+                  "WHERE customer.username = ?";
 
     conn.query(query, [username], (err, results) => {
         if(err){
@@ -360,8 +360,8 @@ function getCustomerID(username) {
     })
 }
 
-function addReservation(prod_id, date, qty, customer_id) {
-    const query = "INSERT INTO reservation (customer_id, prod_id, qty, date, status)" +
+function addReservation(prod_id, date, qty, customer_id, callback) {
+    const query = "INSERT INTO reservation (customer_id, prod_id, qty, date, status) " +
                     "VALUES (?, ?, ?, ?, 'Pending')"
 
     conn.query(query, [customer_id, prod_id, qty, date], (err, results) => {
@@ -369,6 +369,22 @@ function addReservation(prod_id, date, qty, customer_id) {
             console.log(err);
             return callback(err, null);
         } else {
+            return callback(null, results);
+        }
+    })
+}
+
+function getSchedule(sched_id, callback) {
+    const query = "SELECT " + 
+                  "date " + 
+                  "FROM schedule " +
+                  "WHERE sched_id = ?";
+
+    conn.query(query, [sched_id], (err, results) => {
+        if(err){
+            console.log(err);
+            return callback(err, null);
+        }else{
             return callback(null, results);
         }
     })
@@ -398,4 +414,5 @@ module.exports = {
     addReservation,
     getCustomerID,
     getBestSelling,
+    getSchedule,
 }
