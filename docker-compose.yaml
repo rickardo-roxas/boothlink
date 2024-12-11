@@ -8,8 +8,8 @@ services:
       - ./shared:/app/shared
     ports:
       - "3000:3000"
-    depends_on:
-      - database
+    networks:
+      - boothlink-net
 
   vendor:
     build:
@@ -22,6 +22,8 @@ services:
       - database
     ports:
       - "8080:80"
+    networks:
+      - boothlink-net
 
   database:
     image: mysql
@@ -33,7 +35,9 @@ services:
       - ./boothlink.sql:/docker-entrypoint-initdb.d/boothlink.sql
     ports:
       - "3306:3306"
+    networks:
+      - boothlink-net
 
-volumes:
-  shared:
-    driver: local
+networks:
+  boothlink-net:
+    external: true
