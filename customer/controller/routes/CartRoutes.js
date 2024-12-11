@@ -11,17 +11,17 @@ router.use((req, res, next) => {
     if (!req.session.cart) {
         req.session.cart = []; 
     }
+
+    if (!req.session.checkout) {
+        req.session.checkout = []
+    }
+
     next();
 });
 
 router.get('/', (req, res) => {
     cartController.index(req,res);
 })
-
-// router.post('/update', (req,res) => {
-//     // update quantity and removal of item in cart. to put later
-//     res.redirect('/cart')
-// })
 
 router.get('/remove', (req,res) => {
     let productId = parseInt(req.query.product_id);
@@ -38,12 +38,37 @@ router.post('/clear', (req,res) => {
 })
 
 router.post('/checkout', (req, res) => {
-    const selectedProductIds = req.body['selected-products'];
-    res.redirect('checkout')
+    // Log the request body for debugging
+    console.log('Request Body:', req.body);
+
+    // Extract selected products from the request
+    const selectedProductsData = req.body['selected-products'];
+
+    // Check if the data is valid
+    if (!selectedProductsData) {
+        console.error("No selected products found in the request body.");
+        return res.status(400).send("Invalid data received.");
+    }
+
+    try {
+        // Handle both string and array cases
+        const selectedProducts = Array.isArray(selectedProductsData)
+            ? selectedProductsData.map(productData => JSON.parse(productData))
+            : [JSON.parse(selectedProductsData)];
+
+        // Save selected products to session
+        req.session.checkout = selectedProducts;
+
+        console.log("Updated Session Checkout:", JSON.stringify(req.session.checkout, null, 2));
+
+        checkoutController.index(req,res) // Redirect to the checkout page
+    } catch (error) {
+        console.error("Error processing selected products:", error);
+        res.status(500).send("An error occurred while processing your request.");
+    }
 });
 
-
-router.get('/receipt', (req,res) => {
+router.post('/receipt', (req,res) => {
     receiptController.index(req,res)
 })
 

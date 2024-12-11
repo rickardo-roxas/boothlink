@@ -31,6 +31,8 @@ app.use(express.static('./shared/assets'));
 app.use(express.static('./shared/assets/images/org'));
 app.use(express.static('./shared/assets/prod_img'));
 app.use(express.static('./public/js'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Just gives information on the request
 app.use((req, res, next) => {

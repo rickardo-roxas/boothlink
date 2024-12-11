@@ -344,6 +344,39 @@ function getReservationsByStatus(status, username, callback){
     })
 }
 
+function getCustomerID(username) {
+    const query = "SELECT " + 
+                  "customer_id " + 
+                  "FROM customer" +
+                  "WHERE username = ?";
+
+    conn.query(query, [username], (err, results) => {
+        if(err){
+            console.log(err);
+            return callback(err, null);
+        }else{
+            return callback(null, results);
+        }
+    })
+}
+
+function addReservation(prod_id, date, qty, customer_id) {
+    const query = "INSERT INTO reservation (customer_id, prod_id, qty, date, status)" +
+                    "VALUES (?, ?, ?, ?, 'Pending')"
+
+    conn.query(query, [customer_id, prod_id, qty, date], (err, results) => {
+        if(err) {
+            console.log(err);
+            return callback(err, null);
+        } else {
+            return callback(null, results);
+        }
+    })
+}
+
+function getBestSelling() {
+
+}
 
 module.exports = {
     getFirstName,
@@ -361,5 +394,8 @@ module.exports = {
     getSearchedProductByName,
     getShopProductsByPriceInOrganization,
     getShopProductsByCategoryInOrganization,
-    getFiveShopProducts
+    getFiveShopProducts,
+    addReservation,
+    getCustomerID,
+    getBestSelling,
 }

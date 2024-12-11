@@ -57,6 +57,56 @@ const index = (req, res) => {
     })
 }
 
+function addToCheckout(selectedItems, req, res) {
+    if (!Array.isArray(selectedItems) || selectedItems.length === 0) {
+        console.error("No items selected for checkout.");
+        res.redirect('/cart');
+        return;
+    }
+
+    const product = {
+        product_id: parseInt(prod_id),
+        product_qty: parseInt(prod_qty),
+        product_sched : parseInt(prod_sched)
+    };
+
+    if (!req.session.checkout) {
+        req.session.checkout = [];
+    }
+
+    selectedItems.forEach(item => {
+        const { org_id, product_id, product_qty, product_sched } = item;
+
+        const product = {
+            product_id: parseInt(product_id),
+            product_qty: parseInt(product_qty),
+            product_sched: parseInt(product_sched),
+        };
+
+        let org = req.session.checkout.find(org => org.org_id === org_id);
+
+        if (!org) {
+            org = {
+                org_id: org_id,
+                products: [],
+            };
+            req.session.checkout.push(org);
+        }
+
+        let cartProduct = org.products.find(prod => prod.product_id === product.product_id);
+
+        if (cartProduct) {
+            cartProduct.product_qty += product.product_qty;
+            cartProduct.product_sched = product.product_sched;
+        } else {
+            org.products.push(product);
+        }
+    });
+
+    console.log("Updated Session Cart:", JSON.stringify(req.session.cart, null, 2));
+    res.redirect('/cart'); // To change to an alert message
+}
+
 function getProdDetails(id) {
     return model.getProductInfo(id)
 }
