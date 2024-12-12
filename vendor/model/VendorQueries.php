@@ -300,7 +300,7 @@ public function getSalesDataPointsForWeek($org_id)
         include 'model/objects/Reservation.php';
 
         $query = "
-        SELECT 
+        SELECT DISTINCT
             prod_serv.prod_serv_name AS product_name, 
             reservation.qty AS quantity,
             reservation.date AS date,
