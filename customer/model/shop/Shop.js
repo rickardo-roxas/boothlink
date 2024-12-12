@@ -45,6 +45,15 @@ function getShopProductsByPrice(desc) {
     });
 }
 
+function getBestSellingShop() {
+    return new Promise((resolve, reject) => {
+        customerQueries.getBestSellingShop((err,results) => {
+            if (err) reject (err);
+            else resolve(results);
+        });
+    });
+}
+
 function getShopProductsByCategory(category) {
     return new Promise((resolve, reject) => {
         customerQueries.getShopProductsByCategory(category, (err,results) => {
@@ -69,5 +78,6 @@ module.exports = {
     getProducts,
     getShopProductsByPrice,
     getShopProductsByCategory,
-    getSearchedProductByName
+    getSearchedProductByName,
+    getBestSellingShop,
 }

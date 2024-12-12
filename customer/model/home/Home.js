@@ -23,9 +23,19 @@ function getBooths() {
     });
 }
 
+function getBestSelling() { 
+    return new Promise( (resolve, reject) => {
+        customerQueries.getBestSelling((err,results)=> {
+            if (err) reject (err);
+            else resolve(results);
+        });
+    });
+}
+
 
 module.exports = {
     sample,
     getFiveProducts,
-    getBooths
+    getBooths,
+    getBestSelling,
 }
