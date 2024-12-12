@@ -64,9 +64,15 @@ function sortByCategory(category, req, res) {
     this.index(req,res);
 }
 
+function getBestSellingShop(req,res) {
+    productsPromise = model.getBestSellingShop();
+    this.index(req,res);
+}
+
 module.exports = {
     index,
     sortByPrice,
     sortByCategory,
-    allProducts
+    allProducts,
+    getBestSellingShop,
 }

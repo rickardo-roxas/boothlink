@@ -60,10 +60,12 @@ Description: Image panel and description panel are seperated for easier maintain
                                     quantityInput = document.getElementById("prod-qty-input");
                                 let a = 1;
                                 plus.addEventListener("click", ()=>{
-                                    a++;
-                                    a = (a < 10) ? "0" + a : a;
-                                    num.innerText = a;
-                                    quantityInput.value = a;
+                                    if (a < 10) { 
+                                        a++;
+                                        a = (a < 10) ? "0" + a : a; 
+                                        num.innerText = a;
+                                        quantityInput.value = a;
+                                    }
                                 });
                                 minus.addEventListener("click", ()=>{
                                     if(a > 1){
