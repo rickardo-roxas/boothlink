@@ -9,8 +9,6 @@ const index = (req, res) => {
 
     const checkoutItems = req.session.checkoutItems || [];
 
-    
-
     res.render('cart/receipt_view',
     {
         title: "Receipt",
