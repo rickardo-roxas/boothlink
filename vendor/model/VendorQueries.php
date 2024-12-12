@@ -24,11 +24,6 @@ class VendorQueries
         }
     }
 
-    // Destructor to close the connection when the object is destroyed
-    public function __destruct()
-    {
-        $this->conn->close();
-    }
 
     /**
      * Adds a new product to the database with its corresponding vendor
