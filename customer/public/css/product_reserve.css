@@ -120,7 +120,7 @@ Description: Designed for easier maintenance.
     margin-bottom: 0.2rem;
 }
 
-.radio-group {
+.radio_group {
     display: flex;
     flex-direction: row;
     padding-top: 0.8rem;

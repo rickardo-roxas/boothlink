@@ -39,11 +39,21 @@
                                     <div>
                                         <select class="pickup">
                                             <% product.schedules.forEach(schedule => { %>
-                                                <option value="<%= schedule.sched_id %>" <%= schedule.sched_id === product.selectedSchedule ? 'selected' : '' %>>
+                                                <option value="<%= schedule.sched_id %>" name="options" <%= (schedule.sched_id == schedule.selectedSchedule) ? 'selected' : '' %>>
                                                     <%= formatDateTime(schedule.date, schedule.start_time) %>
+                                                    <%= product.product_sched %>
                                                 </option>
                                             <% }) %>
-                                        </select>                                
+                                        </select>
+                                        <script>
+                                            let options = document.querySelectorAll('option[name="options"]');
+                                            for (var i =0; i < options.length; i++) {
+                                                if (options[i].value == 35) {
+                    
+                                                    options[i].setAttribute('selected', true);
+                                                }
+                                            }
+                                        </script>                            
                                     </div>
                                     <p class="unit-price">₱ <%= product.price %></p>
                                     <div>
