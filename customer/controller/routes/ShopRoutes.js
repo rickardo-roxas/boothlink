@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
                 controller.sortByPrice(true, req, res);
                 break;
             case "best-selling":
-                //TODO;
+                controller.getBestSellingShop(req, res);
                 break;
             case "item":
                 controller.sortByCategory("item", req, res);

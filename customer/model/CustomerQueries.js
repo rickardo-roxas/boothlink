@@ -60,6 +60,20 @@ function getFiveShopProducts(callback) {
     });
 }
 
+function getBestSelling(callback) {
+    const query = "SELECT prod_serv.prod_id, prod_serv.prod_serv_name AS 'name', COUNT(reservation.prod_id) AS total_sold, prod_serv.price, prod_serv.category, prod_serv.description, prod_img.img_src AS 'image', organization.org_name AS organization " +
+        " FROM reservation JOIN prod_serv ON reservation.prod_id = prod_serv.prod_id JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id JOIN organization ON prod_org_sched.org_id = organization.org_id " +
+        " WHERE prod_serv.status = 'In Stock' GROUP BY prod_serv.prod_id, prod_serv.prod_serv_name, prod_serv.price, prod_serv.category, prod_serv.description, prod_img.img_src, organization.org_name ORDER BY total_sold DESC LIMIT 5 ";
+
+    conn.query(query, (err, results) => {
+        if (err) {
+            console.error(err);
+            return callback(err, null);
+        }
+        callback(null, results);
+    });
+}
+
 /** Shop Queries */
 
 /** Method to get booths, and their associated images */
@@ -275,6 +289,20 @@ function getSearchedProductByName(searchTerm, callback) {
     });
 }
 
+function getBestSellingShop(callback) {
+    const query = "SELECT prod_serv.prod_id, prod_serv.prod_serv_name AS 'name', COUNT(reservation.prod_id) AS total_sold, prod_serv.price, prod_serv.category, prod_serv.description, prod_img.img_src AS 'image', organization.org_name AS organization " +
+        " FROM reservation JOIN prod_serv ON reservation.prod_id = prod_serv.prod_id JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id JOIN organization ON prod_org_sched.org_id = organization.org_id " +
+        " WHERE prod_serv.status = 'In Stock' GROUP BY prod_serv.prod_id, prod_serv.prod_serv_name, prod_serv.price, prod_serv.category, prod_serv.description, prod_img.img_src, organization.org_name ORDER BY total_sold DESC ";
+
+    conn.query(query, (err, results) => {
+        if (err) {
+            console.error(err);
+            return callback(err, null);
+        }
+        callback(null, results);
+    });
+}
+
 
 /** End of Shop */
 
@@ -401,9 +429,6 @@ function getSchedule(sched_id, callback) {
     })
 }
 
-function getBestSelling() {
-
-}
 
 module.exports = {
     getFirstName,
@@ -425,5 +450,6 @@ module.exports = {
     addReservation,
     getCustomerID,
     getBestSelling,
+    getBestSellingShop,
     getSchedule,
 }
