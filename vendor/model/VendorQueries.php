@@ -5,7 +5,6 @@ namespace model\vendor;
 use model\objects\Organization;
 use model\objects\Reservation;
 use model\objects\Schedule;
-use model\vendor\schedule\SchedulePageModel;
 
 require 'config/Connection.php';
 
@@ -525,6 +524,7 @@ class VendorQueries
 
     public function getScheduleToday($org_id, $date): array
     {
+        include 'model/objects/Schedule.php';
 
         $query = "SELECT prod_org_sched.org_id, schedule.*, location.loc_room, location.stall_number
             FROM prod_org_sched
@@ -532,7 +532,7 @@ class VendorQueries
             JOIN location ON location.loc_id = schedule.loc_id
             WHERE prod_org_sched.org_id = ?
             AND schedule.date = ?
-            ORDER BY schedule.sched_id ASC";
+            ORDER BY schedule.sched_id DESC";
 
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("is", $org_id, $date);
@@ -541,17 +541,17 @@ class VendorQueries
         $result = $stmt->get_result();
         $schedules = [];
 
-//        if ($row = $result->fetch_assoc()) {
-//
-//            $schedule = new SchedulePageModel();
-//            $schedule->setDate($row['date']);
-//            $schedule->setStartTime($row['start_time']);
-//            $schedule->setEndTime($row['end_time']);
-//            $schedule->setLocationRoom($row['loc_room']);
-//            $schedule->setLocationStallNum($row['stall_number']);
-//
-//            $schedules[] = $schedule;
-//        }
+        while ($row = $result->fetch_assoc()) {
+
+            $schedule = new Schedule();
+            $schedule->setDate($row['date']);
+            $schedule->setStartTime($row['start_time']);
+            $schedule->setEndTime($row['end_time']);
+            $schedule->setLocationRoom($row['loc_room']);
+            $schedule->setLocationStallNum($row['stall_number']);
+
+            $schedules[] = $schedule;
+       }
 
         $stmt->close();
         return $schedules;
