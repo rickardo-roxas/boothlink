@@ -30,16 +30,24 @@ Description: Image panel and description panel are seperated for easier maintain
 
                         <form action="/shop/add-to-cart" method="GET">
                             <p class="generic-text">Schedule</p>
-                            <div class="radio-group">
+                            <div class="radio_group">
                                 <% schedules.forEach(schedule => { %>
-                                    <input class="radio-input" name="radio_group" id="radio1" name="radio1" type="radio" value=<%=schedule.sched_id%> required>
-                                    <label class="radio-label" for="radio1">
+                                    <input class="radio-input" 
+                                           name="radio_group" 
+                                           id="<%= schedule.sched_id %>" 
+                                           type="radio" 
+                                           value="<%= schedule.sched_id %>" 
+                                           required>
+                            
+                                    <label class="radio-label" for="<%= schedule.sched_id %>">
                                         <%= schedule.loc_room %> |
-                                        Stall No# <%= schedule.stall_number %>
-                                        | <%= schedule.date %>
-                                        <%= schedule.start_time %>-<%= schedule.end_time %></label>
+                                        Stall No# <%= schedule.stall_number %> |
+                                        <%= schedule.date %> 
+                                        <%= schedule.start_time %> - <%= schedule.end_time %>
+                                    </label>
                                 <% }); %>
                             </div>
+                            
                             <hr>
                             <div class="increment-cart">
                                 <div class="wrapper">
