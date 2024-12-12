@@ -112,7 +112,9 @@ function addToCheckout(selectedItems, req, res) {
         } else {
             // Otherwise, add the new product directly to the session cart
             req.session.checkout.push(product);
+
         }
+        removeItem(prod_id, req, res, false); 
     });
 
     console.log("Updated Session Checkout:", JSON.stringify(req.session.checkout, null, 2));
@@ -143,7 +145,7 @@ function formatDateTime(dateStr, timeStr) {
     return `${month} ${day}, ${year} - ${formattedTime}`;
 }
 
-function removeItem(product_id, req, res) {
+function removeItem(product_id, req, res, cart) {
     const prod_id = parseInt(product_id); 
     if (isNaN(prod_id)) {
         console.error("Invalid product ID");
@@ -157,7 +159,9 @@ function removeItem(product_id, req, res) {
         };
     }).filter(org => org.products.length > 0); // Remove organizations with no products
 
-    res.redirect("/cart");
+    if (cart) {
+        res.redirect("/cart");
+    }
 }
 
 module.exports = {
@@ -166,5 +170,5 @@ module.exports = {
     getSchedules,
     formatDateTime,
     removeItem,
-    addToCheckout
+    addToCheckout,
 }

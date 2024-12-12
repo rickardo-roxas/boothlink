@@ -22,7 +22,7 @@
             <% products.forEach(product => { %>
                 <div class="item container">
                     <div class="container prod">
-                        <img src="<%= product.image %>" alt="<%= product.name %>">
+                        <img src="<%= product.img_src %>" alt="<%= product.name %>">
                         <p><%= product.name %></p>
                     </div>
                     <p class="unit-price">₱ <%= product.price.toFixed(2) %></p>

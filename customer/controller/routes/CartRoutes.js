@@ -51,7 +51,7 @@ router.get('/remove', (req,res) => {
         console.error('Invalid product_id:', req.query.product_id);
         return res.redirect('/cart');
     }
-    cartController.removeItem(productId, req, res);
+    cartController.removeItem(productId, req, res, true);
 })
 
 router.post('/clear', (req,res) => {
