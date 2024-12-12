@@ -13,6 +13,9 @@ const index = (req, res) => {
         let orgProducts = {}; 
 
         let productDetailsPromise = cartProducts.map(product => {
+
+            console.log("PRODUCRTS sched: " + product.schedule);
+
             const prod_id = parseInt(product.prod_id); 
             console.log("Processing product with prod_id:", prod_id); 
 
@@ -30,7 +33,7 @@ const index = (req, res) => {
                     image: productDetails.img_src,
                     price: productDetails.price,
                     schedules: [], 
-                    selectedSchedule: product.schedule, 
+                    selectedSchedule: product.product_sched, 
                 };
 
                 return getSchedules(prod_id)

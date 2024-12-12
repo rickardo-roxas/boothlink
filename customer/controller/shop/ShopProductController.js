@@ -45,6 +45,8 @@ function addProductToCart(org_id, prod_id, prod_qty, prod_sched, req, res) {
         product_sched : parseInt(prod_sched)
     };
 
+    console.log("SHOP PROD CONTROLLER:" + product.product_sched);
+
     if (!req.session.cart) {
         req.session.cart = [];
     }
@@ -63,6 +65,7 @@ function addProductToCart(org_id, prod_id, prod_qty, prod_sched, req, res) {
 
     if (cartProduct) {
         cartProduct.product_qty += product.product_qty;
+        console.log("THE SCHEDULE: " + product.product_sched)
         cartProduct.product_sched = product.product_sched; 
     } else {
         // Add new product to the organization's products list

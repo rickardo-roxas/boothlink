@@ -113,6 +113,8 @@ router.get('/add-to-cart', (req,res) => {
     let prod_id = req.query.prod_id;
     let prod_qty = req.query.prod_qty;
     let prod_sched = req.query.radio_group;
+    console.log("SCHEDULE AT ROUTES: " + prod_sched);
+    
 
     console.log("TEST: " + org_id + prod_id + prod_qty);
 
