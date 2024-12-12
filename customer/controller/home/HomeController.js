@@ -4,7 +4,7 @@ const model = require("../../model/home/Home");
 const customerQueries = require("../../model/CustomerQueries");
 
 const index = (req, res) => {
-    const productsPromiseObj = model.getFiveProducts();
+    const productsPromiseObj = model.getBestSelling();
     const boothHome = model.getBooths();
 
     Promise.all([productsPromiseObj, boothHome]).then(
