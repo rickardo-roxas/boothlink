@@ -170,6 +170,7 @@ main {
     overflow: hidden;
     margin: 0;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .product-card:hover {
