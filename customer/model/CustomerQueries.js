@@ -315,7 +315,7 @@ function getBestSellingShop(callback) {
  */
 
 function getReservations(username, callback){
-    const query = "SELECT " + 
+    const query = "SELECT DISTINCT " + 
               "ps.prod_id, " +
               "pi.img_src AS image_source, " + 
               "o.org_name, " + 
