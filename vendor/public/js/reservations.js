@@ -14,7 +14,7 @@ function populateTable(reservations) {
                     <td class="actions-column">
                         <form action="/cs-312_boothlink/reservations/complete" method="POST"  onsubmit="return confirm('Are you sure you want to accept this reservation?')">
                             <input type="hidden" name="reservation_id" value="${reservation.id}">
-                            <input  name="customer_id" value="${reservation.customer_id}">
+                            <input type="hidden" name="customer_id" value="${reservation.customer_id}">
                             <input type="hidden" name="grand_total" value="${reservation.price}">
                             <button class="accept-btn" type="submit">Mark As Completed</button>
                         </form>
