@@ -96,34 +96,33 @@ class VendorQueries
     }
 
 
-    public function getProductsByCategory($org_id, $filter)
+ public function getProductsByCategory($org_id, $filter)
     {
         $query = "
             SELECT prod_img.img_src, prod_serv.prod_serv_name, prod_serv.price, prod_serv.category, 
-                   COUNT(CASE WHEN RESERVATION.status = 'COMPLETED' THEN 1 ELSE NULL END) AS sold, 
+                   COUNT(CASE WHEN reservation.status = 'COMPLETED' THEN 1 ELSE NULL END) AS sold, 
                    'In Stock' AS status
             FROM prod_serv         
-                JOIN prod_org_sched ON PROD_SERV.prod_id = prod_org_sched.prod_id    
-                JOIN prod_img ON PROD_SERV.prod_id = prod_img.prod_id     
-                LEFT JOIN RESERVATION ON PROD_SERV.prod_id = RESERVATION.prod_id         
+                JOIN prod_org_sched ON prod_serv.prod_id = prod_org_sched.prod_id    
+                JOIN prod_img ON prod_serv.prod_id = prod_img.prod_id     
+                LEFT JOIN reservation ON prod_serv.prod_id = reservation.prod_id         
                     WHERE prod_org_sched.org_id = ? AND prod_serv.category=?
             GROUP BY prod_img.img_src, prod_serv.prod_serv_name, prod_serv.price, prod_serv.category";
-
+    
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("is", $org_id, $filter);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
-
+    
         $products = [];
-
+    
         if ($result) {
             $products = $result->fetch_all(MYSQLI_ASSOC);
         }
-
+    
         return $products;
-    }
-
+    } 
     public function getProductsByStatus($org_id, $filter)
     {
         $query = "
