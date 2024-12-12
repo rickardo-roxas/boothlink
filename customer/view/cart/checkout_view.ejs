@@ -19,17 +19,18 @@
         </div>
         
         <div class="body column-container">
-            <% products.forEach(product => { %>
-                <div class="item container">
-                    <div class="container prod">
-                        <img src="<%= product.img_src %>" alt="<%= product.name %>">
-                        <p><%= product.name %></p>
+            <div class="org-wrapper">
+                <% products.forEach(product => { %>
+                    <div class="item container">
+                        <div class="container prod">
+                            <p><%= product.name %></p>
+                        </div>
+                        <p class="unit-price">₱ <%= product.price.toFixed(2) %></p>
+                        <p class="select-qty"><%= product.quantity %></p>
+                        <p class="selected-total">₱ <%= (product.price * product.quantity).toFixed(2) %></p>
                     </div>
-                    <p class="unit-price">₱ <%= product.price.toFixed(2) %></p>
-                    <p class="select-qty"><%= product.quantity %></p>
-                    <p class="selected-total">₱ <%= (product.price * product.quantity).toFixed(2) %></p>
-                </div>
-            <% }) %>
+                <% }) %>
+            </div>
         </div>
 
         <div class="checkout-totals">

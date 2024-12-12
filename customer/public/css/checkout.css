@@ -9,7 +9,7 @@
 
 #checkout-table .head,
 #checkout-receipt .head {
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
     height: auto;
     padding: 1.5rem;
     border-radius: 1.25rem 1.25rem 0 0;
@@ -29,8 +29,7 @@
 }
 
 #checkout-table .item {
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-    margin-top: -2rem;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
 }
 
 #checkout-table .item .selected-total {
